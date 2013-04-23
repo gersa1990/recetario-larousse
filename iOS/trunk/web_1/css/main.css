@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+#menu{
+	display: none;
+	width: 165px;
+	padding: 6px;
+	background: #171717;
+	border: 1px solid #3e3e3e;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	position: absolute;
+}
+#menu ul{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	color: #6d6d6d;
+	background: #fff;
+	border: 1px solid #171717;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+#menu ul li{
+	line-height: 1.5em;
+	padding: 5px 5px 5px 25px;
+	font-size: 11px;
+	border-bottom: 1px solid #fff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+#menu ul li:hover{
+	background-color: #fff8cc;
+	border-bottom: 1px solid #ffe222;
+	color: #000;
+	cursor: pointer;
+}
+#menu ul li a{
+	color: #6d6d6d;
+	display: block;
+}
+#menu ul li.disabled, #menu ul li.disabled a{
+	color: #bbbbbb;
+	cursor: default;
+}
+#menu ul li.disabled:hover{
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+#menu ul li{
+	background-position: 3px 6px;
+	background-repeat: no-repeat;
+}
+#menu ul li#add_glosario{
+	background-image: url(../src/img/glosario.jpg);
+}
+#menu ul li#menu_web{
+	background-position: 3px 5px;
+	background-image: url(../src/img/web.png);
+}
+#menu ul li#menu_favoritos{
+	background-image: url(../src/img/fav.png);
+}
