@@ -7,6 +7,7 @@ class Apps extends CI_Controller {
 	}
 
 	public function create(){
+		
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -15,7 +16,9 @@ class Apps extends CI_Controller {
 		if ($this->form_validation->run() === FALSE){
 			redirect(base_url());
 		}
+		
 		else{
+
 			$this->App_model->set_app();
 
 		 	$this->load->helper('url');
@@ -37,6 +40,7 @@ class Apps extends CI_Controller {
 	{
 		$data['recetas'] = $this->recetas_model->get_recetas($id);
 		$data['apps'] = $this->App_model->get_apps($id);
+		
 		$data['app']  	 = $id;
 
 		$this->load->helper('url');
