@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/recetario-larousse/iOS/trunk/web/';
+$config['base_url']	= 'http://192.168.2.132/recetario-larousse/iOS/trunk/web/';
 
 /*
 |--------------------------------------------------------------------------

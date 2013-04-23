@@ -12,14 +12,16 @@ class App_model extends CI_Model {
 		$this->db->delete('recetas', array('id' => $id)); 
 	}
 
-	public function getCategoryFromAppId($id){
+	public function getCategoryFromAppId($id)
+	{
+
 		$recetas = $this->db->query("SELECT * FROM categoria WHERE id_app = ".$id." ");
 		
 		$i=0;
-		foreach ($recetas->result() as $key => $value) {
+		foreach ($recetas->result() as $key => $value) 
+		{
 			$arreglo[$i]['id'] 			= $value->id;
 			$arreglo[$i]['id_app']		= $value->id_app;
-
 			$arreglo[$i]['nombre'] 		= $value->nombre;
 			$arreglo[$i]['color']		= $value->color;
 			$arreglo[$i]['orden'] 		= $value->orden;

@@ -1,7 +1,8 @@
 
 <div class="wrapper">
 
-  <input type="text" name="nombreApp" class="input post" value="Título">
+
+  <input type="text" name="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
   
   <nav id="menu">
     <ul>
@@ -76,9 +77,13 @@
             
             <label for="dificultad">Dificultad <span class="small">Dificultad para realizarla</span></label>
             <select name="dificultad">
-              <?php for ($i=1; $i < 6; $i++) { ?>
+              <?php for ($i=1; $i < 6; $i++) 
+              { 
+                ?>
                   <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
+              <?php 
+              } 
+              ?>
             </select>
             
             <br><br>
@@ -106,7 +111,7 @@
             <label for="costo">Costo <span class="small">Precio aproximado</span></label>
              <select name="costo">
               <?php for ($i=1; $i < 6; $i++) { ?>
-                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                  <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
               <?php } ?>
             </select>
             <br><br>
@@ -123,14 +128,6 @@
       </div>
     
     </div>
-
-
-
   </div>
-
   <div class="clear"></div>
-
 </div>
-
-
-
