@@ -43,6 +43,8 @@ class Apps extends CI_Controller {
 		
 		$data['app']  	 = $id;
 
+		$data['categorias'] = $this->App_model->getCategoryFromAppId($id);
+
 		$this->load->helper('url');
 
 		$data['title'] = 'Recetario';

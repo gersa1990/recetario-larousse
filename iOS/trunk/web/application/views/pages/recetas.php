@@ -28,11 +28,11 @@
                 {
                   for ($i=0; $i <count($recetas) ; $i++) 
                     { ?>
-          <tr>
-            <td><a href="<?php echo $recetas[$i]['id']; ?>"><?php echo $recetas[$i]['titulo']; ?></a></td>
-            <td><a href="">Eliminar</a></td>
-            <td><a href="">Exportar</a></td>
-          </tr>
+                    <tr>
+                      <td><a href="<?php echo $recetas[$i]['id']; ?>"><?php echo $recetas[$i]['titulo']; ?></a></td>
+                      <td><a href="">Eliminar</a></td>
+                      <td><a href="">Exportar</a></td>
+                    </tr>
           <?php     }   
                 } ?>
         </tbody>
@@ -51,7 +51,7 @@
         <br>
         
         <div class="myform">
-          <form action="">
+          
             <?php echo validation_errors(); ?>
             <?php echo form_open('recetas/create/'.$app) ?>
             
@@ -66,7 +66,7 @@
             
               <?php foreach ($categorias as $c_item): ?>
               
-              <option value="<?php echo $c_item['id'] ?>"><?php echo $c_item['nombre'] ?></option>
+                <option value="<?php echo $c_item['id'] ?>"><?php echo $c_item['nombre'] ?></option>
               
               <?php endforeach ?>
             
@@ -75,8 +75,12 @@
             <br>
             
             <label for="dificultad">Dificultad <span class="small">Dificultad para realizarla</span></label>
-            <input type="number" name="dificultad" id="dificultad" />
-
+            <select name="dificultad">
+              <?php for ($i=1; $i < 6; $i++) { ?>
+                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php } ?>
+            </select>
+            
             <br><br>
             
             <label for="proce" class="fixmargin">Procedimiento <span class="small">Pasos de preparación</span></label>
@@ -100,8 +104,11 @@
             <br>
             
             <label for="costo">Costo <span class="small">Precio aproximado</span></label>
-            <input type="text" name="costo" id="costo" />
-
+             <select name="costo">
+              <?php for ($i=1; $i < 6; $i++) { ?>
+                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php } ?>
+            </select>
             <br><br>
             
             <label for="ïmg">Imagen <span class="small">Cargar file</span></label>
