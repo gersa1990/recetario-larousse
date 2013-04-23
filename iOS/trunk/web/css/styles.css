@@ -50,7 +50,7 @@ h3{
 
 .main{
     width: 100%;
-    margin-top:30px;
+    margin-top: 20px;
     position: relative;
 }
 
@@ -69,6 +69,10 @@ h3{
 
 .fixh2{
     margin-top: 16px; 
+}
+
+.bluetext{
+    color: #669;
 }
 
 /*************************************/
@@ -93,9 +97,19 @@ header a{
 }
 
 .help{
+    color: #ff0b1d;
     position: absolute;
     top: 50px;
     right: 40px;
+}
+
+.mg1{
+    padding: 5px 73px !important;
+    margin-left: 0;
+    margin-bottom: -1px;
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
 }
 
 /*************************************/
@@ -217,7 +231,6 @@ table td{
 }
 
 .button {
-    margin-left: 0;
     padding: 5px 40px;
     display: inline;
     background: #abd1ee;
@@ -352,5 +365,5 @@ table td{
 }
 
 .modalDialog .eliminarBoton:hover {
-background-color: #3788c8;
+    background-color: #3788c8;
 }

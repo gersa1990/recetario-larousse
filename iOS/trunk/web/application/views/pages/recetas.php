@@ -14,13 +14,11 @@
   <div class="main">
     <div class="columna">
 
-      <input type="submit" class="button" value="+ Nueva">
+      
 
       <table>
         <thead>
-          <tr>
-            <td colspan="3">Recetas</td>
-          </tr>
+          <input type="submit" class="button mg1" value="+ Nueva">
         </thead>
 
         <tbody>
@@ -29,7 +27,7 @@
                   for ($i=0; $i <count($recetas) ; $i++) 
                     { ?>
           <tr>
-            <td><a href="<?php echo $recetas[$i]['id']; ?>"><?php echo $recetas[$i]['titulo']; ?></a></td>
+            <td><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
             <td><a href="">Eliminar</a></td>
             <td><a href="">Exportar</a></td>
           </tr>
