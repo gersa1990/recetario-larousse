@@ -22,12 +22,17 @@
         <tr>
           <th colspan="5">Aplicaciones</th>
         </tr>
-
+        <?php if(isset($apps))
+              {
+                for ($i=0; $i <count($apps) ; $i++) 
+                  {  
+                    ?>
         <tr>
-          <td><a href="">Manuvo</a></td>
+          <td><a href="<?php base_url(); ?>apps/view/<?php echo $apps[$i]['id']; ?>"><?php echo $apps[$i]['nombre']; ?></a></td>
           <td><a href="">Eliminar</a></td>
           <td><a href="">Exportar</a></td>
         </tr>
+        <?php } } ?>
       </table>
       
     </div>

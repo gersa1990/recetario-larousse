@@ -24,11 +24,17 @@
         </thead>
 
         <tbody>
+          <?php if(isset($recetas))
+                {
+                  for ($i=0; $i <count($recetas) ; $i++) 
+                    { ?>
           <tr>
-            <td><a href="">Frijoles en ajo a la naranja con jitomate y queso</a></td>
+            <td><a href="<?php echo $recetas[$i]['id']; ?>"><?php echo $recetas[$i]['titulo']; ?></a></td>
             <td><a href="">Eliminar</a></td>
             <td><a href="">Exportar</a></td>
           </tr>
+          <?php     }   
+                } ?>
         </tbody>
       </table>
       <input type="text" name="" class="input post buscar" placeholder="Buscar.." value="">
