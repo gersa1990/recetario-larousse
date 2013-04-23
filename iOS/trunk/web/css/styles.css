@@ -103,6 +103,7 @@ header a{
 /*************************************/
 footer{
     position: absolute;
+    z-index: -1;
     left: 0;
     bottom: 0;
     height: 40px;
@@ -154,7 +155,6 @@ footer p{
 /*           Tabla                   */
 /*************************************/
 table{
-    position: relative;
     font-size: 12px;
     background: #fff;
     border-collapse: collapse;
@@ -285,4 +285,72 @@ table td{
     border: none;
     color: #039;
     margin: 10px auto; 
+}
+
+/*************************************/
+/*           PopUp                   */
+/*************************************/
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 0;
+    opacity:0;
+    pointer-events: none;
+}
+
+.modalDialog h2{
+    text-align: center;
+}
+
+.modalDialog p{
+    font-size: 14px;
+    margin: 7px auto; 
+    text-align: center;
+}
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog > div {
+    width: 470px;
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+}
+.close {
+    background: #e60000;
+    color: #FFFFFF;
+    font-size: 21px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 25px;
+    height: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+.modalDialog .eliminarBoton {
+    margin: 10px 40%;
+    padding: 5px 10px;
+    background: #2c6da0;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10%;
+}
+
+.modalDialog .eliminarBoton:hover {
+background-color: #3788c8;
 }
