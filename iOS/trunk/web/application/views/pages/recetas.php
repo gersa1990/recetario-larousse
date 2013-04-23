@@ -1,7 +1,5 @@
 
 <div class="wrapper">
-
-  <input type="text" name="nombreApp" class="input post" value="Título">
   
   <nav id="menu">
     <ul>
@@ -10,6 +8,8 @@
       <li><a href="" class="">Video</a></li>
       <li><a href="" class="">Receta complementaria</a></li>
   </nav>
+  
+  <input type="text" name="nombreApp" class="input post" value="Título">
 
   <div class="main">
     <div class="columna">

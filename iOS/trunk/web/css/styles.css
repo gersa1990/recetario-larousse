@@ -50,7 +50,7 @@ h3{
 
 .main{
     width: 100%;
-    margin-top:40px;
+    margin-top:30px;
     position: relative;
 }
 
@@ -121,7 +121,7 @@ footer p{
 /*           Menu                   */
 /*************************************/
 #menu{
-    margin-top:30px; 
+    margin: 30px auto; 
 }
 
 #menu ul{
