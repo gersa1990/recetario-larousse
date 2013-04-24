@@ -166,9 +166,13 @@ $("#nombreApp").keyup(function ()
 
 $("#buscar").keyup(function ()
 {
+  var texto = $("#buscar").val();
+
+  $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data){
+
+    $("#recetas tbody").html(data);
+
+  }); 
 
 });
-
-
-
 </script>
