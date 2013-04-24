@@ -1,8 +1,10 @@
 
 <div class="wrapper">
 
+  
+  <input type="submit" class="exportar" value="Exportar">
 
-  <span style="font-size:25px;">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
+  <span class="uptext">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
   
   <nav id="menu">
     <ul>
@@ -16,12 +18,11 @@
 
   <div class="main">
     <div class="columna">
-      <input type="submit" class="button mg1" value="+ Nueva">
-
+  
       <table id="recetas" class="lista">
         <thead>
           <tr>
-            <td colspan="2"><input type="submit" class="button mg1" value="+ Nueva"></td>
+            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
@@ -127,7 +128,7 @@
 
             <br><br>
             
-            <button type="submit" class="button">Guardar</button>
+            <button type="submit" class="button bl2">Guardar</button>
 
           </form>
         </div>
