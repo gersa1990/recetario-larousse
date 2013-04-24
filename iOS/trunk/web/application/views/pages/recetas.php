@@ -16,6 +16,7 @@
 
   <div class="main">
     <div class="columna">
+      <input type="submit" class="button mg1" value="+ Nueva">
 
       <table id="recetas" class="lista">
         <thead>
