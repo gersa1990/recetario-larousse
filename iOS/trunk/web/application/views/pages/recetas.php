@@ -2,25 +2,29 @@
 <div class="wrapper">
 
 
-  <input type="text" name="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
+  <span style="font-size:25px;">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
   
   <nav id="menu">
     <ul>
-      <li><a href="" class="">Receta</a></li>
-      <li><a href="" class="">Glosario</a></li>
-      <li><a href="" class="">Video</a></li>
-      <li><a href="" class="">Receta complementaria</a></li>
+      <li><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
+      <li><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
+      <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
+      <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
+      <li><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
+    </ul>
   </nav>
 
   <div class="main">
     <div class="columna">
 
-      <input type="submit" class="button" value="+ Nueva">
-
-      <table>
+      <table id="recetas" class="lista">
         <thead>
           <tr>
-            <td colspan="3">Recetas</td>
+            <td colspan="2"><input type="submit" class="button mg1" value="+ Nueva"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
+            <span class="postfix email">  </span></td>
           </tr>
         </thead>
 
@@ -29,17 +33,18 @@
                 {
                   for ($i=0; $i <count($recetas) ; $i++) 
                     { ?>
+
                     <tr>
-                      <td><a href="<?php echo $recetas[$i]['id']; ?>"><?php echo $recetas[$i]['titulo']; ?></a></td>
-                      <td><a href="">Eliminar</a></td>
-                      <td><a href="">Exportar</a></td>
+                        <td><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
+                        <td><a href="">Eliminar</a></td>
                     </tr>
-          <?php     }   
+
+                    <?php     
+                    }   
                 } ?>
         </tbody>
       </table>
-      <input type="text" name="" class="input post buscar" placeholder="Buscar.." value="">
-      <span class="postfix email">  </span>
+      
       
     </div>
     
@@ -131,3 +136,27 @@
   </div>
   <div class="clear"></div>
 </div>
+<script>
+
+var app = "<?php echo $app; ?>";
+var base_url = "<?php echo base_url(); ?>";
+
+$("#nombreApp").keyup(function ()
+{
+    var nombreApp = $("#nombreApp").val();
+    console.log(nombreApp);
+
+    $.post(base_url+"apps/updateNombre/", {nombre: nombreApp, id_app: app}, function (data)
+    {
+        
+    });
+});
+
+$("#buscar").keyup(function ()
+{
+
+});
+
+
+
+</script>

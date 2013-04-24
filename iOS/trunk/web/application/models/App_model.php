@@ -12,6 +12,18 @@ class App_model extends CI_Model {
 		$this->db->delete('recetas', array('id' => $id)); 
 	}
 
+	public function updateAppName($idApp, $nombreApp){
+
+
+		$this->id 	  = $idApp;
+		$this->nombre = $nombreApp;
+
+		$update = $this->db->update('app', $this, array('id' => $idApp));
+
+		return $update;
+
+	}
+
 	public function getCategoryFromAppId($id)
 	{
 

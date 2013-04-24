@@ -36,6 +36,19 @@ class Apps extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function updateNombre()
+	{
+		$nombre = $_POST['nombre'];
+		$idApp  = $_POST['id_app'];
+
+		$update = $this->App_model->updateAppName($idApp, $nombre);
+
+		if($update)
+		{
+			redirect(base_url()."apps/view/".$idApp,"refresh");
+		}		
+	}
+
 	public function view($id)
 	{
 		$data['recetas'] = $this->recetas_model->get_recetas($id);
