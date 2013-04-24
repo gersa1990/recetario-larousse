@@ -50,13 +50,36 @@ h3{
 
 .main{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 60px;
     position: relative;
 }
 
 .columna{
     width: 50%;
     float: left;
+}
+
+.columl{
+    width: 460px;
+    float: left;
+}
+
+.columr{
+    width: 556px;
+    float: left;
+}
+
+.bordel{
+    width: 
+}
+
+.txcenter{
+    text-align: center;
+}
+
+.txleft{
+    text-align: left;
+    margin-left: 5px;
 }
 
 .clear{
@@ -72,8 +95,10 @@ h3{
 }
 
 .bluetext{
+    position: relative;
     text-align: left;
     color: #669;
+    left: 10px;
 }
 
 .uptext{
@@ -89,7 +114,7 @@ h3{
 }
 
 .spinner{
-    top: 7px;
+    top: 6px;
     left: 5px;
     background: url(../resources/img/spinner.gif) no-repeat;
 }
@@ -192,6 +217,7 @@ footer p{
 /*           Tabla                   */
 /*************************************/
 table{
+    width: 350px;
     font-size: 12px;
     background: #fff;
     border-collapse: collapse;
@@ -305,8 +331,7 @@ table td{
 /*           Formulario              */
 /*************************************/
 .myform{
-    width:100%;
-    min-height: 300px;
+    width: 515px;
     margin: 0 auto;
     padding: 10px;
     border:solid 2px #b7ddf2;
@@ -426,4 +451,18 @@ table td{
 
 .modalDialog .eliminarBoton:hover {
     background-color: #3788c8;
+}
+
+#addblock{
+    width: 100%;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#tabla{
+    width: 367px;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }

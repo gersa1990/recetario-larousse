@@ -2,7 +2,7 @@
 <div class="wrapper">
 
   
-  <input type="submit" id="exportar"  class="exportar" value="Exportar">
+  <input type="submit" class="exportar" value="Exportar">
 
   <span class="uptext left">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post left" value="<?php echo $apps['nombre']; ?>">
   <div class="status left spinner"></div>
@@ -20,65 +20,52 @@
   </nav>
 
   <div class="main">
-    <div class="columna">
+    <div class="columl">
+
+      <div id="tabla">
   
-      <table id="recetas" class="lista">
-        <thead>
-          <tr>
-            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva Receta"></td>
-          </tr>
-          <tr>
-            <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
-            <span class="postfix email">  </span></td>
-          </tr>
-        </thead>
+        <table id="recetas" class="lista">
+          <thead>
+            <tr>
+              <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
+              <span class="postfix email">  </span></td>
+            </tr>
+          </thead>
 
-        <tbody>
-          <?php if(isset($recetas))
-                {
-                  for ($i=0; $i <count($recetas) ; $i++) 
-                    { ?>
+          <tbody>
+            <?php if(isset($recetas))
+                  {
+                    for ($i=0; $i <count($recetas) ; $i++) 
+                      { ?>
 
-                    <tr>
-                        <td><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
-                        <td><a href="#eliminarReceta<?php echo $recetas[$i]['id']; ?>">Eliminar</a></td>
-                    </tr>
+                      <tr>
+                          <td class="txleft"><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
+                          <td><a href="">Eliminar</a></td>
+                      </tr>
 
-                    <div id="eliminarReceta<?php echo $recetas[$i]['id'] ?>" class="modalDialog">
-                      <div>
-                        <a href="#" title="Close" class="close">X</a>
-                          <?php echo validation_errors(); ?>
-                          <?php echo form_open('recetas/eliminar') ?>
-        
-                            <h2><?php echo $recetas[$i]['titulo'] ?><br/></h2>
-                            <p>Nota: Se eliminará esta receta de forma definitiva.</p>
-        
-                            <input type="hidden" name="id"  id="id"  value="<?php echo $recetas[$i]['id']; ?>"/>
-                            <input type="hidden" name="app" id="id" value="<?php echo $app; ?>">
-          
-                            <button type="submit" class="eliminarBoton">Eliminar</button>
-                          </form>
-                      </div>
-                    </div>
+                      <?php     
+                      }   
+                  } ?>
+          </tbody>
+        </table>
 
-                    <?php     
-                    }   
-                } ?>
-        </tbody>
-      </table>
+      </div>
       
       
     </div>
     
-    <div class="columna">
+    <div class="columr">
 
       <div id="addblock">
         
-        <h2>Nueva receta</h2>
-        <p>Información de la receta</p>
-        <br>
-        
         <div class="myform">
+
+            <h2 class="txcenter">Nueva receta</h2>
+            <p class="txcenter">Información de la receta</p>
+            <br><br>
           
             <?php echo validation_errors(); ?>
             <?php echo form_open('recetas/create/'.$app) ?>
@@ -179,19 +166,9 @@ $("#nombreApp").keyup(function ()
 
 $("#buscar").keyup(function ()
 {
-    var buscar = $("#buscar").val();
-
-        $.post(base_url+"recetas/searchByName/", {palabra: buscar, id_app: app}, function (data)
-        {
-            $("#recetas tbody").html(data);
-        });
 
 });
 
 
-$("#exportar").click(function ()
-{
-  location.href=""+base_url+"export/create/"+app+"";
-});
 
 </script>
