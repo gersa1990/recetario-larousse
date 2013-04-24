@@ -50,13 +50,26 @@ h3{
 
 .main{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 60px;
     position: relative;
 }
 
 .columna{
     width: 50%;
     float: left;
+}
+
+.bordel{
+    width: 
+}
+
+.txcenter{
+    text-align: center;
+}
+
+.txleft{
+    text-align: left;
+    margin-left: 5px;
 }
 
 .clear{
@@ -72,8 +85,10 @@ h3{
 }
 
 .bluetext{
+    position: relative;
     text-align: left;
     color: #669;
+    left: 10px;
 }
 
 .uptext{
@@ -89,7 +104,7 @@ h3{
 }
 
 .spinner{
-    top: 7px;
+    top: 6px;
     left: 5px;
     background: url(../resources/img/spinner.gif) no-repeat;
 }
@@ -192,6 +207,7 @@ footer p{
 /*           Tabla                   */
 /*************************************/
 table{
+    width: 350px;
     font-size: 12px;
     background: #fff;
     border-collapse: collapse;
@@ -305,7 +321,7 @@ table td{
 /*           Formulario              */
 /*************************************/
 .myform{
-    width:100%;
+    width: 100%;
     min-height: 300px;
     margin: 0 auto;
     padding: 10px;
