@@ -74,12 +74,12 @@ h3{
 }
 
 #tabla{
-    width: 350px;
+    width: 350px; 
 }
 
 .blockscroll{
     display: block;
-    height: auto;
+    height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -90,6 +90,7 @@ h3{
 }
 
 .txleft{
+    width: 252px;
     text-align: left;
     margin-left: 5px;
 }
@@ -142,6 +143,21 @@ h3{
     float: left;
 }
 
+.help{
+    color: #ff0b1d;
+    position: absolute;
+    top: 50px;
+    right: 40px;
+}
+
+.mg1{
+    padding: 5px 73px !important;
+    margin-left: 0;
+    margin-bottom: -1px;
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+}
 /*************************************/
 /*           Header                   */
 /*************************************/
@@ -161,22 +177,6 @@ header img{
 header a{
     font-weight: bold;
     text-decoration: none;
-}
-
-.help{
-    color: #ff0b1d;
-    position: absolute;
-    top: 50px;
-    right: 40px;
-}
-
-.mg1{
-    padding: 5px 73px !important;
-    margin-left: 0;
-    margin-bottom: -1px;
-    border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    -webkit-border-radius: 0 !important;
 }
 
 /*************************************/
@@ -249,12 +249,22 @@ table{
 
 table a{
     line-height: 1px;
-    padding: 10px 6px 10px 0;
+    padding: 5px 6px 5px 0;
     text-decoration: none;
 }
 
-table, th, td, thead{
+/*table, th, td, thead{
     border: 1px solid #abd1ee;
+}
+*/
+
+table, th{
+    border: 1px solid #abd1ee;
+}
+
+table td{
+    border-right:1px solid #abd1ee;
+    border-bottom: 1px solid #abd1ee;
 }
 
 table th, thead{
