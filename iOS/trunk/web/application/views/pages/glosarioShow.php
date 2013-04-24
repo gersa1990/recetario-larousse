@@ -40,7 +40,7 @@
                     { ?>
 
                     <tr>
-                        <td><a href="<?php echo $glosario[$i]['id']; ?>" class="bluetext"><?php echo $glosario[$i]['titulo']; ?></a></td>
+                        <td><a href="<?php echo $glosario[$i]['id']; ?>" class="bluetext"><?php echo $glosario[$i]['nombre']; ?></a></td>
                         <td><a href="#eliminarReceta<?php echo $glosario[$i]['id']; ?>">Eliminar</a></td>
                     </tr>
 
@@ -50,7 +50,7 @@
                           <?php echo validation_errors(); ?>
                           <?php echo form_open('glosario/eliminar') ?>
         
-                            <h2><?php echo $glosario[$i]['titulo'] ?><br/></h2>
+                            <h2><?php echo $glosario[$i]['nombre'] ?><br/></h2>
                             <p>Nota: Se eliminará esta receta de forma definitiva.</p>
         
                             <input type="hidden" name="id"  id="id"  value="<?php echo $glosario[$i]['id']; ?>"/>
@@ -162,6 +162,19 @@
   <div class="clear"></div>
 </div>
 <script>
+ var base_url = "<?php echo base_url(); ?>";
+ var app      =  "<?php echo $app; ?>";
+
+$("#nombreApp").keyup(function ()
+{
+    var nombreApp = $("#nombreApp").val();
+    console.log(nombreApp);
+
+    $.post(base_url+"apps/updateNombre/", {nombre: nombreApp, id_app: app}, function (data)
+    {
+        
+    });
+});
 
 $("#exportar").click(function ()
 {

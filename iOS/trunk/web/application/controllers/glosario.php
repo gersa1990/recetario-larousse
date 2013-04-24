@@ -19,12 +19,13 @@ class Glosario extends CI_Controller {
 
 	public function view($id_app){
 
-		$data['apps'] = $this->App_model->get_apps($id_app);
+		$data['apps'] 	  = $this->App_model->get_apps($id_app);
+		$data['glosario'] = $this->Glosario_model->getAllBy($id_app);
 		
 		$data['app']  	 = $id_app;
 
 		$data['title'] = 'Glosario';
-		//$data['glosario'] = $this->Glosario_model->getAll();
+		
 		$this->load->view('templates/header',$data);
 		$this->load->view('pages/glosarioShow',$data);
 		$this->load->view('templates/footer');

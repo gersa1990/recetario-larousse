@@ -23,6 +23,27 @@ class Glosario_model extends CI_Model {
 		}
 	}
 
+	public function getAllBy($id_app){
+
+		$query = $this->db->query("SELECT * FROM glosario WHERE id_app = ".$id_app." ");
+
+		$i=0;
+		foreach ($query->result() as $key => $value) {
+			$arreglo[$i]['id'] 			= $value->id;
+			$arreglo[$i]['id_app'] 		= $value->id_app;
+			$arreglo[$i]['nombre'] 		= $value->nombre;
+			$arreglo[$i]['descripcion'] = $value->descripcion;
+			$arreglo[$i]['imagen'] 	= $value->imagen;
+			$i++;
+		}
+
+		if(isset($arreglo))
+		{
+			//var_dump($arreglo);
+			return $arreglo;
+		}
+	}
+
 	public function addToRecipe($idReceta, $idGlosario)
 	{
 		$data = array(
