@@ -40,8 +40,8 @@
                     { ?>
 
                     <tr>
-                        <td><a href="<?php echo $glosario[$i]['id']; ?>" class="bluetext"><?php echo $glosario[$i]['nombre']; ?></a></td>
-                        <td><a href="#eliminarReceta<?php echo $glosario[$i]['id']; ?>">Eliminar</a></td>
+                        <td class="txleft"><a href="<?php echo $glosario[$i]['id']; ?>" class="bluetext"><?php echo $glosario[$i]['nombre']; ?></a></td>
+                        <td class="txleft"><a href="#eliminarReceta<?php echo $glosario[$i]['id']; ?>">Eliminar</a></td>
                     </tr>
 
                     <div id="eliminarReceta<?php echo $glosario[$i]['id'] ?>" class="modalDialog">
@@ -85,8 +85,8 @@
             
             
             
-            <label for="titulo" class="fixh1">Título</label>
-            <input type="texto" name="titulo" id="titulo" />
+            <label for="nombre" class="fixh1">Nombre</label>
+            <input type="text" name="nombre" id="nombre" />
             
             <br>
 
