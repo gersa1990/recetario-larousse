@@ -7,6 +7,15 @@ class App_model extends CI_Model {
 		$this->load->model('recetas_model');
 	}
 
+	public function nueva(){
+
+		$data = array(
+			'nombre' => $this->input->post('nombre')
+		);
+
+		return $this->db->insert('app', $data);
+	}
+
 	
 	public function delete_app($id){
 		$this->db->delete('recetas', array('id' => $id)); 

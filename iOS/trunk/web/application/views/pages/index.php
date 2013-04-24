@@ -1,10 +1,26 @@
 
 <div class="wrapper">
+
+  <div id="nuevaApp" class="modalDialog">
+                      <div>
+                        <a href="#" title="Close" class="close">X</a>
+                          <?php echo validation_errors(); ?>
+                          <?php echo form_open('apps/nueva/') ?>
+        
+                            
+                            <input type="text" name="nombre" value="">
+                
+          
+                            <button type="submit" class="eliminarBoton">Agregar APP</button>
+                          </form>
+                      </div>
+                    </div>
   
   <nav id="menu">
     <ul>
         <li class="">
-            <a href="" class="">Nueva Aplicación</a>
+            <a href="#nuevaApp" class="">Nueva Aplicación</a>
+
         </li>
 
         <!-- <li class="">

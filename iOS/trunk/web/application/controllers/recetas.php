@@ -34,11 +34,11 @@ class Recetas extends CI_Controller {
 			foreach ($arre as $key => $value) 
 			{
 				$id = $value['id'];
-				echo "<tr><td>";
-					echo $value['titulo'];
+				echo "<tr><td class='txleft'>";
+					echo "<a href='".$id."' class='bluetext'>".$value['titulo']."</a>";
 				echo "</td>";
-				echo "<td>";
-					echo "<a href='eliminarReceta".$id."'>Eliminar</a>";
+				echo "<td class='txleft'>";
+					echo "<a href='#eliminarReceta".$id."'>Eliminar</a>";
 				echo "</td></tr>";
 			}
 		}

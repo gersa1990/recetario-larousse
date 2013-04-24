@@ -27,6 +27,17 @@ class Apps extends CI_Controller {
 		}
 	}
 
+	public function nueva(){
+
+		$nombre = $_POST['nombre'];
+		$insert = $this->App_model->nueva($nombre);
+
+		if ($insert) {
+			redirect(base_url(),"refresh");
+		}
+
+	}
+
 	public function newapp()
 	{
 		$data['title'] = 'Recetario Larousse';
@@ -52,7 +63,7 @@ class Apps extends CI_Controller {
 	public function view($id)
 	{
 		$data['recetas'] = $this->recetas_model->get_recetas($id);
-		
+
 		$data['apps'] = $this->App_model->get_apps($id);
 		
 		$data['app']  	 = $id;
