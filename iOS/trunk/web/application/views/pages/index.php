@@ -31,7 +31,7 @@
                   <tr>
                     <td><a href="<?php base_url(); ?>apps/view/<?php echo $apps[$i]['id']; ?>" class="bluetext"><?php echo $apps[$i]['nombre']; ?></a></td>
                     <td><a href="#eliminar<?php echo $apps[$i]['id'] ?>">Eliminar</a></td>
-                    <td><a href="">Exportar</a></td>
+                    <td><a href="<?php base_url(); ?>export/create/<?php echo $apps[$i]['id']; ?>">Exportar</a></td>
                   </tr>
                    
                     <div id="eliminar<?php echo $apps[$i]['id'] ?>" class="modalDialog">
