@@ -75,6 +75,11 @@ h3{
     color: #669;
 }
 
+.uptext{
+    color: #d70010;
+    font-size: 24px;
+}
+
 /*************************************/
 /*           Header                   */
 /*************************************/
@@ -242,6 +247,40 @@ table td{
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+
+.bl1:hover {
+    background: #ebf4fb;
+    border: 1px solid #039;
+    color: #000000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.bl2:hover {
+    color: #FFF;
+    text-shadow: none;
+}
+
+.exportar {
+    position: absolute;
+    right: 0;
+    padding: 5px 40px;
+    display: inline;
+    border: 1px solid #039;
+    color: #000000;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.exportar:hover {
+    background: #abd1ee;
+    border: 1px solid #039;
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+
 }
 
 /*************************************/

@@ -17,7 +17,45 @@ class Recetas extends CI_Controller {
 		$nombre = $_POST['palabra'];
 		$id_app = $_POST['id_app'];
 
-		$result = $this->db->query();
+		$result = $this->db->query("SELECT * FROM recetas WHERE titulo like '%".$nombre."%' and id_app = ".$id_app." ");
+
+		$i=0;
+		foreach ($result->result() as $key => $value) 
+		{
+			$arre[$i]['id'] 			= $value->id;
+			$arre[$i]['titulo'] 		= $value->titulo;
+			$arre[$i]['id_categoria'] 	= $value->titulo;
+			$arre[$i]['id_app'] 		= $value->id_app;
+			$i++;
+		}
+
+		if(isset($arre))
+		{
+			foreach ($arre as $key => $value) 
+			{
+				$id = $value['id'];
+				echo "<tr><td>";
+					echo $value['titulo'];
+				echo "</td>";
+				echo "<td>";
+					echo "<a href='eliminarReceta".$id."'>Eliminar</a>";
+				echo "</td></tr>";
+			}
+		}
+
+	}
+
+	public function eliminar(){
+
+		$id_receta = $_POST['id'];
+		$app 	   = $_POST['app'];
+
+		$delete    = $this->recetas_model->eliminar($id_receta); 
+
+		if($delete)
+		{
+			redirect(base_url()."apps/view/".$app);
+		}
 	}
 	
 
@@ -197,13 +235,7 @@ class Recetas extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function eliminar($id, $app = FALSE){
-		$this->load->helper('url');
 
-		$this->recetas_model->delete_recipe($id);
-
-		redirect(base_url()."apps/view/".$app, 'refresh');
-	}
 
 	public function updateR($app = FALSE, $id)
 	{

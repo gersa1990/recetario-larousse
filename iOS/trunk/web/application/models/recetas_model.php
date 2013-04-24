@@ -7,6 +7,12 @@ class Recetas_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function eliminar($id){
+
+		$delete = $this->db->delete('recetas', array('id' => $id));
+		return $delete;
+	}
+
 	public function getGlosarioByRecipe($id)
 	{
 		$query = $this->db->query("SELECT * FROM glosario JOIN receta_glosario on  glosario.id = receta_glosario.id_glosario and receta_glosario.id_receta = ".$id."");

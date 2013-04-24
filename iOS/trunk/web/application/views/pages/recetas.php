@@ -1,8 +1,10 @@
 
 <div class="wrapper">
 
+  
+  <input type="submit" id="exportar"  class="exportar" value="Exportar">
 
-  <span style="font-size:25px;">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
+  <span class="uptext">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
   
   <nav id="menu">
     <ul>
@@ -16,11 +18,11 @@
 
   <div class="main">
     <div class="columna">
-
+  
       <table id="recetas" class="lista">
         <thead>
           <tr>
-            <td colspan="2"><input type="submit" class="button mg1" value="+ Nueva Receta"></td>
+            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva Receta"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
@@ -36,8 +38,25 @@
 
                     <tr>
                         <td><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
-                        <td><a href="">Eliminar</a></td>
+                        <td><a href="#eliminarReceta<?php echo $recetas[$i]['id']; ?>">Eliminar</a></td>
                     </tr>
+
+                    <div id="eliminarReceta<?php echo $recetas[$i]['id'] ?>" class="modalDialog">
+                      <div>
+                        <a href="#" title="Close" class="close">X</a>
+                          <?php echo validation_errors(); ?>
+                          <?php echo form_open('recetas/eliminar') ?>
+        
+                            <h2><?php echo $recetas[$i]['titulo'] ?><br/></h2>
+                            <p>Nota: Se eliminará esta receta de forma definitiva.</p>
+        
+                            <input type="hidden" name="id"  id="id"  value="<?php echo $recetas[$i]['id']; ?>"/>
+                            <input type="hidden" name="app" id="id" value="<?php echo $app; ?>">
+          
+                            <button type="submit" class="eliminarBoton">Eliminar</button>
+                          </form>
+                      </div>
+                    </div>
 
                     <?php     
                     }   
@@ -126,7 +145,7 @@
 
             <br><br>
             
-            <button type="submit" class="button">Guardar</button>
+            <button type="submit" class="button bl2">Guardar</button>
 
           </form>
         </div>
@@ -154,17 +173,19 @@ $("#nombreApp").keyup(function ()
 
 $("#buscar").keyup(function ()
 {
-    var buscar = $("#buscar");
+    var buscar = $("#buscar").val();
 
-    if(buscar != "")
-    {
         $.post(base_url+"recetas/searchByName/", {palabra: buscar, id_app: app}, function (data)
         {
-            console.log(data);
+            $("#recetas tbody").html(data);
         });
-    }
+
 });
 
 
+$("#exportar").click(function ()
+{
+  location.href=""+base_url+"export/create/"+app+"";
+});
 
 </script>
