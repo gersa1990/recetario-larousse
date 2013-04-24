@@ -20,40 +20,44 @@
   </nav>
 
   <div class="main">
-    <div class="columna">
+    <div class="columl">
+
+      <div id="tabla">
   
-      <table id="recetas" class="lista">
-        <thead>
-          <tr>
-            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
-          </tr>
-          <tr>
-            <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
-            <span class="postfix email">  </span></td>
-          </tr>
-        </thead>
+        <table id="recetas" class="lista">
+          <thead>
+            <tr>
+              <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
+              <span class="postfix email">  </span></td>
+            </tr>
+          </thead>
 
-        <tbody>
-          <?php if(isset($recetas))
-                {
-                  for ($i=0; $i <count($recetas) ; $i++) 
-                    { ?>
+          <tbody>
+            <?php if(isset($recetas))
+                  {
+                    for ($i=0; $i <count($recetas) ; $i++) 
+                      { ?>
 
-                    <tr>
-                        <td class="txleft"><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
-                        <td><a href="">Eliminar</a></td>
-                    </tr>
+                      <tr>
+                          <td class="txleft"><a href="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
+                          <td><a href="">Eliminar</a></td>
+                      </tr>
 
-                    <?php     
-                    }   
-                } ?>
-        </tbody>
-      </table>
+                      <?php     
+                      }   
+                  } ?>
+          </tbody>
+        </table>
+
+      </div>
       
       
     </div>
     
-    <div class="columna">
+    <div class="columr">
 
       <div id="addblock">
         
