@@ -37,7 +37,7 @@ class Recetas extends CI_Controller {
 				echo "<tr><td class='txleft'>";
 					echo "<a href='".$id."' class='bluetext'>".$value['titulo']."</a>";
 				echo "</td>";
-				echo "<td class='txleft'>";
+				echo "<td>";
 					echo "<a href='#eliminarReceta".$id."'>Eliminar</a>";
 				echo "</td></tr>";
 			}

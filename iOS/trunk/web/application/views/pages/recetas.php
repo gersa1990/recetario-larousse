@@ -167,15 +167,14 @@ $("#nombreApp").keyup(function ()
     });
 });
 
-$("#buscar").keyup(function ()
+$("#buscar").keyup(function (data)
 {
   var texto = $("#buscar").val();
 
-  $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data){
-
+  $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+  {
     $("#recetas tbody").html(data);
-
   }); 
-
 });
+
 </script>
