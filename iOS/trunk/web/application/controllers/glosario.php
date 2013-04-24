@@ -4,15 +4,31 @@ class Glosario extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Glosario_model');
+		$this->load->model('App_model');
 	}
 
 	public function create()
 	{
 		$idGlosario = $this->Glosario_model->add_glosario();
+		
 		if($idGlosario)
 		{
 			redirect(base_url()."glosario/index","refresh");
 		}
+	}
+
+	public function view($id_app){
+
+		$data['apps'] = $this->App_model->get_apps($id_app);
+		
+		$data['app']  	 = $id_app;
+
+		$data['title'] = 'Glosario';
+		//$data['glosario'] = $this->Glosario_model->getAll();
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/glosarioShow',$data);
+		$this->load->view('templates/footer');
+
 	}
 
 	public function edit()

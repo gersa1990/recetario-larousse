@@ -89,6 +89,9 @@
             <input type="texto" name="titulo" id="titulo" />
             
             <br>
+
+            <input type="hidden" name="app" value="<?php echo $app; ?>"> 
+
             <label for="categoria" class="fixh2">Categoria</label>
             <select name="categoria" id="categoria">
             
