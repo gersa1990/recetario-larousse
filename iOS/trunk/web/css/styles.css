@@ -79,7 +79,8 @@ h3{
 
 .blockscroll{
     display: block;
-    height: 600px;
+    min-height: 335px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
 }

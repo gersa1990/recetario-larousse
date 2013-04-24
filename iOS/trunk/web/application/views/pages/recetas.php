@@ -24,7 +24,7 @@
 
       <div id="tabla">
   
-        <table>
+        <table id="recetas">
           <thead>
             <tr>
               <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
