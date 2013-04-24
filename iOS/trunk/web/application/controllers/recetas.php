@@ -12,6 +12,13 @@ class Recetas extends CI_Controller {
 		$this->load->model('video_model');
 	}
 
+	public function searchByName()
+	{
+		$nombre = $_POST['palabra'];
+		$id_app = $_POST['id_app'];
+
+		$result = $this->db->query();
+	}
 	
 
 	public function  complementariaCreate()

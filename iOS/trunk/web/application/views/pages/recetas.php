@@ -20,7 +20,7 @@
       <table id="recetas" class="lista">
         <thead>
           <tr>
-            <td colspan="2"><input type="submit" class="button mg1" value="+ Nueva"></td>
+            <td colspan="2"><input type="submit" class="button mg1" value="+ Nueva Receta"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
@@ -154,7 +154,15 @@ $("#nombreApp").keyup(function ()
 
 $("#buscar").keyup(function ()
 {
+    var buscar = $("#buscar");
 
+    if(buscar != "")
+    {
+        $.post(base_url+"recetas/searchByName/", {palabra: buscar, id_app: app}, function (data)
+        {
+            console.log(data);
+        });
+    }
 });
 
 
