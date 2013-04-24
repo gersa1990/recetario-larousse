@@ -11,7 +11,7 @@
   
   <nav id="menu">
     <ul>
-      <li><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
+      <li class="active"><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
       <li><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
       <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
       <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
@@ -35,7 +35,7 @@
             </tr>
           </thead>
 
-          <tbody>
+          <tbody class="blockscroll">
             <?php if(isset($recetas))
                   {
                     for ($i=0; $i <count($recetas) ; $i++) 
@@ -72,13 +72,16 @@
             
             
             
-            <label for="titulo" class="fixh1">Título</label>
-            <input type="texto" name="titulo" id="titulo" />
+            <label for="titulo" class="fixh1 left">Título</label>
+            <input type="texto" name="titulo" id="titulo" class="left"/>
+            <div class="status left error">Ya existe una receta con este nombre.</div>
+
+            <div class="clear"></div>
             
             <br>
             <label for="categoria" class="fixh2">Categoria</label>
             <select name="categoria" id="categoria">
-            
+
               <?php foreach ($categorias as $c_item): ?>
               
                 <option value="<?php echo $c_item['id'] ?>"><?php echo $c_item['nombre'] ?></option>

@@ -69,9 +69,21 @@ h3{
     float: left;
 }
 
-.bordel{
-    width: 
+#addblock{
+    width: 100%;
 }
+
+#tabla{
+    width: 350px;
+}
+
+.blockscroll{
+    display: block;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 
 .txcenter{
     text-align: center;
@@ -107,16 +119,23 @@ h3{
 }
 
 .status{
-    width: 32px;
-    height: 32px;
     position: relative;
     display: block;
 }
 
 .spinner{
+    width: 32px;
+    height: 32px;
     top: 6px;
     left: 5px;
     background: url(../resources/img/spinner.gif) no-repeat;
+}
+
+.error{
+    font-size: 12px;
+    top: 4px;
+    width: auto;
+    color: red;
 }
 
 .left{
@@ -213,11 +232,15 @@ footer p{
     background-color: #3788c8;  
 }
 
+#menu ul li.active{
+    background-color: #3788c8;  
+}
+
 /*************************************/
 /*           Tabla                   */
 /*************************************/
 table{
-    width: 350px;
+    width: 337px;
     font-size: 12px;
     background: #fff;
     border-collapse: collapse;
@@ -331,7 +354,7 @@ table td{
 /*           Formulario              */
 /*************************************/
 .myform{
-    width: 515px;
+    width: 100%;
     margin: 0 auto;
     padding: 10px;
     border:solid 2px #b7ddf2;
@@ -451,18 +474,4 @@ table td{
 
 .modalDialog .eliminarBoton:hover {
     background-color: #3788c8;
-}
-
-#addblock{
-    width: 100%;
-    height: 600px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
-#tabla{
-    width: 367px;
-    height: 600px;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
