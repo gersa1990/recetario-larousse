@@ -4,7 +4,10 @@
   
   <input type="submit" class="exportar" value="Exportar">
 
-  <span class="uptext">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post" value="<?php echo $apps['nombre']; ?>">
+  <span class="uptext left">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post left" value="<?php echo $apps['nombre']; ?>">
+  <div class="status left spinner"></div>
+
+  <div class="clear"></div>
   
   <nav id="menu">
     <ul>
@@ -83,7 +86,7 @@
             <br>
             
             <label for="dificultad">Dificultad <span class="small">Dificultad para realizarla</span></label>
-            <select name="dificultad">
+            <select name="dificultad" class="wt1">
               <?php for ($i=1; $i < 6; $i++) 
               { 
                 ?>

@@ -72,12 +72,30 @@ h3{
 }
 
 .bluetext{
+    text-align: left;
     color: #669;
 }
 
 .uptext{
     color: #d70010;
     font-size: 24px;
+}
+
+.status{
+    width: 32px;
+    height: 32px;
+    position: relative;
+    display: block;
+}
+
+.spinner{
+    top: 7px;
+    left: 5px;
+    background: url(../resources/img/spinner.gif) no-repeat;
+}
+
+.left{
+    float: left;
 }
 
 /*************************************/
@@ -318,8 +336,12 @@ table td{
     font-size:12px;
     padding: 4px 2px;
     border:solid 1px #aacfe4;
-    width:100px;
+    width: 140px;
     margin: 10px auto;
+}
+
+.wt1{
+    width: 58px !important;
 }
 
 .myform input{
@@ -334,7 +356,6 @@ table td{
 .myform textarea{
     width: 100%;
     min-height: 300px;
-    border: none;
     color: #039;
     margin: 10px auto; 
 }
