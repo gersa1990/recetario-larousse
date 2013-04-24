@@ -52,6 +52,7 @@ class Apps extends CI_Controller {
 	public function view($id)
 	{
 		$data['recetas'] = $this->recetas_model->get_recetas($id);
+		
 		$data['apps'] = $this->App_model->get_apps($id);
 		
 		$data['app']  	 = $id;
