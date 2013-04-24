@@ -156,6 +156,7 @@ class Recetas extends CI_Controller {
 	}
 
 	public function create($app){
+
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->library('form_validation');
@@ -167,8 +168,8 @@ class Recetas extends CI_Controller {
 			redirect(base_url()."agregar");
 		}else{
 			$id = $this->recetas_model->set_recetas();
-
-			redirect(base_url().'recetas/relationships/'.$app."/".$id.'', 'refresh');
+			
+			redirect(base_url().'apps/view/'.$app, 'refresh');
 		}
 	}
 
