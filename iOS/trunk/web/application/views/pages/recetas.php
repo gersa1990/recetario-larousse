@@ -24,7 +24,7 @@
 
       <div id="tabla">
   
-        <table>
+        <table id="recetas">
           <thead>
             <tr>
               <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
@@ -167,15 +167,14 @@ $("#nombreApp").keyup(function ()
     });
 });
 
-$("#buscar").keyup(function ()
+$("#buscar").keyup(function (data)
 {
   var texto = $("#buscar").val();
 
-  $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data){
-
+  $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+  {
     $("#recetas tbody").html(data);
-
   }); 
-
 });
+
 </script>
