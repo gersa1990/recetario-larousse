@@ -4,22 +4,37 @@ class Categorias extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('categoria_model');
+		$this->load->model('App_model');
 	}
 
-	public function index(){
-		$data['categorias'] = $this->categoria_model->get_categorias();
+	public function edit($id_app, $id_categoria){
 
+		
 		$this->load->helper('url');
+
+		$data['apps'] = $this->App_model->get_apps($id_app);
+
+		$data['categorias'] = $this->categoria_model->get_categorias($id_app);
+
+		
+		$data['app']  	 = $id_app;
 
 		$data['title'] = 'Categorias';
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/categorias', $data);
+		$this->load->view('pages/categoriasEdit', $data);
 		$this->load->view('templates/footer');
 	}
 
-	public function view(){
+	public function view($id_app){
 
 		$this->load->helper('url');
+
+		$data['apps'] = $this->App_model->get_apps($id_app);
+
+		$data['categorias'] = $this->categoria_model->get_categorias($id_app);
+
+		
+		$data['app']  	 = $id_app;
 
 		$data['title'] = 'Categorias';
 		$this->load->view('templates/header', $data);

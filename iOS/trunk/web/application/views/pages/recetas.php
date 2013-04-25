@@ -167,6 +167,8 @@ $("#nombreApp").keyup(function ()
     });
 });
 
+$(".myform").css('display','none');
+
 $("#buscar").keyup(function (data)
 {
   var texto = $("#buscar").val();

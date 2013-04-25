@@ -15,9 +15,9 @@ class complementarias_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function getRecetasComplementarias()
+	public function getRecetasComplementarias($id_app)
 	{
-		$query = $this->db->query("SELECT * FROM  recetas_complementarias");
+		$query = $this->db->query("SELECT * FROM  recetas_complementarias WHERE id_app =  ".$id_app." ");
 		
 		$i=0;
 		foreach ($query->result() as $arreglo)
