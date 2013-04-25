@@ -128,7 +128,7 @@ class Recetas extends CI_Controller {
 
 		echo "<div class='myform'>
 
-            <h2 class='txcenter'>Nueva receta</h2>
+            <h2 class='txcenter'>Edita los datos de tu receta</h2>
             <p class='txcenter'>Informaci&oacute;n de la receta</p>
             <br><br>";
 

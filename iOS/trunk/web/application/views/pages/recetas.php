@@ -186,6 +186,7 @@ $(".blockscroll tr .txleft").each(function (text)
       var id = $(this).attr('id');
 
       $("#tabs").fadeIn("slow");
+      $(".myform").fadeOut("slow");
 
       $.post(base_url+"recetas/searchById/", {id_receta:id, id_app: app }, function (data)
       {
