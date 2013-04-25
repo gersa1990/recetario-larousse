@@ -53,6 +53,9 @@ h3{
     height: 1px;
  }
 
+strong{
+    font-weight: bold;
+}
 /*************************************/
 /*           Clases                  */
 /*************************************/
@@ -166,6 +169,7 @@ h3{
     -moz-border-radius: 4px;
     border-radius: 4px;
     font-size: 13px;
+    color: #c09853;
 }
 
 .alert .aclose {
@@ -206,6 +210,18 @@ button.aclose {
     color: #b94a48;
     background-color: #f2dede;
     border-color: #eed3d7;
+}
+
+.success {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.info {
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
 }
 
 .left{
