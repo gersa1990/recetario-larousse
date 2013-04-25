@@ -7,15 +7,27 @@ class categoria_model extends CI_Model {
 	}
 
 	
-	public function get_categorias($id = FALSE){
+	public function get_categorias($id_app){
 		
-		if ($id === FALSE){
-			$query = $this->db->get('categoria');
-			return $query->result_array();
+		
+		$query = $this->db->get_where('categoria', array('id_app' => $id_app));
+		
+		$i=0;
+		foreach ($query->result() as $key => $value) 
+		{
+			$arreglo[$i]['id']			= $value->id;
+			$arreglo[$i]['id_app']		= $value->id_app;
+			$arreglo[$i]['nombre']		= $value->nombre;
+			$arreglo[$i]['color']		= $value->color;
+			$arreglo[$i]['orden']		= $value->orden;
+			$i++;
 		}
-		
-		$query = $this->db->get_where('categoria', array('id' => $id));
-		return $query->row_array();
+
+		if(isset($arreglo))
+		{
+			return $arreglo;
+		}
+
 	}
 
 	public function set_categoria(){

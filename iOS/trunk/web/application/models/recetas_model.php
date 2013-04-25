@@ -238,33 +238,55 @@ class Recetas_model extends CI_Model {
 		$this->db->delete('recetas', array('id' => $id)); 
 	}
 
+	public function searchById($id_receta){
 
-	public function set_recetas()
-	{
-		$ingredientes 	= $this->typography->auto_typography($_POST['ingre']);
-		$procedimiento  = $this->typography->auto_typography($_POST['proce']);
-		
+		$query = $this->db->query("SELECT * FROM recetas WHERE id = ".$id_receta." ");
 
-		$this->load->helper('url');
-			$data = array(
-				'titulo'	 		=> $this->input->post('titulo'),
-				'id_categoria' 		=> $this->input->post('categoria'),
-				'id_app' 			=> $this->input->post('app'),
+		$i=0;
+		foreach ($query->result() as $key => $value) 
+		{
+			$arre[$i]['id'] 			= $value->id;
+			$arre[$i]['titulo']			= $value->titulo;
+			$arre[$i]['id_categoria']	= $value->id_categoria;
+			$arre[$i]['id_app']			= $value->id_app;
+			$arre[$i]['procedimiento']	= $value->procedimiento;
+			$arre[$i]['ingredientes'] 	= $value->ingredientes;
+			$arre[$i]['preparacion'] 	= $value->preparacion;
+			$arre[$i]['coccion'] 		= $value->coccion;
+			$arre[$i]['costo'] 			= $value->costo;
+			$arre[$i]['foto'] 			= $value->foto;
+			$arre[$i]['user_fav']		= $value->user_fav;
+			$arre[$i]['dificultad'] 	= $value->dificultad;
+			$i++;
+		}
+		if(isset($arre))
+		{
+			return $arre;
+		}
+	}
+
+
+	public function set_recetas($titulo, $id_categoria, $id_app, $procedimiento, $ingredientes, $preparacion, $coccion, $costo, $foto, $user_fav, $dificultad, $preparada)
+	{					
+		$data = array(
+				'titulo' 			=> $titulo,
+				'id_categoria' 		=> $id_categoria,
+				'id_app' 			=> $id_app,
 				'procedimiento' 	=> $procedimiento,
 				'ingredientes' 		=> $ingredientes,
-				'preparacion' 		=> $this->input->post('prepa'),
-				'coccion' 			=> $this->input->post('coccion'),
-				'costo' 			=> $this->input->post('costo'),
-				'foto' 				=> $this->input->post('img'),
-				'user_fav' 			=> $this->input->post('user'),
-				'dificultad' 		=> $this->input->post('dificultad'),
-				'preparada'			=> 0
-			);
+				'preparacion' 		=> $preparacion,
+				'coccion' 			=> $coccion,
+				'costo' 			=> $costo,
+				'foto' 				=> $foto,
+				'user_fav' 			=> $user_fav,
+				'dificultad' 		=> $dificultad
 
-			$this->db->insert('recetas', $data);
-			$ID = $this->db->insert_id();
+		);
+
+		$this->db->insert('recetas', $data);
+		$ID = $this->db->insert_id();
 			
-			return $ID;
+		return $ID;
 	}
 
 	public function update_recetas($id)

@@ -8,13 +8,20 @@ class Complementarias extends CI_Controller
 		parent::__construct();
 		
 		$this->load->model('complementarias_model');
+		$this->load->model('App_model');
 	}
 
-	public function show()
+	public function view($id_app)
 	{
 		$data['title'] = 'Recetario';
 
-		$data['recetas_complementarias'] = $this->complementarias_model->getRecetasComplementarias();
+		$data['recetas_complementarias'] = $this->complementarias_model->getRecetasComplementarias($id_app);
+
+		$this->load->helper('url');
+
+		$data['apps'] = $this->App_model->get_apps($id_app);
+		
+		$data['app']  	 = $id_app;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/complementariasShow', $data);

@@ -12,8 +12,8 @@
   <nav id="menu">
     <ul>
       <li><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
-      <li class="active"><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
-      <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
+      <li><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
+      <li class="active"><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
       <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
       <li><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
     </ul>
@@ -25,7 +25,7 @@
       <table id="recetas" class="lista">
         <thead>
           <tr>
-            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nuevo glosario"></td>
+            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nuevo video"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
