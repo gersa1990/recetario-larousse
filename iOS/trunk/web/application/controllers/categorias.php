@@ -17,6 +17,17 @@ class Categorias extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function view(){
+
+		$this->load->helper('url');
+
+		$data['title'] = 'Categorias';
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/categorias', $data);
+		$this->load->view('templates/footer');
+
+	}
+
 	public function create(){
 		$this->load->helper('form');
 		$this->load->library('form_validation');

@@ -9,15 +9,32 @@ class Glosario extends CI_Controller {
 
 	public function create()
 	{
+		$this->load->helper('form');
 		$idGlosario = $this->Glosario_model->add_glosario();
 		
 		if($idGlosario)
 		{
-			redirect(base_url()."glosario/index","refresh");
+			redirect(base_url()."glosario/view/".$_POST['app'],"refresh");
+		}
+	}
+
+	public function eliminar(){
+		
+
+		$id_glosario = $_POST['id_glosario'];
+		$id_app 	 = $_POST['app'];
+
+		$delete = $this->Glosario_model->eliminar($id_glosario);
+
+		if($delete)
+		{
+			redirect(base_url()."glosario/view/".$id_app,"refresh");
 		}
 	}
 
 	public function view($id_app){
+
+		$this->load->helper('form');
 
 		$data['apps'] 	  = $this->App_model->get_apps($id_app);
 		$data['glosario'] = $this->Glosario_model->getAllBy($id_app);

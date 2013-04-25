@@ -40,32 +40,49 @@
                     { ?>
 
                     <tr>
-                        <td class="txleft"><a href="<?php echo $glosario[$i]['id']; ?>" class="bluetext"><?php echo $glosario[$i]['nombre']; ?></a></td>
-                        <td class="txleft"><a href="#eliminarReceta<?php echo $glosario[$i]['id']; ?>">Eliminar</a></td>
+                        <td class="txleft">
+                          <a href="<?php echo $glosario[$i]['id']; ?>" class="bluetext">
+                            <?php echo $glosario[$i]['nombre']; ?>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#eliminarGlosario<?php echo $glosario[$i]['id']; ?>">Eliminar</a></td>
                     </tr>
-
-                    <div id="eliminarReceta<?php echo $glosario[$i]['id'] ?>" class="modalDialog">
-                      <div>
-                        <a href="#" title="Close" class="close">X</a>
-                          <?php echo validation_errors(); ?>
-                          <?php echo form_open('glosario/eliminar') ?>
-        
-                            <h2><?php echo $glosario[$i]['nombre'] ?><br/></h2>
-                            <p>Nota: Se eliminará esta receta de forma definitiva.</p>
-        
-                            <input type="hidden" name="id"  id="id"  value="<?php echo $glosario[$i]['id']; ?>"/>
-                            <input type="hidden" name="app" id="id" value="<?php echo $app; ?>">
-          
-                            <button type="submit" class="eliminarBoton">Eliminar</button>
-                          </form>
-                      </div>
-                    </div>
-
                     <?php     
                     }   
                 } ?>
         </tbody>
       </table>
+
+      <?php
+      if(isset($glosario))
+      {
+        for ($i=0; $i <count($glosario) ; $i++) 
+        { 
+          ?>
+          <div id="eliminarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
+                      <div>
+                        <a href="#" title="Close" class="close">X</a>
+                          
+                          <?php echo form_open("glosario/eliminar/") ?>
+                          <form method="post" action="<?php echo base_url(); ?>glosario/eliminar/">
+        
+                            <h2><?php echo $glosario[$i]['nombre']; ?></h2>
+                            <p>Nota: Eliminará este glosario de forma definitiva.</p>
+        
+                            <input type="hidden" name="id_glosario"  id="id_glosario"  value="<?php echo $glosario[$i]['id']; ?>">
+                            <input type="hidden" name="app" id="id" value="<?php echo $app; ?>">
+          
+                            <button type="submit" class="eliminarBoton">Eliminar</button>
+
+                          </form>
+
+                      </div>
+                    </div>
+          <?php
+        }
+      }
+       ?>
       
       
     </div>
@@ -74,14 +91,14 @@
 
       <div id="addblock">
         
-        <h2>Nuevo glosario</h2>
+        <div class="myform">
+
+          <h2>Nuevo glosario</h2>
         <p>Información del glosario</p>
         <br>
-        
-        <div class="myform">
           
             <?php echo validation_errors(); ?>
-            <?php echo form_open('recetas/create/'.$app) ?>
+            <?php echo form_open('glosario/create/'.$app) ?>
             
             
             
@@ -92,63 +109,17 @@
 
             <input type="hidden" name="app" value="<?php echo $app; ?>"> 
 
-            <label for="categoria" class="fixh2">Categoria</label>
-            <select name="categoria" id="categoria">
-            
-              <?php foreach ($categorias as $c_item): ?>
-              
-                <option value="<?php echo $c_item['id'] ?>"><?php echo $c_item['nombre'] ?></option>
-              
-              <?php endforeach ?>
-            
-            </select>
+            <label for="categoria" class="fixh2">Descripcion</label>
+            <textarea type="text" name="descripcion"></textarea>
 
             <br>
             
-            <label for="dificultad">Dificultad <span class="small">Dificultad para realizarla</span></label>
-            <select name="dificultad" class="wt1">
-              <?php for ($i=1; $i < 6; $i++) 
-              { 
-                ?>
-                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php 
-              } 
-              ?>
-            </select>
             
-            <br><br>
             
-            <label for="proce" class="fixmargin">Procedimiento <span class="small">Pasos de preparación</span></label>
-            <textarea name="proce" title="proce" rows="4" cols="46"></textarea>
+            <label for="proce" class="fixmargin">Imagen <span class="small">Nombre del archivo de imagen</span></label>
+            <input name="imagen" title="imagen" rows="4" cols="46">
 
-            <br>
-            
-            <label for="ingre" class="fixmargin">Ingredientes <span class="small">Lista de ingredientes</span></label>
-            <textarea name="ingre" title="ingre" rows="4" cols="46"></textarea>
-
-            <br>
-            
-            <label for="prepa">Preparación <span class="small">Tiempo en min</span></label>
-            <input type="text" name="prepa" id="prepa" />
-
-            <br>
-            
-            <label for="coccion">Cocción <span class="small">Tiempo en min</span></label>
-            <input type="text" name="coccion" id="coccion" />
-
-            <br>
-            
-            <label for="costo">Costo <span class="small">Precio aproximado</span></label>
-             <select name="costo">
-              <?php for ($i=1; $i < 6; $i++) { ?>
-                  <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
-              <?php } ?>
-            </select>
-            <br><br>
-            
-            <label for="ïmg">Imagen <span class="small">Cargar file</span></label>
-            <input type="text" name="img" id="img" />
-
+           
             <br><br>
             
             <button type="submit" class="button bl2">Guardar</button>
@@ -175,6 +146,12 @@ $("#nombreApp").keyup(function ()
         
     });
 });
+
+$("#buscar").keyup(function ()
+{
+  
+});
+
 
 $("#exportar").click(function ()
 {

@@ -1,169 +1,164 @@
+
 <div class="wrapper">
 
-    <a href="<?php echo base_url(); ?>" class="home">Home</a>
-
-    <h2 class="centrado">Categorías</h2>
-
-     <div id="nueva" class="modalDialog">
-        <div>
-          <a href="#" title="Close" class="close">X</a>
-          <?php echo validation_errors(); ?>
-          <?php echo form_open('categorias/create') ?>
-            <h2>Nueva categoría.</h2>
-            <label class="dialogL">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" />
-
-            <br>
-
-            <label class="dialogL">Color: </label>
-            <input type="text" name="color" id="color" readonly value="" style="border:none;" />
-
-            <div id="colorSelector" style="width:40px; height:40px;">
-              <div style="background-color: rgb(224, 101, 126); width:40px; height:40px;"></div>
-            </div>
-            <script>
-              $('#colorSelector').ColorPicker(
-                {
-                    color: '#0000ff',
-                  onShow: function (colpkr) 
-                  {
-                    $(colpkr).fadeIn(500);
-                    return false;
-                  },
-    
-                  onHide: function (colpkr) 
-                  {
-                    $(colpkr).fadeOut(500);
-                    return false;
-                  },
   
-                   onChange: function (hsb, hex, rgb) 
-                  {
-                    console.log(rgb);
-                    $('#colorSelector div').css('backgroundColor', '#' + hex);
-                    $("#nueva div form #color").val(rgb.r+"."+rgb.g+"."+rgb.b);
-                  }
-                });
-            </script>
+  <input type="submit" id="exportar"  class="exportar" value="Exportar">
+
+  <span class="uptext left">Aplicación:</span> <input type="text" name="nombreApp" id="nombreApp" class="input post left" value="<?php echo $apps['nombre']; ?>">
+  <div class="status left spinner"></div>
+
+  <div class="clear"></div>
+  
+  <nav id="menu">
+    <ul>
+      <li><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
+      <li class="active"><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
+      <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
+      <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
+      <li><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
+    </ul>
+  </nav>
+
+  <div class="main">
+    <div class="columna">
+  
+      <table id="recetas" class="lista">
+        <thead>
+          <tr>
+            <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nuevo glosario"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
+            <span class="postfix email">  </span></td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?php if(isset($videos))
+                {
+                  for ($i=0; $i <count($videos) ; $i++) 
+                    { 
+                      ?>
+
+                    <tr>
+                        <td class="txleft">
+                          <a href="<?php echo $videos[$i]['id']; ?>" class="bluetext">
+                            <?php echo $videos[$i]['video']; ?>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#eliminarGlosario<?php echo $videos[$i]['id']; ?>">Eliminar</a></td>
+                    </tr>
+                    <?php     
+                    }   
+                } ?>
+        </tbody>
+      </table>
+
+      <?php
+      if(isset($videos))
+      {
+        
+
+        for ($i=0; $i <count($videos) ; $i++) 
+        { 
+          ?>
+          <div id="eliminarGlosario<?php echo $videos[$i]['id']; ?>" class="modalDialog">
+                      <div>
+                        <a href="#" title="Close" class="close">X</a>
+                          
+                          <?php echo form_open("videos/eliminar/") ?>
+                          <form method="post" action="<?php echo base_url(); ?>videos/eliminar/">
+        
+                            <h2><?php echo $videos[$i]['video']; ?></h2>
+                            <p>Nota: Eliminará este video de forma definitiva.</p>
+        
+                            <input type="hidden" name="id_glosario"  id="id_glosario"  value="<?php echo $videos[$i]['id']; ?>">
+                            <input type="hidden" name="app" id="id" value="<?php echo $app; ?>">
+          
+                            <button type="submit" class="eliminarBoton">Eliminar</button>
+
+                          </form>
+
+                      </div>
+                    </div>
+          <?php
+        }
+      }
+       ?>
+      
+      
+    </div>
+    
+    <div class="columna">
+
+      <div id="addblock">
+        
+        <div class="myform">
+
+          <h2>Nuevo video</h2>
+        <p>Información del video</p>
+        <br>
+          
+            <?php echo validation_errors(); ?>
+            <?php echo form_open('videos/create/'.$app) ?>
+            
+            
+            
+            <label for="nombre" class="fixh1">Nombre</label>
+            <input type="text" name="nombre" id="nombre" />
+            
             <br>
 
-            <button type="submit" class="eliminarBoton">Agregar</button>
+            <input type="hidden" name="app" value="<?php echo $app; ?>"> 
+
+            <label for="categoria" class="fixh2">Descripcion</label>
+            <textarea type="text" name="descripcion"></textarea>
+
+            <br>
+            
+            
+            
+            <label for="proce" class="fixmargin">Imagen <span class="small">Nombre del archivo de imagen</span></label>
+            <input name="imagen" title="imagen" rows="4" cols="46">
+
+           
+            <br><br>
+            
+            <button type="submit" class="button bl2">Guardar</button>
+
           </form>
         </div>
-    </div>
-
-	<table class="listaCategorias">
-      	<tr>
-        	<th>Nombre</th>
-        	<th>Color</th>
-        	<th></th>
-        	<th></th>
-      	</tr>
-
-        <script>
-        var id=0;
-        </script>
-
-       
-
-      	<?php foreach ($categorias as $c_item): ?>
-      	<tr>
-        	<td><?php echo $c_item['nombre'] ?></td>
-        	<td><?php echo $c_item['color'] ?>
-          </td>
-        	<td><a href="#editar<?php echo $c_item['id'] ?>">Editar</a></td>
-        	<td><a href="#eliminar<?php echo $c_item['id'] ?>">Eliminar</a></td>
-      	</tr>
-
-        <div id="editar<?php echo $c_item['id'] ?>" class="modalDialog">
-          <div>
-            <a href="#" title="Close" class="close">X</a>
-            <?php echo validation_errors(); ?>
-            <?php echo form_open('categorias/modificar') ?>
-              
-              <h2>Editar Aplicación.</h2>
-
-              <input type="hidden" name="id" id="id"  value="<?php echo $c_item['id'] ?>"/>
-              
-              <label class="dialogL">Nombre: </label>
-              <input type="text" name="nombre" id="nombre" value="<?php echo $c_item['nombre'] ?>"/>
-
-              <br><br>
-
-              <label class="dialogL">Color: </label>
-              <input style="border:none;" type="text" name="color" id="color_<?php  echo $c_item['id']; ?>" value="<?php echo $c_item['color'] ?>" readonly/>
-
-              <div class="selectorEditar" id="colorSelectorEditar_<?php echo $c_item['id']; ?>" style="width:40px; height:40px;">
-                <input id="number" type="hidden" value="<?php  echo $c_item['id']; ?>">
-                <div id="backgroundDiv_<?php  echo $c_item['id']; ?>" style="background-color: rgb(224, 101, 126); width:40px; height:40px;"></div>
-              </div>
-              <script>
-              var i = "<?php echo $c_item['id']; ?>";
-              
-              $(".selectorEditar").click(function (data)
-                {
-                  console.log("CLIK 2");
-                  var a = $("#number",this).val();
-                  id = a;
-                  console.log(a);
-                });
-
-
-              $('#colorSelectorEditar_'+i).ColorPicker(
-                {
-                    color: '#0000ff',
-                  onShow: function (colpkr) 
-                  {
-                    $(colpkr).fadeIn(500);
-                    return false;
-                  },
-    
-                  onHide: function (colpkr) 
-                  {
-                    $(colpkr).fadeOut(500);
-                    return false;
-                  },
-  
-                   onChange: function (hsb, hex, rgb) 
-                  {
-                    console.log("ID: "+id);
-
-                    var color = rgb.r+"."+rgb.g+"."+rgb.b+"";
-                    
-                    $('#backgroundDiv_'+id).css('backgroundColor', '#' + hex);
-                    
-                    $("#color_"+id).val(rgb.r+"."+rgb.g+"."+rgb.b);
-                  }
-
-                });
-              </script>
-
-              <button type="submit" class="eliminarBoton">Guardar</button>
-            </form>
-          </div>
       </div>
-		
-		    <div id="eliminar<?php echo $c_item['id'] ?>" class="modalDialog">
-          <div>
-            <a href="#" title="Close" class="close">X</a>
-            <h2>Eliminar: <?php echo $c_item['nombre'] ?></h2> 
-            <p>¿Estas seguro de eliminar este elemento?.</p>
-            <a href="<?php echo base_url()?>categorias/eliminar/<?php echo $c_item['id'] ?>" class="eliminarBoton">Eliminar</a>
-            <a href="#" class="eliminarBoton">Cancelar</a>
-          </div>
-        </div>
-
-       
-
-      	<?php endforeach ?>
-    </table>
-
-   
-
-
-
-    <a href="#nueva" class="button blue">Nueva</a>
-
-   
-
+    
+    </div>
+  </div>
+  <div class="clear"></div>
 </div>
+<script>
+ var base_url = "<?php echo base_url(); ?>";
+ var app      =  "<?php echo $app; ?>";
+
+$("#nombreApp").keyup(function ()
+{
+    var nombreApp = $("#nombreApp").val();
+    console.log(nombreApp);
+
+    $.post(base_url+"apps/updateNombre/", {nombre: nombreApp, id_app: app}, function (data)
+    {
+        
+    });
+});
+
+$("#buscar").keyup(function ()
+{
+  
+});
+
+
+$("#exportar").click(function ()
+{
+  location.href=""+base_url+"export/create/"+app+"";
+});
+
+</script>

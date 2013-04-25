@@ -136,7 +136,8 @@ class Glosario_model extends CI_Model {
 
 		$this->load->helper('url');
 			$data = array(
-				'nombre' 		=> $this->input->post('palabra'),
+				'id_app'        => $this->input->post('app'),
+				'nombre' 		=> $this->input->post('nombre'),
 				'descripcion' 	=> $this->input->post('descripcion'),
 				'imagen' 		=> $this->input->post('imagen')
 			);
@@ -146,6 +147,10 @@ class Glosario_model extends CI_Model {
 			$ID = $this->db->insert_id();
 			
 			return $ID;
+	}
+
+	public function eliminar($id){
+		return $this->db->delete('glosario', array('id' => $id));
 	}
 
 	public function add_glosario2()
