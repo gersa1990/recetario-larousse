@@ -4,6 +4,7 @@ class Videos extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('video_model');
+		$this->load->model('App_model');
 	}	
 
 	public function index()
@@ -15,36 +16,24 @@ class Videos extends CI_Controller {
 		
 	}
 
-	public function searchRelation()
-	{
-		$idReceta = $_POST['id_receta'];
-		$idVideo  = $_POST['id_video'];
-		$app      = $_POST['application'];
+	public function view($id_app){
 
-		$aux 	= $this->filtrar($idVideo);
-		$videos = $this->video_model->searchVideoWithoutRelationByRecipe($aux);
-
-		if(count($videos)>0)
-		{
-			echo "<table>";
-				echo "<thead><tr><td>Titulo</td><td>Opciones</td></tr></thead><tbody>";
-				
-				for ($i=0; $i <count($videos) ; $i++) 
-				{ 
-					echo "<tr><td>".$videos[$i]['video']."</td><td><a href='".base_url()."videos/appendVideoToRecipe/".$app."/".$idReceta."/".$videos[$i]['id']."'>Agregar</a></td></tr>";	
-				}
-				
-			echo "</tbody></table>";
-		}
-		else
-		{
-			echo "<h4>No existe un video con este nombre.</h4>";
-		}
+		$data['apps'] 	= $this->App_model->get_apps($id_app);
+		$data['videos']	= $this->video_model->get_videos($id_app);
+		
+		$data['app']  	 = $id_app;	
+	
+		$data['title'] = 'Recetario';
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/videosAdd', $data);
+		$this->load->view('templates/footer');
+	
 	}
 
 	public function checkExistence()
 	{
 		$video     = $_POST['video'];
+
 		$corregido = $this->filtrar($video);
 		$this->form_validation->set_rules('video', 'Video', 'required');
 		$check     = $this->video_model->checkExistence($corregido);
