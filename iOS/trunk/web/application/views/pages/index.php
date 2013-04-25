@@ -2,19 +2,22 @@
 <div class="wrapper">
 
   <div id="nuevaApp" class="modalDialog">
-                      <div>
-                        <a href="#" title="Close" class="close">X</a>
-                          <?php echo validation_errors(); ?>
-                          <?php echo form_open('apps/nueva/') ?>
-        
-                            
-                            <input type="text" name="nombre" value="">
-                
-          
-                            <button type="submit" class="eliminarBoton">Agregar APP</button>
-                          </form>
-                      </div>
-                    </div>
+    <div>
+      <a href="#" title="Close" class="close">X</a>
+      <?php echo validation_errors(); ?>
+      <?php echo form_open('apps/nueva/') ?>
+
+
+        <h2>Nueva aplicación</h2><br><br>
+        <div class="centrar">
+          <label for="">Nombre: </label>
+          <input type="text" name="nombre" value="">
+        </div>
+        <br>
+        <button type="submit" class="eliminarBoton">Agregar</button>
+      </form>
+    </div>
+  </div>
   
   <nav id="menu">
     <ul>
@@ -33,7 +36,7 @@
   </nav>
 
   <div class="main">
-    <div class="izq">
+    <div class="columl">
       <table>
         <tr>
           <th colspan="5">Aplicaciones</th>
@@ -75,7 +78,7 @@
       
     </div>
 
-    <div class="der">
+    <div class="columr">
       <!-- Columan derecha -->
       
     </div>
