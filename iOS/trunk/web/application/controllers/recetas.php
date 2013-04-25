@@ -129,11 +129,11 @@ class Recetas extends CI_Controller {
 		echo "<div class='myform'>
 
             <h2 class='txcenter'>Nueva receta</h2>
-            <p class='txcenter'>Información de la receta</p>
+            <p class='txcenter'>Informaci&oacute;n de la receta</p>
             <br><br>";
 
 		echo "<form action='' method='' id='form_recetas2'>";           
-        echo " <label for='titulo' class=fixh1 left'>Título</label>";
+        echo " <label for='titulo' class=fixh1 left'>T&iacute;tulo</label>";
         echo " <input type='text' name='titulo' id='titulo' class='left' value='".$data[0]['titulo']."'/>";
         echo " <div class='status left error'>Ya existe una receta con este nombre.</div>";
 
@@ -175,7 +175,7 @@ class Recetas extends CI_Controller {
             
             
             
-        echo "<label for='procedimiento' class='fixmargin'>Procedimiento <span class='small'>Pasos de preparación</span></label>
+        echo "<label for='procedimiento' class='fixmargin'>Procedimiento <span class='small'>Pasos de preparaci&oacute;n</span></label>
             <textarea name='procedimiento' id='procedimiento' title='procedimiento' rows='4' cols='46' required>".$data[0]['procedimiento']."</textarea>
 
             <br>
@@ -185,12 +185,12 @@ class Recetas extends CI_Controller {
 
             <br>
             
-            <label for='prepa'>Preparación <span class='small'>Tiempo en min</span></label>
+            <label for='prepa'>Preparaci&oacute;n <span class='small'>Tiempo en min</span></label>
             <input type='text' value='".$data[0]['preparacion']."' name='preparacion' id='preparacion' required />
 
             <br>
             
-            <label for='coccion'>Cocción <span class='small'>Tiempo en min</span></label>
+            <label for='coccion'>Cocci&oacute;n <span class='small'>Tiempo en min</span></label>
             <input type='text' value='".$data[0]['coccion']."' name='coccion' id='coccion' required/>
 
             <br>
