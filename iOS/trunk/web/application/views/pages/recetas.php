@@ -11,11 +11,11 @@
   
   <nav id="menu">
     <ul>
+      <li   class="active"><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
       <li><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
       <li><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
       <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
       <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
-      <li   class="active"><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
     </ul>
   </nav>
 
@@ -43,7 +43,7 @@
 
                       <tr>
                           <td class="txleft"><a id="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
-                          <td><a href="">Eliminar</a></td>
+                          <td><a href="#eliminarReceta<?php echo $recetas[$i]['id']; ?>">Eliminar</a></td>
                       </tr>
 
                       <?php     
@@ -184,7 +184,39 @@
                 <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
                 <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
             </div>
-        </div>
+          </div>
+          <?php
+
+          if(isset($recetas))
+          {
+        
+
+          for ($i=0; $i <count($recetas) ; $i++) 
+          { 
+            ?>
+                    <div id="eliminarReceta<?php echo $recetas[$i]['id']; ?>" class="modalDialog">
+                      <div>
+                        <a href="#" title="Close" class="close">X</a>
+                          
+                          <?php echo form_open("recetas/eliminar/") ?>
+                          <form method="post" action="<?php echo base_url(); ?>recetas/eliminar/">
+        
+                            <h2><?php echo $recetas[$i]['titulo']; ?></h2>
+                            <p>Nota: Eliminará este video de forma definitiva.</p>
+        
+                            <input type="hidden" name="id_glosario"  id="id_glosario"  value="<?php echo $recetas[$i]['id']; ?>">
+                            <input type="hidden" name="app" id="id" value="<?php echo $app; ?>">
+          
+                            <button type="submit" class="eliminarBoton">Eliminar</button>
+
+                          </form>
+
+                      </div>
+                    </div>
+          <?php
+        }
+      }
+       ?>
 
       </div>
       </div>
@@ -192,6 +224,7 @@
   </div>
   <div class="clear"></div>
 </div>
+
 <script>
 
 $( "#tabs" ).tabs().css('display','none');
@@ -212,7 +245,10 @@ $(".blockscroll tr .txleft").each(function (text)
       $.post(base_url+"recetas/searchById/", {id_receta:id, id_app: app }, function (data)
       {
           $("#tabs-1").html(data);
-          console.log(data);
+          //console.log(data);
+
+
+
       });
 
     return false;
