@@ -7,7 +7,7 @@ html {
 }
 
 body{
-     margin: 0 0 100px;
+     margin: 0 0 130px;
      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 }
 
@@ -20,6 +20,14 @@ a{
 }
 
 a:hover{
+    color: #ff0b1d;
+}
+
+a.home:hover{
+    color: #ff0b1d;
+}
+
+a.help:hover{
     color: #ff0b1d;
 }
 
@@ -38,6 +46,12 @@ h2{
 h3{
     font-size: 16px;
 }
+
+ hr{
+    border: 0;
+    background-color: #c9c9c9;    
+    height: 1px;
+ }
 
 /*************************************/
 /*           Clases                  */
@@ -79,7 +93,8 @@ h3{
 
 .blockscroll{
     display: block;
-    height: 600px;
+    min-height: 335px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -117,6 +132,7 @@ h3{
 .uptext{
     color: #d70010;
     font-size: 24px;
+    margin-right: 5px;
 }
 
 .status{
@@ -145,7 +161,7 @@ h3{
 }
 
 .help{
-    color: #ff0b1d;
+    color: #d70010;
     position: absolute;
     top: 50px;
     right: 40px;
@@ -188,10 +204,11 @@ footer{
     z-index: -1;
     left: 0;
     bottom: 0;
-    height: 40px;
+    height: auto;
     width: 100%;
     background-color: #fbfbfb;
     border-top: 1px solid #cccccc;
+    padding: 20px 0;
 }
 
 footer p{
@@ -220,6 +237,8 @@ footer p{
     margin: 1px;
     border-radius: 3px;
     position:relative;
+
+    box-shadow: 1px 0px 1px rgba(0,0,0,0.5) inset, 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 #menu ul li a{
@@ -485,4 +504,13 @@ table td{
 
 .modalDialog .eliminarBoton:hover {
     background-color: #3788c8;
+}
+
+/*************************************/
+/*           Footer menu             */
+/*************************************/
+
+a.home{
+    text-decoration: none;
+    font-size:30px; 
 }
