@@ -27,7 +27,7 @@
         <table id="recetas">
           <thead>
             <tr>
-              <td colspan="2"><input type="submit" class="button mg1 bl1" value="+ Nueva"></td>
+              <td colspan="2"><input type="submit" class="button mg1 bl1" value="Nueva receta"></td>
             </tr>
             <tr>
               <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value="">
@@ -129,7 +129,7 @@
             <br>
             
             <label for="costo">Costo <span class="small">Precio aproximado</span></label>
-             <select name="costo">
+             <select name="costo" class="wt1">
               <?php for ($i=1; $i < 6; $i++) { ?>
                   <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
               <?php } ?>
