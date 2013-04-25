@@ -54,14 +54,25 @@
 
       </div>
       
-      <div class="alert error">
+
+      <div class="alert">
         <button type="button" class="aclose" data-dismiss="alert">×</button>
-        <strong>Nope</strong> Error no sabes hacerlo, intenta preguntarle a alguien
+        <strong>Warrning</strong> Pfff pregunta mejor
       </div>
 
       <div class="alert error">
         <button type="button" class="aclose" data-dismiss="alert">×</button>
         <strong>Nope</strong> Error no sabes hacerlo, intenta preguntarle a alguien
+      </div>
+
+      <div class="alert success">
+        <button type="button" class="aclose" data-dismiss="alert">×</button>
+        <strong>Hmmm</strong> hay la llevas
+      </div>
+
+      <div class="alert info">
+        <button type="button" class="aclose" data-dismiss="alert">×</button>
+        <strong>Hey</strong> intenta no suicidarte
       </div>
 
 
