@@ -54,7 +54,17 @@
 
       </div>
       
-      
+      <div class="alert error">
+        <button type="button" class="aclose" data-dismiss="alert">×</button>
+        <strong>Nope</strong> Error no sabes hacerlo, intenta preguntarle a alguien
+      </div>
+
+      <div class="alert error">
+        <button type="button" class="aclose" data-dismiss="alert">×</button>
+        <strong>Nope</strong> Error no sabes hacerlo, intenta preguntarle a alguien
+      </div>
+
+
     </div>
     
     <div class="columr">
