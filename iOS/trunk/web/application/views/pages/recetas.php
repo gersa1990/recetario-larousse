@@ -146,10 +146,6 @@
           </form>
         </div>
       </div>
-
-
-      <table></table>
-    
     </div>
   </div>
   <div class="clear"></div>

@@ -175,6 +175,23 @@ h3{
     -moz-border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
 }
+
+.centrar{
+    position: relative;
+    width: 233px;
+    margin: 0 auto;
+}
+
+label{
+    position: relative;
+    top: 6px;
+    font-size: 13px;
+    display: block;
+    font-weight: bold;
+    color: #336699;
+    margin-right: 10px;
+    float: left;
+}
 /*************************************/
 /*           Header                   */
 /*************************************/
@@ -370,6 +387,8 @@ table td{
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+
+    box-shadow:-1px -1px 1px rgba(0,0,0,0.5) inset, 0px 0px 0px rgba(0,0,0,0.2)
 }
 
 .exportar:hover {
@@ -448,7 +467,7 @@ table td{
     bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.4);
-    z-index: 0;
+    z-index: 1;
     opacity:0;
     pointer-events: none;
 }
