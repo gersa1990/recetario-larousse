@@ -42,7 +42,7 @@
 
                     <tr>
                         <td class="txleft">
-                          <a href="<?php echo $videos[$i]['id']; ?>" class="bluetext">
+                          <a class="bluetext">
                             <?php echo $videos[$i]['video']; ?>
                           </a>
                         </td>
