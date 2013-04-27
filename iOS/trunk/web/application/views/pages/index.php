@@ -19,25 +19,16 @@
     </div>
   </div>
   
-  <nav id="menu">
+  <nav>
     <ul>
         <li class="">
             <a href="#nuevaApp" class="">Nueva Aplicación</a>
 
         </li>
-
-        <!-- <li class="">
-            <a href="#" class="">Nueva Aplicación</a>
-        </li>
-
-        <li class="">
-            <a href="#" class="">Nueva Aplicación</a>
-        </li> -->
   </nav>
 
   <div class="main">
-    <div class="columl">
-      <table>
+      <table class="tablew">
         <tr>
           <th colspan="5">Aplicaciones</th>
         </tr>
@@ -75,13 +66,6 @@
         ?>
 
       </table>
-      
-    </div>
-
-    <div class="columr">
-      <!-- Columan derecha -->
-      
-    </div>
   </div>
 
   <div class="clear"></div>
