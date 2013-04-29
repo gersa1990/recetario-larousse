@@ -2,6 +2,12 @@
 <div class="wrapper">
   
   <!-- <input type="submit" class="exportar" value="Exportar"> -->
+  <div id="status">
+      <div class="alert info">
+          <button type="button" class="aclose" data-dismiss="alert">×</button>
+          <strong>Bienvenido</strong> aqui van los mensajes
+        </div>
+  </div>
 
   <div class="main">
 
@@ -9,11 +15,11 @@
 
       <nav id="menu">
         <ul>
-          <li class="active"><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
+          <li class="active"><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
+          <li><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
           <li><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
           <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
           <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
-          <li><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
         </ul>
       </nav>
 
@@ -67,6 +73,7 @@
 
                       <tr>
                           <td class="txleft"><a id="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
+                          <td><a href="">Editar</a></td>
                           <td><a href="">Eliminar</a></td>
                       </tr>
 
@@ -76,11 +83,8 @@
           </tbody>
         </table>
 
-      </div>
+        </div>
         
-        
-        
-         
       </div>
 
 

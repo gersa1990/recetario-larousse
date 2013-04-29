@@ -213,7 +213,6 @@ label{
     border: 1px solid #039;
     color: #FFF;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
-
 }
 
 .txcenter{
@@ -221,16 +220,9 @@ label{
 }
 
 .txleft{
-    width: 252px;
     text-align: left;
-    margin-left: 5px;
-}
-
-.bluetext{
-    position: relative;
-    text-align: left;
-    color: #000;
-    left: 10px;
+    text-indent: 5px;
+    padding-right: 50px;
 }
 
 .fixh1{
@@ -348,10 +340,14 @@ header a{
 }
 
 #tabla{
-    width: 350px;
+    width: 100%;
     margin: 0 auto;
 }
 
+#status{
+    width: 300px;
+    margin: 0 auto;
+}
 /*************************************/
 /*           Menu                    */
 /*************************************/
@@ -407,7 +403,6 @@ footer p{
 /*           Tabla                   */
 /*************************************/
 table{
-    width: 337px;
     font-size: 12px;
     background: #fff;
     border-collapse: collapse;
@@ -426,6 +421,9 @@ table, th{
 }
 
 table td{
+    color: #FFF;
+    padding: 5px 14px;
+    text-align: center;
     border-right:1px solid #000;
     border-bottom: 1px solid #000;
 }
@@ -437,12 +435,6 @@ table th, thead{
     padding: 6px 5px;
     border-bottom: 2px solid #000;
     background-color: #FFF;
-}
-
-table td{
-    color: #FFF;
-    padding: 5px 3px;
-    text-align: center;
 }
 
 /*************************************/
