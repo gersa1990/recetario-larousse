@@ -19,13 +19,7 @@
     </div>
   </div>
   
-  <nav>
-    <ul>
-        <li class="">
-            <a href="#nuevaApp" class="">Nueva Aplicación</a>
-
-        </li>
-  </nav>
+ 
 
   <div class="main">
       <table class="tablew">

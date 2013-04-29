@@ -7,6 +7,36 @@ class Recetas_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function getAllRecipes($id_app){
+
+		$recetas = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." ");
+
+		$i=0;
+		foreach ($recetas->result() as $key => $value) 
+		{
+			$arreglo[$i]['id'] 				= $value->id;
+			$arreglo[$i]['titulo']			= $value->titulo;
+			$arreglo[$i]['id_categoria']	= $value->id_categoria;
+			$arreglo[$i]['id_app'] 			= $value->id_app;
+			$arreglo[$i]['procedimiento'] 	= $value->procedimiento;
+			$arreglo[$i]['ingredientes']	= $value->ingredientes;
+			$arreglo[$i]['preparacion']		= $value->preparacion;
+			$arreglo[$i]['coccion']			= $value->coccion;
+			$arreglo[$i]['costo'] 			= $value->costo;
+			$arreglo[$i]['foto'] 			= $value->foto;
+			$arreglo[$i]['user_fav'] 		= $value->user_fav;
+			$arreglo[$i]['dificultad'] 		= $value->dificultad;
+			$arreglo[$i]['preparada'] 		= $value->preparada;
+			$i++;
+		}
+
+		if(isset($arreglo))
+		{
+			return $arreglo;
+		}
+
+	}
+
 	public function eliminar($id){
 
 		$delete = $this->db->delete('recetas', array('id' => $id));

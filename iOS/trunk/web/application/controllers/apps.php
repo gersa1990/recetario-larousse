@@ -27,6 +27,13 @@ class Apps extends CI_Controller {
 		}
 	}
 
+	public function changeName(){
+
+		$id_app = $_POST['app'];
+		$nombre = $_POST['name'];
+		$update = $this->App_model->changeName($id_app, $nombre);
+	}
+
 	public function nueva(){
 
 		$nombre = $_POST['nombre'];

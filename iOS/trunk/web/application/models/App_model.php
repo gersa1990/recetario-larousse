@@ -16,6 +16,13 @@ class App_model extends CI_Model {
 		return $this->db->insert('app', $data);
 	}
 
+	public function changeName($id_app, $nombre){
+
+		$data->nombre = $nombre;
+		
+		return $this->db->update('app', $data, array('id' => $id_app));
+	}
+
 	
 	public function delete_app($id){
 		$this->db->delete('recetas', array('id' => $id)); 

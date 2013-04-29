@@ -2,11 +2,8 @@
 <div class="wrapper">
   
   <!-- <input type="submit" class="exportar" value="Exportar"> -->
-  <div id="status">
-      <div class="alert info">
-          <button type="button" class="aclose" data-dismiss="alert">×</button>
-          <strong>Bienvenido</strong> aqui van los mensajes
-        </div>
+  <div id="status" style="height:30px;">
+     
   </div>
 
   <div class="main">
@@ -15,36 +12,13 @@
 
       <nav id="menu">
         <ul>
-          <li class="active"><a href="<?php echo base_url(); ?>apps/view/<?php echo $app; ?>" class="">Recetas</a></li>
-          <li><a href="<?php echo base_url(); ?>categorias/view/<?php echo $app; ?>" class="">Categorias</a></li>
-          <li><a href="<?php echo base_url(); ?>glosario/view/<?php echo $app; ?>" class="">Glosarios</a></li>
-          <li><a href="<?php echo base_url(); ?>videos/view/<?php echo $app; ?>" class="">Videos</a></li>
-          <li><a href="<?php echo base_url(); ?>complementarias/view/<?php echo $app; ?>" class="">Recetas complementarias</a></li>
+          <li class="active"><a id="getRecipes" class="">Recetas</a></li>
+          <li><a id="getCategory" class="">Categorias</a></li>
+          <li><a id="getGlosary" class="">Glosarios</a></li>
+          <li><a id="getVideos" class="">Videos</a></li>
+          <li><a id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
-
-
-      <div id="mjs">
-        <div class="alert">
-          <button type="button" class="aclose" data-dismiss="alert">×</button>
-          <strong>Warrning</strong> Pfff pregunta mejor
-        </div>
-
-        <div class="alert error">
-          <button type="button" class="aclose" data-dismiss="alert">×</button>
-          <strong>Nope</strong> Error no sabes hacerlo, intenta preguntarle a alguien
-        </div>
-
-        <div class="alert success">
-          <button type="button" class="aclose" data-dismiss="alert">×</button>
-          <strong>Hmmm</strong> hay la llevas
-        </div>
-
-        <div class="alert info">
-          <button type="button" class="aclose" data-dismiss="alert">×</button>
-          <strong>Hey</strong> intenta no suicidarte
-        </div>
-      </div>
       
 
     </div>
@@ -72,9 +46,24 @@
                       { ?>
 
                       <tr>
-                          <td class="txleft"><a id="<?php echo $recetas[$i]['id']; ?>" class="bluetext"><?php echo $recetas[$i]['titulo']; ?></a></td>
-                          <td><a href="">Editar</a></td>
-                          <td><a href="">Eliminar</a></td>
+                          <td class="txleft">
+                            <a class="verRecetas" id="<?php echo $recetas[$i]['id']; ?>" class="bluetext">
+                              <?php echo $recetas[$i]['titulo']; ?>
+                            </a>
+                          </td>
+
+                          <td>
+                            <a class="editarRecetas" id="<?php echo $recetas[$i]['id']; ?>">
+                              Editar
+                            </a>
+                          </td>
+
+                          <td>
+                            <a class='eliminarRecetas'>
+                              Eliminar
+                            </a>
+                          </td>
+
                       </tr>
 
                       <?php     
@@ -99,6 +88,77 @@
 
 <script>
 
+var app ="<?php echo $app; ?>";
+
+$("#getRecipes").click(function (data)
+{
+  console.log("recetas");           
+
+    $.post(base_url+"recetas/getAllRecipes/", {id_app: app} , function (data)
+    {
+        $("#addblock").html(data);
+
+        $(".blockscroll tr .txleft").each(function (text)
+        {
+          $(".editarRecetas").click(function (data)
+          {
+            var id = $(this).attr('id');
+
+            console.log("ID_RECETA: "+id+" ID_APP: "+app);
+
+              $.post(base_url+"recetas/searchById/", {id_receta: id, id_app: app }, function (data)
+              {
+                $("#addblock").html(data);
+
+                  $("#form_recetas2").submit(function ()
+                  {
+                    console.log("submit");
+                    var id_receta = $("#");
+                    return false;
+                  });
+              });
+
+              return false;
+          });
+        });
+
+        $("#buscar").keyup(function (data)
+        {
+          var texto = $("#buscar").val();
+                  
+          console.log(texto);
+
+          $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+          {
+            console.log(data);
+
+            $("#recetas tbody").html(data);
+          }); 
+        });
+
+    });
+});
+
+$("#getCategory").click(function (data)
+{
+    console.log("getAllCategorys");
+});
+
+$("#getGlosary").click(function (data)
+{
+    console.log("getAllGlosary");
+});
+
+$("#getVideos").click(function (data)
+{
+    console.log("getAllVideos");
+});
+
+$("#getComplementsRecipes").click(function (data)
+{
+    console.log("getAllRecipesComplements");
+});
+
 $( "#tabs" ).tabs().css('display','none');
 
 var app = "<?php echo $app; ?>";
@@ -107,16 +167,23 @@ var base_url = "<?php echo base_url(); ?>";
 
 $(".blockscroll tr .txleft").each(function (text)
 {
-  $(".txleft a").click(function (data)
+  $(".editarRecetas").stop(true);
+
+  $(".editarRecetas").click(function (data)
   {
       var id = $(this).attr('id');
 
-      $("#tabs").fadeIn("slow");
-
       $.post(base_url+"recetas/searchById/", {id_receta:id, id_app: app }, function (data)
       {
-          $("#tabs-1").html(data);
-          console.log(data);
+          $("#addblock").html(data);
+          //console.log(data);
+
+          $("#form_recetas2").submit(function ()
+          {
+            console.log("submit");
+            var id_receta = $("#")
+            return false;
+          });
       });
 
     return false;

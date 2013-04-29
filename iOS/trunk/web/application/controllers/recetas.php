@@ -13,6 +13,40 @@ class Recetas extends CI_Controller {
 		$this->load->library('typography');
 	}
 
+	public function getAllRecipes(){
+
+		$id_app = $_POST['id_app'];
+
+		$recetas = $this->recetas_model->getAllRecipes($id_app);
+
+		echo "<table border='3' id='recetas'>";
+			echo "<thead>
+					<tr>
+						<td colspan='2'>
+							<input id='nuevaReceta'' type='submit' class='button mg1 bl1' value='Nueva receta'>
+						</td>
+            		</tr>
+            		<tr>
+              			<td colspan='2'>
+              				<input type='text' name='' id='buscar' class='input post buscar' placeholder='Buscar..'' value=''>
+              			</td>
+            		</tr>
+          		  </thead>";
+          	echo "<tbody class='blockscroll'>";
+            
+            	for ($i=0; $i <count($recetas) ; $i++) 
+            	{ 
+                 	echo "<tr>
+                          	<td class='txleft'><a class='verRecetas' id='".$recetas[$i]['id']."'>".$recetas[$i]['titulo']."</a></td>
+                          	<td><a class='editarRecetas' id='".$recetas[$i]['id']."'>Editar</a></td>
+                          	<td><a href=''>Eliminar</a></td>
+                      	  </tr>";
+            	}
+
+            echo "</tbody>";
+		echo "</table>";
+	}
+
 	public function searchByName()
 	{
 		$nombre = $_POST['palabra'];
@@ -37,7 +71,7 @@ class Recetas extends CI_Controller {
 				$id = $value['id'];
 				echo "<tr><td class='txleft'>";
 					echo "<a href='".$id."' class='bluetext'>".$value['titulo']."</a>";
-				echo "</td>";
+				echo "</td><td><a>Editar</a></td>";
 				echo "<td>";
 					echo "<a href='#eliminarReceta".$id."'>Eliminar</a>";
 				echo "</td></tr>";
