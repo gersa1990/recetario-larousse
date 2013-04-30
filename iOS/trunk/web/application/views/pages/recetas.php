@@ -1,18 +1,16 @@
 
 <div class="wrapper">
-  
-   <input type="submit" id="exportar" class="exportar" value="Exportar">
 
-  <!-- <input type="submit" class="exportar" value="Exportar"> -->
-  <div id="status" style="height:30px;">
+  <div id="status">
      
   </div>
 
   <div class="main">
 
 
-    <div class="columl">
+    <div class="columna">
 
+      <h1>Menu</h1>
       <nav id="menu">
         <ul>
           <li class="active"><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
@@ -26,19 +24,22 @@
 
     </div>
     
-    <div class="columr">
+    <div class="columna">
 
       <div id="addblock">
+  
+        <div id="controles">
+          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+        </div>      
+        
+        <!--  button bl1    input post buscar-->
 
-        <div id="tabla">
   
         <table id="recetas">
           <thead>
             <tr>
-              <td colspan="2"><a href="#nuevaReceta" class="button mg1 bl1">Nueva receta</a></td>
-            </tr>
-            <tr>
-              <td colspan="2"><input type="text" name="" id="buscar" class="input post buscar" placeholder="Buscar.." value=""></td>
+              <td colspan="2">Recetas</td>
             </tr>
           </thead>
 
@@ -74,118 +75,10 @@
                   } ?>
           </tbody>
         </table>
-
-         <?php if(isset($recetas))
-                  {
-                    for ($i=0; $i <count($recetas) ; $i++) 
-                      { ?>
-
-                      <div id="eliminarReceta<?php echo $recetas[$i]['id']; ?>" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">X</a>
-            
-                        <?php echo form_open("recetas/delete/"); ?>
-                          <h2>Eliminar receta</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                              <?php echo $recetas[$i]['titulo']; ?>
-                          </div>
-                          <input type="hidden" name="id" value="<?php echo $recetas[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Eliminar</button>
-                        </form>
-            
-                        </div>
-                      </div>
-
-                      <?php } 
-                    } ?>
-
-
-
-                      <div id="nuevaReceta" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">X</a>
-            
-                        <?php echo form_open("recetas/create/"); ?>
-                          <h2>Nueva Receta</h2><br><br>
-
-                        
-                    
-                             <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="tiempo en minutos" required>
-                          
-
-                          <div class="centrar">
-                            <label for="">Titulo: </label>
-                             <input type="text" name="titulo" id="titulo" value="" placeholder="titulo de la receta" required>
-                          </div>
-
-                          <div class="centrar">
-                            <label for="">Categoria: </label>
-                             <select name="categoria">
-                              <?php for ($i=0; $i <count($categorias) ; $i++) { ?>
-                                <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
-                              <?php } ?>
-                             </select>
-                          </div>
-
-                          <div class="centrar">
-                            <label for="">Procedimiento: </label>
-                             <textarea name="procedimiento"></textarea>
-                          </div>
-
-                          <div class="centrar">
-                            <label for="">Ingredientes: </label>
-                             <textarea name="ingredientes"></textarea>
-                          </div>
-
-                          <div class="centrar">
-                            <label for="">Preparación: </label>
-                             <input type="text" name="preparacion" value="" placeholder="tiempo en minutos" required>
-                          </div>
-
-                          <div class="centrar">
-                            <label for="">Cocción: </label>
-                             <input type="text" name="coccion" value="" placeholder="tiempo en minutos" required>
-                          </div>
-
-                          <div class="centrar">
-                              <label for="">Costo: </label>
-                              <select name="costo">
-                                <?php for ($i=1; $i <6 ; $i++) { ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php } ?>
-                              </select>
-                          </div>
-
-                          <div class="centrar">
-                            <label for="">Foto: </label>
-                             <input type="text" name="foto" value="" placeholder="nombre de archivo que contendrá la imagen" required>
-                          </div>
-
-                          <div class="centrar">
-                              <label for="">Dificultad: </label>
-                              <select name="dificultad">
-                                <?php for ($i=1; $i <6 ; $i++) { ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                <?php } ?>
-                              </select>
-                          </div>
-
-                          <br>
-                          <button type="submit" class="eliminarBoton">Agregar receta</button>
-                        </form>
-            
-                        </div>
-                      </div>
-
-        </div>
         
       </div>
-
-
     </div>
+
   </div>
 
 </div>
