@@ -198,7 +198,7 @@ $("#divColorEditar #color").each(function (data)
   
   onChange: function (hsb, hex, rgb) 
   {    
-    var editar = $("#nameColor").val();
+    var editar = $("#editar").parent();
 
     console.log(editar);
 
