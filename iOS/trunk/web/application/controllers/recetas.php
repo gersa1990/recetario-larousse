@@ -72,7 +72,7 @@ class Recetas extends CI_Controller {
 
 	public function index()
 	{
-		$data['recetas'] = $this->recetas_model->get_recetas();
+		//$data['recetas'] = $this->recetas_model->get_recetas();
 		
 		$data['apps'] = $this->App_model->get_apps();
 
@@ -133,8 +133,6 @@ class Recetas extends CI_Controller {
 			redirect(base_url()."apps/view/".$app);
 		}
 	}
-
-	
 	
 
 	public function update()
