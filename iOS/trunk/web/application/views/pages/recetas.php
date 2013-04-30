@@ -28,7 +28,7 @@
         <div id="controles">
           <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-        </div>      
+        </div> 
   
         <table id="recetas">
           <thead>
@@ -69,6 +69,33 @@
                   } ?>
           </tbody>
         </table>
+
+        <?php if(isset($recetas))
+                  {
+                    for ($i=0; $i <count($recetas) ; $i++) 
+                      { ?>
+
+                      <div id="eliminarReceta<?php echo $recetas[$i]['id']; ?>" class="modalDialog">
+                        <div>
+                          <a href="#" title="Close" class="close">X</a>
+            
+                        <?php echo form_open("recetas/delete/"); ?>
+                          <h2>Eliminar receta</h2><br><br>
+                          <div class="centrar">
+                            <label for="">Nombre: </label>
+                              <?php echo $recetas[$i]['titulo']; ?>
+                          </div>
+                          <input type="hidden" name="id" value="<?php echo $recetas[$i]['id']; ?>">
+                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                          <br>
+                          <button type="submit" class="eliminarBoton">Eliminar</button>
+                        </form>
+            
+                        </div>
+                      </div>
+
+                      <?php } 
+                    } ?>
         
       </div>
     </div>
