@@ -24,6 +24,11 @@ a:hover{
     text-decoration: underline;
 }
 
+a.home{
+    display: block;
+    margin-bottom:40px; 
+}
+
 a.home:hover{
     color: #000;
 }
@@ -97,7 +102,7 @@ label{
 .main{
     width: 100%;
     min-height: 560px;
-    margin-top: 60px;
+    padding-top: 30px;
     position: relative;
 }
 
@@ -179,6 +184,7 @@ label{
 }
 
 .tablew{
+    margin-top: 30px;
     width: 100%;
 }
 
@@ -319,7 +325,6 @@ header{
     height: 190px;
     background-color: #FFF;
     border-bottom: 1px solid #000;
-    margin-bottom: 30px; 
 }
 
 header img{

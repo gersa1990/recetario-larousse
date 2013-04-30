@@ -1,11 +1,12 @@
 
 <div class="wrapper">
 
-  <div id="status">
-     
-  </div>
-
   <div class="main">
+    <div id="status">
+     
+    </div>
+
+    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
 
     <div class="columna">
 
