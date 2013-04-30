@@ -109,16 +109,15 @@
 
       <div id="formulario">
 
-        <!--<?php echo form_open("recetas/create/"); ?>  -->
-        
-        <form action="">
+        <?php echo form_open("recetas/create/"); ?>        
+        <!-- <form action=""> -->
 
           <h2>Nueva Receta</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
           <div class="left">
-            <label for="">Titulo: </label>
+            <label for="">Título: </label>
             <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
           </div>
 
