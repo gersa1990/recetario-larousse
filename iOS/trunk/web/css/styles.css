@@ -483,6 +483,11 @@ table th, thead{
     background: #fff;
 }
 
+.modalDialog .form{
+    width: 950px;
+    height: 500px;
+}
+
 .close {
     background: #e60000;
     color: #FFFFFF;
