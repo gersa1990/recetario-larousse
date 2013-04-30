@@ -27,12 +27,13 @@ class Categorias extends CI_Controller {
 
 	public function view($id_app){
 
-		$this->load->helper('url');
+		echo $id_app;
 
-		$data['apps'] = $this->App_model->get_apps($id_app);
+		$this->load->helper('url');
 
 		$data['categorias'] = $this->categoria_model->get_categorias($id_app);
 
+		var_dump($data['categorias']);
 		
 		$data['app']  	 = $id_app;
 

@@ -32,11 +32,6 @@
           <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
-
-
-        
-        <!--  button bl1    input post buscar-->
-
   
         <table id="recetas">
           <thead>
@@ -110,6 +105,80 @@
 
   </div>
 
+
+  <div id="nuevaReceta" class="modalDialog">
+    <div>
+      <a href="#" title="Close" class="close">X</a>
+      
+      <?php echo form_open("recetas/create/"); ?>
+      <h2>Nueva Receta</h2><br><br>
+      
+      <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="tiempo en minutos" required>
+      
+      
+      <div class="centrar">
+        <label for="">Titulo: </label>
+        <input type="text" name="titulo" id="titulo" value="" placeholder="titulo de la receta" required>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Categoria: </label>
+        <select name="categoria">
+          <?php for ($i=0; $i <count($categorias) ; $i++) { ?>
+            <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
+          <?php } ?>
+        </select>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Procedimiento: </label>
+        <textarea name="procedimiento"></textarea>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Ingredientes: </label>
+        <textarea name="ingredientes"></textarea>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Preparación: </label>
+        <input type="text" name="preparacion" value="" placeholder="tiempo en minutos" required>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Cocción: </label>
+        <input type="text" name="coccion" value="" placeholder="tiempo en minutos" required>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Costo: </label>
+        <select name="costo">
+        <?php for ($i=1; $i <6 ; $i++) { ?>
+          <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+        <?php } ?>
+        </select>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Foto: </label>
+        <input type="text" name="foto" value="" placeholder="nombre de archivo que contendrá la imagen" required>
+      </div>
+      
+      <div class="centrar">
+        <label for="">Dificultad: </label>
+        <select name="dificultad">
+          <?php for ($i=1; $i <6 ; $i++) { ?>
+            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+          <?php } ?>
+        </select>
+      </div>
+      
+      <br>
+        <button type="submit" class="eliminarBoton">Agregar receta</button>
+      </form>
+      
+    </div>
+  </div>
 </div>
 
 <div class="clear"></div>
@@ -118,23 +187,23 @@
 
 <script>
 
-var app = "<?php echo $app; ?>";
-var base_url = "<?php echo base_url(); ?>";
+  var app = "<?php echo $app; ?>";
+  var base_url = "<?php echo base_url(); ?>";
 
-$("#exportar").click(function ()
-{
-    location.href=base_url+"export/create/"+app;
-});
-
-
-$("#buscar").keyup(function (data)
-{
-  var texto = $("#buscar").val();
-
-  $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+  $("#exportar").click(function ()
   {
-    $("#recetas tbody").html(data);
-  }); 
-});
+      location.href=base_url+"export/create/"+app;
+  });
+
+
+  $("#buscar").keyup(function (data)
+  {
+    var texto = $("#buscar").val();
+
+    $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+    {
+      $("#recetas tbody").html(data);
+    }); 
+  });
 
 </script>
