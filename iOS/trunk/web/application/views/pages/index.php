@@ -41,12 +41,12 @@
                    
                     <div id="eliminar<?php echo $apps[$i]['id'] ?>" class="modalDialog">
                       <div>
-                        <a href="#" title="Close" class="close">X</a>
+                        <a href="#" title="Close" class="close">x</a>
                           <?php echo validation_errors(); ?>
                           <?php echo form_open('apps/eliminar') ?>
         
                             <h2><?php echo $apps[$i]['nombre'] ?><br/></h2>
-                            <p>Nota: Se eliminaran las recetas relacionadas con esta aplicación.</p>
+                            <p><strong>Warning</strong>: Toda la información relacionada se borrara</p>
         
                             <input type="hidden" name="id" id="id"  value="<?php echo $apps[$i]['id']; ?>"/>
           
