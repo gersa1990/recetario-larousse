@@ -23,7 +23,7 @@ class Apps extends CI_Controller {
 
 		 	$this->load->helper('url');
 
-			redirect(base_url());	
+			redirect(base_url());
 		}
 	}
 
@@ -42,16 +42,6 @@ class Apps extends CI_Controller {
 		if ($insert) {
 			redirect(base_url(),"refresh");
 		}
-
-	}
-
-	public function newapp()
-	{
-		$data['title'] = 'Recetario Larousse';
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/nuevaApp', $data);
-		$this->load->view('templates/footer');
 	}
 
 	public function updateNombre()
@@ -85,27 +75,6 @@ class Apps extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function modificar(){
-
-		$this->load->helper('url');
-
-		$id = $this->input->post('id');
-
-		$data['apps_item'] = $this->App_model->get_apps($id);
-
-		if (empty($data['apps_item'])){
-			show_404();
-		}
-		
-		$nombre = $this->input->post('nombre');
-
-		$actualizar = $this->App_model->update_categoria($id, $nombre);
-
-		if($actualizar){
-                redirect(base_url(), 'refresh');
-        }
-	}
-
 	public function eliminar()
 	{
 		$id 		= $_POST['id'];
@@ -114,6 +83,5 @@ class Apps extends CI_Controller {
 		redirect(base_url(), 'refresh');
 		
 	}
-
 }
 ?>
