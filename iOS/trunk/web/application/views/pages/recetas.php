@@ -7,7 +7,6 @@
 
   <div class="main">
 
-
     <div class="columna">
 
       <h1>Menu</h1>
@@ -20,8 +19,6 @@
           <li><a id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
-      
-
     </div>
     
     <div class="columna">
@@ -107,69 +104,93 @@
 
 
   <div id="nuevaReceta" class="modalDialog">
-    <div class="form">
-        <a href="#" title="Close" class="close">X</a>
+    <div class="popup">
+      <a href="#" title="Close" class="close">x</a>
+
+      <div id="formulario">
+
+        <!--<?php echo form_open("recetas/create/"); ?>  -->
         
-        <?php echo form_open("recetas/create/"); ?>
-        <h2>Nueva Receta</h2><br><br>
-      
-      <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="tiempo en minutos" required>
-      
-        <label for="">Titulo: </label>
-        <input type="text" name="titulo" id="titulo" value="" placeholder="titulo de la receta" required>
-     
-        <label for="">Categoria: </label>
-        <select name="categoria">
-          <?php for ($i=0; $i <count($categorias) ; $i++) { ?>
-            <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
-          <?php } ?>
-        </select>
-     
-        <label for="">Procedimiento: </label>
-        <textarea name="procedimiento"></textarea>
-     
-     
-        <label for="">Ingredientes: </label>
-        <textarea name="ingredientes"></textarea>
-      
-        <label for="">Preparación: </label>
-        <input type="text" name="preparacion" value="" placeholder="tiempo en minutos" required>
-      
-      
-        <label for="">Cocción: </label>
-        <input type="text" name="coccion" value="" placeholder="tiempo en minutos" required>
-      
-      
-        <label for="">Costo: </label>
-        <select name="costo">
-          <?php for ($i=1; $i <6 ; $i++) { ?>
-            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-          <?php } ?>
-        </select>
-     
-        <label for="">Foto: </label>
-        <input type="text" name="foto" value="" placeholder="nombre de archivo que contendrá la imagen" required>
-   
-      
-        <label for="">Dificultad: </label>
-        <select name="dificultad">
-          <?php for ($i=1; $i <6 ; $i++) { ?>
-            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-          <?php } ?>
-        </select>
-      </div>
-      
-      <br>
-        <button type="submit" class="eliminarBoton">Agregar receta</button>
-      </form>
-      
-    </div>
-  </div>
-</div>
+        <form action="">
 
-<div class="clear"></div>
+          <h2>Nueva Receta</h2>
 
-</div>
+          <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
+
+          <div class="left">
+            <label for="">Titulo: </label>
+            <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
+          </div>
+
+          <div class="left mg_input">
+            <label for="">Categoria: </label>
+            <select name="categoria">
+              <?php for ($i=0; $i <count($categorias) ; $i++) { ?>
+              <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
+              <?php } ?>
+            </select>
+          </div>
+
+          <div class="clear"></div>
+
+          <div class="left">
+            <label for="">Procedimiento: </label>
+            <textarea name="procedimiento" class="full"></textarea>
+          </div>
+          
+          <div class="clear"></div>
+          
+          <div class="left">
+            <label for="">Ingredientes: </label>
+            <textarea name="ingredientes" class="full"></textarea>
+          </div>
+          
+          <div class="clear"></div>
+
+          <div class="left mg_input2">
+            <label for="">Preparación: </label>
+            <input type="text" name="preparacion" value="" placeholder="minutos" required>
+          </div>
+        
+          <div class="left mg_input2">
+            <label for="">Cocción: </label>
+            <input type="text" name="coccion" value="" placeholder="minutos" required>
+          </div>
+          
+          <div class="left mg_input2">
+            <label for="">Costo: </label>
+            <select name="costo">
+              <?php for ($i=1; $i <6 ; $i++) { ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        
+          <div class="left mg_input2">
+            <label for="">Dificultad: </label>
+            <select name="dificultad">
+              <?php for ($i=1; $i <6 ; $i++) { ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        
+          <div class="clear"></div>
+
+          <label for="">Imagen: </label>
+          <input type="text" name="foto" value="" placeholder="" required>
+
+          <button type="submit" class="submit">Agregar</button>
+    
+        </form>
+
+      </div> <!-- formulario -->
+    </div> <!-- popup -->
+  </div> <!-- modadialog -->
+
+  <div class="clear"></div>
+
+</div> <!-- Wrapper -->
 
 <script>
 
