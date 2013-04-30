@@ -9,7 +9,6 @@ class categoria_model extends CI_Model {
 	
 	public function get_categorias($id_app){
 		
-		
 		$query = $this->db->get_where('categoria', array('id_app' => $id_app));
 		
 		$i=0;
@@ -27,18 +26,19 @@ class categoria_model extends CI_Model {
 		{
 			return $arreglo;
 		}
-
 	}
 
 	public function set_categoria(){
 			$data = array(
-				'nombre' => $this->input->post('nombre'),
-				'color' => $this->input->post('color')
+				'id_app' 	=> $this->input->post('id_app'),
+				'nombre' 	=> $this->input->post('nombre'),
+				'color' 	=> $this->input->post('color')
 			);
 			return $this->db->insert('categoria', $data);
 	}
 
 	public function delete_recipe($id){
+		
 		$this->db->delete('categoria', array('id' => $id)); 
 	}
 

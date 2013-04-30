@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          <a href="#nuevaCategoria" class="button bl1">Nueva categoria</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
@@ -40,8 +40,6 @@
 
           <tbody class="blockscroll">
             <?php 
-
-            var_dump($categorias);
 
             if(isset($categorias))
                   {
@@ -57,13 +55,13 @@
                           </td>
 
                           <td>
-                            <a href="<?php echo base_url().'categorias/edit/'.$categorias[$i]['id']; ?>">
+                            <a href="#editarCategoria<?php echo $categorias[$i]['id']; ?>">
                               Editar
                             </a>
                           </td>
 
                           <td>
-                            <a href="#eliminarReceta<?php echo $categorias[$i]['id']; ?>" class='eliminarRecetas'>
+                            <a href="#eliminarCategoria<?php echo $categorias[$i]['id']; ?>" class='eliminarRecetas'>
                               Eliminar
                             </a>
                           </td>
@@ -81,12 +79,12 @@
                     for ($i=0; $i <count($categorias) ; $i++) 
                       { ?>
 
-                      <div id="eliminarReceta<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
+                      <div id="eliminarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
                         <div>
                           <a href="#" title="Close" class="close">X</a>
             
                         <?php echo form_open("categorias/delete/"); ?>
-                          <h2>Eliminar receta</h2><br><br>
+                          <h2>Eliminar categoria</h2><br><br>
                           <div class="centrar">
                             <label for="">Nombre: </label>
                               <?php echo $categorias[$i]['nombre']; ?>
@@ -95,6 +93,34 @@
                           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
                           <br>
                           <button type="submit" class="eliminarBoton">Eliminar</button>
+                        </form>
+            
+                        </div>
+                      </div>
+
+                      <div id="editarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
+                        <div>
+                          <a href="#" title="Close" class="close">X</a>
+            
+                        <?php echo form_open("categorias/delete/"); ?>
+                          <h2>Edita la categoria</h2><br><br>
+                          <div class="centrar">
+                            <label for="">Nombre: </label>
+                             <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>">
+                          </div>
+
+                          <div class="centrar" id="divColorEditar">
+                            <label for="">Color: </label>
+                            <div id="editar">
+                                <input type="text" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
+                                <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>">
+                            </div>
+                          </div>
+
+                          <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
+                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                          <br>
+                          <button type="submit" class="eliminarBoton">Editar</button>
                         </form>
             
                         </div>
@@ -109,75 +135,28 @@
   </div>
 
 
-  <div id="nuevaReceta" class="modalDialog">
+  <div id="nuevaCategoria" class="modalDialog">
     <div>
       <a href="#" title="Close" class="close">X</a>
       
       <?php echo form_open("categorias/create/"); ?>
-      <h2>Nueva Receta</h2><br><br>
+      <h2>Nueva categoria</h2><br><br>
       
       <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="tiempo en minutos" required>
       
       
       <div class="centrar">
-        <label for="">Titulo: </label>
-        <input type="text" name="titulo" id="titulo" value="" placeholder="titulo de la receta" required>
+        <label for="">Nombre: </label>
+        <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre de la categoria" required>
       </div>
       
       <div class="centrar">
-        <label for="">Categoria: </label>
-        <select name="categoria">
-          <?php for ($i=0; $i <count($categorias) ; $i++) { ?>
-            <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
-          <?php } ?>
-        </select>
+        <label for="">Color:</label>
+          <input type="text" name="color" id="color2" value="" placeholder="color de la categoria" required>
       </div>
-      
-      <div class="centrar">
-        <label for="">Procedimiento: </label>
-        <textarea name="procedimiento"></textarea>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Ingredientes: </label>
-        <textarea name="ingredientes"></textarea>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Preparación: </label>
-        <input type="text" name="preparacion" value="" placeholder="tiempo en minutos" required>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Cocción: </label>
-        <input type="text" name="coccion" value="" placeholder="tiempo en minutos" required>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Costo: </label>
-        <select name="costo">
-        <?php for ($i=1; $i <6 ; $i++) { ?>
-          <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-        <?php } ?>
-        </select>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Foto: </label>
-        <input type="text" name="foto" value="" placeholder="nombre de archivo que contendrá la imagen" required>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Dificultad: </label>
-        <select name="dificultad">
-          <?php for ($i=1; $i <6 ; $i++) { ?>
-            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-          <?php } ?>
-        </select>
-      </div>
-      
+
       <br>
-        <button type="submit" class="eliminarBoton">Agregar receta</button>
+        <button type="submit" class="eliminarBoton">Agregar categoria</button>
       </form>
       
     </div>
@@ -193,30 +172,44 @@
  var base_url = "<?php echo base_url(); ?>";
  var app      =  "<?php echo $app; ?>";
 
- $("#addblock").css('display','none');
-
-$("#nuevaCategoria").click(function ()
-{
-  $("#addblock").slideDown("slow");
-});
-
-$("#nombreApp").keyup(function ()
-{
-    var nombreApp = $("#nombreApp").val();
-    console.log(nombreApp);
-
-    $.post(base_url+"apps/updateNombre/", {nombre: nombreApp, id_app: app}, function (data)
-    {
-
-    });
-});
-
 $("#buscar").keyup(function ()
 {
   
 });
 
-$("#color").ColorPicker({
+$("#divColorEditar #color").each(function (data)
+{
+  var editar = $(this).attr('class');
+
+    $("."+editar).ColorPicker({
+  
+  color: '#0000ff',
+  onShow: function (colpkr) 
+  {
+    $(colpkr).fadeIn(500);
+    return false;
+  },
+  
+  onHide: function (colpkr) 
+  {
+    $(colpkr).fadeOut(500);
+    return false;
+  },
+  
+  onChange: function (hsb, hex, rgb) 
+  {    
+    var editar = $("#nameColor").val();
+
+    console.log(editar);
+
+    $("#color").val(rgb.r+","+rgb.g+","+rgb.b);
+
+  }
+
+  });
+});
+
+$("#color2").ColorPicker({
   
   color: '#0000ff',
   onShow: function (colpkr) 
@@ -233,7 +226,7 @@ $("#color").ColorPicker({
   
   onChange: function (hsb, hex, rgb) 
   {
-    $('#color').val(rgb.r+","+rgb.g+","+rgb.b);
+    $('#color2').val(rgb.r+","+rgb.g+","+rgb.b);
   }
 
   });

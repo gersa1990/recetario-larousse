@@ -27,13 +27,9 @@ class Categorias extends CI_Controller {
 
 	public function view($id_app){
 
-		echo $id_app;
-
 		$this->load->helper('url');
 
 		$data['categorias'] = $this->categoria_model->get_categorias($id_app);
-
-		var_dump($data['categorias']);
 		
 		$data['app']  	 = $id_app;
 
@@ -44,27 +40,32 @@ class Categorias extends CI_Controller {
 
 	}
 
-	public function create(){
+	public function create()
+	{
+		$id_app = $_POST['id_app'];
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 
 		if ($this->form_validation->run() === FALSE){
-			redirect(base_url().'categorias/index', 'refresh');
+			redirect(base_url().'categorias/view/'.$id_app, 'refresh');
 		}
 		else{
 			 $this->categoria_model->set_categoria();
-			 redirect(base_url().'categorias/index', 'refresh');
+			 redirect(base_url().'categorias/view/'.$id_app, 'refresh');
 		}
 	}
 
-	public function eliminar($id){
+	public function delete(){
+
 		$this->load->helper('url');
+
+		$id = $_POST['id'];
 
 		$this->categoria_model->delete_recipe($id);
 
-		redirect(base_url().'categorias/index', 'refresh');
+		redirect(base_url().'categorias/view/'.$_POST['id_app'], 'refresh');
 	}
 
 	public function modificar(){
