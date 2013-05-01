@@ -1,11 +1,13 @@
 
 <div class="wrapper">
 
-  <div id="status">
-     
-  </div>
 
   <div class="main">
+    <div id="status">
+     
+  </div>
+    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
+
 
 
     <div class="columna">
@@ -200,8 +202,6 @@ $("#divColorEditar #color").each(function (data)
   {    
 
     var editar2 = editar.split('_');
-
-    console.log(editar);
 
     $(".editar_"+editar2[1]).val(rgb.r+","+rgb.g+","+rgb.b);
 
