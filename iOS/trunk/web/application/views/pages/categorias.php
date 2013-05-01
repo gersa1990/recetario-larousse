@@ -136,7 +136,7 @@
     <div>
       <a href="#" title="Close" class="close">X</a>
       
-      <?php echo form_open("categorias/create/"); ?>
+      <?php echo form_open("categorias/edit/"); ?>
       <h2>Nueva categoria</h2><br><br>
       
       <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="tiempo en minutos" required>

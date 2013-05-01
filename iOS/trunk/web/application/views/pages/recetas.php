@@ -190,9 +190,13 @@
           <div class="left mg_input">
             <label for="">Categoria: </label>
             <select name="categoria">
-              <?php for ($i=0; $i <count($categorias) ; $i++) { ?>
+              <?php
+               $cat=0; 
+              for ($i=0; $i <count($categorias) ; $i++) { ?>
               <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
-              <?php } ?>
+              <?php 
+                $cat++;
+            } ?>
             </select>
           </div>
 
@@ -259,6 +263,22 @@
 
   var app = "<?php echo $app; ?>";
   var base_url = "<?php echo base_url(); ?>";
+
+  var categorias = "<?php echo $cat; ?>";
+  console.log(categorias);
+  var cat = parseInt(categorias);
+
+  if(cat<1)
+  {
+    $("#status").html("<div class='alert alert-info'>Para poder dar de alta una receta tienes que crear sus categorias. Serás redirigido.</div>").slideDown("slow");
+    $("#addblock").slideUp("slow"); 
+    
+    setTimeout(function(){
+      location.href=base_url+"categorias/view/"+app;
+    },5000)
+  }
+
+  
 
   $("#exportar").click(function ()
   {
