@@ -82,7 +82,7 @@
                           <a href="#" title="Close" class="close">x</a>
                 
                           <?php echo form_open("complementarias/delete/"); ?>
-                            <h2>Receta:</h2>
+                            <h2>Receta complementaria</h2>
                             <p class="mg-auto"><?php echo $recetas_complementarias[$i]['titulo']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -93,7 +93,7 @@
 
                       <div id="editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
                         <div>
-                          <a href="#" title="Close" class="close">X</a>
+                          <a href="#" title="Close" class="close">x</a>
             
                         <?php echo form_open("complementarias/delete/"); ?>
                           <h2>Edita las recetas complementarias</h2><br><br>
