@@ -542,6 +542,10 @@ table th, thead{
     height: 180px;
 }
 
+.modalDialog .form_edit {
+    height: 230px;
+}
+
 .close {
     background: #e60000;
     color: #FFFFFF;
