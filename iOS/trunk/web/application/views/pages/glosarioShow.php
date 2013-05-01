@@ -92,31 +92,31 @@
                       </div>
 
                       <div id="editarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div id="popup">
+                        <div class="popup form_receta">
+                        <a href="#" title="Close" class="close">x</a>
+                
+                        <?php echo form_open("glosario/edit/"); ?>
+                          <h2>Edita el glosario</h2>
 
-                          <a href="#" title="Close" class="close">x</a>
-
-                          <div id="formulario">
-
-            
-                        <?php echo form_open("glosario/delete/"); ?>
-                          <h2>Edita el glosario</h2><br><br>
                           <div class="centrar">
-                            <label for="">Nombre: </label>
-                             <input type="text" name="nombre" value="<?php echo $glosario[$i]['nombre']; ?>">
+                            <label for="">Titulo: </label>
+                            <input type="text" name="titulo" value="<?php echo $glosario[$i]['nombre']; ?>">
+                          </div>
+                  
+                          <div id="centrar">
+                            <label for="">Descripción: </label>
+                              <textarea type="text" class="full" name="descripcion" id="descripcion"><?php echo $glosario[$i]['descripcion']; ?></textarea>
                           </div>
 
-                          
+                          <div class="centrar">
+                            <label for="">Imagen: </label>
+                            <input type="text" name="imagen" value="<?php echo $glosario[$i]['imagen']; ?>">
+                          </div>
 
                           <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Editar</button>
+                          <button type="submit" class="submit">Guardar</button>
                         </form>
-
-                         </div>
-                        </div>
-            
                         </div>
                       </div>
 

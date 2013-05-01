@@ -112,10 +112,6 @@ class Recetas extends CI_Controller {
 		}
 	}
 
-	public function view(){
-		
-	}
-
 	public function delete(){
 
 		$id 	= $_POST['id'];
