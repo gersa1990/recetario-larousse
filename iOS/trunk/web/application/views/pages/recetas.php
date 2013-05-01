@@ -82,8 +82,9 @@
                 <?php echo form_open("recetas/delete/"); ?>
                   <h2>Receta:</h2>
 
-                    <!-- <label for="">Nombre: </label> -->
-                    <input type="text" class="mg-auto" value="<?php echo $recetas[$i]['titulo']; ?>"> 
+                    
+                    <p class="mg-auto"><?php echo $recetas[$i]['titulo']; ?></p>
+                   
          
                   <input type="hidden" name="id" value="<?php echo $recetas[$i]['id']; ?>">
                   <input type="hidden" name="id_app" value="<?php echo $app; ?>">

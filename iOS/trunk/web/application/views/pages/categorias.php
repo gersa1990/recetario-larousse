@@ -82,21 +82,17 @@
                       { ?>
 
                       <div id="eliminarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">X</a>
-            
-                        <?php echo form_open("categorias/delete/"); ?>
-                          <h2>Eliminar categoria</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                              <?php echo $categorias[$i]['nombre']; ?>
-                          </div>
-                          <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Eliminar</button>
-                        </form>
-            
+                        <div class="popup form_delete">
+
+                          <a href="#" title="Close" class="close">x</a>
+                
+                          <?php echo form_open("complementarias/delete/"); ?>
+                            <h2>Receta:</h2>
+                            <p class="mg-auto"><?php echo $categorias[$i]['nombre']; ?></p>         
+                            <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Eliminar</button>
+                          </form>
                         </div>
                       </div>
 

@@ -52,13 +52,13 @@
                           </td>
 
                           <td>
-                            <a href="#editarGlosario<?php echo $recetas_complementarias[$i]['id']; ?>">
+                            <a href="#editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>">
                               Editar
                             </a>
                           </td>
 
                           <td>
-                            <a href="#eliminarGlosario<?php echo $recetas_complementarias[$i]['id']; ?>" class='eliminarRecetas'>
+                            <a href="#eliminarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class='eliminarRecetas'>
                               Eliminar
                             </a>
                           </td>
@@ -76,26 +76,22 @@
                     for ($i=0; $i <count($recetas_complementarias) ; $i++) 
                       { ?>
 
-                      <div id="eliminarGlosario<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">X</a>
-            
-                        <?php echo form_open("complementarias/delete/"); ?>
-                          <h2>Eliminar receta</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                              <?php echo $recetas_complementarias[$i]['titulo']; ?>
-                          </div>
-                          <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Eliminar</button>
-                        </form>
-            
+                      <div id="eliminarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
+                        <div class="popup form_delete">
+
+                          <a href="#" title="Close" class="close">x</a>
+                
+                          <?php echo form_open("complementarias/delete/"); ?>
+                            <h2>Receta:</h2>
+                            <p class="mg-auto"><?php echo $recetas_complementarias[$i]['titulo']; ?></p>         
+                            <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Eliminar</button>
+                          </form>
                         </div>
                       </div>
 
-                      <div id="editarGlosario<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
+                      <div id="editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
                         <div>
                           <a href="#" title="Close" class="close">X</a>
             

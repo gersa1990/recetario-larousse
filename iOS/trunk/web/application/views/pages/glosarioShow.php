@@ -76,26 +76,18 @@
                     for ($i=0; $i <count($glosario) ; $i++) 
                       { ?>
 
-                      <div id="eliminarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div id="popup">
-                          <a href="#" title="Close" class="close">X</a>
+                       <div id="eliminarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
+                        <div class="popup form_delete">
 
-                          <div id="formulario">
-                          
-            
-                        <?php echo form_open("glosario/delete/"); ?>
-                          <h2>Eliminar receta</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                              <?php echo $glosario[$i]['nombre']; ?>
-                          </div>
-                          <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Eliminar</button>
-                        </form>
-                        
-                         </div>
+                          <a href="#" title="Close" class="close">x</a>
+                
+                          <?php echo form_open("glosario/delete/"); ?>
+                            <h2>Receta:</h2>
+                            <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
+                            <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Eliminar</button>
+                          </form>
                         </div>
                       </div>
 

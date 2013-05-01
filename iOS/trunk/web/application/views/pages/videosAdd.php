@@ -52,13 +52,13 @@
                           </td>
 
                           <td>
-                            <a href="#editarGlosario<?php echo $videos[$i]['id']; ?>">
+                            <a href="#editarVideo<?php echo $videos[$i]['id']; ?>">
                               Editar
                             </a>
                           </td>
 
                           <td>
-                            <a href="#eliminarGlosario<?php echo $videos[$i]['id']; ?>" class='eliminarRecetas'>
+                            <a href="#eliminarVideo<?php echo $videos[$i]['id']; ?>" class='eliminarRecetas'>
                               Eliminar
                             </a>
                           </td>
@@ -76,29 +76,22 @@
                     for ($i=0; $i <count($videos) ; $i++) 
                       { ?>
 
-                      <div id="eliminarGlosario<?php echo $videos[$i]['id']; ?>" class="modalDialog">
-                        <div id="popup">
-                          <a href="#" title="Close" class="close">X</a>
+                      <div id="eliminarVideo<?php echo $videos[$i]['id']; ?>" class="modalDialog">
+                        <div class="popup form_delete">
 
-                          <div id="formulario">
-            
-                            <?php echo form_open("videos/delete/"); ?>
-                                <h2>Eliminar receta</h2><br><br>
-                                <div class="centrar">
-                                  <label for="">Nombre: </label>
-                                  <?php echo $videos[$i]['video']; ?>
-                                </div>
-                                <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
-                                <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                                <br>
-                                <button type="submit" class="eliminarBoton">Eliminar</button>
-                            </form>
-
-                          </div>            
+                          <a href="#" title="Close" class="close">x</a>
+                
+                          <?php echo form_open("videos/delete/"); ?>
+                            <h2>Receta:</h2>
+                            <p class="mg-auto"><?php echo $videos[$i]['video']; ?></p>         
+                            <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Eliminar</button>
+                          </form>
                         </div>
                       </div>
 
-                      <div id="editarGlosario<?php echo $videos[$i]['id']; ?>" class="modalDialog">
+                      <div id="editarVideo<?php echo $videos[$i]['id']; ?>" class="modalDialog">
                         <div>
                           <a href="#" title="Close" class="close">X</a>
             
