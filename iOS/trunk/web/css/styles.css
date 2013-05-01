@@ -319,7 +319,7 @@ button.aclose {
 .mg-auto{
     width: 200px;
     margin: 0 auto;
-    margin-bottom: 40px !important;
+    /*margin-bottom: 40px !important;*/
 }
 
 /*************************************/
@@ -539,7 +539,7 @@ table th, thead{
 }
 
 .modalDialog .form_delete{
-    height: 180px;
+    height: 164px;
 }
 
 .modalDialog .form_edit {
@@ -633,6 +633,12 @@ a.close:hover{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+.popup p{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 30px auto 40px;
 }
 
 .popup textarea {

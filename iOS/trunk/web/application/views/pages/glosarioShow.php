@@ -15,7 +15,7 @@
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
           <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorias</a></li>
-          <li class="active"><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosarios</a></li>
+          <li class="active"><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
@@ -34,7 +34,7 @@
         <table id="glosario">
           <thead>
             <tr>
-              <td colspan="2">Recetas</td>
+              <td colspan="2">Glosario</td>
             </tr>
           </thead>
 
@@ -82,7 +82,7 @@
                           <a href="#" title="Close" class="close">x</a>
                 
                           <?php echo form_open("glosario/delete/"); ?>
-                            <h2>Receta:</h2>
+                            <h2>Ingrediente</h2>
                             <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -94,7 +94,7 @@
                       <div id="editarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
                         <div id="popup">
 
-                          <a href="#" title="Close" class="close">X</a>
+                          <a href="#" title="Close" class="close">x</a>
 
                           <div id="formulario">
 

@@ -15,7 +15,7 @@
         <ul>
           <li class="active"><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
           <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorias</a></li>
-          <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosarios</a></li>
+          <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a href="#" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
@@ -80,9 +80,9 @@
                 <a href="#" title="Close" class="close">x</a>
                 
                 <?php echo form_open("recetas/delete/"); ?>
-                  <h2>Receta:</h2>
+                  <h2>Receta</h2>
                     
-                    <p class="mg-auto"><?php echo $recetas[$i]['titulo']; ?></p>
+                  <p class="mg-auto"><?php echo $recetas[$i]['titulo']; ?></p>
          
                   <input type="hidden" name="id" value="<?php echo $recetas[$i]['id']; ?>">
                   <input type="hidden" name="id_app" value="<?php echo $app; ?>">
