@@ -92,24 +92,26 @@
                       </div>
 
                       <div id="editarVideo<?php echo $videos[$i]['id']; ?>" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">x</a>
-            
+                        <div class="popup form_edit">
+                        <a href="#" title="Close" class="close">x</a>
+                
                         <?php echo form_open("videos/delete/"); ?>
-                          <h2>Edita los videos</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                             <input type="text" name="video" value="<?php echo $videos[$i]['video']; ?>">
-                          </div>
+                          <h2>Edita el video</h2>
 
-                          
+                          <div class="centrar">
+                            <label for="">Titulo: </label>
+                            <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>">
+                          </div>
+                  
+                          <div id="centrar">
+                            <label for="">Archivo de video: </label>
+                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>">
+                          </div>
 
                           <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
                           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Editar</button>
+                          <button type="submit" class="submit">Guardar</button>
                         </form>
-            
                         </div>
                       </div>
 

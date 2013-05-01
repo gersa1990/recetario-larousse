@@ -99,7 +99,7 @@
                   <div class="centrar">
                     <label for="">Nombre: </label>
                     <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>">
-                  
+                  </div>
                   
                     <div id="divColorEditar">
                       <label for="">Color: </label>
@@ -109,7 +109,7 @@
                       </div>
                     </div>
 
-                  </div>
+                  
                   
                   <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
                   <input type="hidden" name="id_app" value="<?php echo $app; ?>">

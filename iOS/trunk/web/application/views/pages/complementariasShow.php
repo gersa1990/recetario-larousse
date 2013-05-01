@@ -91,30 +91,38 @@
                         </div>
                       </div>
 
+                      
+
                       <div id="editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">x</a>
-            
-                        <?php echo form_open("complementarias/delete/"); ?>
-                          <h2>Edita las recetas complementarias</h2><br><br>
+                        <div class="popup form_receta">
+                        <a href="#" title="Close" class="close">x</a>
+                
+                        <?php echo form_open("complementarias/edit/"); ?>
+                          <h2>Edita categoria</h2>
+
                           <div class="centrar">
                             <label for="">Nombre: </label>
-                             <input type="text" name="titulo" value="<?php echo $recetas_complementarias[$i]['titulo']; ?>">
+                            <input type="text" name="titulo" value="<?php echo $recetas_complementarias[$i]['titulo']; ?>">
                           </div>
 
-                          
+                          <div class="left">
+                            <label for="">Contenido: </label>
+                            <textarea class="full" name="contenido"><?php echo $recetas_complementarias[$i]['contenido']; ?></textarea>
+                          </div>
 
                           <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
                           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Editar</button>
+                  
+                          <button type="submit" class="submit">Guardar</button>
                         </form>
-            
+
                         </div>
                       </div>
 
-                      <?php } 
-                    } ?>
+                      <?php 
+                      } 
+                    } 
+                    ?>
         
       </div>
     </div>
