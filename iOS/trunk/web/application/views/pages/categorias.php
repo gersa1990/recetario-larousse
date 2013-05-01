@@ -134,7 +134,7 @@
 
   <div id="nuevaCategoria" class="modalDialog">
     <div>
-      <a href="#" title="Close" class="close">X</a>
+      <a href="#" title="Close" class="close">x</a>
       
       <?php echo form_open("categorias/edit/"); ?>
       <h2>Nueva categoria</h2><br><br>
