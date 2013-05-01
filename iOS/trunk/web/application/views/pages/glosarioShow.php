@@ -77,8 +77,11 @@
                       { ?>
 
                       <div id="eliminarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div>
+                        <div id="popup">
                           <a href="#" title="Close" class="close">X</a>
+
+                          <div id="formulario">
+                          
             
                         <?php echo form_open("glosario/delete/"); ?>
                           <h2>Eliminar receta</h2><br><br>
@@ -91,13 +94,18 @@
                           <br>
                           <button type="submit" class="eliminarBoton">Eliminar</button>
                         </form>
-            
+                        
+                         </div>
                         </div>
                       </div>
 
                       <div id="editarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div>
+                        <div id="popup">
+
                           <a href="#" title="Close" class="close">X</a>
+
+                          <div id="formulario">
+
             
                         <?php echo form_open("glosario/delete/"); ?>
                           <h2>Edita el glosario</h2><br><br>
@@ -113,6 +121,9 @@
                           <br>
                           <button type="submit" class="eliminarBoton">Editar</button>
                         </form>
+
+                         </div>
+                        </div>
             
                         </div>
                       </div>

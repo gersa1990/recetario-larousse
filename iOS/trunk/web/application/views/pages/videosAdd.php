@@ -77,21 +77,24 @@
                       { ?>
 
                       <div id="eliminarGlosario<?php echo $videos[$i]['id']; ?>" class="modalDialog">
-                        <div>
+                        <div id="popup">
                           <a href="#" title="Close" class="close">X</a>
+
+                          <div id="formulario">
             
-                        <?php echo form_open("videos/delete/"); ?>
-                          <h2>Eliminar receta</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                              <?php echo $videos[$i]['video']; ?>
-                          </div>
-                          <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Eliminar</button>
-                        </form>
-            
+                            <?php echo form_open("videos/delete/"); ?>
+                                <h2>Eliminar receta</h2><br><br>
+                                <div class="centrar">
+                                  <label for="">Nombre: </label>
+                                  <?php echo $videos[$i]['video']; ?>
+                                </div>
+                                <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
+                                <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                                <br>
+                                <button type="submit" class="eliminarBoton">Eliminar</button>
+                            </form>
+
+                          </div>            
                         </div>
                       </div>
 
