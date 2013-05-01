@@ -120,7 +120,11 @@ label{
 }
 
 .full{
-    width: 900px;
+    width: 890px;
+}
+
+.full2{
+    width: 587px;
 }
 
 .mg_input{
@@ -128,7 +132,7 @@ label{
 }
 
 .mg_input2{
-    margin-right: 22px;    
+    margin-right: 20px;    
 }
 
 .uptext{
@@ -246,7 +250,7 @@ label{
 
 .centrar{
     position: relative;
-    width: 233px;
+    width: 250px;
     margin: 0 auto;
 }
 
@@ -498,12 +502,18 @@ table th, thead{
 }
 
 .modalDialog h2{
+    margin-top: 20px;
     text-align: center;
-    margin-bottom: 18px; 
 }
 
-.mgt_20{
-     margin-bottom: 50px;
+.mg_20{
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+.mgt_50{
+    font-size: 28px;
+    margin: 15px 0 50px;
 }
 
 .modalDialog p{
@@ -538,12 +548,18 @@ table th, thead{
     margin: 2% auto;
 }
 
+.modalDialog .form_glosario{
+    width: 600px;
+    height: 516px;
+    margin: 2% auto;
+}
+
 .modalDialog .form_delete{
     height: 164px;
 }
 
-.modalDialog .form_edit {
-    height: 230px;
+.modalDialog .form_categoria{
+    height: 308px;
 }
 
 .close {
@@ -619,6 +635,7 @@ a.close:hover{
 
 #controles a{
     float: left;
+    text-align: center;
 }
 
 #controles input{
@@ -627,11 +644,22 @@ a.close:hover{
 
 #formulario{
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 97%;
+    height: 97%;
+    padding: 10px;
     background-color: #fbfbfb;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+#preview{
+    position: relative;
+    top: -49px;
+    display: block;
+    margin-left: 220px;
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
 }
 
 /*************************************/
@@ -640,7 +668,6 @@ a.close:hover{
 
 .popup form{
     width: 100%;
-    padding: 10px;
     display: block;
     margin: 0 auto;
 }
@@ -663,7 +690,7 @@ a.close:hover{
 .popup p{
     font-size: 16px;
     font-weight: bold;
-    margin: 30px auto 40px;
+    margin: 30px auto;
 }
 
 .popup textarea {

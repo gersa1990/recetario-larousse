@@ -10,11 +10,11 @@
 
     <div class="columna">
 
-      <h1>Menu</h1>
+      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
-          <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorias</a></li>
+          <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
           <li class="active"><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          <a href="#nuevaReceta" class="button bl1">Agregar</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
@@ -82,7 +82,7 @@
                           <a href="#" title="Close" class="close">x</a>
                 
                           <?php echo form_open("glosario/delete/"); ?>
-                            <h2>Ingrediente</h2>
+                            <h2>Glosario</h2>
                             <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -92,31 +92,26 @@
                       </div>
 
                       <div id="editarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div class="popup form_receta">
-                        <a href="#" title="Close" class="close">x</a>
-                
-                        <?php echo form_open("glosario/edit/"); ?>
-                          <h2>Edita el glosario</h2>
-
-                          <div class="centrar">
-                            <label for="">Titulo: </label>
-                            <input type="text" name="titulo" value="<?php echo $glosario[$i]['nombre']; ?>">
-                          </div>
+                        <div class="popup form_glosario">
+                          <a href="#" title="Close" class="close">x</a>
                   
-                          <div id="centrar">
-                            <label for="">Descripción: </label>
-                              <textarea type="text" class="full" name="descripcion" id="descripcion"><?php echo $glosario[$i]['descripcion']; ?></textarea>
-                          </div>
+                          <?php echo form_open("glosario/edit/"); ?>
+                            <h2 class="mg_20">Contenido</h2>
 
-                          <div class="centrar">
+                            <label for="">Título: </label>
+                            <input type="text" name="titulo" value="<?php echo $glosario[$i]['nombre']; ?>">
+
+                            <label for="">Descripción: </label>
+                            <textarea type="text" class="full2" name="descripcion" id="descripcion"><?php echo $glosario[$i]['descripcion']; ?></textarea>
+                            
                             <label for="">Imagen: </label>
                             <input type="text" name="imagen" value="<?php echo $glosario[$i]['imagen']; ?>">
-                          </div>
+                          
 
-                          <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <button type="submit" class="submit">Guardar</button>
-                        </form>
+                            <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Guardar</button>
+                          </form>
                         </div>
                       </div>
 

@@ -14,7 +14,7 @@
       <nav id="menu">
         <ul>
           <li class="active"><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
-          <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorias</a></li>
+          <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
           <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a href="#" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
@@ -99,15 +99,15 @@
               
                     <?php echo form_open("recetas/delete/"); ?>
 
-                      <h2 class="mgt_20">Información</h2>
+                      <h2 class="mgt_50">Información</h2>
 
                       <div class="left">
-                        <label for="">Titulo: </label>
+                        <label for="">Título: </label>
                         <input type="text" name="nombre" value="<?php echo $recetas[$i]['titulo']; ?>">
                       </div>
                   
                       <div class="left mg_input">
-                        <label for="">Categoria: </label>
+                        <label for="">Categoría: </label>
                         <select name="categoria">
                           <?php foreach ($categorias as $key => $value) { ?>
                             <option value="<?php echo $value['id']; ?>" <?php if($recetas[$i]['id_categoria'] == $value['id']) { echo "selected"; } ?>><?php echo $value['nombre']; ?></option>
@@ -178,7 +178,7 @@
 
         <?php echo form_open("recetas/create/"); ?>        
 
-          <h2 class="mgt_20">Nueva Receta</h2>
+          <h2 class="mgt_50">Nueva receta</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 

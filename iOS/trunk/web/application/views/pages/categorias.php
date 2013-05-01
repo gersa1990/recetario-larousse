@@ -12,11 +12,11 @@
 
     <div class="columna">
 
-      <h1>Menu</h1>
+      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
-          <li class="active"><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorias</a></li>
+          <li class="active"><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
           <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a id="getComplementsRecipes" class="">Recetas complementarias</a></li>
@@ -29,14 +29,14 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaCategoria" class="button bl1">Nueva categoria</a>
+          <a href="#nuevaCategoria" class="button bl1">Nueva categoría</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
         <table id="categorias">
           <thead>
             <tr>
-              <td colspan="2">Categorias</td>
+              <td colspan="2">Categorías</td>
             </tr>
           </thead>
 
@@ -90,24 +90,27 @@
             </div>
 
             <div id="editarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
-              <div class="popup form_edit">
+              <div class="popup form_categoria">
                 <a href="#" title="Close" class="close">x</a>
                 
                 <?php echo form_open("categorias/delete/"); ?>
-                  <h2>Edita categoria</h2>
+                  <h2 class="mg_20">Información</h2>
 
                   <div class="centrar">
                     <label for="">Nombre: </label>
                     <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>">
-                  </div>
+                  
                   
                     <div id="divColorEditar">
-                      <label for="">Color: </label>
+                      <label for="">Color:</label>
                       <div id="editar">
                         <input type="hidden" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
                         <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>">
+                        <span id="preview" class="left"></span>
                       </div>
                     </div>
+                    <div class="clear"></div>
+                  </div>
 
                   
                   
