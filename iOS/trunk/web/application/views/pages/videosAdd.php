@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          <a href="#nuevaReceta" class="button bl1">Nuevo video</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
@@ -93,25 +93,24 @@
 
                       <div id="editarVideo<?php echo $videos[$i]['id']; ?>" class="modalDialog">
                         <div class="popup form_edit">
-                        <a href="#" title="Close" class="close">x</a>
-                
-                        <?php echo form_open("videos/delete/"); ?>
-                          <h2>Edita el video</h2>
-
-                          <div class="centrar">
-                            <label for="">Titulo: </label>
-                            <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>">
-                          </div>
+                          <a href="#" title="Close" class="close">x</a>
                   
-                          <div id="centrar">
-                            <label for="">Archivo de video: </label>
-                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>">
-                          </div>
+                          <?php echo form_open("videos/delete/"); ?>
+                            <h2 class="mg_20">Editar video</h2>
 
-                          <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <button type="submit" class="submit">Guardar</button>
-                        </form>
+                            <div class="centrar">
+                              <label for="">Nombre: </label>
+                              <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>">
+
+                              <label for="">Archivo de video: </label>
+                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>">
+                              
+                            </div>
+
+                            <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Guardar</button>
+                          </form>
                         </div>
                       </div>
 
@@ -133,7 +132,7 @@
         <?php echo form_open("videos/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Nueva Receta</h2>
+          <h2>Nuevo video</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
