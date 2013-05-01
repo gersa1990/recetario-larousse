@@ -34,7 +34,7 @@
         <table id="recetas_complementarias">
           <thead>
             <tr>
-              <td colspan="2">Recetas</td>
+              <td colspan="2">Recetas complementarias</td>
             </tr>
           </thead>
 

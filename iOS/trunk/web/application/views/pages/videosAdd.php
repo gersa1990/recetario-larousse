@@ -34,7 +34,7 @@
         <table id="videos">
           <thead>
             <tr>
-              <td colspan="2">Recetas</td>
+              <td colspan="2">Videos</td>
             </tr>
           </thead>
 

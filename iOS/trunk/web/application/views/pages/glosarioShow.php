@@ -34,7 +34,7 @@
         <table id="glosario">
           <thead>
             <tr>
-              <td colspan="2">Recetas</td>
+              <td colspan="2">Glosario</td>
             </tr>
           </thead>
 
