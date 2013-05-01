@@ -112,7 +112,7 @@
                           <div class="centrar" id="divColorEditar">
                             <label for="">Color: </label>
                             <div id="editar">
-                                <input type="text" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
+                                <input type="hidden" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
                                 <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>">
                             </div>
                           </div>
@@ -198,11 +198,12 @@ $("#divColorEditar #color").each(function (data)
   
   onChange: function (hsb, hex, rgb) 
   {    
-    var editar = $("#editar").parent();
+
+    var editar2 = editar.split('_');
 
     console.log(editar);
 
-    $("#color").val(rgb.r+","+rgb.g+","+rgb.b);
+    $(".editar_"+editar2[1]).val(rgb.r+","+rgb.g+","+rgb.b);
 
   }
 
