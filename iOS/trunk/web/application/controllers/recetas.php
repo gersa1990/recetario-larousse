@@ -13,11 +13,6 @@ class Recetas extends CI_Controller {
 		$this->load->library('typography');
 	}
 
-	public function getAllRecipes(){
-
-		
-	}
-
 	public function searchByName()
 	{
 		$nombre = $_POST['palabra'];
@@ -172,16 +167,14 @@ class Recetas extends CI_Controller {
 			echo "No valido";
 		}
 		else
-		{
+		{			
 
+			$actualizar = $this->recetas_model->update_recetas($id);
 			
-
-		$actualizar = $this->recetas_model->update_recetas($id);
-			
-		if($actualizar)
-		 {
+			if($actualizar)
+		 	{
                 redirect(base_url()."recetas/modificar/".$id."/".$app, 'refresh');
-         }
+         	}
 		}      
 	}
 }
