@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          <a href="#nuevoVideo" class="button bl1">Nuevo video</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
@@ -47,7 +47,7 @@
                       <tr>
                           <td class="txleft">
                             <a href="<?php echo base_url().'videos/view/'.$videos[$i]['id']; ?>" class="bluetext">
-                              <?php echo $videos[$i]['video']; ?>
+                              <?php echo $videos[$i]['titulo']; ?>
                             </a>
                           </td>
 
@@ -95,7 +95,7 @@
                         <div class="popup form_edit">
                         <a href="#" title="Close" class="close">x</a>
                 
-                        <?php echo form_open("videos/delete/"); ?>
+                        <?php echo form_open("videos/edit/"); ?>
                           <h2>Edita el video</h2>
 
                           <div class="centrar">
@@ -124,7 +124,7 @@
   </div>
 
 
-  <div id="nuevaReceta" class="modalDialog">
+  <div id="nuevoVideo" class="modalDialog">
     <div class="popup">
       <a href="#" title="Close" class="close">x</a>
 
@@ -142,67 +142,11 @@
             <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
           </div>
 
-          <div class="left mg_input">
-            <label for="">Categoria: </label>
-            <select name="categoria">
-              <?php for ($i=0; $i <count($videos) ; $i++) { ?>
-
-                <option value="<?php echo $videos[$i]['id'] ?>">
-                  <?php echo $videos[$i]['video'] ?>
-                </option>
-
-              <?php } ?>
-            </select>
-          </div>
-
           <div class="clear"></div>
 
-          <div class="left">
-            <label for="">Procedimiento: </label>
-            <textarea name="procedimiento" class="full"></textarea>
-          </div>
-          
-          <div class="clear"></div>
-          
-          <div class="left">
-            <label for="">Ingredientes: </label>
-            <textarea name="ingredientes" class="full"></textarea>
-          </div>
-          
-          <div class="clear"></div>
-
-          <div class="left mg_input2">
-            <label for="">Preparación: </label>
-            <input type="text" name="preparacion" value="" placeholder="minutos" required>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Cocción: </label>
-            <input type="text" name="coccion" value="" placeholder="minutos" required>
-          </div>
-          
-          <div class="left mg_input2">
-            <label for="">Costo: </label>
-            <select name="costo">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Dificultad: </label>
-            <select name="dificultad">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="clear"></div>
-
-          <label for="">Imagen: </label>
-          <input type="text" name="foto" value="" placeholder="" required>
+          <label for="">Archivo de video: </label>
+          <input type="text" name="video" value="" placeholder="" required>
+          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <button type="submit" class="submit">Agregar</button>
     

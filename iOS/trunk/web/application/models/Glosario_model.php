@@ -95,7 +95,7 @@ class Glosario_model extends CI_Model {
 	public function edit()
 	{
 		$data = array(
-				'nombre' 		=> $this->input->post('nombre'),
+				'nombre' 		=> $this->input->post('titulo'),
 				'descripcion' 	=> $this->input->post('descripcion'),
 				'imagen' 		=> $this->input->post('imagen')
 			);
@@ -136,8 +136,8 @@ class Glosario_model extends CI_Model {
 
 		$this->load->helper('url');
 			$data = array(
-				'id_app'        => $this->input->post('app'),
-				'nombre' 		=> $this->input->post('nombre'),
+				'id_app'        => $this->input->post('id_app'),
+				'nombre' 		=> $this->input->post('titulo'),
 				'descripcion' 	=> $this->input->post('descripcion'),
 				'imagen' 		=> $this->input->post('imagen')
 			);

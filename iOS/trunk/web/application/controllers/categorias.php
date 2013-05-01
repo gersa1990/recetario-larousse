@@ -7,22 +7,19 @@ class Categorias extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
-	public function edit($id_app, $id_categoria){
+	public function edit(){
 
+		$id_app 		= $_POST['id_app'];
+		$id				= $_POST['id'];
+		$nombre 		= $_POST['nombre'];
+		$color 			= $_POST['color'];
 		
-		$this->load->helper('url');
+		$edit = $this->categoria_model->update_categoria($id, $nombre, $color);
 
-		$data['apps'] = $this->App_model->get_apps($id_app);
-
-		$data['categorias'] = $this->categoria_model->get_categorias($id_app);
-
-		
-		$data['app']  	 = $id_app;
-
-		$data['title'] = 'Categorias';
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/categoriasEdit', $data);
-		$this->load->view('templates/footer');
+		if($edit)
+		{
+			redirect(base_url()."categorias/view/".$id_app);
+		}
 	}
 
 	public function view($id_app){

@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Agregar</a>
+          <a href="#nuevoGlosario" class="button bl1">Agregar</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
@@ -124,97 +124,27 @@
   </div>
 
 
-  <div id="nuevaReceta" class="modalDialog">
-    <div class="popup">
-      <a href="#" title="Close" class="close">x</a>
+                <div id="nuevoGlosario" class="modalDialog">
+                        <div class="popup form_glosario">
+                          <a href="#" title="Close" class="close">x</a>
+                  
+                          <?php echo form_open("glosario/create/"); ?>
+                            <h2 class="mg_20">Contenido</h2>
 
-      <div id="formulario">
+                            <label for="">Título: </label>
+                            <input type="text" name="titulo" value=" ">
 
-        <?php echo form_open("glosario/create/"); ?>        
-        <!-- <form action=""> -->
-
-          <h2>Nueva Receta</h2>
-
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
-
-          <div class="left">
-            <label for="">Título: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
-          </div>
-
-          <div class="left mg_input">
-            <label for="">Categoria: </label>
-            <select name="categoria">
-              <?php for ($i=0; $i <count($glosario) ; $i++) { ?>
-
-                <option value="<?php echo $glosario[$i]['id'] ?>">
-                  <?php echo $glosario[$i]['nombre'] ?>
-                </option>
-
-              <?php } ?>
-            </select>
-          </div>
-
-          <div class="clear"></div>
-
-          <div class="left">
-            <label for="">Procedimiento: </label>
-            <textarea name="procedimiento" class="full"></textarea>
-          </div>
-          
-          <div class="clear"></div>
-          
-          <div class="left">
-            <label for="">Ingredientes: </label>
-            <textarea name="ingredientes" class="full"></textarea>
-          </div>
-          
-          <div class="clear"></div>
-
-          <div class="left mg_input2">
-            <label for="">Preparación: </label>
-            <input type="text" name="preparacion" value="" placeholder="minutos" required>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Cocción: </label>
-            <input type="text" name="coccion" value="" placeholder="minutos" required>
-          </div>
-          
-          <div class="left mg_input2">
-            <label for="">Costo: </label>
-            <select name="costo">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Dificultad: </label>
-            <select name="dificultad">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="clear"></div>
-
-          <label for="">Imagen: </label>
-          <input type="text" name="foto" value="" placeholder="" required>
-
-          <button type="submit" class="submit">Agregar</button>
-    
-        </form>
-
-      </div> <!-- formulario -->
-    </div> <!-- popup -->
-  </div> <!-- modadialog -->
-
-  <div class="clear"></div>
-
-</div> <!-- Wrapper -->
+                            <label for="">Descripción: </label>
+                            <textarea type="text" class="full2" name="descripcion" id="descripcion"></textarea>
+                            
+                            <label for="">Imagen: </label>
+                            <input type="text" name="imagen" value=" ">
+                        
+                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                            <button type="submit" class="submit">Guardar</button>
+                          </form>
+                        </div>
+                      </div>
 
 <script>
 

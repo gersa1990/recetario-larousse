@@ -126,7 +126,7 @@ class Recetas extends CI_Controller {
 	}
 	
 
-	public function update()
+	public function edit()
 	{
 
 		$id 		   	= $_POST['id'];
@@ -144,7 +144,10 @@ class Recetas extends CI_Controller {
 
 		$update = $this->recetas_model->update($data, $id);
 
-		echo $update;
+		if($update)
+		{
+			redirect(base_url()."apps/view/".$_POST['id_app'],"refresh");
+		}
 	}
 
 

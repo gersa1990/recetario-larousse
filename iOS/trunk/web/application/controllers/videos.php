@@ -93,7 +93,12 @@ class Videos extends CI_Controller {
 
 	public function edit()
 	{
+		$edit = $this->video_model->edit();
 
+		if($edit)
+		{
+			redirect(base_url()."videos/view/".$_POST['id_app'],"refresh");
+		}
 	}
 
 	public function delete()
@@ -103,7 +108,7 @@ class Videos extends CI_Controller {
 
 		if($delete)
 		{
-			redirect(base_url()."videos/index/","refresh");
+			redirect(base_url()."videos/view/".$_POST['id_app'],"refresh");
 		}
 	}
 
@@ -123,12 +128,14 @@ class Videos extends CI_Controller {
 	{
 		$video  = $_POST['video'];
 		$titulo = $_POST['titulo'];
+		$id_app = $_POST['id_app'];
+
 		$video2 = $this->filtrar($video);
-		$insert = $this->video_model->addVideo($video2,$titulo);	
+		$insert = $this->video_model->addVideo($video2,$titulo,$id_app);	
 
 		if($insert)
 		{
-			redirect(base_url()."videos/index/","refresh");
+			redirect(base_url()."videos/view/".$_POST['id_app'],"refresh");
 		}
 	}
 
