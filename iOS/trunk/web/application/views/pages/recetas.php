@@ -10,7 +10,7 @@
 
     <div class="columna">
 
-      <h1>Menu</h1>
+      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li class="active"><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
