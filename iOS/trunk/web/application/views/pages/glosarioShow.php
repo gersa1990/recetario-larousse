@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevoGlosario" class="button bl1">Agregar</a>
+          <a href="#nuevoGlosario" class="button bl1">Nuevo glosario</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
