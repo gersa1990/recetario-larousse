@@ -316,6 +316,12 @@ button.aclose {
     border-color: #bce8f1;
 }
 
+.mg-auto{
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 40px !important;
+}
+
 /*************************************/
 /*           Header                   */
 /*************************************/
@@ -493,7 +499,11 @@ table th, thead{
 
 .modalDialog h2{
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 18px; 
+}
+
+.mgt_20{
+     margin-bottom: 50px;
 }
 
 .modalDialog p{
@@ -526,6 +536,10 @@ table th, thead{
     width: 950px;
     height: 600px;
     margin: 2% auto;
+}
+
+.modalDialog .form_delete{
+    height: 180px;
 }
 
 .close {
@@ -623,7 +637,7 @@ a.close:hover{
 }
 
 .popup .submit {
-    margin: 0 40%;
+    margin: 0 38%;
     float: left;
     height: 35px;
     padding: 0;
