@@ -567,14 +567,39 @@ a.close:hover{
 }
 
 .modalDialog .eliminarBoton {
-    margin: 10px 40%;
+    position: relative;
+    left: 50%;
+    margin-top: 20px;
+    margin-left: -28px;
     padding: 5px 10px;
     background: #2c6da0;
-    color: #FFFFFF;
+    color: #8f5a0a;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     border-radius: 10%;
+
+    background-color: #ffb94b;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+    background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: linear-gradient(top, #fddb6f, #ffb94b);
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d69e31 #e3a037 #d5982d #e3a037;
 }
 
 .modalDialog .eliminarBoton:hover {
@@ -647,8 +672,9 @@ a.close:hover{
 }
 
 .popup .submit {
-    margin: 0 38%;
-    float: left;
+    position: relative;
+    left: 50%;
+    margin-left: -60px;
     height: 35px;
     padding: 0;
     width: 120px;

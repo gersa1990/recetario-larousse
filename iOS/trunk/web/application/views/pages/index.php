@@ -46,7 +46,7 @@
                           <?php echo form_open('apps/eliminar') ?>
         
                             <h2><?php echo $apps[$i]['nombre'] ?><br/></h2>
-                            <p><strong>Warning</strong>: Toda la información relacionada se borrara</p>
+                            <p>Toda la información relacionada se borrara</p>
         
                             <input type="hidden" name="id" id="id"  value="<?php echo $apps[$i]['id']; ?>"/>
           
