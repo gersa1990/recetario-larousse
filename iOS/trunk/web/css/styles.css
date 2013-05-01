@@ -384,6 +384,13 @@ header a{
 }
 
 #menu ul li a{
+    padding: 7px 176px 7px 0;
+    text-decoration:none;
+    color:#000;
+}
+
+#menu ul li:last-child a{
+    padding: 7px 82px 7px 0;
     text-decoration:none;
     color:#000;
 }
@@ -427,6 +434,13 @@ table{
     background: #fff;
     border-collapse: collapse;
     text-align: left;
+
+    -webkit-transition: background 0.5s linear;
+    -moz-transition: background 0.5s linear;
+    -o-transition: background 0.5s linear;
+    transition: background 0.5s linear;
+
+
 }
 
 table a{
@@ -478,8 +492,8 @@ table th, thead{
 }
 
 .modalDialog h2{
-    text-align: left;
-    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .modalDialog p{
@@ -504,11 +518,14 @@ table th, thead{
 
 .modalDialog .popup{
     display: block;
+    padding: 13px;
+    border-radius: 0px;
+}
+
+.modalDialog .form_receta{
     width: 950px;
     height: 600px;
     margin: 2% auto;
-     padding: 13px;
-    border-radius: 0px;
 }
 
 .close {
@@ -524,6 +541,11 @@ table th, thead{
     text-decoration: none;
     font-weight: bold;
     border-radius: 50%;
+}
+
+a.close:hover{
+    color: #220000;
+    text-decoration: none;
 }
 
 .modalDialog .eliminarBoton {
@@ -584,7 +606,6 @@ table th, thead{
     display: block;
     background-color: #fff;
     border: 1px solid #ccc;
-    /*font-size: 20px;*/
     width: 200px;
     min-height: 30px;
     margin-bottom: 16px;
@@ -602,6 +623,7 @@ table th, thead{
 }
 
 .popup .submit {
+    margin: 0 40%;
     float: left;
     height: 35px;
     padding: 0;

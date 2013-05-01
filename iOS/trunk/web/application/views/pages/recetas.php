@@ -17,7 +17,7 @@
           <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorias</a></li>
           <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosarios</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
-          <li><a id="getComplementsRecipes" class="">Recetas complementarias</a></li>
+          <li><a href="#" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
     </div>
@@ -105,7 +105,7 @@
 
 
   <div id="nuevaReceta" class="modalDialog">
-    <div class="popup">
+    <div class="popup form_receta">
       <a href="#" title="Close" class="close">x</a>
 
       <div id="formulario">
