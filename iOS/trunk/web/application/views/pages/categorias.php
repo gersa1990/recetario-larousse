@@ -1,11 +1,11 @@
 
 <div class="wrapper">
 
-
   <div class="main">
     <div id="status">
      
   </div>
+
     <a href="<?php echo base_url() ?>" class="home">Regresar</a>
 
 
@@ -36,43 +36,38 @@
         <table id="categorias">
           <thead>
             <tr>
-              <td colspan="2">Recetas</td>
+              <td colspan="2">Categorias</td>
             </tr>
           </thead>
 
           <tbody class="blockscroll">
             <?php 
+              if(isset($categorias)){
+                for ($i=0; $i <count($categorias) ; $i++) { ?>
+                  <tr>
+                      <td class="txleft">
+                        <a href="<?php echo base_url().'categorias/view/'.$categorias[$i]['id']; ?>" class="bluetext">
+                          <?php echo $categorias[$i]['nombre']; ?>
+                        </a>
+                      </td>
 
-            if(isset($categorias))
-                  {
+                      <td>
+                        <a href="#editarCategoria<?php echo $categorias[$i]['id']; ?>">
+                          Editar
+                        </a>
+                      </td>
 
-                    for ($i=0; $i <count($categorias) ; $i++) 
-                      { ?>
+                      <td>
+                        <a href="#eliminarCategoria<?php echo $categorias[$i]['id']; ?>" class='eliminarRecetas'>
+                          Eliminar
+                        </a>
+                      </td>
 
-                      <tr>
-                          <td class="txleft">
-                            <a href="<?php echo base_url().'categorias/view/'.$categorias[$i]['id']; ?>" class="bluetext">
-                              <?php echo $categorias[$i]['nombre']; ?>
-                            </a>
-                          </td>
+                  </tr>
 
-                          <td>
-                            <a href="#editarCategoria<?php echo $categorias[$i]['id']; ?>">
-                              Editar
-                            </a>
-                          </td>
-
-                          <td>
-                            <a href="#eliminarCategoria<?php echo $categorias[$i]['id']; ?>" class='eliminarRecetas'>
-                              Eliminar
-                            </a>
-                          </td>
-
-                      </tr>
-
-                      <?php     
-                      }   
-                  } ?>
+                <?php     
+                }   
+              } ?>
           </tbody>
         </table>
 
@@ -96,36 +91,39 @@
                         </div>
                       </div>
 
-                      <div id="editarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
-                        <div>
-                          <a href="#" title="Close" class="close">X</a>
+          <div id="editarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
+            <div class="popup form_edit">
+              <a href="#" title="Close" class="close">x</a>
+              
+              <?php echo form_open("categorias/delete/"); ?>
+                <h2>Edita categoria</h2>
+
+                <div class="centrar">
+                  <label for="">Nombre: </label>
+                  <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>">
+                
+                
+                  <div id="divColorEditar">
+                    <label for="">Color: </label>
+                    <div id="editar">
+                      <input type="hidden" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
+                      <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>">
+                    </div>
+                  </div>
+
+                </div>
+                
+                <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
+                <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                
+                <button type="submit" class="submit">Guardar</button>
+              </form>
             
-                        <?php echo form_open("categorias/delete/"); ?>
-                          <h2>Edita la categoria</h2><br><br>
-                          <div class="centrar">
-                            <label for="">Nombre: </label>
-                             <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>">
-                          </div>
+            </div>
+          </div>
 
-                          <div class="centrar" id="divColorEditar">
-                            <label for="">Color: </label>
-                            <div id="editar">
-                                <input type="hidden" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
-                                <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>">
-                            </div>
-                          </div>
-
-                          <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                          <br>
-                          <button type="submit" class="eliminarBoton">Editar</button>
-                        </form>
-            
-                        </div>
-                      </div>
-
-                      <?php } 
-                    } ?>
+          <?php } 
+        } ?>
         
       </div>
     </div>
