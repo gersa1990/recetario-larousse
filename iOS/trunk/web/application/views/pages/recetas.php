@@ -52,7 +52,7 @@
                           </td>
 
                           <td>
-                            <a href="<?php echo base_url().'recetas/edit/'.$recetas[$i]['id']; ?>">
+                            <a href="#editarReceta<?php echo $recetas[$i]['id']; ?>">
                               Editar
                             </a>
                           </td>
@@ -91,6 +91,45 @@
                 </form>
               </div>
             </div>
+
+            <div id="editarReceta<?php echo $recetas[$i]['id']; ?>" class="modalDialog">
+            <div class="popup form_receta">
+              <a href="#" title="Close" class="close">x</a>
+              
+              <?php echo form_open("recetas/delete/"); ?>
+                <h2>Edita categoria</h2>
+
+                <div class="left">
+                  <label for="">Titulo: </label>
+                  <input type="text" name="nombre" value="<?php echo $recetas[$i]['titulo']; ?>">
+                </div>
+                
+                  <div id="left mg_input">
+                    <label for="">Categoria: </label>
+                    <select name="categoria">
+                      <?php foreach ($categorias as $key => $value) { ?>
+                        <option value="<?php echo $value['id']; ?>" <?php if($recetas[$i]['id_categoria'] == $value['id']) { echo "selected"; } ?>><?php echo $value['nombre']; ?></option>
+                        <?php } ?>
+                    </select>
+                  </div>
+
+                  <div class="left">
+                    <label for="">Procedimiento: </label>
+                    <textarea type="text" class="full" name="procedimiento"><?php echo $recetas[$i]['procedimiento']; ?></textarea>
+                  </div>
+
+
+
+                </div>
+                
+                <input type="hidden" name="id" value="<?php echo $recetas[$i]['id']; ?>">
+                <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                
+                <button type="submit" class="submit">Guardar</button>
+              </form>
+            
+            </div>
+          </div>
           
           <?php 
           } 
@@ -184,10 +223,8 @@
       </div> <!-- formulario -->
     </div> <!-- popup -->
   </div> <!-- modadialog -->
-
   <div class="clear"></div>
-
-</div> <!-- Wrapper -->
+</div>
 
 <script>
 
