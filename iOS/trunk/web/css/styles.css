@@ -111,6 +111,16 @@ label{
     float: left;
 }
 
+.columr{
+    width: 62%;
+    float: left;
+}
+
+.columl{
+    width: 38%;
+    float: left;
+}
+
 .clear{
     clear: both;
 }
@@ -375,7 +385,7 @@ header a{
 /*************************************/
 #menu{
     position: relative;
-    width: 50%;
+    width: 272px;
 }
 
 #menu ul{
@@ -440,7 +450,7 @@ footer p{
 /*************************************/
 table{
     width: 100%;
-    font-size: 12px;
+    font-size: 14px;
     background: #fff;
     border-collapse: collapse;
     text-align: left;
@@ -473,7 +483,7 @@ table td{
 }
 
 table tr td:first-child{
-    width: 329px;
+    width: 452px;
 
 }
 
@@ -634,12 +644,12 @@ a.close:hover{
 }
 
 #controles a{
-    float: left;
+    float: right;
     text-align: center;
 }
 
 #controles input{
-    float: right;
+    float: left;
 }
 
 #formulario{

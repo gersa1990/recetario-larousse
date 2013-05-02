@@ -6,9 +6,9 @@
      
     </div>
 
-    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
+    <a href="<?php echo base_url() ?>" class="home"><span>←</span>Regresar</a>
 
-    <div class="columna">
+    <div class="columl">
 
       <h1>Menú</h1>
       <nav id="menu">
@@ -22,13 +22,14 @@
       </nav>
     </div>
     
-    <div class="columna">
+    <div class="columr">
 
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <a href="#nuevaReceta" class="button bl1">Nueva</a>
         </div> 
   
         <table id="recetas">
