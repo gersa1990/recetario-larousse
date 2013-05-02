@@ -6,6 +6,13 @@ class categoria_model extends CI_Model {
 		$this->load->database();
 	}
 
+	public function searchByTitulo($nombre, $id_app){
+
+		$categorias = $this->db->query("SELECT * FROM categoria WHERE nombre LIKE '%".$nombre."%' and id_app = ".$id_app." ");
+		return $categorias->result_array();
+
+	}
+
 	
 	public function get_categorias($id_app){
 		

@@ -27,8 +27,8 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaRecetaComplementaria" class="button bl1">Nueva receta complementaria</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <a href="#nuevaRecetaComplementaria" class="button bl1">Nueva</a>
         </div> 
   
         <table id="recetas_complementarias">
@@ -185,9 +185,9 @@
   {
     var texto = $("#buscar").val();
 
-    $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+    $.post(base_url+"complementarias/searchByName/" ,{palabra: texto, id_app: app}, function (data)
     {
-      $("#recetas tbody").html(data);
+      $(".blockscroll").html(data);
     }); 
   });
 

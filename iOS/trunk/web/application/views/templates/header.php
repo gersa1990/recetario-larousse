@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>resources/css/colorpicker.css" type="text/css" media="screen">	
 	<script src="<?php echo base_url(); ?>Resources/js/colorpicker.js"></script>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/jquery-ui.min.js" type="text/javascript"></script>
 
 	<script src="<?php echo base_url(); ?>js/funcionesJS.js"></script>
 

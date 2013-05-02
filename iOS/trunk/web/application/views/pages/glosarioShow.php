@@ -25,10 +25,8 @@
       <div id="addblock">
   
         <div id="controles">
-
-          <a href="#nuevoGlosario" class="button bl1">Nuevo glosario</a>
-
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <a href="#nuevoGlosario" class="button bl1">Nuevo</a>
         </div> 
   
         <table id="videos">
@@ -191,10 +189,11 @@
   {
     var texto = $("#buscar").val();
 
-    $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+    $.post(base_url+"glosario/searchByName/" ,{palabra: texto, id_app: app}, function (data)
     {
-      $("#recetas tbody").html(data);
+        $(".blockscroll").html(data);
     }); 
+  
   });
 
 </script>

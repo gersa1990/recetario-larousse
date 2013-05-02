@@ -65,26 +65,36 @@ class Categorias extends CI_Controller {
 		redirect(base_url().'categorias/view/'.$_POST['id_app'], 'refresh');
 	}
 
-	public function modificar(){
+	public function searchByTitulo(){
 
-		$this->load->helper('url');
+		$titulo = $_POST['titulo'];
+		$id_app = $_POST['id_app'];
 
-		$id = $this->input->post('id');
+		$categorias = $this->categoria_model->searchByTitulo($titulo, $id_app);
 
-		$data['c_item'] = $this->categoria_model->get_categorias($id);
+		for ($i=0; $i <count($categorias) ; $i++) 
+		{ 
+			echo "<tr>
+                      <td class='txleft'>";
+                        echo "<a href='".base_url().'categorias/view/'.$categorias[$i]['id']."' class='bluetext'>";
+                          echo "".$categorias[$i]['nombre'].""; 
+                        echo "</a>
+                      </td>
 
-		if (empty($data['c_item'])){
-			show_404();
+                      <td>";
+                        echo "<a href='#editarCategoria".$categorias[$i]['id']."'>
+                          Editar
+                        </a>
+                      </td>
+
+                      <td>";
+                        echo "<a href='#eliminarCategoria".$categorias[$i]['id']."' class='eliminarRecetas'>
+                          Eliminar
+                        </a>
+                      </td>
+
+                  </tr>";
 		}
-		
-		$nombre = $this->input->post('nombre');
-		$color = $this->input->post('color');
-
-		$actualizar = $this->categoria_model->update_categoria($id, $nombre, $color);
-
-		if($actualizar){
-               redirect(base_url().'categorias/index', 'refresh');
-        }
 	}
 
 }

@@ -29,8 +29,8 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaCategoria" class="button bl1">Nueva categoría</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <a href="#nuevaCategoria" class="button bl1">Nueva</a>
         </div> 
   
         <table id="categorias">
@@ -173,7 +173,13 @@
 
 $("#buscar").keyup(function ()
 {
-  
+    var palabra = $("#buscar").val();
+
+    $.post(base_url+"categorias/searchByTitulo/", {titulo: palabra, id_app: app} , function (data)
+    {
+        $(".blockscroll").html(data);
+    });
+
 });
 
 $("#divColorEditar #color").each(function (data)

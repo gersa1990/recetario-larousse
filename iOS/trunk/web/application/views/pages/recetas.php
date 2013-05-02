@@ -27,8 +27,8 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <a href="#nuevaReceta" class="button bl1">Nueva</a>
         </div> 
   
         <table id="recetas">

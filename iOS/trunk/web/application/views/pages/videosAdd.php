@@ -1,4 +1,3 @@
-
 <div class="wrapper">
 
   <div class="main">
@@ -27,10 +26,8 @@
       <div id="addblock">
   
         <div id="controles">
-
-          <a href="#nuevoVideo" class="button bl1">Nuevo video</a>
-
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <a href="#nuevoVideo" class="button bl1">Nuevo</a>
         </div> 
   
         <table id="videos">
@@ -85,7 +82,7 @@
                 
                           <?php echo form_open("videos/delete/"); ?>
                             <h2>Video</h2>
-                            <p class="mg-auto"><?php echo $videos[$i]['video']; ?></p>         
+                            <p class="mg-auto"><?php echo $videos[$i]['titulo']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
                             <button type="submit" class="submit">Eliminar</button>
@@ -179,9 +176,9 @@
   {
     var texto = $("#buscar").val();
 
-    $.post(base_url+"recetas/searchByName/" ,{palabra: texto, id_app: app}, function (data)
+    $.post(base_url+"videos/searchByName/" ,{nombre: texto, id_app: app}, function (data)
     {
-      $("#recetas tbody").html(data);
+      $(".blockscroll").html(data);
     }); 
   });
 
