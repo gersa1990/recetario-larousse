@@ -27,6 +27,9 @@ a:hover{
 a.home{
     display: block;
     margin-bottom:40px; 
+    width: 120px;
+    background: none;
+    height: 30px;
 }
 
 a.home:hover{
@@ -106,6 +109,11 @@ label{
     position: relative;
 }
 
+.main .columna:last-child{
+   position: relative;
+    margin-top: -70px;
+}
+
 .columna{
     width: 30%;
     float: left;
@@ -154,10 +162,9 @@ label{
 }
 
 .button {
-    padding: 5px 40px;
+    padding: 0px 40px;
     display: inline;
     background: #FFF;
-    border: 1px solid #000;
     color: #000000;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     cursor: pointer;
@@ -165,12 +172,12 @@ label{
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+
 }
 
 
 .bl1{
     text-decoration: none;
-    width: 116px;
     display: block;
     font-size: 14px;
     border-radius: 0 !important;
@@ -180,16 +187,13 @@ label{
 
 .bl1:hover {
     background: #FFF;
-    border: 1px solid #000;
     color: #000000;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.blockscroll{
+.blockscroll
+{
     display: block;
-    max-height: 600px;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
 
 .tablew{
@@ -444,11 +448,12 @@ footer p{
 /*           Tabla                   */
 /*************************************/
 table{
-    width: 100%;
+    width: 760px;
     font-size: 12px;
     background: #fff;
     border-collapse: collapse;
     text-align: left;
+    margin-top: 70px;
 
     -webkit-transition: background 0.5s linear;
     -moz-transition: background 0.5s linear;
@@ -478,17 +483,22 @@ table td{
 }
 
 table tr td:first-child{
-    width: 549px;
+    width: 575px;
 
 }
 
 table th, thead{
-    font-size: 14px;
+    font-size: 20px;
     font-weight: normal;
-    color: #000;
+    color: WHITE;
     padding: 6px 5px;
+    font-weight: bold;
     border-bottom: 2px solid #000;
-    background-color: #FFF;
+    background-color: #b4b4ff;
+}
+
+table tbody{
+    font-size: 17px; 
 }
 
 /*************************************/
@@ -501,7 +511,7 @@ table th, thead{
     bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.4);
-    z-index: 1;
+    z-index: 0;
     opacity:0;
     pointer-events: none;
 }

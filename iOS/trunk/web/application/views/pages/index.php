@@ -21,7 +21,7 @@
       <nav>
         <ul>
             <li class="">
-                <a href="#nuevaApp" class="">Nueva Aplicación</a>
+                <a href="#nuevaApp" class="home"><img src="<?php echo base_url().'resources/img/new_app.png' ?>"></a>
             </li>
       </nav>
 
@@ -69,3 +69,12 @@
   <div class="clear"></div>
 
 </div>
+<script>
+$(document).keyup(function (data)
+{
+   if (data.keyCode == 72) 
+   {
+      alert('Entrastes a ayuda!');
+   }
+});
+</script>

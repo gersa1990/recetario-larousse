@@ -5,7 +5,7 @@
      
     </div>
 
-    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
+    <a href="<?php echo base_url() ?>" class="home"><img src="<?php echo base_url().'resources/img/back.png' ?>"></a>
 
     <div class="columna">
 
@@ -27,7 +27,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoVideo" class="button bl1">Nuevo</a>
+          <a href="#nuevoVideo" class="button bl1"><img src="<?php echo base_url().'resources/img/new.png' ?>"></a>
         </div> 
   
         <table id="videos">

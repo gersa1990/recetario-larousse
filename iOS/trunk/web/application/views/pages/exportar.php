@@ -4,7 +4,7 @@
 		
 	</div>	
 
-	<a href="<?php echo base_url() ?>" class="home">Home</a>
+	<a href="<?php echo base_url() ?>" class="home"><img src="<?php echo base_url().'resources/img/back.png' ?>"></a>
 
 	<h1>Exportar APP <?php echo $application[0]['nombre']; ?></h1>
 

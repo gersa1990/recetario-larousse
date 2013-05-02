@@ -4,7 +4,7 @@
   <div class="main">
     <div id="status"></div>
 
-    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
+    <a href="<?php echo base_url() ?>" class="home"><img src="<?php echo base_url().'resources/img/back.png' ?>"></a>
 
     <div class="columna">
 
@@ -26,13 +26,13 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoGlosario" class="button bl1">Nuevo</a>
+          <a href="#nuevoGlosario" class="button bl1"><img src="<?php echo base_url().'resources/img/new2.png' ?>"></a>
         </div> 
   
         <table id="videos">
           <thead>
             <tr>
-              <td colspan="2">glosario</td>
+              <td colspan="2">Glosario</td>
             </tr>
           </thead>
 

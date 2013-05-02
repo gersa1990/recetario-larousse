@@ -6,7 +6,7 @@
      
     </div>
 
-    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
+    <a href="<?php echo base_url() ?>" class="home"><img src="<?php echo base_url().'resources/img/back.png' ?>"></a>
 
     <div class="columna">
 
@@ -30,7 +30,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaReceta" class="button bl1">Nueva</a>
+          <a href="#nuevaReceta" class="button bl1"><img src="<?php echo base_url().'resources/img/new.png' ?>"></a>
         </div> 
   
         <table id="recetas">
@@ -174,16 +174,12 @@
                   </div>
               </div>
             </div>
-          
           <?php 
           } 
         } ?>
-        
       </div>
     </div>
-
   </div>
-
 
   <div id="nuevaReceta" class="modalDialog">
     <div class="popup form_receta">
