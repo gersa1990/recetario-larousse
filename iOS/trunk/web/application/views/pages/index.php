@@ -1,7 +1,7 @@
 
 <div class="wrapper">
 
-  <div id="nuevaApp" class="modalDialog">
+  <div id="nuevaApp" class="modalDialog" style="z-index:1">
     <div class="popup">
       <a href="#" title="Close" class="close">x</a>
       <?php echo validation_errors(); ?>
@@ -74,7 +74,7 @@ $(document).keyup(function (data)
 {
    if (data.keyCode == 72) 
    {
-      alert('Entrastes a ayuda!');
+      
    }
 });
 </script>

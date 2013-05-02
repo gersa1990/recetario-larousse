@@ -21,9 +21,8 @@
     </div>
     
     <div class="columna">
-
       <div id="addblock">
-  
+        
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
           <a href="#nuevoGlosario" class="button bl1"><img src="<?php echo base_url().'resources/img/new2.png' ?>"></a>

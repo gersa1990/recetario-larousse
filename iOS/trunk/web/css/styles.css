@@ -155,16 +155,15 @@ label{
 }
 
 .help{
-    color: #000;
+    color: WHITE;
     position: absolute;
     top: 50px;
     right: 40px;
 }
 
 .button {
-    padding: 0px 40px;
+    padding: 0px 10px;
     display: inline;
-    background: #FFF;
     color: #000000;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     cursor: pointer;
@@ -172,7 +171,7 @@ label{
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-
+    cursor: pointer;
 }
 
 
@@ -225,6 +224,11 @@ label{
 
 .buscar{
     margin-top: 2px; 
+}
+
+#buscar{
+    height: 25px;
+    font-size: 19px;
 }
 
 .bl2:hover {
@@ -309,6 +313,7 @@ button.aclose {
     background: transparent;
     border: 0;
     -webkit-appearance: none;
+
 }
 
 .error {
@@ -342,7 +347,7 @@ header{
     position: relative;
     width: 100%;
     height: 190px;
-    background: #d9d8f5 url('../src/bg.jpg');
+    background: #911b1b;
     border-bottom: 1px solid #000;
 }
 
@@ -394,28 +399,29 @@ header a{
 #menu ul li{
     display: block;
     background:url(../resources/img/bg_li.png) no-repeat;
-    line-height:32px;
+    line-height:42px;
     list-style-type:none;
     text-indent:8px;
     font-size: 14px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     /*border: 1px solid #000;*/
 }
 
 #menu ul li a{
-    padding: 7px 176px 7px 0;
+    padding: 7px 176px 15px 0;
+    margin-left: 10px;
     text-decoration:none;
-    color:#000;
+    color:WHITE;
 }
 
 #menu ul li:last-child a{
     padding: 7px 82px 7px 0;
     text-decoration:none;
-    color:#000;
+    color: WHITE;
 }
 
 #menu ul li:hover{
-    background:url(../resources/img/hover.png) no-repeat;
+    
 }
 
 
@@ -433,7 +439,7 @@ footer{
     bottom: 0;
     height: auto;
     width: 100%;
-    background-color: #8887e1;
+    background-color: #911b1b;
     border-top: 1px solid #000;
     padding: 20px 0;
 }
@@ -475,7 +481,6 @@ table, th{
 }
 
 table td{
-    color: #000;
     padding: 5px 10px;
     text-align: center;
     border-right:1px solid #000;
@@ -484,21 +489,25 @@ table td{
 
 table tr td:first-child{
     width: 575px;
-
 }
 
 table th, thead{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: normal;
-    color: WHITE;
+    height: 30px;
+    color: WHITE !important;
     padding: 6px 5px;
     font-weight: bold;
     border-bottom: 2px solid #000;
-    background-color: #b4b4ff;
+    background-color: #34190E;
+}
+
+table thead{
+    color: white;
 }
 
 table tbody{
-    font-size: 17px; 
+    font-size: 14px; 
 }
 
 /*************************************/

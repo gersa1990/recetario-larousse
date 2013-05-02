@@ -22,7 +22,7 @@
 <body>
 	<header>
 		<div class="wrapper">
-			<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>resources/img/logo.png" width="200"></a>
+			<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>resources/img/logo2.png" width="200"></a>
 			<a href="" class="help">Ayuda</a>
 		</div>
 	</header>
