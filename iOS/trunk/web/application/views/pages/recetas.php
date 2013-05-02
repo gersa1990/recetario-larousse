@@ -11,6 +11,7 @@
     <div class="columna">
 
       <h1>Menú</h1>
+
       <nav id="menu">
         <ul>
           <li class="active"><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
@@ -20,6 +21,7 @@
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
+
     </div>
     
     <div class="columna">

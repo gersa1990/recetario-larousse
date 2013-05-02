@@ -107,9 +107,14 @@ label{
 }
 
 .columna{
-    width: 50%;
+    width: 30%;
     float: left;
 }
+
+.columna:last-child{
+    width: 70%;
+}
+
 
 .clear{
     clear: both;
@@ -375,7 +380,7 @@ header a{
 /*************************************/
 #menu{
     position: relative;
-    width: 50%;
+    width: 90%;
 }
 
 #menu ul{
@@ -473,7 +478,7 @@ table td{
 }
 
 table tr td:first-child{
-    width: 329px;
+    width: 549px;
 
 }
 

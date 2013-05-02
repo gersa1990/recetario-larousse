@@ -6,23 +6,17 @@
       <a href="#" title="Close" class="close">x</a>
       <?php echo validation_errors(); ?>
       <?php echo form_open('apps/nueva/') ?>
-
         <h2 class="mg_20">Nueva aplicación</h2>
-
         <div class="centrar">
           <label for="">Nombre: </label>
           <input type="text" name="nombre" value="">
         </div>
-        <br>
-        
-  
+        <br>  
         <button type="submit" class="submit">Agregar</button>
       </form>
     </div>
   </div>
   
- 
-
   <div class="main">
       <nav>
         <ul>
