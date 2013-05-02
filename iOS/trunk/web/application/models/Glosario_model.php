@@ -137,7 +137,7 @@ class Glosario_model extends CI_Model {
 		$this->load->helper('url');
 			$data = array(
 				'id_app'        => $this->input->post('id_app'),
-				'nombre' 		=> $this->input->post('titulo'),
+				'nombre' 		=> $this->input->post('nombre'),
 				'descripcion' 	=> $this->input->post('descripcion'),
 				'imagen' 		=> $this->input->post('imagen')
 			);

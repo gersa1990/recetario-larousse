@@ -92,22 +92,26 @@
                       </div>
 
                       <div id="editarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div class="popup form_edit">
+                        <div class="popup form_receta">
 
                         <a href="#" title="Close" class="close">x</a>
                 
                         <?php echo form_open("glosario/edit/"); ?>
  
   
-                            <h2 class="mg_20">Editar video</h2>
+                            <h2 class="mg_20">Editar glosario</h2>
 
                             <div class="centrar">
                               <label for="">Nombre: </label>
-                              <input type="text" name="titulo" value="<?php echo $glosario[$i]['nombre']; ?>">
+                              <input type="text" name="titulo" value="<?php echo $glosario[$i]['nombre']; ?>">                              
+                            </div>
 
-                              <label for="">Archivo de video: </label>
-                              <input type="text" name="nombre" id="nombre" value="<?php echo $glosario[$i]['nombre']; ?>">
-                              
+                            <label for="">Descripción: </label>
+                            <textarea class="full" name="descripcion" id="descripcion"><?php echo $glosario[$i]['descripcion']; ?></textarea>
+
+                            <div class="centrar">
+                              <label for="">Imagen: </label>
+                              <input type="text" name="imagen" value="<?php echo $glosario[$i]['imagen']; ?>">                              
                             </div>
 
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
@@ -127,7 +131,7 @@
 
 
   <div id="nuevoGlosario" class="modalDialog">
-    <div class="popup">
+    <div class="popup form_receta">
       <a href="#" title="Close" class="close">x</a>
 
       <div id="formulario">
@@ -135,20 +139,25 @@
         <?php echo form_open("glosario/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Nuevo video</h2>
+          <h2>Nuevo glosario</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
           <div class="left">
             <label for="">Título: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
+            <input type="text" name="nombre" id="nombre" value="" placeholder="Título" required>
           </div>
 
           <div class="clear"></div>
 
-          <label for="">Archivo de video: </label>
-          <input type="text" name="video" value="" placeholder="" required>
+          <label for="">Descripción: </label>
+          <textarea class="full" type="text" name="descripcion" required></textarea>
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+
+          <div class="left">
+            <label for="">Imagen: </label>
+            <input type="text" name="imagen" id="imagen" required>
+          </div>
 
           <button type="submit" class="submit">Agregar</button>
     
