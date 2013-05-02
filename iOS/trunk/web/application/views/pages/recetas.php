@@ -17,7 +17,7 @@
           <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
           <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
-          <li><a href="#" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
+          <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
     </div>
@@ -97,13 +97,13 @@
                 <a href="#" title="Close" class="close">x</a>
                   <div id="formulario">
               
-                    <?php echo form_open("recetas/delete/"); ?>
+                    <?php echo form_open("recetas/edit/"); ?>
 
                       <h2 class="mgt_50">Información</h2>
 
                       <div class="left">
                         <label for="">Título: </label>
-                        <input type="text" name="nombre" value="<?php echo $recetas[$i]['titulo']; ?>">
+                        <input type="text" name="titulo" value="<?php echo $recetas[$i]['titulo']; ?>">
                       </div>
                   
                       <div class="left mg_input">
@@ -143,7 +143,20 @@
 
                       <div class="left mg_input2">
                         <label for="">Costo: </label>
-                        <input type="text" name="costo" value="<?php echo $recetas[$i]['costo']; ?>">
+                        <select name="costo">
+                          <?php for ($j=1; $j <6 ; $j++) { ?>
+                            <option value="<?php echo $j; ?>"  <?php if($j==$recetas[$i]['costo']){ echo "selected"; } ?> ><?php echo $j; ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+        
+                      <div class="left mg_input2">
+                        <label for="">Dificultad: </label>
+                        <select name="dificultad">
+                          <?php for ($j=1; $j <6 ; $j++) { ?>
+                            <option value="<?php echo $j; ?>" <?php if($j==$recetas[$i]['dificultad']){ echo "selected"; } ?> ><?php echo $j; ?></option>
+                          <?php } ?>
+                        </select>
                       </div>
 
                       <div class="clear"></div>

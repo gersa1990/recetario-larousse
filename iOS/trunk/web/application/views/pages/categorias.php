@@ -19,7 +19,7 @@
           <li class="active"><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
           <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
-          <li><a id="getComplementsRecipes" class="">Recetas complementarias</a></li>
+          <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
 
@@ -79,7 +79,7 @@
 
                 <a href="#" title="Close" class="close">x</a>
       
-                <?php echo form_open("complementarias/delete/"); ?>
+                <?php echo form_open("categorias/delete/"); ?>
                   <h2>Categoria</h2>
                   <p class="mg-auto"><?php echo $categorias[$i]['nombre']; ?></p>         
                   <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
@@ -93,7 +93,7 @@
               <div class="popup form_categoria">
                 <a href="#" title="Close" class="close">x</a>
                 
-                <?php echo form_open("categorias/delete/"); ?>
+                <?php echo form_open("categorias/edit/"); ?>
                   <h2 class="mg_20">Información</h2>
 
                   <div class="centrar">
@@ -133,32 +133,36 @@
 
 
   <div id="nuevaCategoria" class="modalDialog">
-    <div>
-      <a href="#" title="Close" class="close">x</a>
-      
-      <?php echo form_open("categorias/edit/"); ?>
-      <h2>Nueva categoria</h2><br><br>
-      
-      <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="tiempo en minutos" required>
-      
-      
-      <div class="centrar">
-        <label for="">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre de la categoria" required>
-      </div>
-      
-      <div class="centrar">
-        <label for="">Color:</label>
-          <input type="text" name="color" id="color2" value="" placeholder="color de la categoria" required>
-      </div>
 
-      <br>
-        <button type="submit" class="eliminarBoton">Agregar categoria</button>
-      </form>
-      
-    </div>
-  </div>
-</div>
+              <div class="popup form_categoria">
+                <a href="#" title="Close" class="close">x</a>
+                
+                <?php echo form_open("categorias/create/"); ?>
+                  <h2 class="mg_20">Información</h2>
+
+
+                  <div class="centrar">
+                    <label for="">Nombre: </label>
+                    <input type="text" name="nombre" value="">
+                  
+                  
+                    <div id="divColorEditar">
+                      <label for="">Color:</label>
+                      <div id="editar">
+                        <input type="text" name="color" id="color2" value="">
+                        <span id="preview" class="left"></span>
+                      </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+
+                  <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+                  
+                  <button type="submit" class="submit">Guardar</button>
+                </form>
+              
+              </div>
+            </div>
 
 <div class="clear"></div>
 

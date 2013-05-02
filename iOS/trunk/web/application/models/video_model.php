@@ -13,6 +13,17 @@ class video_model extends CI_Model {
 		$delete = $this->db->delete('video', array('id' => $id));
 		return $delete;
 	}
+
+	public function edit(){
+
+		$data = array(
+			'id_app' => $this->input->post('id_app'),
+			'video'  => $this->input->post('video'),
+			'titulo' => $this->input->post('titulo'),
+		);
+
+		return $this->db->update('video', $data, array('id' => $_POST['id']));
+	}
 	
 	public function get_videos($id_app){
 
@@ -35,10 +46,11 @@ class video_model extends CI_Model {
 
 	}
 
-	public function addVideo($video,$titulo)
+	public function addVideo($video,$titulo,$id_app)
 	{
 
 		$data = array(
+			'id_app' => $id_app,
 			'video'  => $video,
 			'titulo' => $titulo
 		);

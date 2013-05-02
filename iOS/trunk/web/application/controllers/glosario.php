@@ -14,7 +14,7 @@ class Glosario extends CI_Controller {
 		
 		if($idGlosario)
 		{
-			redirect(base_url()."glosario/view/".$_POST['app'],"refresh");
+			redirect(base_url()."glosario/view/".$_POST['id_app'],"refresh");
 		}
 	}
 
@@ -55,7 +55,7 @@ class Glosario extends CI_Controller {
 
 		if($edit)
 		{
-			redirect(base_url()."glosario/show/");
+			redirect(base_url()."glosario/view/".$_POST['id_app']);
 		}
 	}
 
@@ -90,7 +90,7 @@ class Glosario extends CI_Controller {
 		
 		if($delete)
 		{
-			redirect(base_url()."glosario/show/");
+			redirect(base_url()."glosario/view/".$_POST['id_app']);
 		}
 	}
 

@@ -27,7 +27,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <a href="#nuevaReceta" class="button bl1">Nueva receta</a>
+          <a href="#nuevaRecetaComplementaria" class="button bl1">Nueva receta complementaria</a>
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
         </div> 
   
@@ -130,7 +130,7 @@
   </div>
 
 
-  <div id="nuevaReceta" class="modalDialog">
+  <div id="nuevaRecetaComplementaria" class="modalDialog">
     <div class="popup">
       <a href="#" title="Close" class="close">x</a>
 
@@ -148,67 +148,15 @@
             <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
           </div>
 
-          <div class="left mg_input">
-            <label for="">Categoria: </label>
-            <select name="categoria">
-              <?php for ($i=0; $i <count($recetas_complementarias) ; $i++) { ?>
-
-                <option value="<?php echo $recetas_complementarias[$i]['id'] ?>">
-                  <?php echo $recetas_complementarias[$i]['titulo'] ?>
-                </option>
-
-              <?php } ?>
-            </select>
-          </div>
-
-          <div class="clear"></div>
-
-          <div class="left">
-            <label for="">Procedimiento: </label>
-            <textarea name="procedimiento" class="full"></textarea>
-          </div>
           
-          <div class="clear"></div>
+         
           
-          <div class="left">
-            <label for="">Ingredientes: </label>
-            <textarea name="ingredientes" class="full"></textarea>
-          </div>
           
-          <div class="clear"></div>
-
-          <div class="left mg_input2">
-            <label for="">Preparación: </label>
-            <input type="text" name="preparacion" value="" placeholder="minutos" required>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Cocción: </label>
-            <input type="text" name="coccion" value="" placeholder="minutos" required>
-          </div>
-          
-          <div class="left mg_input2">
-            <label for="">Costo: </label>
-            <select name="costo">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Dificultad: </label>
-            <select name="dificultad">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
         
           <div class="clear"></div>
 
-          <label for="">Imagen: </label>
-          <input type="text" name="foto" value="" placeholder="" required>
+          <label for="">Contenido: </label>
+          <textarea type="text" name="contenido" class="full" required></textarea>
 
           <button type="submit" class="submit">Agregar</button>
     
