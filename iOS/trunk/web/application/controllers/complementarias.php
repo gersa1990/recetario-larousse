@@ -58,6 +58,39 @@ class Complementarias extends CI_Controller
 		}
 
 	}
+
+	public function searchByName(){
+
+		$nombre = $_POST['palabra'];
+		$id_app = $_POST['id_app'];
+
+		$complementarias = $this->complementarias_model->searchByName($nombre, $id_app);
+		
+		for ($i=0; $i <count($complementarias) ; $i++) 
+		{ 
+			echo "<tr>
+                      <td class='txleft'>";
+                        echo "<a href='".base_url().'complementarias/view/'.$complementarias[$i]['id']."' class='bluetext'>";
+                          echo "".$complementarias[$i]['titulo'].""; 
+                        echo "</a>
+                      </td>
+
+                      <td>";
+                        echo "<a href='#editarComplementaria".$complementarias[$i]['id']."'>
+                          Editar
+                        </a>
+                      </td>
+
+                      <td>";
+                        echo "<a href='#eliminarComplementaria".$complementarias[$i]['id']."' class='eliminarRecetas'>
+                          Eliminar
+                        </a>
+                      </td>
+
+                  </tr>";
+		}
+
+	}
 	
 }
 

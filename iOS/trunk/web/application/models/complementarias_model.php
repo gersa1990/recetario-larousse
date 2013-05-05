@@ -7,7 +7,11 @@ class complementarias_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
-	
+	public function searchByName($nombre , $id_app){
+
+		$complementarias =  $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo LIKE '%".$nombre."%'  and  id_app = ".$id_app."  ");
+		return $complementarias->result_array();
+	}	
 
 	public function getRecetasComplementarias($id_app)
 	{

@@ -46,7 +46,7 @@ class video_model extends CI_Model {
 
 	}
 
-	public function addVideo($video,$titulo,$id_app)
+	public function create($video,$titulo,$id_app)
 	{
 
 		$data = array(
@@ -58,11 +58,10 @@ class video_model extends CI_Model {
 		return $this->db->insert('video', $data);
 	}
 
-	public function checkExistence()
-	{
-		$existe = $this->db->query("SELECT * FROM video WHERE video = '".$video."' ");
-		return $existe->row_array();
+	public function searchByName($nombre, $id_app){
+		
+		$videos = $this->db->query("SELECT * FROM video WHERE titulo LIKE '%".$nombre."%'  and id_app = ".$id_app." ");
+		return $videos->result_array();
 	}
-
 }
 ?>
