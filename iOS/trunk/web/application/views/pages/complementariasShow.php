@@ -5,9 +5,8 @@
     <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
+      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
-      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
@@ -25,17 +24,17 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaRecetaComplementaria" class="button large blue">Nuevo</a>
+          <a href="#nuevaRecetaComplementaria" class="button large orange">Nuevo</a>
         </div> 
   
         <table id="recetas_complementarias">
           <thead>
             <tr>
-              <td colspan="2">Recetas complementarias</td>
+              <td colspan="3">Recetas complementarias</td>
             </tr>
           </thead>
 
-          <tbody class="blockscroll">
+          <tbody>
             <?php if(isset($recetas_complementarias))
                   {
                     for ($i=0; $i <count($recetas_complementarias) ; $i++) 
@@ -128,15 +127,14 @@
 
 
   <div id="nuevaRecetaComplementaria" class="modalDialog">
-    <div class="popup">
+    <div class="popup form_receta">
       <a href="#" title="Close" class="close">x</a>
 
-      <div id="formulario">
 
         <?php echo form_open("complementarias/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Nueva Receta</h2>
+          <h2>Información</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
@@ -159,7 +157,6 @@
     
         </form>
 
-      </div> <!-- formulario -->
     </div> <!-- popup -->
   </div> <!-- modadialog -->
 

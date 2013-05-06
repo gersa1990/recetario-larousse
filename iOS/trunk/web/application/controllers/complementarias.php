@@ -13,7 +13,7 @@ class Complementarias extends CI_Controller
 
 	public function view($id_app)
 	{
-		$data['title'] = 'Recetario';
+		$data['title'] = 'Aplicaciones editorial Larousse';
 
 		$data['recetas_complementarias'] = $this->complementarias_model->getRecetasComplementarias($id_app);
 

@@ -14,7 +14,7 @@ class Videos extends CI_Controller {
 		
 		$data['app']  	 = $id_app;	
 	
-		$data['title'] = 'Recetario';
+		$data['title'] = 'Aplicaciones de la editorial Larousse';
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/videosAdd', $data);
 		$this->load->view('templates/footer');
