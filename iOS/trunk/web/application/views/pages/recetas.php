@@ -5,7 +5,7 @@
     <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> Regresar</a>
+      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
       <nav id="menu">
         <ul>
@@ -31,7 +31,7 @@
         <table id="recetas">
           <thead>
             <tr>
-              <td colspan="3">Recetas</td>
+              <th colspan="3">Recetas</th>
             </tr>
           </thead>
 

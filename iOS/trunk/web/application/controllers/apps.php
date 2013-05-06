@@ -69,7 +69,7 @@ class Apps extends CI_Controller {
 
 		$this->load->helper('url');
 
-		$data['title'] = 'Recetario';
+		$data['title'] = 'Aplicaciones de editorial Larousse';
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/recetas', $data);
 		$this->load->view('templates/footer');

@@ -73,7 +73,7 @@ class Recetas extends CI_Controller {
 
 		$this->load->helper('url');
 
-		$data['title'] = 'Recetario';
+		$data['title'] = 'Aplicaciones de editorial Larousse';
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/index', $data);
 		$this->load->view('templates/footer');
