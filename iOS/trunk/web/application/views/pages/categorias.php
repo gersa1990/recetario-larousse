@@ -2,21 +2,16 @@
 <div class="wrapper">
 
   <div class="main">
-    <div id="status">
-     
-  </div>
+    <div id="status"></div>
 
-    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
-
-
-
-    <div class="columna">
+    <div class="columl">
+      <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
 
       <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
-          <li class="active"><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
+          <li><a class="active" href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
           <li><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" class="">Recetas complementarias</a></li>
@@ -25,12 +20,12 @@
 
     </div>
     
-    <div class="columna">
+    <div class="columr">
       <div id="addblock">
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaCategoria" class="button bl1">Nueva</a>
+          <a href="#nuevaCategoria" class="button large blue">Nueva</a>
         </div> 
   
         <table id="categorias">

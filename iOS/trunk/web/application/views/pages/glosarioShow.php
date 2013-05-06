@@ -4,35 +4,35 @@
   <div class="main">
     <div id="status"></div>
 
-    <a href="<?php echo base_url() ?>" class="home">Regresar</a>
+   
 
-    <div class="columna">
+    <div class="columl">
+       <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
 
       <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
           <li><a href="<?php echo base_url().'categorias/view/'.$app; ?>" class="">Categorías</a></li>
-          <li class="active"><a href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
+          <li><a class="active" href="<?php echo base_url().'glosario/view/'.$app; ?>" class="">Glosario</a></li>
           <li><a href="<?php echo base_url().'videos/view/'.$app; ?>" class="">Videos</a></li>
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
     </div>
     
-    <div class="columna">
-
+    <div class="columr">
       <div id="addblock">
-  
+        
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoGlosario" class="button bl1">Nuevo</a>
+          <a href="#nuevoGlosario" class="button large blue">Nuevo</a>
         </div> 
   
         <table id="videos">
           <thead>
             <tr>
-              <td colspan="2">glosario</td>
+              <td colspan="2">Glosario</td>
             </tr>
           </thead>
 
@@ -97,25 +97,32 @@
                         <?php echo form_open("glosario/edit/"); ?>
  
   
-                            <h2 class="mg_20">Editar glosario</h2>
+                            <h2>Nuevo glosario</h2>
 
-                            <div class="centrar">
+                            <div class="left">
                               <label for="">Nombre: </label>
-                              <input type="text" name="titulo" value="<?php echo $glosario[$i]['nombre']; ?>">                              
+                              <input type="text" name="titulo" id="titulo" value="<?php echo $glosario[$i]['nombre']; ?>" placeholder="Nombre" required>
                             </div>
+
+                            <div class="clear"></div>
 
                             <label for="">Descripción: </label>
-                            <textarea class="full" name="descripcion" id="descripcion"><?php echo $glosario[$i]['descripcion']; ?></textarea>
+                            <textarea class="full" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
 
-                            <div class="centrar">
+                            <div class="left">
                               <label for="">Imagen: </label>
-                              <input type="text" name="imagen" value="<?php echo $glosario[$i]['imagen']; ?>">                              
+                              <input type="text" name="imagen" id="imagen" value="<?php echo $glosario[$i]['imagen']; ?>" required>
                             </div>
+
+
 
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                            <button type="submit" class="submit">Guardar</button>
-                          </form>
+                            
+                            <div class="clear"></div>
+                            <button type="submit" class="submit">Agregar</button>
+
+                            </form>
                         </div>
                       </div>
 
@@ -132,7 +139,7 @@
     <div class="popup form_receta">
       <a href="#" title="Close" class="close">x</a>
 
-      <div id="formulario">
+      <!-- <div id="formulario"> -->
 
         <?php echo form_open("glosario/create/"); ?>        
         <!-- <form action=""> -->
@@ -142,8 +149,8 @@
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
           <div class="left">
-            <label for="">Título: </label>
-            <input type="text" name="nombre" id="nombre" value="" placeholder="Título" required>
+            <label for="">Nombre: </label>
+            <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" required>
           </div>
 
           <div class="clear"></div>
@@ -157,11 +164,14 @@
             <input type="text" name="imagen" id="imagen" required>
           </div>
 
+          <div class="clear"></div>
+
           <button type="submit" class="submit">Agregar</button>
     
         </form>
 
-      </div> <!-- formulario -->
+      <!-- </div>  -->
+      <!-- formulario -->
     </div> <!-- popup -->
   </div> <!-- modadialog -->
 

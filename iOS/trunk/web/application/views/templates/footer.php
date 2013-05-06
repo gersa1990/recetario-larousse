@@ -3,8 +3,8 @@
 		<div class="wrapper">
 			<!-- <a href="" class="home">Home</a> -->
 			<!-- <hr> -->
-			<p>&copy; 2013</p>
-			
+			<p class="left">© 2013 Editorial Larousse - Todos los derechos reservados.</p>
+			<a href="">Ayuda</a>
 		</div>
 	</footer>
 

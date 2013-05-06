@@ -2,16 +2,10 @@
 <div class="wrapper">
 
   <div class="main">
-    <div id="status">
-     
-    </div>
-
-   
+    <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
-
-      <h1>Menú</h1>
+      <a href="<?php echo base_url() ?>" class="home"><span>←</span> Regresar</a>
 
       <nav id="menu">
         <ul>
@@ -30,19 +24,18 @@
       <div id="addblock">
   
         <div id="controles">
-
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaReceta" class="button large blue">Nueva</a>
+          <a href="#nuevaReceta" class="button large orange">Nueva</a>
         </div> 
   
         <table id="recetas">
           <thead>
             <tr>
-              <td colspan="2">Recetas</td>
+              <td colspan="3">Recetas</td>
             </tr>
           </thead>
 
-          <tbody class="blockscroll">
+          <tbody>
             <?php if(isset($recetas))
                   {
                     for ($i=0; $i <count($recetas) ; $i++) 
@@ -176,16 +169,12 @@
                   </div>
               </div>
             </div>
-          
           <?php 
           } 
         } ?>
-        
       </div>
     </div>
-
   </div>
-
 
   <div id="nuevaReceta" class="modalDialog">
     <div class="popup form_receta">

@@ -27,14 +27,12 @@ a:hover{
 
 a.home{
     display: block;
-    margin-bottom:40px; 
+    margin-bottom:47px;
+    text-decoration: none; 
 }
 
 a.home:hover{
-    color: #000;
-}
-
-a.help:hover{
+    text-decoration: underline;
     color: #000;
 }
 
@@ -123,6 +121,10 @@ label{
     clear: both;
 }
 
+.al_right{
+    float: right;
+}
+
 .left{
     float: left;
 }
@@ -150,10 +152,14 @@ label{
 }
 
 .help{
-    color: #000;
+    color: rgb(119, 119, 119);
     position: absolute;
     top: 50px;
     right: 40px;
+}
+
+a.help:hover{
+    color: #000;
 }
 
 
@@ -197,7 +203,7 @@ label{
 }
 
 .button.orange {
-    background-color: #749a02;
+    background-color: #f58220;
 }
 
 .button:hover {
@@ -419,14 +425,15 @@ header a{
 
 #menu ul li a{
     display: block;
-    background:#e7e7e7;
+    background:#fbfbfb;
     width: 100%;
     font-size: 14px;
     text-decoration:none;
     padding: 4px 7px;
     border-bottom:1px solid #eeeeee;
     border-top:1px solid #cccccc;
-    border-left:5px solid #333333;
+    border-right:1px solid #cccccc;
+    border-left:5px solid #522b1a;
     color:#333333;
 
     /*padding: 7px 176px 7px 0;*/
@@ -441,17 +448,17 @@ header a{
 }*/
 
 #menu ul li a:hover{
-    border-left-color:#0099FF;
+    border-left-color:#ab572c;
     color:#0066FF;
-    background:#fbfbfb;
+    background:#e7e7e7;
     /*background:url(../resources/img/hover.png) no-repeat;*/
 }
 
 
 #menu ul li a.active{
-    border-left-color:#0099FF;
+    border-left-color:#ab572c;
     color:#0066FF;
-    background:#fbfbfb;
+    background:#e7e7e7;
     /*background:url(../resources/img/hover.png) no-repeat;*/
 }
 
@@ -468,12 +475,19 @@ footer{
     background-color: #601c57;
     border-top: 1px solid #000;
     padding: 10px 0;
+    color: #fff;
+    font-size: 11px;
 }
 
 footer p{
-    text-align: center;
-    margin-top:10px;
     color: #fff;
+    margin:5px 0;
+}
+
+footer a{
+    float: right;
+    color: #fff;
+    margin:5px 0;
 }
 
 /*************************************/
@@ -495,19 +509,18 @@ table a{
 }
 
 table a:hover{
-    text-decoration: none;
-    color: rgb(169, 1, 75);
+    text-decoration: underline;
 }
 
 table, th{
-    border: 1px solid rgb(169, 1, 75);
+    border: 1px solid #613720;
 }
 
 table td{
     padding: 5px 10px;
     text-align: center;
-    border-right:1px solid rgb(169, 1, 75);
-    border-bottom: 1px solid rgb(169, 1, 75);
+    border-right:1px solid #613720;
+    border-bottom: 1px solid #613720;
 }
 
 table tr td:first-child{
@@ -515,15 +528,16 @@ table tr td:first-child{
 }
 
 table th, thead{
-    font-weight: normal;
     padding: 6px 5px;
-    border-bottom: 2px solid #601c57;
+    border-bottom: 2px solid #613720;
 }
 
 table thead{
-    background-color: rgb(99, 0, 48);;
+    background-color: #4e2919;
     color: #FFF;
     font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 /*************************************/
