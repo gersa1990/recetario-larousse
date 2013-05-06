@@ -16,6 +16,8 @@
 	<script src="<?php echo base_url(); ?>js/jquery-ui.min.js" type="text/javascript"></script>
 
 	<script src="<?php echo base_url(); ?>js/funcionesJS.js"></script>
+	<script src="<?php echo base_url() ?>resources/js/kickstart.js"></script> <!-- KICKSTART -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>resources/css/kickstart-slideshow.css" media="all" /> <!-- KICKSTART --> 
 
 </head>
 
