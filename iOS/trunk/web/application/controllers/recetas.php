@@ -13,6 +13,19 @@ class Recetas extends CI_Controller {
 		$this->load->library('typography');
 	}
 
+	public function nueva($id_app){
+
+
+		$data['title'] = "Nueva Receta";
+
+		$data['app']   =  $id_app;
+		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/recetasShow', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function searchByName()
 	{
 		$nombre = $_POST['palabra'];
@@ -79,26 +92,7 @@ class Recetas extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function modificar($id,$app)
-	{
 
-		$data['recetas_item'] = $this->recetas_model->get_recetas2($app,$id);
-		$data['app']  =  $app;
-		
-		$data['relations'] = $this->complementarias_model->getRelationsRecetasToComplementarias($id);
-
-		$data['glosarioByRecipe'] = $this->recetas_model->getGlosarioByRecipe($id);		
-
-		$data['title'] = $data['recetas_item']['titulo'];
-
-		
-
-		$data['videoReceta'] = $this->video_model->getVideosByRecipe($id);
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/modificar', $data);
-		$this->load->view('templates/footer');
-	}
 
 	public function create()
 	{

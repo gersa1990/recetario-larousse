@@ -25,7 +25,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaReceta" class="button large orange">Nueva</a>
+          <a href="<?php echo base_url().'recetas/nueva/'.$app ?>" class="button large orange">Nueva</a>
         </div> 
   
         <table id="recetas">
@@ -176,92 +176,7 @@
     </div>
   </div>
 
-  <div id="nuevaReceta" class="modalDialog">
-    <div class="popup form_receta">
-      <a href="#" title="Close" class="close">x</a>
-
-      <div id="formulario">
-
-        <?php echo form_open("recetas/create/"); ?>        
-
-          <h2 class="mgt_50">Nueva receta</h2>
-
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
-
-          <div class="left">
-            <label for="">Título: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
-          </div>
-
-          <div class="left mg_input">
-            <label for="">Categoria: </label>
-            <select name="categoria">
-              <?php
-               $cat=0; 
-              for ($i=0; $i <count($categorias) ; $i++) { ?>
-              <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
-              <?php 
-                $cat++;
-            } ?>
-            </select>
-          </div>
-
-          <div class="clear"></div>
-
-          <div class="left">
-            <label for="">Procedimiento: </label>
-            <textarea name="procedimiento" class="full"></textarea>
-          </div>
-          
-          <div class="clear"></div>
-          
-          <div class="left">
-            <label for="">Ingredientes: </label>
-            <textarea name="ingredientes" class="full"></textarea>
-          </div>
-          
-          <div class="clear"></div>
-
-          <div class="left mg_input2">
-            <label for="">Preparación: </label>
-            <input type="text" name="preparacion" value="" placeholder="minutos" required>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Cocción: </label>
-            <input type="text" name="coccion" value="" placeholder="minutos" required>
-          </div>
-          
-          <div class="left mg_input2">
-            <label for="">Costo: </label>
-            <select name="costo">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="left mg_input2">
-            <label for="">Dificultad: </label>
-            <select name="dificultad">
-              <?php for ($i=1; $i <6 ; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        
-          <div class="clear"></div>
-
-          <label for="">Imagen: </label>
-          <input type="text" name="foto" value="" placeholder="" required>
-
-          <button type="submit" class="submit">Agregar</button>
-    
-        </form>
-
-      </div> <!-- formulario -->
-    </div> <!-- popup -->
-  </div> <!-- modadialog -->
+  
   <div class="clear"></div>
 </div>
 
