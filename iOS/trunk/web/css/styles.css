@@ -1,6 +1,13 @@
 /****************************************/
 /*          Elementos                   */
 /****************************************/
+
+@font-face{
+font-family: myriadFont;
+src: url('MyriadPro-Cond.ttf'),
+     url('MyriadPro-Cond.eot'); /* IE9 */
+}
+
 html {
     position: relative;
     min-height: 100%;
@@ -113,6 +120,10 @@ label{
     float: left;
 }
 
+
+.myriadFont{
+    font-family: myriadFont;
+}
 .columna:last-child{
     width: 70%;
 }
@@ -449,16 +460,16 @@ header a{
 
 #menu ul li a:hover{
     border-left-color:#ab572c;
-    color:#0066FF;
-    background:#e7e7e7;
+    color:#fff;
+    background:#4e2919;
     /*background:url(../resources/img/hover.png) no-repeat;*/
 }
 
 
 #menu ul li a.active{
     border-left-color:#ab572c;
-    color:#0066FF;
-    background:#e7e7e7;
+    color:#fff;
+    background:#4e2919;
     /*background:url(../resources/img/hover.png) no-repeat;*/
 }
 
@@ -472,22 +483,29 @@ footer{
     bottom: 0;
     height: auto;
     width: 100%;
-    background-color: #601c57;
-    border-top: 1px solid #000;
+    background-color: #fbfbfb;
+    border-top: 1px solid #f0f0f0;;
     padding: 10px 0;
     color: #fff;
     font-size: 11px;
 }
 
 footer p{
-    color: #fff;
+    color: rgb(119, 119, 119);
     margin:5px 0;
 }
 
 footer a{
+    text-decoration: none;
     float: right;
-    color: #fff;
+    color: rgb(119, 119, 119);
     margin:5px 0;
+}
+
+
+footer a:hover{
+    text-decoration: underline;
+    color: rgb(119, 119, 119);
 }
 
 /*************************************/
@@ -509,6 +527,7 @@ table a{
 }
 
 table a:hover{
+    color: rgb(119, 119, 119); 
     text-decoration: underline;
 }
 

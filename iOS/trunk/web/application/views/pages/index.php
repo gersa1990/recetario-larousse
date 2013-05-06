@@ -20,7 +20,7 @@
   <div class="main">
     
       <a href="#nuevaApp" class="button large orange al_right">Nueva Aplicación</a>
-      <h2>Aplicaciones</h2>
+      <h2 class="myriadFont">APLICACIONES</h2>
       <table class="tablew">
         <thead>
           <tr>
