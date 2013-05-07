@@ -87,6 +87,12 @@ class App_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_name($id){
+		$name = $this->db->query("SELECT nombre FROM app WHERE id = ".$id." ");
+		return $name->result_array();
+	}
+
+
 	public function update_categoria($id, $nombre){
 
 		$data = array(

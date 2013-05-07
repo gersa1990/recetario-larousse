@@ -15,7 +15,11 @@
 |
 */
 
+<<<<<<< HEAD
 $config['base_url']	= 'http://192.168.2.130/recetario-larousse/iOS/trunk/web/';
+=======
+$config['base_url']	= 'http://192.168.2.101/recetario-larousse/iOS/trunk/web/';
+>>>>>>> ce0d9568cba43cfee1bf79f42e9a7bc98b623fac
 
 /*
 |--------------------------------------------------------------------------

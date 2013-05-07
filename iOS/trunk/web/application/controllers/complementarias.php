@@ -13,7 +13,9 @@ class Complementarias extends CI_Controller
 
 	public function view($id_app)
 	{
-		$data['title'] = 'Aplicaciones editorial Larousse';
+		$nombre = $data['name'] = $this->App_model->get_name($id_app);
+
+		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> complementarias';
 
 		$data['recetas_complementarias'] = $this->complementarias_model->getRecetasComplementarias($id_app);
 
@@ -21,7 +23,7 @@ class Complementarias extends CI_Controller
 
 		$data['apps'] = $this->App_model->get_apps($id_app);
 		
-		$data['app']  	 = $id_app;
+		$data['app'] = $id_app;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/complementariasShow', $data);
