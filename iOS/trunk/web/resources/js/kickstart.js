@@ -29,21 +29,7 @@ jQuery(document).ready(function($){
 	/*---------------------------------
 		Slideshow
 	-----------------------------------*/
-	$('.slideshow').bxSlider({
-		mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
-		video: true,
-		useCSS: true,
-		pager: true,
-		speed: 500, // transition time
-		startSlide: 0,
-		infiniteLoop: true,
-		captions: true,
-		adaptiveHeight: false,
-		touchEnabled: true,
-		pause: 4000,
-		autoControls: false,
-		controls: false
-	});
+	
 		
 	/*---------------------------------
 		HTML5 Placeholder Support

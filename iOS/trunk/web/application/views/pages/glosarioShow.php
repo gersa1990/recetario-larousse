@@ -185,6 +185,22 @@
 
 <script>
 
+$('.slideshow').bxSlider({
+    mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
+    video: true,
+    useCSS: true,
+    pager: true,
+    speed: 500, // transition time
+    startSlide: 1,
+    infiniteLoop: true,
+    captions: true,
+    adaptiveHeight: true,
+    touchEnabled: true,
+    pause: 4000,
+    autoControls: false,
+    controls: false
+  });
+
   var app = "<?php echo $app; ?>";
   var base_url = "<?php echo base_url(); ?>";
 

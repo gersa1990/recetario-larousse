@@ -13,8 +13,49 @@ class Recetas extends CI_Controller {
 		$this->load->library('typography');
 	}
 
-	public function nueva($id_app){
+	public function getData($id_receta){
 
+		$data = $this->recetas_model->getData($id_receta);
+		return $data;
+
+	}
+
+	public function addComplementarias(){
+
+		$data = array(
+			'id_app' 		=> $_POST['id_app'],
+			'titulo' 		=> $_POST['titulo'],
+			'id_categoria'	=> $_POST['categoria'],
+			'procedimiento'	=> $this->typography->auto_typography($_POST['procedimiento']),
+			'ingredientes'	=> $this->typography->auto_typography($_POST['ingredientes']),
+			'preparacion'	=> $_POST['preparacion'],
+			'coccion' 		=> $_POST['coccion'],
+			'costo' 		=> $_POST['costo'],
+			'dificultad'	=> $_POST['dificultad'],
+			'foto' 		=> $_POST['foto']
+		);
+
+		$id_receta = $this->recetas_model->createAndReturnId($data);
+
+		redirect(base_url()."recetas/relations/".$id_receta."/".$_POST['id_app']);
+
+	}
+
+	public function relations($id_receta,$id_app){
+
+		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
+
+		$data['title'] = "Nueva Receta";
+
+		$data['app']   =  $id_app;
+		$data['recetas'] = $this->getData($id_receta);
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/recetasComplementariasAdd', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function nueva($id_app){
 
 		$data['title'] = "Nueva Receta";
 
@@ -161,7 +202,6 @@ class Recetas extends CI_Controller {
 		}
 		else
 		{			
-
 			$actualizar = $this->recetas_model->update_recetas($id);
 			
 			if($actualizar)

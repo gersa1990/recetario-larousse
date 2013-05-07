@@ -59,6 +59,40 @@ class Complementarias extends CI_Controller
 
 	}
 
+	public function searchByName2(){
+		$nombre = $_POST['palabra'];
+		$id_app = $_POST['id_app'];
+
+		$complementarias = $this->complementarias_model->searchByName2($nombre, $id_app);
+
+		if(count($complementarias)>0)
+		{
+			for ($i=0; $i <count($complementarias) ; $i++) 
+			{ 
+				echo "<div>".$complementarias[$i]['titulo']."<button class='complementarias' id='".$complementarias[$i]['id']."'>Agregar</button></div>";
+			}
+		}
+		else
+		{
+			echo "No se encontro";
+		}
+			
+	}
+
+	public function addToRecipe(){
+
+		$id_receta 			= $_POST['receta'];
+		$id_complementaria	= $_POST['complementaria'];
+ 
+		//echo " Receta: ".$id_receta." Complememtaria: ".$id_complementaria;
+
+		$complementarias = $this->complementarias_model->addToRecipe($id_receta, $id_complementaria);
+
+		$nombre = $this->complementarias_model->getNameComplementaria($id_complementaria);
+		echo "<tr id='".$id_complementaria."'><td>".$nombre[0]['titulo']."</tr></td>";
+
+	}
+
 	public function searchByName(){
 
 		$nombre = $_POST['palabra'];

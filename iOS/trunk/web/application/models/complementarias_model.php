@@ -13,6 +13,13 @@ class complementarias_model extends CI_Model {
 		return $complementarias->result_array();
 	}	
 
+	public function searchByName2($nombre , $id_app){
+
+		$complementarias =  $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo LIKE '".$nombre."%'  and  id_app = ".$id_app."  ");
+		return $complementarias->result_array();
+
+	}
+
 	public function getRecetasComplementarias($id_app)
 	{
 		$query = $this->db->query("SELECT * FROM  recetas_complementarias WHERE id_app =  ".$id_app." ");
@@ -59,6 +66,24 @@ class complementarias_model extends CI_Model {
 		$delete = $this->db->query("DELETE FROM recetas_complementarias WHERE id = ".$id."");
 				  $this->db->query("DELETE FROM relaciones where id_receta_complementaria = ".$id."");
 		return $delete; 
+	}
+
+	public function getNameComplementaria($id_complementaria){
+			$data = $this->db->query("SELECT titulo FROM recetas_complementarias WHERE id = ".$id_complementaria." ");
+			return $data->result_array();
+	}
+
+	public function addToRecipe($id_receta, $id_complementaria){
+
+		$data = array(
+			'id_receta' 				=> $id_receta,
+			'id_receta_complementaria'	=> $id_complementaria
+		);
+
+		$insert = $this->db->insert('relaciones', $data);
+
+		return $id_complementaria; 
+
 	}
 }
 ?>

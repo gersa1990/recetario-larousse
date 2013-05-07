@@ -43,6 +43,20 @@ class Recetas_model extends CI_Model {
 		return $delete;
 	}
 
+	public function createAndReturnId($data){
+			
+			$this->db->insert('recetas', $data);
+			$ID = $this->db->insert_id();
+			
+		return $ID;
+	}
+
+	public function getData($id_receta){
+
+		$data = $this->db->query("SELECT * FROM recetas where id = ".$id_receta." ");
+		return $data->result_array();
+	}
+
 	public function create()
 	{					
 

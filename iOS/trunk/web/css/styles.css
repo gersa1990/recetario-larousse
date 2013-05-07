@@ -4,8 +4,8 @@
 
 @font-face{
 font-family: MyriadPro-Cond;
-src: url('MyriadPro-Cond.ttf'),
-     url('MyriadPro-Cond.eot'); /* IE9 */
+src: url('MyriadPro-Cond.otf'),
+     url('MyriadPro-Cond.ttf'); /* IE9 */
 }
 
 html {

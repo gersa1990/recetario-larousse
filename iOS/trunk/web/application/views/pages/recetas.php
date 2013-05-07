@@ -106,9 +106,11 @@
                       <div class="left mg_input">
                         <label for="">Categoría: </label>
                         <select name="categoria">
-                          <?php foreach ($categorias as $key => $value) { ?>
+                          <?php
+                          $cat=0;
+                           foreach ($categorias as $key => $value) { ?>
                             <option value="<?php echo $value['id']; ?>" <?php if($recetas[$i]['id_categoria'] == $value['id']) { echo "selected"; } ?>><?php echo $value['nombre']; ?></option>
-                          <?php } ?>
+                          <?php $cat++; } ?>
                         </select>
                       </div>
                       
@@ -196,7 +198,7 @@
     
     setTimeout(function(){
       location.href=base_url+"categorias/view/"+app;
-    },5000)
+    },3000)
   }
 
   

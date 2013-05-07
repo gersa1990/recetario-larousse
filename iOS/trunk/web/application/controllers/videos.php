@@ -65,7 +65,7 @@ class Videos extends CI_Controller {
 			|| $extension==".mp4" 
 			|| $extension ==".ogg" 
 			|| $extension ==".mpg" 
-			|| $estension ==".mkv" 
+			|| $extension ==".mkv" 
 			|| $extension == ".mov")
 		{
 			$aux = substr($texto, 0, $tam-4);

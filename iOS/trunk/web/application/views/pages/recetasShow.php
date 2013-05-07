@@ -10,19 +10,19 @@
       <li>
         <div class="popup bg_grey">
 
-      			<form name="agregarRecetas" id="agregarRecetas" class="newreceta" method="post">
+      			<?php echo form_open(base_url()."recetas/addComplementarias/") ?>
               <h2 class="mgt_50">Nueva receta</h2>
 
-        			<input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
+        			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
     					<div class="left">
       					<label for="">Título: </label>
-      					<input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
+      					<input type="text" name="titulo" id="titulo" value="titulo" required>
     					</div>
 
     					<div class="left mg_input">
       					<label for="">Categoria: </label>
-      					<select name="categoria">
+      					<select name="categoria" id="categoria">
         					<?php	
         						for ($i=0; $i <count($categorias) ; $i++) { ?>
         						  <option value="<?php echo $categorias[$i]['id'] ?>"><?php echo $categorias[$i]['nombre'] ?></option>
@@ -35,31 +35,31 @@
 
     					<div class="left">
       					<label for="">Procedimiento: </label>
-      					<textarea name="procedimiento" class="full"></textarea>
+      					<textarea name="procedimiento" id="procedimiento" class="full"></textarea>
     					</div>
     
         			<div class="clear"></div>
         					
     					<div class="left">
       					<label for="">Ingredientes: </label>
-      					<textarea name="ingredientes" class="full"></textarea>
+      					<textarea name="ingredientes" id="ingredientes" class="full"></textarea>
     					</div>
         
         			<div class="clear"></div>
 
     					<div class="left mg_input2">
       					<label for="">Preparación: </label>
-      					<input type="text" name="preparacion" value="" placeholder="minutos" required>
+      					<input type="text" name="preparacion" id="preparacion" placeholder="minutos" required>
     					</div>
       
     					<div class="left mg_input2">
       					<label for="">Cocción: </label>
-      					<input type="text" name="coccion" value="" placeholder="minutos" required>
+      					<input type="text" name="coccion" id="coccion" placeholder="minutos" required>
     					</div>
     
     					<div class="left mg_input2">
       					<label for="">Costo: </label>
-      					<select name="costo">
+      					<select name="costo" id="costo">
         						<?php for ($i=1; $i <6 ; $i++) { ?>
           						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
         						<?php } ?>
@@ -68,7 +68,7 @@
       
     					<div class="left mg_input2">
       					<label for="">Dificultad: </label>
-      					<select name="dificultad">
+      					<select name="dificultad" id="dificultad">
         						<?php for ($i=1; $i <6 ; $i++) { ?>
           						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
         						<?php } ?>
@@ -79,79 +79,16 @@
 
 
         			<label for="">Imagen: </label>
-        			<input type="text" name="foto" value="" placeholder="" required>
+        			<input type="text" name="foto" id="foto" placeholder="" required>
 
         			<button type="submit" class="submit">Siguiente</button>
       			</form>
       		
       	</div>  <!-- popup-->
-		  </li> <!-- primer elemento-->
-
-		  	
-      <li>
-        <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
-		  		
-		  		<table id="videosRelacionados">
-		  			<thead>
-		  				<tr>
-		  					<td>Videos relacionados</td>
-		  				</tr>
-		  			</thead>
-		  			<tbody>
-		  				<tr>
-		  					<td>Video 1</td>
-		  				</tr>
-		 			  </tbody>
-		  	 </table>
-		    </div>
-      </li>
-          
-      <li>
-        <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchComplementarias" id="searchComplementarias" placeholder="Buscar...">
-          <table id="recetasComplementarias">
-              <thead>
-              <tr>
-                <td>Recetas complementarias</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Complementaria 1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </li>
-
-          
-      <li>
-        <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchGlosario" id="searchGlosario" placeholder="Buscar...">
-          <table id="glosariosRelacionados">
-            <thead>
-              <tr>
-                <td>Glosarios relacionados</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Glosario 1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </li>
-     
+		  </li> <!-- primer elemento-->     
     </ul>
 </div>
 
 <script>
-$("#agregarRecetas").submit(function (data)
-{
-	alert("submit");
-	$("ul").append("<li>Hola</li>");
-	return false;
-});
+
 </script>
