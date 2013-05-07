@@ -6,7 +6,7 @@
           	<!-- Dar de alta una nueva receta -->
 			 <div id="nuevaReceta" class="">
 			 	<div class="popup form_receta">
-                  <div id="formulario">
+                  
 					<h1>Dar de alta una nueva receta</h1>
 
         				<form name="agregarRecetas" id="agregarRecetas" method="post">        
@@ -83,7 +83,7 @@
           					<button type="submit" class="submit">Siguiente</button>
         				</form>
         			</div>
-        		</div>
+        		
 			</div> 	<!-- nuevaReceta -->
 			<!-- Termina dar de alta una nueva receta -->
 		</li>
