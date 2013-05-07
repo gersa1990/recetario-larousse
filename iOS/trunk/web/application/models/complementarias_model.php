@@ -13,10 +13,18 @@ class complementarias_model extends CI_Model {
 		return $complementarias->result_array();
 	}	
 
-	public function searchByName2($nombre , $id_app){
+	public function searchByName2($nombre , $id_app, $id_receta){
 
-		$complementarias =  $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo LIKE '".$nombre."%'  and  id_app = ".$id_app."  ");
+		$complementarias =  $this->db->query("select * from recetas_complementarias where id_app = ".$id_app." and titulo like '%".$nombre."%' and id != all (select distinct id_receta_complementaria from relaciones where id_receta = ".$id_receta.")");
 		return $complementarias->result_array();
+
+	}
+
+	public function getcomplementariasRelacionadas($id_receta, $id_app){
+
+		$query = $this->db->query("select * from recetas_complementarias where id in (select  id_receta_complementaria from relaciones where id_receta = ".$id_receta." )");
+		$recetasRelacionadas = $query->result_array();
+		return $recetasRelacionadas;
 
 	}
 

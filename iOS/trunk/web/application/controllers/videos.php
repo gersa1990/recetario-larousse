@@ -23,6 +23,25 @@ class Videos extends CI_Controller {
 	
 	}
 
+	public function searchByName2(){
+
+		$id_receta 	= $_POST['id_receta'];
+		$id_app 	= $_POST['id_app'];
+		$palabra 	= $_POST['palabra'];
+
+		//echo "Receta: ".$id_receta." APP: ".$id_app." PALABRA: ".$palabra; 
+
+		$videos = $this->video_model->searchByName2($id_app, $id_receta, $palabra);
+
+		if(count($videos)>0)
+		{
+			for ($i=0; $i <count($videos) ; $i++) 
+			{ 
+				echo "<div id='div_".$videos[$i]['id']."'>".$videos[$i]['titulo']."<button class='videos' id='".$videos[$i]['id']."'>agregar</button></div>";
+			}
+		}
+	}
+
 	
 
 	private function filtrar($video)
@@ -112,6 +131,18 @@ class Videos extends CI_Controller {
 		{
 			redirect(base_url()."videos/view/".$_POST['id_app'],"refresh");
 		}
+	}
+
+	public function addToRecipe(){
+
+		$id_app 		= $_POST['id_app'];
+		$id_receta		= $_POST['receta'];
+		$id_video 		= $_POST['id_video'];
+
+		echo "APP: ".$id_app." RECETA: ".$id_receta." VIDEO: ".$id_video;
+
+		$videos = $this->video_model->addToRecipe($id_receta, $id_video);
+
 	}
 
 	public function  searchByName(){

@@ -14,6 +14,23 @@ class video_model extends CI_Model {
 		return $delete;
 	}
 
+	public function addToRecipe($id_receta, $id_video){
+
+		$data = array(
+			'id_video' 	=> $id_video,
+			'id_receta' => $id_receta
+		);
+		
+		return $this->db->insert('videos_x_receta', $data);
+
+	}
+
+	public function searchByName2($id_app, $id_receta, $palabra){
+
+		$query = $this->db->query("select * from video where id_app = ".$id_app." and titulo like '%".$palabra."%' and id !=  all (select distinct id_video from videos_x_receta where id_receta = ".$id_receta.")");
+		return $query->result_array();
+	}
+
 	public function edit(){
 
 		$data = array(

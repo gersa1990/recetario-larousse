@@ -10,7 +10,13 @@
       <li>
         <div class="popup bg_grey">
 
-      			<?php echo form_open(base_url()."recetas/addComplementarias/") ?>
+      			
+
+            <?php 
+                $attributes = array('class' => 'newreceta');
+                echo form_open(base_url()."recetas/addComplementarias/",  $attributes);
+            ?>
+
               <h2 class="mgt_50">Nueva receta</h2>
 
         			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>

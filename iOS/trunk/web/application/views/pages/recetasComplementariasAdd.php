@@ -100,7 +100,18 @@
               </tr>
             </thead>
             <tbody>
-              
+              <?php if(isset($complementariasRelacionadas))
+              { 
+                for ($i=0; $i <count($complementariasRelacionadas) ; $i++) 
+                { 
+               ?>
+              <tr>
+                <td><?php echo $complementariasRelacionadas[$i]['titulo'] ?></td>
+              </tr>
+              <?php
+                }
+              }
+               ?>
             </tbody>
          </table>
         </div>
@@ -118,7 +129,18 @@
               </tr>
             </thead>
             <tbody>
-              
+              <?php if(isset($videosRelacionados))
+              { 
+                for ($i=0; $i <count($videosRelacionados) ; $i++) 
+                { 
+               ?>
+              <tr>
+                <td><?php echo $videosRelacionados[$i]['titulo'] ?></td>
+              </tr>
+              <?php
+                }
+              }
+               ?>
             </tbody>
           </table>
         </div>
@@ -167,6 +189,12 @@ var bxSlider = $('.slideshow').bxSlider({
     controls: false
   });
 
+
+// Buscar recetas complementarias
+
+    var app = $("#id_app").val();
+    var id_receta = $("#id_receta").val();
+
 $("#searchComplementarias").keyup(function ()
 {
     var titulo = $("#searchComplementarias").val();
@@ -175,22 +203,65 @@ $("#searchComplementarias").keyup(function ()
 
     $.post(base_url+"complementarias/searchByName2/", {palabra: titulo, id_app:app, receta: id_receta  }, function (data)
     {
+      // Buscar recetas complementarias que se pueden agregar mediante una palabra en especifico
+
       $("#resultComplementarias").html(data);
+      
       $("#resultComplementarias div button").each(function (data)
       {
+        // Mostrar recetas complementarias que resultaron de la consulta anterior
+
           $(".complementarias").click(function (data)
           {
+
+            // Agregar complementarias para que se relacionen con 
+
              var id_complementaria = $(this).attr('id');
+             
              //console.log(id_complementaria);
+
+             $("#div_"+id_complementaria).css("display","none");
 
              $.post(base_url+"complementarias/addToRecipe/", {complementaria: id_complementaria , id_app: app, receta: id_receta }, function (data)
               {
                 $("#ComplementariasRelacionadas tbody").append(data);
-              
               });
           });
       });
     });
+});
+
+$("#searchVideos").keyup(function ()
+{
+    var titulo = $("#searchVideos").val();
+    var app = $("#id_app").val();
+    var receta = $("#id_receta").val();
+
+    $.post(base_url+"videos/searchByName2/", {palabra: titulo, id_app:app, id_receta: receta  }, function (data)
+    {
+        $("#resultVideos").html(data);
+        $("#resultVideos div button").each(function ()
+        {
+            $(".videos").click(function (data)
+          { 
+
+             var video = $(this).attr('id');
+             
+             //console.log(video);
+
+             $("#div_"+video).css("display","none");
+
+             $.post(base_url+"videos/addToRecipe/", {id_video: video , id_app: app, receta: id_receta }, function (data)
+              {
+                console.log(data);
+                //$("#ComplementariasRelacionadas tbody").append(data);
+                //$("#videos").append("Data");
+              });
+          });
+        });
+        
+    });
+
 });
 
 </script>
