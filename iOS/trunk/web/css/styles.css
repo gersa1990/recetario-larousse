@@ -157,11 +157,16 @@ label{
 }
 
 .full{
-    width: 890px;
+    width: 950px;
 }
 
 .full2{
     width: 587px;
+}
+
+.wt_50{
+    margin: 30px auto;
+    width: 90% !important;
 }
 
 .mg_input{
@@ -246,6 +251,14 @@ a.help:hover{
 
 .tablew{
     width: 100%;
+}
+
+.tablas{
+    display: block;
+    width: 1087px;
+    margin: 30px auto;
+    background-color: #fcfcfc;
+    overflow: hidden;
 }
 
 .post {
@@ -800,8 +813,8 @@ a.close:hover{
 }
 
 .popup textarea {
-    max-width: 900px;
-    min-height: 200px;
+    max-width: 950px;
+    min-height: 400px;
 }
 
 .popup .submit {

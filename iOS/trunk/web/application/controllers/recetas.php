@@ -185,6 +185,24 @@ class Recetas extends CI_Controller {
 		}
 	}
 
+	public function ver($id, $id_app)
+	{
+		$receta = $data['receta'] = $this->recetas_model->get_receta($id);
+	
+		$data['app'] = $id_app;
+
+		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
+
+		$nombre = $data['name'] = $this->App_model->get_name($id_app);
+
+		$this->load->helper('url');
+
+		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> recetas > '.$receta[0]['titulo'];
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/ver', $data);
+		$this->load->view('templates/footer');
+	}
+
 
 	public function updateR($app = FALSE, $id)
 	{
