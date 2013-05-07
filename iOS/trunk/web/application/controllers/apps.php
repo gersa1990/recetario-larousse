@@ -63,13 +63,15 @@ class Apps extends CI_Controller {
 
 		$data['apps'] = $this->App_model->get_apps($id);
 		
-		$data['app']  	 = $id;
+		$data['app'] = $id;
 
 		$data['categorias'] = $this->App_model->getCategoryFromAppId($id);
 
+		$nombre = $data['name'] = $this->App_model->get_name($id);
+
 		$this->load->helper('url');
 
-		$data['title'] = 'Aplicaciones de editorial Larousse';
+		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> recetas';
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/recetas', $data);
 		$this->load->view('templates/footer');

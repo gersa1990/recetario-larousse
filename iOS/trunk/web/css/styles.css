@@ -571,7 +571,6 @@ table th, thead{
 table thead{
     background-color: #4e2919;
     color: #FFF;
-    font-weight: bold;
     text-align: center;
     font-family: MyriadPro-Cond;
     text-transform: uppercase;
@@ -598,7 +597,8 @@ table thead{
 }
 
 .mg_top{
-    margin-top: 7px;
+    font-size: 30px;
+    margin-top: 0;
 }
 
 .mg_bt{

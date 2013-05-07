@@ -28,7 +28,9 @@ class Glosario extends CI_Controller {
 		
 		$data['app']  	 = $id_app;
 
-		$data['title'] = 'Aplicaciones de la editorial Larousse';
+		$nombre = $data['name'] = $this->App_model->get_name($id_app);
+
+		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> glosario';
 		
 		$this->load->view('templates/header',$data);
 		$this->load->view('pages/glosarioShow',$data);
