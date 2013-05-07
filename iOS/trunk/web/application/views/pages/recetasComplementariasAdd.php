@@ -149,7 +149,7 @@
 <script>
 
 var base_url = "<?php echo base_url() ?>";
-var app = 
+var app = $("#id_app").val();
 
 var bxSlider = $('.slideshow').bxSlider({
     mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
@@ -185,9 +185,8 @@ $("#searchComplementarias").keyup(function ()
 
              $.post(base_url+"complementarias/addToRecipe/", {complementaria: id_complementaria , id_app: app, receta: id_receta }, function (data)
               {
-                console.log(data);
                 $("#ComplementariasRelacionadas tbody").append(data);
-                bxSlider.reloadSlider();
+              
               });
           });
       });

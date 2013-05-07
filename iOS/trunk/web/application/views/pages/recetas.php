@@ -43,7 +43,7 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'recetas/view/'.$recetas[$i]['id']; ?>" class="bluetext">
+                            <a href="<?php echo base_url().'recetas/ver/'.$recetas[$i]['id'].'/'.$recetas[$i]['id_app'] ?>" class="bluetext">
                               <?php echo $recetas[$i]['titulo']; ?>
                             </a>
                           </td>
@@ -83,9 +83,13 @@
               </div>
             </div>
 
-          <?php 
+
+          <?php
+          
           } 
-        } ?>
+        } 
+        $cat = count($categorias);
+        ?>
       </div>
     </div>
   </div>

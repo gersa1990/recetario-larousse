@@ -29,27 +29,14 @@ jQuery(document).ready(function($){
 	/*---------------------------------
 		Slideshow
 	-----------------------------------*/
-<<<<<<< HEAD
-	
-=======
-	$('.slideshow').bxSlider({
-		mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
-		pager: true,
-		speed: 500, // transition time
-		pause: 4000,
-		autoControls: false,
-		controls: false
-	});
->>>>>>> ce0d9568cba43cfee1bf79f42e9a7bc98b623fac
+
 		
 	/*---------------------------------
 		HTML5 Placeholder Support
 	-----------------------------------*/
 	$('input[placeholder], textarea[placeholder]').placeholder();
 	
-	/*---------------------------------
-		Fancybox Lightbox
-	-----------------------------------*/
+	
 	$('.gallery').each(function(i){
 		$(this).find('a').attr('rel', 'gallery'+i)
 		.fancybox({

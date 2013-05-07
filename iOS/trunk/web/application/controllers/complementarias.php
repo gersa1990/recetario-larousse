@@ -91,6 +91,7 @@ class Complementarias extends CI_Controller
 		$complementarias = $this->complementarias_model->addToRecipe($id_receta, $id_complementaria);
 
 		$nombre = $this->complementarias_model->getNameComplementaria($id_complementaria);
+		
 		echo "<tr id='".$id_complementaria."'><td>".$nombre[0]['titulo']."</tr></td>";
 
 	}
