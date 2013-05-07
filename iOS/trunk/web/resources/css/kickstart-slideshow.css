@@ -8,15 +8,12 @@
 	padding:0;
 	width:auto;
 	height:auto;
-	overflow-x:hidden;
-	overflow-y:scroll;
 	}
 	
 		.slideshow li{
 		list-style-type:none;
 		margin:0;
 		padding:0;
-		float:left;
 		display:block;
 		}
 
