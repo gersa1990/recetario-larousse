@@ -6,9 +6,8 @@
     
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
+      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
-      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
@@ -26,17 +25,17 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoVideo" class="button large blue">Nuevo</a>
+          <a href="#nuevoVideo" class="button large orange">Nuevo</a>
         </div> 
   
         <table id="videos">
           <thead>
             <tr>
-              <td colspan="2">Videos</td>
+              <td colspan="3">Videos</td>
             </tr>
           </thead>
 
-          <tbody class="blockscroll">
+          <tbody>
             <?php if(isset($videos))
                   {
                     for ($i=0; $i <count($videos) ; $i++) 
@@ -128,31 +127,24 @@
     <div class="popup">
       <a href="#" title="Close" class="close">x</a>
 
-      <div id="formulario">
-
-        <?php echo form_open("videos/create/"); ?>        
-        <!-- <form action=""> -->
+        <?php echo form_open("videos/create/"); ?>    
 
           <h2>Nuevo video</h2>
 
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
+          <div class="centrar">
+            <label for="">Nombre: </label>
+            <input type="text" name="titulo" id="titulo" value="" placeholder="título" required>
 
-          <div class="left">
-            <label for="">Título: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
-          </div>
-
-          <div class="clear"></div>
-
-          <label for="">Archivo de video: </label>
-          <input type="text" name="video" value="" placeholder="" required>
+            <label for="">Archivo de video: </label>
+            <input type="text" name="video" value="" placeholder="video" required>
+           </div>
+          
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <button type="submit" class="submit">Agregar</button>
     
         </form>
 
-      </div> <!-- formulario -->
     </div> <!-- popup -->
   </div> <!-- modadialog -->
 

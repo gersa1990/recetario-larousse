@@ -20,7 +20,7 @@
   <div class="main">
     
       <a href="#nuevaApp" class="button large orange al_right">Nueva Aplicación</a>
-      <h2 class="myriadFont">APLICACIONES DE EDITORIAL LAROUSSE</h2>
+      <h2 class="myriadFont mg_top">APLICACIONES DE EDITORIAL LAROUSSE</h2>
       <table class="tablew">
         <thead>
           <tr>

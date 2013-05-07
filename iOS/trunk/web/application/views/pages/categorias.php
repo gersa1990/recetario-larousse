@@ -5,9 +5,8 @@
     <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
+      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
-      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
@@ -25,17 +24,17 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaCategoria" class="button large blue">Nueva</a>
+          <a href="#nuevaCategoria" class="button large orange">Nueva</a>
         </div> 
   
         <table id="categorias">
           <thead>
             <tr>
-              <td colspan="2">Categorías</td>
+              <td colspan="3">Categorías</td>
             </tr>
           </thead>
 
-          <tbody class="blockscroll">
+          <tbody>
             <?php 
               if(isset($categorias)){
                 for ($i=0; $i <count($categorias) ; $i++) { ?>
@@ -75,7 +74,7 @@
                 <a href="#" title="Close" class="close">x</a>
       
                 <?php echo form_open("categorias/delete/"); ?>
-                  <h2>Categoria</h2>
+                  <h2>Categoría</h2>
                   <p class="mg-auto"><?php echo $categorias[$i]['nombre']; ?></p>         
                   <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
                   <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -138,13 +137,13 @@
 
                   <div class="centrar">
                     <label for="">Nombre: </label>
-                    <input type="text" name="nombre" value="">
+                    <input type="text" name="nombre" value="" placeholder="nombre">
                   
                   
                     <div id="divColorEditar">
                       <label for="">Color:</label>
                       <div id="editar">
-                        <input type="text" name="color" id="color2" value="">
+                        <input type="text" name="color" id="color2" value="" placeholder="rgb(0, 0, 0)">
                         <span id="preview" class="left"></span>
                       </div>
                     </div>

@@ -7,9 +7,8 @@
    
 
     <div class="columl">
-       <a href="<?php echo base_url() ?>" class="button orange large"><span>←</span> Regresar</a>
+       <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
-      <h1>Menú</h1>
       <nav id="menu">
         <ul>
           <li><a href="<?php echo base_url().'apps/view/'.$app; ?>" class="">Recetas</a></li>
@@ -26,17 +25,17 @@
         
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoGlosario" class="button large blue">Nuevo</a>
+          <a href="#nuevoGlosario" class="button large orange">Nuevo</a>
         </div> 
   
         <table id="videos">
           <thead>
             <tr>
-              <td colspan="2">Glosario</td>
+              <td colspan="3">Glosario</td>
             </tr>
           </thead>
 
-          <tbody class="blockscroll">
+          <tbody>
             <?php if(isset($glosario))
                   {
                     for ($i=0; $i <count($glosario) ; $i++) 
@@ -150,18 +149,18 @@
 
           <div class="left">
             <label for="">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" required>
+            <input type="text" name="nombre" id="nombre" value="" placeholder="nombre" required>
           </div>
 
           <div class="clear"></div>
 
           <label for="">Descripción: </label>
-          <textarea class="full" type="text" name="descripcion" required></textarea>
+          <textarea class="full" type="text" name="descripcion" placeholder="descripción del glosario" required></textarea>
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <div class="left">
             <label for="">Imagen: </label>
-            <input type="text" name="imagen" id="imagen" required>
+            <input type="text" name="imagen" id="imagen" placeholder="imagen" required>
           </div>
 
           <div class="clear"></div>

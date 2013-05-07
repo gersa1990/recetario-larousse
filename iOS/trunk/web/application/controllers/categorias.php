@@ -30,7 +30,7 @@ class Categorias extends CI_Controller {
 		
 		$data['app']  	 = $id_app;
 
-		$data['title'] = 'Categorias';
+		$data['title'] = 'Aplicaciones de editorial Larousse';
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/categorias', $data);
 		$this->load->view('templates/footer');
