@@ -5,7 +5,8 @@
     <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+      <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>
@@ -43,7 +44,7 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'recetas/ver/'.$recetas[$i]['id'].'/'.$recetas[$i]['id_app'] ?>" class="bluetext">
+                            <a href="<?php echo base_url().'recetas/ver/'.$recetas[$i]['id'].'/'.$recetas[$i]['id_app'] ?>">
                               <?php echo $recetas[$i]['titulo']; ?>
                             </a>
                           </td>
@@ -109,7 +110,7 @@
 
   if(cat<1)
   {
-    $("#status").html("<div class='alert alert-info'>Para poder dar de alta una receta tienes que crear sus categorias. Serás redirigido.</div>").slideDown("slow");
+    $("#status").html("<div class='alert alert-info'>Para agregar recetas, primero necesitas agregar una categoria.</div>").slideDown("slow");
     $("#addblock").slideUp("slow"); 
     
     setTimeout(function(){

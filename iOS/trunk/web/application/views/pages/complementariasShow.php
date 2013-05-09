@@ -5,7 +5,8 @@
     <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+      <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>
@@ -42,9 +43,10 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'recetas_complementarias/view/'.$recetas_complementarias[$i]['id']; ?>" class="bluetext">
-                              <?php echo $recetas_complementarias[$i]['titulo']; ?>
-                            </a>
+                            <!-- <a href="<?php echo base_url().'recetas_complementarias/view/'.$recetas_complementarias[$i]['id']; ?>" class="bluetext"> -->
+                              <!--  -->
+                            <!-- </a> -->
+                            <p><?php echo $recetas_complementarias[$i]['titulo']; ?></p>
                           </td>
 
                           <td>
@@ -134,7 +136,7 @@
         <?php echo form_open("complementarias/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Información</h2>
+          <h2>Nueva receta complementaria</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
@@ -151,7 +153,7 @@
           <div class="clear"></div>
 
           <label for="">Contenido: </label>
-          <textarea type="text" name="contenido" class="full" required></textarea>
+          <textarea type="text" name="contenido" class="full2" required></textarea>
 
           <button type="submit" class="submit">Agregar</button>
     

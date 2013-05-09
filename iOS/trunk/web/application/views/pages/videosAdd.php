@@ -6,7 +6,8 @@
     
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+      <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>
@@ -43,9 +44,10 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'videos/view/'.$videos[$i]['id']; ?>" class="bluetext">
-                              <?php echo $videos[$i]['titulo']; ?>
-                            </a>
+                            <!-- <a href="" class="bluetext">
+                             
+                            </a> -->
+                            <p> <?php echo $videos[$i]['titulo']; ?></p>
                           </td>
 
                           <td>
@@ -100,10 +102,10 @@
 
                             <div class="centrar">
                               <label for="">Nombre: </label>
-                              <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>">
+                              <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>" required>
 
                               <label for="">Archivo de video: </label>
-                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>">
+                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>" required>
                               
                             </div>
 

@@ -18,6 +18,7 @@
 
 $config['base_url']	= 'http://localhost/recetario-larousse/iOS/trunk/web/';
 
+
 /*
 |--------------------------------------------------------------------------
 | Index File

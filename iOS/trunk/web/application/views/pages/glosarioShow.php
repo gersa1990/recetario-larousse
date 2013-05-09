@@ -7,7 +7,8 @@
    
 
     <div class="columl">
-       <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+       <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+       <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>
@@ -43,9 +44,9 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'glosario/view/'.$glosario[$i]['id']; ?>" class="bluetext">
-                              <?php echo $glosario[$i]['nombre']; ?>
-                            </a>
+                            <!-- <a href="" class="bluetext">
+                            </a> -->
+                            <p><?php echo $glosario[$i]['nombre']; ?></p>
                           </td>
 
                           <td>
@@ -79,7 +80,7 @@
                           <a href="#" title="Close" class="close">x</a>
                 
                           <?php echo form_open("glosario/delete/"); ?>
-                            <h2>Video</h2>
+                            <h2>Glosario</h2>
                             <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -96,7 +97,7 @@
                         <?php echo form_open("glosario/edit/"); ?>
  
   
-                            <h2>Nuevo glosario</h2>
+                            <h2>Información</h2>
 
                             <div class="left">
                               <label for="">Nombre: </label>
@@ -106,7 +107,7 @@
                             <div class="clear"></div>
 
                             <label for="">Descripción: </label>
-                            <textarea class="full" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
+                            <textarea class="full2" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
 
                             <div class="left">
                               <label for="">Imagen: </label>
@@ -155,7 +156,7 @@
           <div class="clear"></div>
 
           <label for="">Descripción: </label>
-          <textarea class="full" type="text" name="descripcion" placeholder="descripción del glosario" required></textarea>
+          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del glosario" required></textarea>
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <div class="left">
