@@ -18,6 +18,44 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+	public function searchByName2(){
+
+		$id_app 			= $_POST['id_app'];
+		$id_receta			= $_POST['id_receta'];
+		$palabra 			= $_POST['palabra'];
+
+		$glosario 			= $this->Glosario_model->searchByName2($id_app, $id_receta, $palabra); 
+
+		for ($i=0; $i <count($glosario) ; $i++) 
+		{ 
+			echo "<div id='div_".$glosario[$i]['id']."'>".$glosario[$i]['nombre']."<button class='glosario' id='".$glosario[$i]['id']."'>Agregar</button></div>";
+		}
+
+	}
+
+	public function addToRecipe(){
+
+		$id_app 		= $_POST['id_app'];
+		$id_receta 		= $_POST['id_receta'];
+		$id_glosario 	= $_POST['id_glosario'];
+
+		$insertar = $this->Glosario_model->addToRecipe($id_receta, $id_glosario);
+
+		$dataGlosario = $this->Glosario_model->getDataGlosary($id_glosario);
+
+		if(count($dataGlosario)>0)
+		{
+			echo "<tr><td>".$dataGlosario[0]['nombre']."</td></tr>";
+		}
+		else
+		{
+			echo "No se encontro este glosario";
+		}
+
+		
+
+	}
+
 
 	public function view($id_app){
 

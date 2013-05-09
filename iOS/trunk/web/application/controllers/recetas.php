@@ -11,6 +11,7 @@ class Recetas extends CI_Controller {
 		$this->load->model('complementarias_model');
 		$this->load->model('video_model');
 		$this->load->library('typography');
+		$this->load->model('glosario_model');
 	}
 
 	public function getData($id_receta){
@@ -49,9 +50,12 @@ class Recetas extends CI_Controller {
 
 		$data['app']   =  $id_app;
 		$data['recetas'] = $this->getData($id_receta);
-		$data['complementariasRelacionadas'] = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
-		//$data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados
 
+		$data['complementariasRelacionadas'] 		 = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
+		$videos = $data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados($id_receta, $id_app);
+		$data['glosarioRelacionado'] 	 			 = $this->glosario_model->getGlosarioRelacionado($id_receta, $id_app);
+
+		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/recetasComplementariasAdd', $data);
 		$this->load->view('templates/footer');
@@ -184,7 +188,7 @@ class Recetas extends CI_Controller {
 
 		if($update)
 		{
-			redirect(base_url()."apps/view/".$_POST['id_app'],"refresh");
+			redirect(base_url()."recetas/ver/".$id."/".$_POST['id_app'],"refresh");
 		}
 	}
 

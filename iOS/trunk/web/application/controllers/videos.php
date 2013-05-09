@@ -40,6 +40,10 @@ class Videos extends CI_Controller {
 				echo "<div id='div_".$videos[$i]['id']."'>".$videos[$i]['titulo']."<button class='videos' id='".$videos[$i]['id']."'>agregar</button></div>";
 			}
 		}
+		else
+		{
+			echo "No encntrado";
+		}
 	}
 
 	
@@ -139,9 +143,15 @@ class Videos extends CI_Controller {
 		$id_receta		= $_POST['receta'];
 		$id_video 		= $_POST['id_video'];
 
-		echo "APP: ".$id_app." RECETA: ".$id_receta." VIDEO: ".$id_video;
+		//echo "APP: ".$id_app." RECETA: ".$id_receta." VIDEO: ".$id_video;
 
 		$videos = $this->video_model->addToRecipe($id_receta, $id_video);
+
+		$video = $this->video_model->getDataByVideo($id_video);
+
+		
+
+		echo "<tr><td>".$video[0]['titulo']."</td></tr>";
 
 	}
 
