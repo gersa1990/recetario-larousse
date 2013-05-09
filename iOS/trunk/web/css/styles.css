@@ -873,6 +873,8 @@ a.close:hover{
 }
 
 .popup .submit.blue{
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
     background-color: #2daebf;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#1e7681), to(#2daebf));
     background-image: -webkit-linear-gradient(top, #1e7681, #2daebf);
@@ -880,5 +882,5 @@ a.close:hover{
     background-image: -ms-linear-gradient(top, #1e7681, #2daebf);
     background-image: -o-linear-gradient(top, #1e7681, #2daebf);
     background-image: linear-gradient(top, #1e7681, #2daebf);
-
+    border-color: #238896 #1e7681 #238896 #1e7681;
  }

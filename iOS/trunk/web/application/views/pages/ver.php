@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-		<a href="" class="home">regresar</a>
+		<!-- <a href="" class="home">regresar</a> -->
 		<div class="popup bg_grey">
 	
 			<?php 
@@ -9,7 +9,7 @@
 
 			?>
 
-			<h2 class="mgt_50">Receta: </h2>
+			<h2 class="mgt_50"><?php echo $name[0]['nombre']; ?></h2>
 
 			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
 			
@@ -316,6 +316,7 @@
     tinymce.init({
         selector: "textarea",
         width: 950,
+        menubar: false
     });
   });
 </script>

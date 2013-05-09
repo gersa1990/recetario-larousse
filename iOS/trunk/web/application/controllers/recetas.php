@@ -63,6 +63,7 @@ class Recetas extends CI_Controller {
 
 		$data['app']   =  $id_app;
 		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
+		$data['name'] = $this->App_model->get_name($id);
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/recetasShow', $data);
