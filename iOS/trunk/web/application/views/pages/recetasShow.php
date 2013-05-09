@@ -100,6 +100,7 @@
     tinymce.init({
         selector: "textarea",
         width: 950,
+        menubar: false
     });
   });
          
