@@ -117,6 +117,40 @@
         </div>
       </li>  <!-- Fin del segundo elemento -->
 
+      <li>
+
+        <div class="bg_grey">
+         
+          <input class="input mg_bt" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
+          <div id="resultVideos"></div>
+          <table id="videos">
+              <thead>
+              <tr>
+                <td>Videos relacionados</td>
+              </tr>
+            </thead>
+            <tbody>
+
+              <?php 
+
+              if(isset($videosRelacionados))
+              { 
+                for ($i=0; $i <count($videosRelacionados) ; $i++) 
+                { 
+               ?>
+                <tr>
+                  <td><?php echo $videosRelacionados[$i]['nombre'] ?></td>
+                </tr>              
+              <?php
+                }
+              }
+               ?>
+            </tbody>
+          </table>
+        </div>
+        
+      </li>
+
 
       <li>
 
@@ -153,43 +187,6 @@
 
 
 
-          
-      <li>
-
-        <div class="bg_grey">
-         
-          <input class="input mg_bt" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
-          <div id="resultVideos"></div>
-          <table id="videos">
-              <thead>
-              <tr>
-                <td>Videos relacionados</td>
-              </tr>
-            </thead>
-            <tbody>
-
-              <?php 
-
-              if(isset($videosRelacionados))
-              { 
-                for ($i=0; $i <count($videosRelacionados) ; $i++) 
-                { 
-               ?>
-                <tr>
-                  <td><?php echo $videosRelacionados[$i]['nombre'] ?></td>
-                </tr>              
-              <?php
-                }
-              }
-               ?>
-            </tbody>
-          </table>
-        </div>
-        
-      </li>
-
-
-
     </ul>
 </div>
 
@@ -200,18 +197,7 @@ var app = $("#id_app").val();
 
 var bxSlider = $('.slideshow').bxSlider({
     mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
-    video: true,
-    useCSS: true,
-    pager: true,
-    speed: 500, // transition time
-    startSlide: 1,
-    infiniteLoop: true,
-    captions: true,
-    adaptiveHeight: false,
-    touchEnabled: true,
-    pause: 4000,
-    autoControls: false,
-    controls: false
+    pager: true    
   });
 
 
