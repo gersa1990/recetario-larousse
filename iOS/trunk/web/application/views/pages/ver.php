@@ -6,7 +6,7 @@
 			<?php 
 			$attributes = array('class' => 'newreceta');
 			echo form_open('',  $attributes);
-			
+
 			?>
 
 			<h2 class="mgt_50">Receta: </h2>
@@ -32,32 +32,32 @@
 			
 			<div class="clear"></div>
 			
-			<div class="left">
-				<label for="">Procedimiento: </label>
+			<div class="left" class="mg_t">
+				<label for="" class="mg_t">Procedimiento: </label>
 				<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $receta[0]['procedimiento']?></textarea>
 			</div>
 			
 			<div class="clear"></div>
 			
 			<div class="left">
-				<label for="">Ingredientes: </label>
+				<label for="" class="mg_t">Ingredientes: </label>
 				<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $receta[0]['ingredientes']?></textarea>
 			</div>
 			
 			<div class="clear"></div>
 			
 			<div class="left mg_input2">
-				<label for="">Preparación: </label>
+				<label for="" class="mg_t">Preparación: </label>
 				<input type="text" name="preparacion" id="preparacion" placeholder="minutos" value="<?php echo $receta[0]['preparacion']?>" required>
 			</div>
 			
 			<div class="left mg_input2">
-				<label for="">Cocción: </label>
+				<label for="" class="mg_t">Cocción: </label>
 				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>" required>
 			</div>
 			
 			<div class="left mg_input2">
-				<label for="">Costo: </label>
+				<label for="" class="mg_t">Costo: </label>
 				<select name="costo" id="costo">
 					<option value="<?php echo $receta[0]['costo']?>"><?php echo $receta[0]['costo']?></option>
 					<?php for ($i=1; $i <6 ; $i++) { ?>
@@ -67,7 +67,7 @@
 			</div>
 			
 			<div class="left mg_input2">
-				<label for="">Dificultad: </label>
+				<label for="" class="mg_t">Dificultad: </label>
 				<select name="dificultad" id="dificultad">
 					<option value="<?php echo $receta[0]['dificultad']?>"><?php echo $receta[0]['dificultad']?></option>
 					<?php for ($i=1; $i <6 ; $i++) { ?>
@@ -81,7 +81,7 @@
 			<label for="">Imagen: </label>
 			<input type="text" name="foto" id="foto" value= "<?php echo $receta[0]['foto']?>" placeholder="" required>
 			
-			<button type="submit" class="submit">Guardar</button>
+			<button type="submit" class="submit blue">Guardar</button>
 		</form>
 		</div>  <!-- grey-->
 
@@ -310,3 +310,12 @@
 
 	</div>
 </div>
+
+<script>
+  $(document).ready(function (){
+    tinymce.init({
+        selector: "textarea",
+        width: 950,
+    });
+  });
+</script>
