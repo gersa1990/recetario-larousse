@@ -14,6 +14,11 @@ class video_model extends CI_Model {
 		return $delete;
 	}
 
+	public function getVideosRelacionados($id_receta, $id_app){
+		$videos = $this->db->query("select * from video where id in  (select id_video from videos_x_receta where id_receta = ".$id_receta.")");
+		return $videos->result_array();
+	}
+
 	public function addToRecipe($id_receta, $id_video){
 
 		$data = array(

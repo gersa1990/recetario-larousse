@@ -149,7 +149,7 @@
           
       <li>
         <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchGlosario" id="searchGlosario" placeholder="Buscar...">
+          <input class="input mg_bt" type="text" name="searchGlosary" id="searchGlosary" placeholder="Buscar glosario...">
           <table id="glosariosRelacionados">
             <thead>
               <tr>
@@ -157,15 +157,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Glosario 1</td>
-              </tr>
+                 
             </tbody>
           </table>
         </div>
       </li>
-
-
     </ul>
 </div>
 <script>
@@ -195,6 +191,12 @@ var bxSlider = $('.slideshow').bxSlider({
     var app = $("#id_app").val();
     var id_receta = $("#id_receta").val();
 
+$("#searchGlosary").keydown(function ()
+{
+  alert("Glosary");
+  console.log("GLOSARIO");
+});
+
 $("#searchComplementarias").keyup(function ()
 {
     var titulo = $("#searchComplementarias").val();
@@ -222,9 +224,10 @@ $("#searchComplementarias").keyup(function ()
 
              $("#div_"+id_complementaria).css("display","none");
 
-             $.post(base_url+"complementarias/addToRecipe/", {complementaria: id_complementaria , id_app: app, receta: id_receta }, function (data)
+             $.post(base_url+"complementarias/addToRecipe/", {complementaria: id_complementaria , id_app: app, receta: id_receta }, function (datas)
               {
-                $("#ComplementariasRelacionadas tbody").append(data);
+                console.log(datas);
+                $("#ComplementariasRelacionadas tbody").append(datas);
               });
           });
       });
@@ -239,6 +242,8 @@ $("#searchVideos").keyup(function ()
 
     $.post(base_url+"videos/searchByName2/", {palabra: titulo, id_app:app, id_receta: receta  }, function (data)
     {
+      console.log(data);
+
         $("#resultVideos").html(data);
         $("#resultVideos div button").each(function ()
         {
@@ -246,16 +251,16 @@ $("#searchVideos").keyup(function ()
           { 
 
              var video = $(this).attr('id');
-             
-             //console.log(video);
+
+
 
              $("#div_"+video).css("display","none");
 
-             $.post(base_url+"videos/addToRecipe/", {id_video: video , id_app: app, receta: id_receta }, function (data)
+             $.post(base_url+"videos/addToRecipe/", {id_video: video , id_app: app, receta: id_receta }, function (data2)
               {
-                console.log(data);
+                //console.log(data2);
                 //$("#ComplementariasRelacionadas tbody").append(data);
-                //$("#videos").append("Data");
+                $("#videos tbody").append(data2);
               });
           });
         });
@@ -263,5 +268,6 @@ $("#searchVideos").keyup(function ()
     });
 
 });
+
 
 </script>

@@ -50,7 +50,8 @@ class Recetas extends CI_Controller {
 		$data['app']   =  $id_app;
 		$data['recetas'] = $this->getData($id_receta);
 		$data['complementariasRelacionadas'] = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
-		//$data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados
+		$videos = $data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados($id_receta, $id_app);
+		//$glosario = $data['glosarioRelacionado'] = $this->glosario_model->getGlosarioRelacionado();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/recetasComplementariasAdd', $data);
