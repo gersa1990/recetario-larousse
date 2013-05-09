@@ -6,6 +6,7 @@
 
     <div class="columl">
       <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      <h1 class="myriadFont"><?php echo $name[0]['nombre']; ?></h1>
 
       <nav id="menu">
         <ul>
@@ -40,9 +41,10 @@
                 for ($i=0; $i <count($categorias) ; $i++) { ?>
                   <tr>
                       <td class="txleft">
-                        <a href="<?php echo base_url().'categorias/view/'.$categorias[$i]['id']; ?>" class="bluetext">
-                          <?php echo $categorias[$i]['nombre']; ?>
-                        </a>
+                        <!-- <a href="" class="bluetext">
+                          
+                        </a> -->
+                        <p><?php echo $categorias[$i]['nombre']; ?></p>
                       </td>
 
                       <td>

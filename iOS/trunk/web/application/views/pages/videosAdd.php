@@ -7,6 +7,7 @@
 
     <div class="columl">
       <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      <h1 class="myriadFont"><?php echo $name[0]['nombre']; ?></h1>
 
       <nav id="menu">
         <ul>
@@ -43,9 +44,10 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'videos/view/'.$videos[$i]['id']; ?>" class="bluetext">
-                              <?php echo $videos[$i]['titulo']; ?>
-                            </a>
+                            <!-- <a href="" class="bluetext">
+                             
+                            </a> -->
+                            <p> <?php echo $videos[$i]['titulo']; ?></p>
                           </td>
 
                           <td>

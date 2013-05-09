@@ -6,6 +6,7 @@
 
     <div class="columl">
       <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      <h1 class="myriadFont"><?php echo $name[0]['nombre']; ?></h1>
 
       <nav id="menu">
         <ul>
@@ -43,7 +44,7 @@
 
                       <tr>
                           <td class="txleft">
-                            <a href="<?php echo base_url().'recetas/ver/'.$recetas[$i]['id'].'/'.$recetas[$i]['id_app'] ?>" class="bluetext">
+                            <a href="<?php echo base_url().'recetas/ver/'.$recetas[$i]['id'].'/'.$recetas[$i]['id_app'] ?>">
                               <?php echo $recetas[$i]['titulo']; ?>
                             </a>
                           </td>
