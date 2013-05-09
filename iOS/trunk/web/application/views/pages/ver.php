@@ -5,17 +5,18 @@
 	
 			<?php 
 			$attributes = array('class' => 'newreceta');
-			echo form_open('',  $attributes);
+			echo form_open('recetas/edit/',  $attributes);
 
 			?>
 
 			<h2 class="mgt_50">Receta: </h2>
 
 			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
+			<input type="hidden" name="id" value="<?php echo $receta[0]['id'] ?>">
 			
 			<div class="left">
 				<label for="">Título: </label>
-				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'].$receta[0]['id_categoria']?>" required>
+				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'] ?>" required>
 			</div>
 			
 			<div class="left mg_input">

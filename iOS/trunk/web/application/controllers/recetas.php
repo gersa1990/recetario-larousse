@@ -187,7 +187,7 @@ class Recetas extends CI_Controller {
 
 		if($update)
 		{
-			redirect(base_url()."apps/view/".$_POST['id_app'],"refresh");
+			redirect(base_url()."recetas/ver/".$id."/".$_POST['id_app'],"refresh");
 		}
 	}
 
