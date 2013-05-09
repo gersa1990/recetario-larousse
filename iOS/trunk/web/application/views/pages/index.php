@@ -9,7 +9,7 @@
         <h2 class="mg_20">Nueva aplicación</h2>
         <div class="centrar">
           <label for="">Nombre: </label>
-          <input type="text" name="nombre" value="">
+          <input type="text" name="nombre" value="" required>
         </div>
         <br>  
         <button type="submit" class="submit">Agregar</button>
@@ -37,7 +37,7 @@
 
                     <tr>
                       <td><a href="<?php base_url(); ?>apps/view/<?php echo $apps[$i]['id']; ?>" class="bluetext"><?php echo $apps[$i]['nombre']; ?></a></td>
-                      <td><a href="">Editar</a></td>
+                      <td><a href="#editar<?php echo $apps[$i]['id'] ?>">Editar</a></td>
                       <td><a href="#eliminar<?php echo $apps[$i]['id'] ?>">Eliminar</a></td>
                       <td><a href="<?php base_url(); ?>export/create/<?php echo $apps[$i]['id']; ?>">Exportar</a></td>
                     </tr>
@@ -58,6 +58,24 @@
                         </div>
                       </div>
 
+                      <div id="editar<?php echo $apps[$i]['id']; ?>" class="modalDialog">
+                        <div class="popup form_app">
+                          <a href="#" title="Close" class="close">x</a>
+                          
+                          <?php echo form_open("apps/edit/"); ?>
+                            <h2 class="mg_20">Editar</h2>
+                            
+                            <div class="centrar">
+                              <label for="">Nombre: </label>
+                              <input type="text" name="nombre" value="<?php echo $apps[$i]['nombre']; ?>" required>
+                            </div>
+                    
+                            <input type="hidden" name="id" value="<?php echo $apps[$i]['id']; ?>">
+                            <button type="submit" class="submit">Guardar</button>
+                          </form>
+                        
+                        </div>
+                      </div>
 
           <?php     }
                 } 

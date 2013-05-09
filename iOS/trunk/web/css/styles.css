@@ -161,12 +161,18 @@ label{
 }
 
 .full2{
-    width: 587px;
+    width: 935px;
+    height: 300px !important;
 }
 
 .wt_50{
     margin: 30px auto;
     width: 90% !important;
+}
+
+.title_app{
+    margin: 0 0 33px;
+    font-size: 30px;
 }
 
 .mg_input{
@@ -678,6 +684,10 @@ table thead{
     height: 164px;
 }
 
+.modalDialog .form_app{
+    height: 200px;
+}
+
 .modalDialog .form_categoria{
     height: 308px;
 }
@@ -822,7 +832,7 @@ a.close:hover{
 
 .popup textarea {
     max-width: 950px;
-    min-height: 400px;
+    height: 400px;
 }
 
 .popup .submit {

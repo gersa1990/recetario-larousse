@@ -3,8 +3,7 @@
 	<div>
 		
 	</div>	
-
-	<a href="<?php echo base_url() ?>" class="home"><img src="<?php echo base_url().'resources/img/back.png' ?>"></a>
+	<a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
 	<h1>Exportar APP <?php echo $application[0]['nombre']; ?></h1>
 

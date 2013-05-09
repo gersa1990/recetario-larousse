@@ -6,8 +6,8 @@
     
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
-      <h1 class="myriadFont"><?php echo $name[0]['nombre']; ?></h1>
+      <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+      <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>

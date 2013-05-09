@@ -5,8 +5,8 @@
     <div id="status"></div>
 
     <div class="columl">
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
-      <h1 class="myriadFont"><?php echo $name[0]['nombre']; ?></h1>
+      <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+      <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>
@@ -94,14 +94,14 @@
 
                   <div class="centrar">
                     <label for="">Nombre: </label>
-                    <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>">
+                    <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>" required>
                   
                   
                     <div id="divColorEditar">
                       <label for="">Color:</label>
                       <div id="editar">
                         <input type="hidden" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
-                        <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>">
+                        <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>" required>
                         <span id="preview" class="left"></span>
                       </div>
                     </div>
@@ -139,13 +139,13 @@
 
                   <div class="centrar">
                     <label for="">Nombre: </label>
-                    <input type="text" name="nombre" value="" placeholder="nombre">
+                    <input type="text" name="nombre" value="" placeholder="nombre" required>
                   
                   
                     <div id="divColorEditar">
                       <label for="">Color:</label>
                       <div id="editar">
-                        <input type="text" name="color" id="color2" value="" placeholder="rgb(0, 0, 0)">
+                        <input type="text" name="color" id="color2" value="" placeholder="rgb(0, 0, 0)" required>
                         <span id="preview" class="left"></span>
                       </div>
                     </div>

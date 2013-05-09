@@ -7,8 +7,8 @@
    
 
     <div class="columl">
-       <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
-       <h1 class="myriadFont"><?php echo $name[0]['nombre']; ?></h1>
+       <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+       <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
         <ul>
@@ -107,7 +107,7 @@
                             <div class="clear"></div>
 
                             <label for="">Descripción: </label>
-                            <textarea class="full" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
+                            <textarea class="full2" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
 
                             <div class="left">
                               <label for="">Imagen: </label>
@@ -156,7 +156,7 @@
           <div class="clear"></div>
 
           <label for="">Descripción: </label>
-          <textarea class="full" type="text" name="descripcion" placeholder="descripción del glosario" required></textarea>
+          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del glosario" required></textarea>
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <div class="left">
