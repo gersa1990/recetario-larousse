@@ -23,7 +23,7 @@
 
     					<div class="left">
       					<label for="">Título: </label>
-      					<input type="text" name="titulo" id="titulo" value="titulo" required>
+      					<input type="text" name="titulo" id="titulo" value="" required>
     					</div>
 
     					<div class="left mg_input">
