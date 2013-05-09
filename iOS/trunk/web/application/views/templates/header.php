@@ -14,6 +14,7 @@
 	<script src="<?php echo base_url(); ?>Resources/js/colorpicker.js"></script>
 
 	<script src="<?php echo base_url(); ?>js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/tinymce.min.js" type="text/javascript"></script>
 
 	<script src="<?php echo base_url(); ?>js/funcionesJS.js"></script>
 	<script src="<?php echo base_url() ?>resources/js/kickstart.js"></script> <!-- KICKSTART -->

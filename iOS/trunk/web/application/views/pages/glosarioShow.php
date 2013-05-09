@@ -80,7 +80,7 @@
                           <a href="#" title="Close" class="close">x</a>
                 
                           <?php echo form_open("glosario/delete/"); ?>
-                            <h2>Video</h2>
+                            <h2>Glosario</h2>
                             <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -97,7 +97,7 @@
                         <?php echo form_open("glosario/edit/"); ?>
  
   
-                            <h2>Nuevo glosario</h2>
+                            <h2>Información</h2>
 
                             <div class="left">
                               <label for="">Nombre: </label>

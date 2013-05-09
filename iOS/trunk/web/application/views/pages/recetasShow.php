@@ -40,31 +40,31 @@
         			<div class="clear"></div>
 
     					<div class="left">
-      					<label for="">Procedimiento: </label>
+      					<label for="" class="mg_t">Procedimiento: </label>
       					<textarea name="procedimiento" id="procedimiento" class="full"></textarea>
     					</div>
     
         			<div class="clear"></div>
         					
     					<div class="left">
-      					<label for="">Ingredientes: </label>
+      					<label for="" class="mg_t" >Ingredientes: </label>
       					<textarea name="ingredientes" id="ingredientes" class="full"></textarea>
     					</div>
         
         			<div class="clear"></div>
 
     					<div class="left mg_input2">
-      					<label for="">Preparación: </label>
+      					<label for="" class="mg_t">Preparación: </label>
       					<input type="text" name="preparacion" id="preparacion" placeholder="minutos" required>
     					</div>
       
     					<div class="left mg_input2">
-      					<label for="">Cocción: </label>
+      					<label for="" class="mg_t">Cocción: </label>
       					<input type="text" name="coccion" id="coccion" placeholder="minutos" required>
     					</div>
     
     					<div class="left mg_input2">
-      					<label for="">Costo: </label>
+      					<label for="" class="mg_t">Costo: </label>
       					<select name="costo" id="costo">
         						<?php for ($i=1; $i <6 ; $i++) { ?>
           						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
@@ -73,7 +73,7 @@
     					</div>
       
     					<div class="left mg_input2">
-      					<label for="">Dificultad: </label>
+      					<label for="" class="mg_t">Dificultad: </label>
       					<select name="dificultad" id="dificultad">
         						<?php for ($i=1; $i <6 ; $i++) { ?>
           						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
@@ -96,5 +96,14 @@
 </div>
 
 <script>
-
+  $(document).ready(function (){
+    tinymce.init({
+        selector: "textarea",
+        width: 950,
+    });
+  });
+         
+       
+ 
+  
 </script>

@@ -136,7 +136,7 @@
         <?php echo form_open("complementarias/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Información</h2>
+          <h2>Nueva receta complementaria</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
@@ -153,7 +153,7 @@
           <div class="clear"></div>
 
           <label for="">Contenido: </label>
-          <textarea type="text" name="contenido" class="full" required></textarea>
+          <textarea type="text" name="contenido" class="full2" required></textarea>
 
           <button type="submit" class="submit">Agregar</button>
     

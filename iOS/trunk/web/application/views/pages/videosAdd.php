@@ -102,10 +102,10 @@
 
                             <div class="centrar">
                               <label for="">Nombre: </label>
-                              <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>">
+                              <input type="text" name="titulo" value="<?php echo $videos[$i]['titulo']; ?>" required>
 
                               <label for="">Archivo de video: </label>
-                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>">
+                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>" required>
                               
                             </div>
 
