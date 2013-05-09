@@ -143,11 +143,15 @@ class Videos extends CI_Controller {
 		$id_receta		= $_POST['receta'];
 		$id_video 		= $_POST['id_video'];
 
-		echo "APP: ".$id_app." RECETA: ".$id_receta." VIDEO: ".$id_video;
+		//echo "APP: ".$id_app." RECETA: ".$id_receta." VIDEO: ".$id_video;
 
 		$videos = $this->video_model->addToRecipe($id_receta, $id_video);
 
-		echo "<tr><td>".$videos[0]['titulo']."</td></tr>";
+		$video = $this->video_model->getDataByVideo($id_video);
+
+		
+
+		echo "<tr><td>".$video[0]['titulo']."</td></tr>";
 
 	}
 

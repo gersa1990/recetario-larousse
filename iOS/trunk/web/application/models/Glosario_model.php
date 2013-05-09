@@ -27,6 +27,36 @@ class Glosario_model extends CI_Model {
 		}
 	}
 
+	public function addToRecipe($id_receta, $id_glosario){
+
+
+		$data = array(
+			'id_receta' 		=> $id_receta,
+			'id_glosario'		=> $id_glosario
+		);
+
+		return $this->db->insert('receta_glosario', $data);
+
+	}
+
+	public function getGlosarioRelacionado($id_receta, $id_app){
+
+		$glosario = $this->db->query("select * from glosario where id_app = ".$id_app." and id  in (select id_glosario from receta_glosario where id_receta = ".$id_receta." )");
+		return $glosario->result_array();
+	}
+
+	public function getDataGlosary($id_glosario){
+
+		$query = $this->db->query("SELECT nombre from glosario where id = ".$id_glosario." ");
+		return $query->result_array();
+	}
+
+	public function searchByName2($id_app, $id_receta, $palabra){
+
+		$query = $this->db->query("select * from glosario where nombre like '%".$palabra."%' and id_app = ".$id_app." and id != all ( select id_glosario from receta_glosario where id_receta = ".$id_receta." );");
+		return $query->result_array();
+	}
+
 	
 	public function edit()
 	{

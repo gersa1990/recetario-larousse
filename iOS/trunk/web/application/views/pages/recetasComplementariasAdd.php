@@ -119,7 +119,45 @@
 
 
       <li>
+
         <div class="bg_grey">
+          <input class="input mg_bt" type="text" name="searchGlosary" id="glosarioBuscar" placeholder="Buscar glosario...">
+          
+          <div id="resultGlosary"></div>
+
+          <table id="glosariosRelacionados">
+            <thead>
+              <tr>
+                <td>Glosarios relacionados</td>
+              </tr>
+            </thead>
+            <tbody>
+                 <?php
+                  if(isset($glosarioRelacionado))
+                  {
+                    for ($i=0; $i <count($glosarioRelacionado) ; $i++) 
+                    { 
+                      ?>
+                      <tr>
+                          <td><?php echo $glosarioRelacionado[$i]['nombre'] ?></td>
+                      </tr>
+                      <?php
+                    }
+                  }
+                 ?>
+            </tbody>
+          </table>
+        </div>
+
+      </li>
+
+
+
+          
+      <li>
+
+        <div class="bg_grey">
+         
           <input class="input mg_bt" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
           <div id="resultVideos"></div>
           <table id="videos">
@@ -129,14 +167,17 @@
               </tr>
             </thead>
             <tbody>
-              <?php if(isset($videosRelacionados))
+
+              <?php 
+
+              if(isset($videosRelacionados))
               { 
                 for ($i=0; $i <count($videosRelacionados) ; $i++) 
                 { 
                ?>
-              <tr>
-                <td><?php echo $videosRelacionados[$i]['titulo'] ?></td>
-              </tr>
+                <tr>
+                  <td><?php echo $videosRelacionados[$i]['nombre'] ?></td>
+                </tr>              
               <?php
                 }
               }
@@ -144,26 +185,14 @@
             </tbody>
           </table>
         </div>
+        
       </li>
 
-          
-      <li>
-        <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchGlosary" id="searchGlosary" placeholder="Buscar glosario...">
-          <table id="glosariosRelacionados">
-            <thead>
-              <tr>
-                <td>Glosarios relacionados</td>
-              </tr>
-            </thead>
-            <tbody>
-                 
-            </tbody>
-          </table>
-        </div>
-      </li>
+
+
     </ul>
 </div>
+
 <script>
 
 var base_url = "<?php echo base_url() ?>";
@@ -191,14 +220,9 @@ var bxSlider = $('.slideshow').bxSlider({
     var app = $("#id_app").val();
     var id_receta = $("#id_receta").val();
 
-$("#searchGlosary").keydown(function ()
-{
-  alert("Glosary");
-  console.log("GLOSARIO");
-});
-
 $("#searchComplementarias").keyup(function ()
 {
+
     var titulo = $("#searchComplementarias").val();
     var app = $("#id_app").val();
     var id_receta = $("#id_receta").val();
@@ -209,11 +233,10 @@ $("#searchComplementarias").keyup(function ()
 
       $("#resultComplementarias").html(data);
       
-      $("#resultComplementarias div button").each(function (data)
-      {
+      
         // Mostrar recetas complementarias que resultaron de la consulta anterior
 
-          $(".complementarias").click(function (data)
+          $(".complementarias").click(function (dat)
           {
 
             // Agregar complementarias para que se relacionen con 
@@ -224,13 +247,16 @@ $("#searchComplementarias").keyup(function ()
 
              $("#div_"+id_complementaria).css("display","none");
 
-             $.post(base_url+"complementarias/addToRecipe/", {complementaria: id_complementaria , id_app: app, receta: id_receta }, function (datas)
-              {
-                console.log(datas);
-                $("#ComplementariasRelacionadas tbody").append(datas);
-              });
+              
+                $.post(base_url+"complementarias/addToRecipe/", {complementaria: id_complementaria , id_app: app, receta: id_receta }, function (datas)
+                {
+                  $("#ComplementariasRelacionadas tbody").append(datas);
+                  console.log(datas);
+                });
+               
+               
           });
-      });
+      
     });
 });
 
@@ -240,33 +266,66 @@ $("#searchVideos").keyup(function ()
     var app = $("#id_app").val();
     var receta = $("#id_receta").val();
 
+    console.log(titulo);
+    console.log(app);
+    
+
     $.post(base_url+"videos/searchByName2/", {palabra: titulo, id_app:app, id_receta: receta  }, function (data)
     {
       console.log(data);
 
+     
+
         $("#resultVideos").html(data);
-        $("#resultVideos div button").each(function ()
-        {
-            $(".videos").click(function (data)
-          { 
 
+            $(".videos").click(function (das)
+            { 
+             
              var video = $(this).attr('id');
-
-
-
              $("#div_"+video).css("display","none");
 
-             $.post(base_url+"videos/addToRecipe/", {id_video: video , id_app: app, receta: id_receta }, function (data2)
-              {
-                //console.log(data2);
-                //$("#ComplementariasRelacionadas tbody").append(data);
-                $("#videos tbody").append(data2);
-              });
+            
+              $.post(base_url+"videos/addToRecipe/", {id_video: video , id_app: app, receta: id_receta }, function (data2)
+                {
+                  $("#videos tbody").append(data2);
+                });
+              
           });
-        });
-        
     });
+});
 
+$("#glosarioBuscar").keyup(function ()
+{
+
+    var titulo  = $("#glosarioBuscar").val();
+    var app     = $("#id_app").val();
+    var receta  = $("#id_receta").val();
+
+    $.post(base_url+"glosario/searchByName2/", {palabra: titulo, id_app:app, id_receta: receta  }, function (data)
+    {
+       $("#resultGlosary").html(data);
+
+        $(".glosario").click(function (das)
+            { 
+             
+             var glosario = $(this).attr('id');
+             $("#div_"+glosario).css("display","none");
+
+            var i=0;
+
+            if(i==0)
+            {
+              $.post(base_url+"glosario/addToRecipe/", {id_glosario: glosario , id_app: app, id_receta: receta }, function (data2)
+                {
+                  console.log(data2);
+                  $("#glosariosRelacionados tbody").append(data2);
+                });
+              i=1;
+            }
+          });
+
+    });
+  
 });
 
 
