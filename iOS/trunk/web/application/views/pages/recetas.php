@@ -101,8 +101,8 @@
 
 <script>
 
-  var app = "<?php echo $app; ?>";
-  var base_url = "<?php echo base_url(); ?>";
+  var app       = "<?php echo $app; ?>";
+  var base_url  = "<?php echo base_url(); ?>";
 
   var categorias = "<?php echo $cat; ?>";
   console.log(categorias);

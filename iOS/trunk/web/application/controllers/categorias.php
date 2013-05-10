@@ -74,14 +74,16 @@ class Categorias extends CI_Controller {
 
 		$categorias = $this->categoria_model->searchByTitulo($titulo, $id_app);
 
+
+
 		for ($i=0; $i <count($categorias) ; $i++) 
 		{ 
 			echo "<tr>
                       <td class='txleft'>";
-                        echo "<a href='".base_url().'categorias/view/'.$categorias[$i]['id']."' class='bluetext'>";
+                        
                           echo "".$categorias[$i]['nombre'].""; 
-                        echo "</a>
-                      </td>
+                        
+                      echo "</td>
 
                       <td>";
                         echo "<a href='#editarCategoria".$categorias[$i]['id']."'>

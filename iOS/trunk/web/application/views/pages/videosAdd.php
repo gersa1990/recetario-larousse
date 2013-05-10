@@ -171,7 +171,7 @@
 
     $.post(base_url+"videos/searchByName/" ,{nombre: texto, id_app: app}, function (data)
     {
-      $(".blockscroll").html(data);
+      $("#videos tbody").html(data);
     }); 
   });
 

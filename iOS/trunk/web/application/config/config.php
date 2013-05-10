@@ -17,7 +17,7 @@
 
 
 $config['base_url']	= 'http://localhost/recetario-larousse/iOS/trunk/web/';
-
+//$config['base_url']	= 'http://gersainaguilarpardo.comoj.com/recetario-larousse/';
 
 /*
 |--------------------------------------------------------------------------
@@ -196,6 +196,7 @@ $config['log_threshold'] = 0;
 | application/logs/ folder. Use a full server path with trailing slash.
 |
 */
+
 $config['log_path'] = '';
 
 /*

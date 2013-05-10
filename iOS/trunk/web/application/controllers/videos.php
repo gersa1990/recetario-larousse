@@ -42,7 +42,7 @@ class Videos extends CI_Controller {
 		}
 		else
 		{
-			echo "No encntrado";
+			echo "No se encontro";
 		}
 	}
 
@@ -166,9 +166,8 @@ class Videos extends CI_Controller {
 		{
 			echo "<tr>
                       <td class='txleft'>";
-                        echo "<a href='".base_url().'videos/view/'.$videos[$i]['id']."' class='bluetext'>";
                           echo "".$videos[$i]['titulo'].""; 
-                        echo "</a>
+                        echo "
                       </td>
 
                       <td>";

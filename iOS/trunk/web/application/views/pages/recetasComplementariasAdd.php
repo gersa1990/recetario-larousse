@@ -6,8 +6,11 @@
 
     <a href="<?php echo base_url() ?>" class="back"><span>←</span> regresar</a>
 
+    <input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
+     <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
+
     <ul class="slideshow">
-      <li>
+      <!-- <li>
         <div class="popup bg_grey">
 
       			<?php echo form_open(base_url()."recetas/addComplementarias/") ?>
@@ -20,7 +23,7 @@
       					<input type="text" name="titulo" id="titulo" value="<?php echo $recetas[0]['titulo'] ?>" required>
     					</div>
 
-              <input type="text" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
+              <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
 
     					<div class="left mg_input">
       					<label for="">Categoria: </label>
@@ -86,8 +89,8 @@
         			<button type="submit" class="submit">Siguiente</button>
       			</form>
       		
-      	</div>  <!-- popup-->
-		  </li> <!-- primer elemento-->   
+      	</div>  
+		  </li> -->   
 
       <li> <!-- Segundo elemento -->
         <div class="bg_grey">
@@ -139,7 +142,7 @@
                 { 
                ?>
                 <tr>
-                  <td><?php echo $videosRelacionados[$i]['nombre'] ?></td>
+                  <td><?php echo $videosRelacionados[$i]['video'] ?></td>
                 </tr>              
               <?php
                 }
@@ -184,6 +187,8 @@
         </div>
 
       </li>
+
+      <li>Finalizar</li>
 
 
 
@@ -280,12 +285,15 @@ $("#searchVideos").keyup(function ()
     });
 });
 
+
 $("#glosarioBuscar").keyup(function ()
 {
 
     var titulo  = $("#glosarioBuscar").val();
     var app     = $("#id_app").val();
     var receta  = $("#id_receta").val();
+
+    console.log(titulo);
 
     $.post(base_url+"glosario/searchByName2/", {palabra: titulo, id_app:app, id_receta: receta  }, function (data)
     {
@@ -303,7 +311,7 @@ $("#glosarioBuscar").keyup(function ()
             {
               $.post(base_url+"glosario/addToRecipe/", {id_glosario: glosario , id_app: app, id_receta: receta }, function (data2)
                 {
-                  console.log(data2);
+                  //console.log(data2);
                   $("#glosariosRelacionados tbody").append(data2);
                 });
               i=1;

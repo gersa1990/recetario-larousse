@@ -18,7 +18,6 @@ class Recetas extends CI_Controller {
 
 		$data = $this->recetas_model->getData($id_receta);
 		return $data;
-
 	}
 
 	public function addComplementarias(){
@@ -54,7 +53,6 @@ class Recetas extends CI_Controller {
 		$data['complementariasRelacionadas'] 		 = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
 		$videos = $data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados($id_receta, $id_app);
 		$data['glosarioRelacionado'] 	 			 = $this->glosario_model->getGlosarioRelacionado($id_receta, $id_app);
-
 		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/recetasComplementariasAdd', $data);
@@ -97,7 +95,7 @@ class Recetas extends CI_Controller {
 				$id = $value['id'];
 
 				echo "<tr><td class='txleft'>";
-					echo "<a href='".base_url().'recetas/view/'.$value['id']."' class='bluetext'>".$value['titulo']."</a>";
+					echo "<a href='".base_url().'recetas/ver/'.$value['id']."/".$id_app."' class='bluetext'>".$value['titulo']."</a>";
 				echo "</td><td><a href='".base_url().'recetas/edit/'.$value['id']."'>Editar</a></td>";
 				echo "<td>";
 					echo "<a href='#eliminarReceta".$id."'>Eliminar</a>";

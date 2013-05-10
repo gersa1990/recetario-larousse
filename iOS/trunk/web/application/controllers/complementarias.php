@@ -109,9 +109,9 @@ class Complementarias extends CI_Controller
 		{ 
 			echo "<tr>
                       <td class='txleft'>";
-                        echo "<a href='".base_url().'complementarias/view/'.$complementarias[$i]['id']."' class='bluetext'>";
+                       
                           echo "".$complementarias[$i]['titulo'].""; 
-                        echo "</a>
+                        echo "
                       </td>
 
                       <td>";

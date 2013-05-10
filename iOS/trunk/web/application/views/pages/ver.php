@@ -54,7 +54,7 @@
 			
 			<div class="left mg_input2">
 				<label for="" class="mg_t">Cocción: </label>
-				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>" required>
+				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>">
 			</div>
 			
 			<div class="left mg_input2">
@@ -317,6 +317,7 @@
     tinymce.init({
         selector: "textarea",
         width: 950,
+        menubar: false
     });
   });
 </script>

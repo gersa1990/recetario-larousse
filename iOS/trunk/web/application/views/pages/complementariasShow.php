@@ -183,7 +183,7 @@
 
     $.post(base_url+"complementarias/searchByName/" ,{palabra: texto, id_app: app}, function (data)
     {
-      $(".blockscroll").html(data);
+      $("#recetas_complementarias tbody").html(data);
     }); 
   });
 

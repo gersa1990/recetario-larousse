@@ -29,7 +29,7 @@
           <a href="#nuevoGlosario" class="button large orange">Nuevo</a>
         </div> 
   
-        <table id="videos">
+        <table id="glosario">
           <thead>
             <tr>
               <td colspan="3">Glosario</td>
@@ -186,6 +186,8 @@
 
 <script>
 
+
+
 $('.slideshow').bxSlider({
     mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
     video: true,
@@ -217,7 +219,7 @@ $('.slideshow').bxSlider({
 
     $.post(base_url+"glosario/searchByName/" ,{palabra: texto, id_app: app}, function (data)
     {
-        $(".blockscroll").html(data);
+        $("#glosario tbody").html(data);
     }); 
   
   });

@@ -121,6 +121,7 @@ class export extends CI_Controller {
 	public function deleteBDIfExists($BD)
 	{
 		@unlink("resources/".$BD.".sqlite");
+		@unlink("resources/".$BD.".db");
 	}
 
 	public function createDBSqlite($app)

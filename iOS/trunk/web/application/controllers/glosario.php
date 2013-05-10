@@ -24,12 +24,23 @@ class Glosario extends CI_Controller {
 		$id_receta			= $_POST['id_receta'];
 		$palabra 			= $_POST['palabra'];
 
+		//echo "APP: ".$id_app." RECETA: ".$id_receta." PALABRA: ".$palabra;
+
 		$glosario 			= $this->Glosario_model->searchByName2($id_app, $id_receta, $palabra); 
 
-		for ($i=0; $i <count($glosario) ; $i++) 
-		{ 
-			echo "<div id='div_".$glosario[$i]['id']."'>".$glosario[$i]['nombre']."<button class='glosario' id='".$glosario[$i]['id']."'>Agregar</button></div>";
+		if(count($glosario)>0)
+		{
+			for ($i=0; $i <count($glosario) ; $i++) 
+			{ 
+				echo "<div id='div_".$glosario[$i]['id']."'>".$glosario[$i]['nombre']."<button class='glosario' id='".$glosario[$i]['id']."'>Agregar</button></div>";
+			}
 		}
+		else
+		{
+			echo "No se encontro";
+		}
+
+		
 
 	}
 
@@ -49,7 +60,7 @@ class Glosario extends CI_Controller {
 		}
 		else
 		{
-			echo "No se encontro este glosario";
+			echo "No se encontro";
 		}
 
 		
@@ -108,10 +119,8 @@ class Glosario extends CI_Controller {
 		{ 
 			echo "<tr>
                       <td class='txleft'>";
-                        echo "<a href='".base_url().'glosario/view/'.$glosario[$i]['id']."' class='bluetext'>";
                           echo "".$glosario[$i]['nombre'].""; 
-                        echo "</a>
-                      </td>
+                        echo "</td>
 
                       <td>";
                         echo "<a href='#editarGlosario".$glosario[$i]['id']."'>

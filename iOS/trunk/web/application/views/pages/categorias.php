@@ -172,10 +172,12 @@
 $("#buscar").keyup(function ()
 {
     var palabra = $("#buscar").val();
+    console.log(palabra);
 
     $.post(base_url+"categorias/searchByTitulo/", {titulo: palabra, id_app: app} , function (data)
     {
-        $(".blockscroll").html(data);
+        $("#categorias tbody").html(data);
+        console.log(data);
     });
 
 });

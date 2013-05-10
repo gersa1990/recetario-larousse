@@ -10,8 +10,6 @@
       <li>
         <div class="popup bg_grey">
 
-      			
-
             <?php 
                 $attributes = array('class' => 'newreceta');
                 echo form_open(base_url()."recetas/addComplementarias/",  $attributes);
