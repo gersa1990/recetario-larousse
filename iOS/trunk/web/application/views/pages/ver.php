@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-		<!-- <a href="" class="home">regresar</a> -->
+		<a href="<?php echo base_url().'apps/view/'.$app ?>" class="back"><span>←</span> regresar</a>
 		<div class="popup bg_grey">
 	
 			<?php 

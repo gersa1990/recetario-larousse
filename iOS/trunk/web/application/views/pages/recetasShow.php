@@ -4,13 +4,11 @@
     <div id="status"></div>
 
 
-    <a href="<?php echo base_url() ?>" class="back"><span>←</span> regresar</a>
+    <a href="<?php echo base_url().'apps/view/'.$app ?>" class="back"><span>←</span> regresar</a>
 
     <ul class="slideshow">
       <li>
         <div class="popup bg_grey">
-
-      			
 
             <?php 
                 $attributes = array('class' => 'newreceta');
