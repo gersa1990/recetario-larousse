@@ -4,12 +4,14 @@ class Recetas extends CI_Controller {
 
 
 	public function __construct(){
+		
 		parent::__construct();
 		$this->load->model('recetas_model');
 		$this->load->model('App_model');
 		$this->load->model('categoria_model');
 		$this->load->model('complementarias_model');
 		$this->load->model('video_model');
+		$this->load->model('glosario_model');
 		$this->load->library('typography');
 	}
 
