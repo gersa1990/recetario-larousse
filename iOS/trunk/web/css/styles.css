@@ -14,6 +14,7 @@ html {
 }
 
 body{
+    min-width: 1087px;
      margin: 0 0 130px;
      background-color: #fff;
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -184,7 +185,10 @@ label{
 }
 
 .mg_form{
-    margin: 30px 0 0 56px !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    right: -100px;
+    margin: 0 !important;
+    text-transform: none;
 }
 
 .uptext{
@@ -240,9 +244,9 @@ a.help:hover{
     background-color: rgb(99, 0, 48);
 }*/
 
-/*.button.blue {
+.button.blue {
     background-color: rgb(45, 174, 191);
-}*/
+}
 
 .button.orange {
     background-color: #f58220;
@@ -670,6 +674,7 @@ table thead{
     display: block;
     padding: 13px;
     border-radius: 0px;
+    position: relative;
 }
 
 .modalDialog .form_receta{
@@ -873,12 +878,18 @@ a.close:hover{
 }
 
 .popup .submit.blue{
+    position: absolute;
+    top:60px;
+    left: 960px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
     background-color: #2daebf;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1e7681), to(#2daebf));
-    background-image: -webkit-linear-gradient(top, #1e7681, #2daebf);
-    background-image: -moz-linear-gradient(top, #1e7681, #2daebf);
-    background-image: -ms-linear-gradient(top, #1e7681, #2daebf);
-    background-image: -o-linear-gradient(top, #1e7681, #2daebf);
-    background-image: linear-gradient(top, #1e7681, #2daebf);
-
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#2daebf), to(#1e7681));
+    background-image: -webkit-linear-gradient(top, #2daebf, #1e7681);
+    background-image: -moz-linear-gradient(top, #2daebf, #1e7681);
+    background-image: -ms-linear-gradient(top, #2daebf, #1e7681);
+    background-image: -o-linear-gradient(top, #2daebf, #1e7681);
+    background-image: linear-gradient(top, #2daebf, #1e7681);
+    border-color: #238896 #1e7681 #238896 #1e7681;
  }

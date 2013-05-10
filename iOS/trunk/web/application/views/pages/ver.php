@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-		<a href="" class="home">regresar</a>
+		<!-- <a href="" class="home">regresar</a> -->
 		<div class="popup bg_grey">
 	
 			<?php 
@@ -9,19 +9,19 @@
 
 			?>
 
-			<h2 class="mgt_50">Receta: </h2>
+			<h2 class="mgt_50"><?php echo $receta[0]['titulo'] ?></h2>
 
 			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
 			<input type="hidden" name="id" value="<?php echo $receta[0]['id'] ?>">
 			
 			<div class="left">
 				<label for="">Título: </label>
-				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'] ?>" required>
+				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'] ?>" required disabled >
 			</div>
 			
 			<div class="left mg_input">
 				<label for="">Categoria: </label>
-				<select name="categoria" id="categoria">
+				<select name="categoria" id="categoria" disabled >
 					
 					<?php	
 						for ($i=0; $i <count($categorias) ; $i++) { ?>
@@ -35,31 +35,33 @@
 			
 			<div class="left" class="mg_t">
 				<label for="" class="mg_t">Procedimiento: </label>
-				<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $receta[0]['procedimiento']?></textarea>
+				<textarea name="procedimiento" id="procedimiento" class="full" disabled><?php echo $receta[0]['procedimiento']?></textarea>
 			</div>
 			
 			<div class="clear"></div>
 			
 			<div class="left">
 				<label for="" class="mg_t">Ingredientes: </label>
-				<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $receta[0]['ingredientes']?></textarea>
+				<textarea name="ingredientes" id="ingredientes" class="full" disabled><?php echo $receta[0]['ingredientes']?></textarea>
 			</div>
 			
 			<div class="clear"></div>
 			
 			<div class="left mg_input2">
 				<label for="" class="mg_t">Preparación: </label>
-				<input type="text" name="preparacion" id="preparacion" placeholder="minutos" value="<?php echo $receta[0]['preparacion']?>" required>
+				<input type="text" name="preparacion" id="preparacion" placeholder="minutos" value="<?php echo $receta[0]['preparacion']?>" required disabled >
 			</div>
 			
 			<div class="left mg_input2">
 				<label for="" class="mg_t">Cocción: </label>
-				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>">
+
+				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>"  disabled >
+
 			</div>
 			
 			<div class="left mg_input2">
 				<label for="" class="mg_t">Costo: </label>
-				<select name="costo" id="costo">
+				<select name="costo" id="costo" disabled>
 					<option value="<?php echo $receta[0]['costo']?>"><?php echo $receta[0]['costo']?></option>
 					<?php for ($i=1; $i <6 ; $i++) { ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
@@ -69,7 +71,7 @@
 			
 			<div class="left mg_input2">
 				<label for="" class="mg_t">Dificultad: </label>
-				<select name="dificultad" id="dificultad">
+				<select name="dificultad" id="dificultad" disabled>
 					<option value="<?php echo $receta[0]['dificultad']?>"><?php echo $receta[0]['dificultad']?></option>
 					<?php for ($i=1; $i <6 ; $i++) { ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
@@ -80,18 +82,20 @@
 			<div class="clear"></div>
 			
 			<label for="">Imagen: </label>
-			<input type="text" name="foto" id="foto" value= "<?php echo $receta[0]['foto']?>" placeholder="" required>
+			<input type="text" name="foto" id="foto" value= "<?php echo $receta[0]['foto']?>" placeholder="" required disabled>
 			
-			<button type="submit" class="submit blue">Guardar</button>
+			<button id="editar" onclick="editar()" type="submit" class="submit blue">Editar</button>
+			<button id="guardar" onclick="guardar()"type="submit" class="submit blue">Guardar</button>
 		</form>
 		</div>  <!-- grey-->
 
 		<div id="glosario" class="tablas">
-			<a href="#buscar_receta" class="button large orange mg_form">Agregar</a>
+			<!-- <a href="#buscar_receta" class="button large orange mg_form">Agregar</a> -->
 			<table id="" class="wt_50">
 				<thead>
 	            	<tr>
-	              		<td colspan="2">Glosario receta</td>
+	              		<td>Glosario receta</td>
+	              		<td><a href="#buscar_compl" class="button orange mg_form">Agregar</a></td>
 	            	</tr>
 	          	</thead>
 
@@ -128,11 +132,11 @@
 		</div>
 
 		<div id="complementarias" class="tablas">
-			<a href="#buscar_compl" class="button large orange mg_form">Agregar</a>
 			<table id="" class="wt_50">
 				<thead>
 	            	<tr>
-	              		<td colspan="2">Complementarias receta</td>
+	              		<td>Complementarias receta</td>
+	              		<td><a href="#buscar_compl" class="button orange mg_form">Agregar</a></td>
 	            	</tr>
 	          	</thead>
 
@@ -169,11 +173,12 @@
 		</div>
 
 		<div id="videos" class="tablas">
-			<a href="#buscar_video" class="button large orange mg_form">Agregar</a>
+			<!-- <a href="#buscar_video" class="button large orange mg_form">Agregar</a> -->
 			<table id="" class="wt_50">
 				<thead>
 	            	<tr>
-	              		<td colspan="2">Videos receta</td>
+	              		<td>Videos receta</td>
+	              		<td><a href="#buscar_compl" class="button orange mg_form">Agregar</a></td>
 	            	</tr>
 	          	</thead>
 
@@ -314,10 +319,20 @@
 
 <script>
   $(document).ready(function (){
+  	$('#guardar').hide();
+  	$('.mg_form').hide();
+
     tinymce.init({
         selector: "textarea",
         width: 950,
         menubar: false
     });
+
+    $('#editar').click(function(){
+    	$("read").removeAttr("readonly");
+    	$('#guardar').show();
+    	$('.mg_form').show();
+   });
+
   });
 </script>
