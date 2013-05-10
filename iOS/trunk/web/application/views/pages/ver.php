@@ -87,7 +87,7 @@
 			<input type="text" name="foto" id="foto" value= "<?php echo $receta[0]['foto']?>" placeholder="" required>
 			
 			<button id="editar" onclick="editar()" type="submit" class="submit blue">Editar</button>
-			<button id="guardar" onclick="guardar()"type="submit" class="submit blue">Guardar</button>
+			<button id="guardar" onclick="guardar()" type="submit" class="submit blue">Guardar</button>
 
 			<a onClick="activar()" class="button large orange">Editar</a>
 
