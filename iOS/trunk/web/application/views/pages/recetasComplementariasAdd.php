@@ -4,10 +4,10 @@
     <div id="status"></div>
 
 
-    <a href="<?php echo base_url() ?>" class="back"><span>←</span> regresar</a>
+    <a href="<?php echo base_url().'apps/view/'.$app ?>" class="back"><span>←</span> regresar</a>
 
-    <input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
-     <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
+    <input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>">
+    <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
 
     <ul class="slideshow">
       <!-- <li>
@@ -93,30 +93,42 @@
 		  </li> -->   
 
       <li> <!-- Segundo elemento -->
+        <h1><?php echo $name[0]['titulo'] ?> > recetas complementarias</h1>
         <div class="bg_grey">
+
           <input class="input mg_bt" type="text" name="searchComplementarias" id="searchComplementarias" placeholder="Buscar...">
-          <div id="resultComplementarias"></div>
-          <table id="ComplementariasRelacionadas">
-            <thead>
-              <tr>
-                <td>Recetas complementarias</td>
-              </tr>
-            </thead>
-            <tbody>
-              <?php if(isset($complementariasRelacionadas))
-              { 
-                for ($i=0; $i <count($complementariasRelacionadas) ; $i++) 
-                { 
-               ?>
-              <tr>
-                <td><?php echo $complementariasRelacionadas[$i]['titulo'] ?></td>
-              </tr>
-              <?php
-                }
-              }
-               ?>
-            </tbody>
-         </table>
+
+          <!-- <div class="left"> -->
+            <div id="resultComplementarias"></div>
+          <!-- </div> -->
+          
+
+          <!-- <div class="left"> -->
+             <table id="ComplementariasRelacionadas">
+                <thead>
+                  <tr>
+                    <td>Recetas complementarias</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php if(isset($complementariasRelacionadas))
+                  { 
+                    for ($i=0; $i <count($complementariasRelacionadas) ; $i++) 
+                    { 
+                   ?>
+                  <tr>
+                    <td><?php echo $complementariasRelacionadas[$i]['titulo'] ?></td>
+                  </tr>
+                  <?php
+                    }
+                  }
+                   ?>
+                </tbody>
+             </table>
+          <!-- </div> -->
+
+          <!-- <div class="clear"></div> -->
+          
         </div>
       </li>  <!-- Fin del segundo elemento -->
 
@@ -202,7 +214,8 @@ var app = $("#id_app").val();
 
 var bxSlider = $('.slideshow').bxSlider({
     mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
-    pager: true    
+    pager: true,
+    adaptiveHeight: false
   });
 
 

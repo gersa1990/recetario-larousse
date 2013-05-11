@@ -46,9 +46,12 @@ class Recetas extends CI_Controller {
 
 		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
 
-		$data['title'] = "Nueva Receta";
-
 		$data['app']   =  $id_app;
+
+		$nombre = $data['name'] = $this->recetas_model->get_name($id_receta);
+
+		$data['title'] = "Nueva Receta > ".$nombre[0]['titulo'] ;
+
 		$data['recetas'] = $this->getData($id_receta);
 		$data['complementariasRelacionadas'] = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
 		//$data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados

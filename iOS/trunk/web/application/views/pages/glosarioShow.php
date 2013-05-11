@@ -120,7 +120,7 @@
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
                             
                             <div class="clear"></div>
-                            <button type="submit" class="submit">Agregar</button>
+                            <button type="submit" class="submit">Guardar</button>
 
                             </form>
                         </div>
