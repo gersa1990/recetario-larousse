@@ -26,7 +26,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoVideo" class="button large orange">Nuevo</a>
+          <a href="#nuevoVideo" class="button large orange">Nuevo video</a>
         </div> 
   
         <table id="videos">
@@ -98,7 +98,7 @@
                         <?php echo form_open("videos/edit/"); ?>
  
   
-                            <h2 class="mg_20">Editar video</h2>
+                            <h2 class="mg_20 myriadFont">Editar video</h2>
 
                             <div class="centrar">
                               <label for="">Nombre: </label>
@@ -131,7 +131,7 @@
 
         <?php echo form_open("videos/create/"); ?>    
 
-          <h2>Nuevo video</h2>
+          <h2 class="mg_20 myriadFont">Nuevo video</h2>
 
           <div class="centrar">
             <label for="">Nombre: </label>

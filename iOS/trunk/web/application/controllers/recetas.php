@@ -104,7 +104,7 @@ class Recetas extends CI_Controller {
 
 				echo "<tr><td class='txleft'>";
 					echo "<a href='".base_url().'recetas/ver/'.$value['id']."/".$id_app."' class='bluetext'>".$value['titulo']."</a>";
-				echo "</td><td><a href='".base_url().'recetas/edit/'.$value['id']."'>Editar</a></td>";
+				echo "</td>";
 				echo "<td>";
 					echo "<a href='#eliminarReceta".$id."'>Eliminar</a>";
 				echo "</td></tr>";
@@ -205,7 +205,10 @@ class Recetas extends CI_Controller {
 
 		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
 
-		$nombre = $data['name'] = $this->App_model->get_name($id_app);
+		$nombre = $data['name'] 				= $this->App_model->get_name($id_app);
+		$data['glosarioRelacionado']			= $this->glosario_model->getGlosarioRelacionado($id,$id_app);
+		$data['videosRelacionados']				= $this->video_model->getVideosRelacionados($id,$id_app);
+		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app); 
 
 		$this->load->helper('url');
 

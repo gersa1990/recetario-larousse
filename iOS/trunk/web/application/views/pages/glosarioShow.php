@@ -26,7 +26,7 @@
         
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoGlosario" class="button large orange">Nuevo</a>
+          <a href="#nuevoGlosario" class="button large orange">Nuevo término</a>
         </div> 
   
         <table id="glosario">
@@ -80,7 +80,7 @@
                           <a href="#" title="Close" class="close">x</a>
                 
                           <?php echo form_open("glosario/delete/"); ?>
-                            <h2>Glosario</h2>
+                            <h2>Término de glosario</h2>
                             <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
                             <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
                             <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -97,7 +97,7 @@
                         <?php echo form_open("glosario/edit/"); ?>
  
   
-                            <h2>Información</h2>
+                            <h2 class="myriadFont">Editar término de glosario</h2>
 
                             <div class="left">
                               <label for="">Nombre: </label>
@@ -144,7 +144,7 @@
         <?php echo form_open("glosario/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Nuevo glosario</h2>
+          <h2 class"myriadFont">Nuevo término de glosario</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
@@ -156,7 +156,7 @@
           <div class="clear"></div>
 
           <label for="">Descripción: </label>
-          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del glosario" required></textarea>
+          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del término de glosario" required></textarea>
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <div class="left">

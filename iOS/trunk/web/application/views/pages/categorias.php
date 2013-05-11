@@ -25,7 +25,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaCategoria" class="button large orange">Nueva</a>
+          <a href="#nuevaCategoria" class="button large orange">Nueva categoría</a>
         </div> 
   
         <table id="categorias">
@@ -90,7 +90,7 @@
                 <a href="#" title="Close" class="close">x</a>
                 
                 <?php echo form_open("categorias/edit/"); ?>
-                  <h2 class="mg_20">Información</h2>
+                  <h2 class="mg_20 myriadFont">Editar categoría</h2>
 
                   <div class="centrar">
                     <label for="">Nombre: </label>
@@ -134,7 +134,7 @@
                 <a href="#" title="Close" class="close">x</a>
                 
                 <?php echo form_open("categorias/create/"); ?>
-                  <h2 class="mg_20">Información</h2>
+                  <h2 class="mg_20 myriadFont">Nueva categoría</h2>
 
 
                   <div class="centrar">

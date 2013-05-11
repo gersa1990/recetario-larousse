@@ -25,7 +25,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaRecetaComplementaria" class="button large orange">Nuevo</a>
+          <a href="#nuevaRecetaComplementaria" class="button large orange">Nueva receta</a>
         </div> 
   
         <table id="recetas_complementarias">
@@ -92,21 +92,23 @@
                       
 
                       <div id="editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
-                        <div class="popup form_receta">
+                        <div class="popup form_rc">
                         <a href="#" title="Close" class="close">x</a>
                 
                         <?php echo form_open("complementarias/edit/"); ?>
-                          <h2>Edita categoria</h2>
+                          <h2 class="mg_20 myriadFont">Edita categoria complementaria</h2>
 
-                          <div class="centrar">
+                          <div class="left">
                             <label for="">Nombre: </label>
                             <input type="text" name="titulo" value="<?php echo $recetas_complementarias[$i]['titulo']; ?>">
                           </div>
 
                           <div class="left">
                             <label for="">Contenido: </label>
-                            <textarea class="full" name="contenido"><?php echo $recetas_complementarias[$i]['contenido']; ?></textarea>
+                            <textarea class="full2" name="contenido"><?php echo $recetas_complementarias[$i]['contenido']; ?></textarea>
                           </div>
+
+                          <div class="clear"></div>
 
                           <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
                           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -129,27 +131,22 @@
 
 
   <div id="nuevaRecetaComplementaria" class="modalDialog">
-    <div class="popup form_receta">
+    <div class="popup form_rc">
       <a href="#" title="Close" class="close">x</a>
 
 
         <?php echo form_open("complementarias/create/"); ?>        
         <!-- <form action=""> -->
 
-          <h2>Nueva receta complementaria</h2>
+          <h2 class="mg_20 myriadFont">Nueva receta complementaria</h2>
 
           <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
 
           <div class="left">
-            <label for="">Título: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="Título" required>
+            <label for="">Nombre: </label>
+            <input type="text" name="titulo" id="titulo" value="" placeholder="" required>
           </div>
 
-          
-         
-          
-          
-        
           <div class="clear"></div>
 
           <label for="">Contenido: </label>
