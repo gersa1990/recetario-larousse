@@ -26,7 +26,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="<?php echo base_url().'recetas/nueva/'.$app ?>" class="button large orange">Nueva</a>
+          <a href="<?php echo base_url().'recetas/nueva/'.$app ?>" class="button large orange">Nueva receta</a>
         </div> 
   
         <table id="recetas">

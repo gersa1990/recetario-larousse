@@ -177,7 +177,7 @@ label{
 }
 
 .mg_input{
-    margin-left: 40px;
+    margin-left: 30px;
 }
 
 .mg_input2{
@@ -186,7 +186,7 @@ label{
 
 .mg_form{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    right: -100px;
+    right: -395px;
     margin: 0 !important;
     text-transform: none;
 }
@@ -236,7 +236,7 @@ a.help:hover{
 }
 
 .large.button {
-    font-size: 14px;
+    font-size: 13px;
     padding: 8px 19px 9px;
 }
 
@@ -297,6 +297,14 @@ a.help:hover{
     box-shadow: inset 0 2px 3px #e8e8e8;
 }
 
+.fix_input{
+    position: absolute;
+    z-index: 1;
+    left: 2px;
+    height: 7px;
+    top: 3px;
+}
+
 .buscar{
     margin-top: 2px; 
 }
@@ -344,7 +352,7 @@ a.help:hover{
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     background-color: #fcf8e3;
     border: 1px solid #fbeed5;
-    -webkit-border-radius: 4px;
+    -webkit-border-radius: 4px;f
     -moz-border-radius: 4px;
     border-radius: 4px;
     font-size: 13px;
@@ -579,14 +587,20 @@ table a:hover{
 }
 
 table, th{
+    position: relative;
     border: 1px solid #613720;
 }
 
 table td{
+    position: relative;
     padding: 7px 10px;
     text-align: center;
     border-right:1px solid #613720;
     border-bottom: 1px solid #613720;
+}
+
+.text-left{
+    text-align: left;
 }
 
 table tr td:first-child{
@@ -594,12 +608,15 @@ table tr td:first-child{
 }
 
 table th, thead{
+    text-align: center;
+    position: relative;
     font-size: 17px;
     padding: 6px 5px;
     border-bottom: 2px solid #613720;
 }
 
 table thead{
+    position: relative;
     background-color: #4e2919;
     color: #FFF;
     text-align: center;
@@ -633,6 +650,10 @@ table thead{
 }
 
 .mg_t{
+    margin: 20px 0 0;
+}
+
+.mg_e{
     margin: 20px 0;
 }
 
@@ -682,6 +703,13 @@ table thead{
     height: 600px;
     margin: 2% auto;
 }
+
+.modalDialog .form_rc{
+    width: 950px;
+    height: 535px;
+    margin: 2% auto;
+}
+
 
 .modalDialog .form_glosario{
     width: 600px;
@@ -852,38 +880,36 @@ a.close:hover{
     padding: 0;
     width: 120px;
     cursor: pointer;
-    color: #8f5a0a;
+    color: #fff;
+    font-weight: bold;
+    background-color: #f58220;
 
-    background-color: #ffb94b;
-
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+   /* background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
     background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
     background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
     background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
     background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
-    background-image: linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: linear-gradient(top, #fddb6f, #ffb94b);*/
     
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
 
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+
     -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
     -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
-    
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+
     border-width: 1px;
     border-style: solid;
-    border-color: #d69e31 #e3a037 #d5982d #e3a037;
+    /*border-color: #d69e31 #e3a037 #d5982d #e3a037;*/
 }
 
 .popup .submit.blue{
     position: absolute;
     top:60px;
     left: 960px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
     background-color: #2daebf;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#2daebf), to(#1e7681));
     background-image: -webkit-linear-gradient(top, #2daebf, #1e7681);

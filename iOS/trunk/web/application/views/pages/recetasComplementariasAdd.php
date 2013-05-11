@@ -3,208 +3,112 @@
 
     <div id="status"></div>
 
-
-    <a href="<?php echo base_url() ?>" class="back"><span>←</span> regresar</a>
+    <!-- <a href="<?php echo base_url() ?>" class="back"><span>←</span> regresar</a> -->
 
     <input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
-     <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
+    <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
 
-    <ul class="slideshow">
-      <!-- <li>
-        <div class="popup bg_grey">
-
-      			<?php echo form_open(base_url()."recetas/addComplementarias/") ?>
-              <h2 class="mgt_50">Nueva receta</h2>
-
-        			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
-
-    					<div class="left">
-      					<label for="">Título: </label>
-      					<input type="text" name="titulo" id="titulo" value="<?php echo $recetas[0]['titulo'] ?>" required>
-    					</div>
-
-              <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
-
-    					<div class="left mg_input">
-      					<label for="">Categoria: </label>
-      					<select name="categoria" id="categoria">
-        					<?php	
-        						for ($i=0; $i <count($categorias) ; $i++) { ?>
-        						  <option value="<?php echo $categorias[$i]['id'] ?>" <?php if($recetas[0]['id_categoria'] == $i){ echo "selected"; }?> ><?php echo $categorias[$i]['nombre'] ?></option>
-                      <?php
-      					     } ?>
-      					</select>
-    					</div>
-
-        			<div class="clear"></div>
-
-    					<div class="left">
-      					<label for="">Procedimiento: </label>
-      					<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $recetas[0]['procedimiento'] ?></textarea>
-    					</div>
-    
-        			<div class="clear"></div>
-        					
-    					<div class="left">
-      					<label for="">Ingredientes: </label>
-      					<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $recetas[0]['ingredientes'] ?></textarea>
-    					</div>
-        
-        			<div class="clear"></div>
-
-    					<div class="left mg_input2">
-      					<label for="">Preparación: </label>
-      					<input type="text" name="preparacion" id="preparacion" value="<?php echo $recetas[0]['preparacion'] ?>" placeholder="minutos" required>
-    					</div>
+    <div class="bg_grey">
+      <h2 class="myriadFont title_app">Nueva receta</h2>
       
-    					<div class="left mg_input2">
-      					<label for="">Cocción: </label>
-      					<input type="text" name="coccion" value="<?php echo $recetas[0]['coccion'] ?>" id="coccion" placeholder="minutos" required>
-    					</div>
-    
-    					<div class="left mg_input2">
-      					<label for="">Costo: </label>
-      					<select name="costo" id="costo">
-        						<?php for ($i=1; $i <6 ; $i++) { ?>
-          						<option value="<?php echo $i; ?>" <?php if($recetas[0]['titulo'] ==$i ){ echo "selected";} ?>><?php echo $i; ?></option>
-        						<?php } ?>
-      					</select>
-    					</div>
+      <div id="resultComplementarias"></div>
+
+      <table id="ComplementariasRelacionadas">
+        <thead>
+          <tr>
+            <td>
+              <input class="input fix_input" type="text" name="searchComplementarias" id="searchComplementarias" placeholder="Buscar...">
+              Recetas complementarias
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" colspan="2">
+              <input type="checkbox" name="vehicle" value="Bike">complementaria 1
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left" colspan="2">
+              <input type="checkbox" name="vehicle" value="Bike">complementaria 2
+            </td>
+          </tr>
+                          
+        </tbody>
+     </table>
+    </div>
+
+    <div class="bg_grey">
+
+      <div id="resultVideos"></div>
+      <table id="videos">
+          <thead>
+          <tr>
+            <td>
+              Videos relacionados
+              <input class="input fix_input" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+
+          <?php 
+
+          if(isset($videosRelacionados))
+          { 
+            for ($i=0; $i <count($videosRelacionados) ; $i++) 
+            { 
+           ?>
+            <tr>
+              <td><?php echo $videosRelacionados[$i]['video'] ?></td>
+            </tr>              
+          <?php
+            }
+          }
+           ?>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg_grey">
       
-    					<div class="left mg_input2">
-      					<label for="">Dificultad: </label>
-      					<select name="dificultad" id="dificultad">
-        						<?php for ($i=1; $i <6 ; $i++) { ?>
-          						<option value="<?php echo $i; ?>"  <?php if($recetas[0]['dificultad'] ==$i ){ echo "selected";} ?>  ><?php echo $i; ?></option>
-        						<?php } ?>
-      					</select>
-    					</div>
-      
-        			<div class="clear"></div>
+      <div id="resultGlosary"></div>
 
-
-        			<label for="">Imagen: </label>
-        			<input type="text" name="foto" id="foto" value="<?php echo $recetas[0]['foto']; ?>" placeholder="" required>
-
-        			<button type="submit" class="submit">Siguiente</button>
-      			</form>
-      		
-      	</div>  
-		  </li> -->   
-
-      <li> <!-- Segundo elemento -->
-        <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchComplementarias" id="searchComplementarias" placeholder="Buscar...">
-          <div id="resultComplementarias"></div>
-          <table id="ComplementariasRelacionadas">
-            <thead>
-              <tr>
-                <td>Recetas complementarias</td>
-              </tr>
-            </thead>
-            <tbody>
-              <?php if(isset($complementariasRelacionadas))
-              { 
-                for ($i=0; $i <count($complementariasRelacionadas) ; $i++) 
+      <table id="glosariosRelacionados">
+        <thead>
+          <tr>
+            <td>
+              Glosarios relacionados
+              <input class="input fix_input" type="text" name="searchGlosary" id="glosarioBuscar" placeholder="Buscar glosario...">
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+             <?php
+              if(isset($glosarioRelacionado))
+              {
+                for ($i=0; $i <count($glosarioRelacionado) ; $i++) 
                 { 
-               ?>
-              <tr>
-                <td><?php echo $complementariasRelacionadas[$i]['titulo'] ?></td>
-              </tr>
-              <?php
+                  ?>
+                  <tr>
+                      <td><?php echo $glosarioRelacionado[$i]['nombre'] ?></td>
+                  </tr>
+                  <?php
                 }
               }
-               ?>
-            </tbody>
-         </table>
-        </div>
-      </li>  <!-- Fin del segundo elemento -->
-
-      <li>
-
-        <div class="bg_grey">
-         
-          <input class="input mg_bt" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
-          <div id="resultVideos"></div>
-          <table id="videos">
-              <thead>
-              <tr>
-                <td>Videos relacionados</td>
-              </tr>
-            </thead>
-            <tbody>
-
-              <?php 
-
-              if(isset($videosRelacionados))
-              { 
-                for ($i=0; $i <count($videosRelacionados) ; $i++) 
-                { 
-               ?>
-                <tr>
-                  <td><?php echo $videosRelacionados[$i]['video'] ?></td>
-                </tr>              
-              <?php
-                }
-              }
-               ?>
-            </tbody>
-          </table>
-        </div>
-        
-      </li>
+             ?>
+        </tbody>
+      </table>
+    </div>
 
 
-      <li>
-
-        <div class="bg_grey">
-          <input class="input mg_bt" type="text" name="searchGlosary" id="glosarioBuscar" placeholder="Buscar glosario...">
-          
-          <div id="resultGlosary"></div>
-
-          <table id="glosariosRelacionados">
-            <thead>
-              <tr>
-                <td>Glosarios relacionados</td>
-              </tr>
-            </thead>
-            <tbody>
-                 <?php
-                  if(isset($glosarioRelacionado))
-                  {
-                    for ($i=0; $i <count($glosarioRelacionado) ; $i++) 
-                    { 
-                      ?>
-                      <tr>
-                          <td><?php echo $glosarioRelacionado[$i]['nombre'] ?></td>
-                      </tr>
-                      <?php
-                    }
-                  }
-                 ?>
-            </tbody>
-          </table>
-        </div>
-
-      </li>
-
-      <li>Finalizar</li>
-
-
-
-    </ul>
+  </div>
 </div>
 
 <script>
 
 var base_url = "<?php echo base_url() ?>";
 var app = $("#id_app").val();
-
-var bxSlider = $('.slideshow').bxSlider({
-    mode: 'horizontal', // 'horizontal', 'vertical', 'fade'
-    pager: true    
-  });
-
 
 // Buscar recetas complementarias
 
@@ -213,7 +117,6 @@ var bxSlider = $('.slideshow').bxSlider({
 
 $("#searchComplementarias").keyup(function ()
 {
-
     var titulo = $("#searchComplementarias").val();
     var app = $("#id_app").val();
     var id_receta = $("#id_receta").val();
