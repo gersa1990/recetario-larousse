@@ -83,8 +83,6 @@
 			<button id="editar" onclick="editar()" type="submit" class="submit blue">Editar</button>
 			<button id="guardar" onclick="guardar()" type="submit" class="submit blue">Guardar</button>
 
-			<a onClick="activar()" class="button large orange">Editar</a>
-
 		</form>
 		</div>  <!-- grey-->
 
