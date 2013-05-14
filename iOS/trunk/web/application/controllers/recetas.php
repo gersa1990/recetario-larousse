@@ -44,8 +44,6 @@ class Recetas extends CI_Controller {
 
 	public function relations($id_receta,$id_app){
 
-		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
-
 		$data['app']   =  $id_app;
 
 		$nombre = $data['name'] = $this->recetas_model->get_name($id_receta);
@@ -53,13 +51,10 @@ class Recetas extends CI_Controller {
 		$data['title'] = "Nueva Receta > ".$nombre[0]['titulo'] ;
 
 		$data['recetas'] = $this->getData($id_receta);
-		$data['complementariasRelacionadas'] = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
-		//$data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados
-
-
-		$data['complementariasRelacionadas'] 		 = $this->complementarias_model->getcomplementariasRelacionadas($id_receta, $id_app);
-		$videos = $data['videosRelacionados'] 		 = $this->video_model->getVideosRelacionados($id_receta, $id_app);
-		$data['glosarioRelacionado'] 	 			 = $this->glosario_model->getGlosarioRelacionado($id_receta, $id_app);
+	
+		$data['complementarias'] = $this->complementarias_model->getRecetasComplementarias($id_app);
+		$data['videos'] = $this->video_model->get_videos( $id_app);
+		$data['glosario'] = $this->glosario_model->get_glosario($id_app);
 		
 
 		$this->load->view('templates/header', $data);

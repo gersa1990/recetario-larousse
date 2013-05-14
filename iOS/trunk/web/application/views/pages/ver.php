@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-		<!-- <a href="<?php echo base_url().'apps/view/'.$app ?>" class="back"><span>←</span> regresar</a> -->
+
 		<div class="popup bg_grey">
 	
 			<?php 
@@ -10,18 +10,18 @@
 
 			<h2 class="mgt_50"><?php echo $receta[0]['titulo'] ?></h2>
 
-			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
+			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>">
 			<input type="hidden" name="id" value="<?php echo $receta[0]['id'] ?>">
 			
 			<div class="left">
 				<label for="">Nombre: </label>
-				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'] ?>" required disabled>
+				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'] ?>" required>
 			</div>
 			
 			<div class="left mg_input">
 				<label for="">Categoria: </label>
 
-				<select name="categoria" id="categoria" disabled>
+				<select name="categoria" id="categoria">
 					<?php	
 						for ($i=0; $i <count($categorias) ; $i++) { ?>
 						<option value="<?php echo $categorias[$i]['id'] ?>" <?php if ($receta[0]['id_categoria'] ==  $categorias[$i]['id']){ echo "selected"; } ?> ><?php echo $categorias[$i]['nombre'] ?></option>
@@ -45,7 +45,7 @@
 
 			<div class="left mg_input">
 				<label for="" class="mg_t">Tiempo de cocción: </label>
-				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>"  disabled >
+				<input type="text" name="coccion" id="coccion" placeholder="minutos" value="<?php echo $receta[0]['coccion']?>">
 			</div>
 			
 			<div class="left mg_input">
@@ -80,11 +80,11 @@
 			
 			<div class="clear"></div>
 			
-			<button id="editar" onclick="editar()" type="submit" class="submit blue">Editar</button>
+			<button id="editar" type="button" class="submit blue">Editar</button>
 			<button id="guardar" onclick="guardar()" type="submit" class="submit blue">Guardar</button>
 
 		</form>
-		</div>  <!-- grey-->
+		</div>  <!-- Form -->
 
 		<div id="glosario" class="tablas">
 			<table id="" class="wt_50">
@@ -92,7 +92,7 @@
 	            	<tr>
 	              		<th colspan="2">
 	              			Glosario receta
-	              			<!-- <a href="#buscar_compl" class="button orange mg_form">Agregar</a> -->
+							<a href="#add_glosario" class="button orange mg_form">Agregar</a>
 	              		</th>
 	              		
 	            	</tr>
@@ -100,22 +100,43 @@
 
 	          	<tbody>
 					<?php
-						if(isset($glosarioRelacionado))
-						{
+						if(isset($glosarioRelacionado)){
 							for ($i=0; $i <count($glosarioRelacionado) ; $i++) 
 							{ 
 								?>
 								<tr>
 									<td><?php echo $glosarioRelacionado[$i]['nombre']; ?></td>
-									<td><?php echo "<a href='#eliminarGlosario".$glosarioRelacionado[$i]['id']."'>Eliminar</a>"; ?></td>
+									<td class="delete">
+										<?php echo "<a href='#eliminarGlosario".$glosarioRelacionado[$i]['id']."'>Eliminar</a>"; ?>
+									</td>
 								</tr>
+
+								<div id="eliminarGlosario<?php echo $glosarioRelacionado[$i]['id']; ?>" class="modalDialog">
+			                        <div class="popup form_delete">
+`
+			                          <a href="#" title="Close" class="close">x</a>
+			                
+			                          <?php echo form_open("glosario/deleteToRecipe/"); ?>
+			                            <h2>Término de glosario</h2>
+
+			                            <input type="hidden" name="id_glosario" value="<?php echo $glosarioRelacionado[$i]['id']; ?>">
+			                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+										<input type="hidden" name="id_receta" value="<?php echo $receta[0]['id'] ?>">
+			
+
+			                            <p class="mg-auto"><?php echo $glosarioRelacionado[$i]['nombre']; ?></p>         
+			                            <button type="submit" class="submit">Eliminar</button>
+
+			                          </form>
+			                    	</div>
+			                    </div>
 								<?php
 							}
-						} 
+						}
 					?>
 	          	</tbody>
 	        </table>
-		</div>
+		</div> <!-- Tabla glosario -->
 
 		<div id="complementarias" class="tablas">
 			<table id="" class="wt_50">
@@ -123,7 +144,7 @@
 	            	<tr>
 	              		<th colspan="2">
 	              			Complementarias receta
-	              			<!-- <a href="#buscar_compl" class="button orange mg_form">Agregar</a> -->
+	              			<a href="#add_receta" class="button orange mg_form">Agregar</a>
 	              		</td>
 	            	</tr>
 	          	</thead>
@@ -137,15 +158,37 @@
 								?>
 								<tr>
 									<td><?php echo $complementariasRelacionadas[$i]['titulo']; ?></td>
-									<td><?php echo "<a href='#eliminarGlosario".$complementariasRelacionadas[$i]['id']."'>Eliminar</a>"; ?></td>
+									<td class="delete">
+										<?php echo "<a href='#eliminarReceta".$complementariasRelacionadas[$i]['id']."'>Eliminar</a>"; ?>
+									</td>
 								</tr>
+
+								<div id="eliminarReceta<?php echo $complementariasRelacionadas[$i]['id']; ?>" class="modalDialog">
+			                        <div class="popup form_delete">
+
+			                          <a href="#" title="Close" class="close">x</a>
+			                
+			                          <?php echo form_open("complementarias/delete/"); ?>
+
+										<input type="hidden" name="id_app" value="<?php echo $app; ?>">
+			                          	<input type="hidden" name="id_comp" value="<?php echo $complementariasRelacionadas[$i]['id']; ?>">
+			                          	<input type="hidden" name="id_receta" value="<?php echo $receta[0]['id'] ?>">
+
+			                            <h2>Receta complementaria</h2>
+			                            <p class="mg-auto"><?php echo $complementariasRelacionadas[$i]['titulo']; ?></p>         
+			                            <button type="submit" class="submit">Eliminar</button>
+
+			                          </form>
+			                        </div>
+			                     </div>
+
 								<?php
 							}
 						} 
-					?>		
+					?>	
 	          	</tbody>
 	        </table>
-		</div>
+		</div> <!-- Tabla complementarias -->
 
 		<div id="videos" class="tablas">
 			<table id="" class="wt_50">
@@ -153,7 +196,7 @@
 	            	<tr>
 	              		<th colspan="2">
 	              			Videos receta
-	              			<!-- <a href="#buscar_compl" class="button orange mg_form">Agregar</a> -->
+	              			<a href="#add_video" class="button orange mg_form">Agregar</a>
 	              		</th>
 
 	            	</tr>
@@ -168,17 +211,40 @@
 								?>
 								<tr>
 									<td><?php echo $videosRelacionados[$i]['video']; ?></td>
-									<td><?php echo "<a href='#eliminarGlosario".$videosRelacionados[$i]['id']."'>Eliminar</a>"; ?></td>
+									<td class="delete">
+										<?php echo "<a href='#eliminarVideo".$videosRelacionados[$i]['id']."'>Eliminar</a>"; ?>
+									</td>
 								</tr>
+
+								<div id="eliminarVideo<?php echo $videosRelacionados[$i]['id']; ?>" class="modalDialog">
+			                        <div class="popup form_delete">
+
+			                          <a href="#" title="Close" class="close">x</a>
+			                
+			                          <?php echo form_open("videos/delete/"); ?>
+
+			                           	<input type="hidden" name="id_video" value="<?php echo $videosRelacionados[$i]['id']; ?>">
+			                           	<input type="hidden" name="id_app" value="<?php echo $app; ?>">
+			                           	<input type="hidden" name="id_receta" value="<?php echo $receta[0]['id'] ?>">
+
+			                            <h2>Video</h2>
+			                            <p class="mg-auto"><?php echo $videosRelacionados[$i]['titulo']; ?></p>         
+			                            <button type="submit" class="submit">Eliminar</button>
+
+			                          </form>
+			                        </div>
+			                     </div>
+
 								<?php
 							}
-						} 
+						}
 					?>
 	          	</tbody>
 	        </table>
-		</div>
+		</div> <!-- Tabla video -->
+
 		<!-- popup's-->
-		<div id="buscar_receta" class="modalDialog">
+		<div id="add_glosario" class="modalDialog">
           <div class="popup form_receta">
 
             <a href="#" title="Close" class="close">x</a>
@@ -209,9 +275,9 @@
 	          </tbody>
 	        </table>
           </div>
-        </div>
+        </div> <!-- popup addglosario -->
 		
-		<div id="buscar_compl" class="modalDialog">
+		<div id="add_receta" class="modalDialog">
           <div class="popup form_receta">
 
             <a href="#" title="Close" class="close">x</a>
@@ -242,9 +308,9 @@
 	          </tbody>
 	        </table>
           </div>
-        </div>
+        </div><!-- popup receta -->
 
-        <div id="buscar_video" class="modalDialog">
+        <div id="add_video" class="modalDialog">
           <div class="popup form_receta">
 
             <a href="#" title="Close" class="close">x</a>
@@ -275,14 +341,32 @@
 	          </tbody>
 	        </table>
           </div>
-        </div>
+        </div><!-- popup addvideo -->
 
+
+        <!-- popup eliminar -->
+        
 
 	</div>
 </div>
 
 <script>
 	  $(document).ready(function (){
+	  	$('#guardar').hide();
+	  	$('.mg_form').hide();
+	  	$('.delete').hide();
+	  	$('input').attr("disabled", "disabled");
+	  	$('select').attr('disabled', true);
+
+	  	$('#editar').click(function (){
+			$('#guardar').show();
+			$('.mg_form').show();
+			$('.delete').show();
+			$('input').removeAttr('disabled');
+			$('select').attr('disabled', false);
+
+			tinymce.get('ingredientes').settings.readonly = false;
+	  	});
 
 	    var tiny = tinymce;
 
@@ -291,26 +375,7 @@
 	        menubar: false,
 	        width: 950,
 	        readonly: true,
-	        theme : 'modern',
-	        skin : 'lightgray',
-	        protect: [
-        		/\<\/?(if|endif)\>/g,
-        		/\<xsl\:[^>]+\>/g,
-        		/<\?php.*?\?>/g],
-        	visual: false
 	    });
 
-
-
 	  });
-
-
-
-	function activar()
-	{
-  		$('textarea').removeAttr("readonly");
-		$('#guardar').show();
-		$('.mg_form').show();
-  	}
-
 </script>

@@ -120,6 +120,7 @@ label{
 .bg_grey{
     padding: 20px 10px;
     background-color: #fbfbfb;
+    border: 1px solid #efefef;
 }
 
 .columna{
@@ -185,8 +186,10 @@ label{
 }
 
 .mg_form{
+    position: absolute !important;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    right: -395px;
+    right: 3px;
+    top: 3px;
     margin: 0 !important;
     text-transform: none;
 }
@@ -586,6 +589,13 @@ table a:hover{
     text-decoration: underline;
 }
 
+table, thead, tbody, th, td, tr{
+    -webkit-transition: all 1.2s linear;
+    -moz-transition: all 1.2s linear;
+    -o-transition: all 1.2s linear;
+    transition: all 1.2s linear;
+}
+
 table, th{
     position: relative;
     border: 1px solid #613720;
@@ -611,7 +621,7 @@ table th, thead{
     text-align: center;
     position: relative;
     font-size: 17px;
-    padding: 6px 5px;
+    padding: 7px 5px;
     border-bottom: 2px solid #613720;
 }
 
@@ -789,6 +799,10 @@ a.close:hover{
     background-color: #3788c8;
 }
 
+.tablas table   tr td:first-child{
+    width: 50%;
+}
+
 /*************************************/
 /*           divs                    */
 /*************************************/
@@ -828,6 +842,41 @@ a.close:hover{
     height: 30px;
     background-color: #ccc;
 }
+
+/*************************************/
+/*           Formu                   */
+/*************************************/
+form{
+    display: block;
+}
+
+fieldset{
+    display: block;
+    width: 1043px;
+    min-height: 200px;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    padding: 10px;
+    line-height: 100%;
+}
+
+fieldset table thead{
+    background-color: #ccc;
+
+}
+
+fieldset table {
+    border: 1px solid #000;
+    background-color: none ;
+
+}
+
+fieldset legend{
+    display: block;
+    padding: 0 10px;
+}
+
+
 /*************************************/
 /*           Formulario              */
 /*************************************/
@@ -872,7 +921,7 @@ a.close:hover{
     height: 400px;
 }
 
-.popup .submit {
+.submit {
     position: relative;
     left: 50%;
     margin-left: -60px;
@@ -884,12 +933,12 @@ a.close:hover{
     font-weight: bold;
     background-color: #f58220;
 
-   /* background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
-    background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
-    background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
-    background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
-    background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
-    background-image: linear-gradient(top, #fddb6f, #ffb94b);*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f58220), to(#f69038));
+    background-image: -webkit-linear-gradient(top, #f58220, #f69038);
+    background-image: -moz-linear-gradient(top, #f58220, #f69038);
+    background-image: -ms-linear-gradient(top, #f58220, #f69038);
+    background-image: -o-linear-gradient(top, #f58220, #f69038);
+    background-image: linear-gradient(top, #f58220, #f69038);
     
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -901,12 +950,15 @@ a.close:hover{
     -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
 
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+
     border-width: 1px;
     border-style: solid;
-    /*border-color: #d69e31 #e3a037 #d5982d #e3a037;*/
+    border-color: #f1750b #f69038 #f1750b #f69038;
 }
 
-.popup .submit.blue{
+.submit.blue{
     position: absolute;
     top:60px;
     left: 960px;

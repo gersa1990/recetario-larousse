@@ -138,5 +138,19 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+	public function deleteToRecipe(){
+		$id_receta 	= $_POST['id_receta'];
+		$id_glosario = $_POST['id_glosario'];
+		$id_app = $_POST['id_app'];
+
+		// echo "Receta: ".$id_receta." Glosario".$id_glosario." APP: ".$id_app;
+
+		$delete = $this->Glosario_model->deleteToRecipe($id_receta, $id_glosario);
+
+		if($delete){
+			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+		}
+	}
+
 }
 ?>

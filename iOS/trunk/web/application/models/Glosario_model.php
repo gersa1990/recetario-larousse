@@ -121,5 +121,14 @@ class Glosario_model extends CI_Model {
 		return $glosario->result_array();
 	}
 
+	public function deleteToRecipe($id_receta, $id_glosario){
+
+		$id = $this->db->query("SELECT id FROM receta_glosario WHERE id_receta = ".$id_receta." and id_glosario = ".$id_glosario."");
+		$array[] = $id->row_array();
+		$id_relacion = $array[0]['id'];
+		$delete = $this->db->delete('receta_glosario',array('id' => $id_relacion));
+		return $delete;
+	}
+
 }
 ?>

@@ -9,6 +9,8 @@ class Complementarias extends CI_Controller
 		
 		$this->load->model('complementarias_model');
 		$this->load->model('App_model');
+		$this->load->model('Glosario_model');
+		$this->load->model('video_model');
 	}
 
 	public function view($id_app)
@@ -130,6 +132,39 @@ class Complementarias extends CI_Controller
 		}
 
 	}
+
+	public function addCheck(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['complementarias'])){
+	        $ids_recetas = $_POST['complementarias'];
+
+			for ($i=0; $i <count($ids_recetas) ; $i++) { 
+				$this->complementarias_model->addToRecipe($id_receta, $ids_recetas[$i]);
+			}
+	    }
+
+	    if(isset($_POST['videos'])){
+	        $ids_videos = $_POST['videos'];
+
+			for ($i=0; $i <count($ids_videos) ; $i++) { 
+				$this->video_model->addToRecipe($id_receta, $ids_videos[$i]);
+			}
+	    }
+
+	    if(isset($_POST['glosario'])){
+	        $ids_glosario = $_POST['glosario'];
+
+			for ($i=0; $i <count($ids_glosario) ; $i++) { 
+				$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
+			}
+	    }
+		
+		redirect(base_url()."apps/view/".$id_app,"refresh");
+
+	}
+
 	
 }
 

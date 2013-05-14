@@ -8,102 +8,106 @@
     <input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>" placeholder="" required>
     <input type="hidden" id="id_receta" value="<?php echo $recetas[0]['id'] ?>">
 
-    <div class="bg_grey">
-      <h2 class="myriadFont title_app">Nueva receta</h2>
-      
-      <div id="resultComplementarias"></div>
-
-      <table id="ComplementariasRelacionadas">
-        <thead>
-          <tr>
-            <td>
-              <input class="input fix_input" type="text" name="searchComplementarias" id="searchComplementarias" placeholder="Buscar...">
-              Recetas complementarias
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" colspan="2">
-              <input type="checkbox" name="vehicle" value="Bike">complementaria 1
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left" colspan="2">
-              <input type="checkbox" name="vehicle" value="Bike">complementaria 2
-            </td>
-          </tr>
-                          
-        </tbody>
-     </table>
-    </div>
+    <h2 class="myriadFont title_app">Nueva receta</h2>
 
     <div class="bg_grey">
+      <?php
+        echo form_open('complementarias/addCheck');?>
+        <input type="hidden" name="id_app" value="<?php echo $app; ?>">
+        <input type="hidden" name="id_receta" value="<?php echo $recetas[0]['id'] ?>">
 
-      <div id="resultVideos"></div>
-      <table id="videos">
-          <thead>
-          <tr>
-            <td>
-              Videos relacionados
-              <input class="input fix_input" type="text" name="searchVideos" id="searchVideos" placeholder="Buscar...">
-            </td>
-          </tr>
-        </thead>
-        <tbody>
+        <fieldset>
+        <!-- <legend>Recetas complementarias:</legend> -->
+          <table>
+            <thead>
+              <tr>
+                <th>Recetas complementarias</th>
+              </tr>
+            </thead>
 
-          <?php 
-
-          if(isset($videosRelacionados))
-          { 
-            for ($i=0; $i <count($videosRelacionados) ; $i++) 
-            { 
-           ?>
-            <tr>
-              <td><?php echo $videosRelacionados[$i]['video'] ?></td>
-            </tr>              
-          <?php
-            }
-          }
-           ?>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="bg_grey">
-      
-      <div id="resultGlosary"></div>
-
-      <table id="glosariosRelacionados">
-        <thead>
-          <tr>
-            <td>
-              Glosarios relacionados
-              <input class="input fix_input" type="text" name="searchGlosary" id="glosarioBuscar" placeholder="Buscar glosario...">
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-             <?php
-              if(isset($glosarioRelacionado))
-              {
-                for ($i=0; $i <count($glosarioRelacionado) ; $i++) 
-                { 
-                  ?>
-                  <tr>
-                      <td><?php echo $glosarioRelacionado[$i]['nombre'] ?></td>
-                  </tr>
-                  <?php
+            <tbody>
+              <?php
+                if(isset($complementarias)){
+                  for ($i=0; $i <count($complementarias) ; $i++) { 
+                    ?>
+                    <tr>
+                      <td class="txleft">
+                        <input type="checkbox" name="complementarias[]" value="<?php echo $complementarias[$i]['id']?>">
+                        <?php echo $complementarias[$i]['titulo']; ?>
+                      </td>
+                    </tr>
+                    <?php
+                  }
                 }
-              }
-             ?>
-        </tbody>
-      </table>
+              ?>
+            </tbody>
+          </table>
+        </fieldset>
+
+        <fieldset>
+        <!-- <legend>Videos:</legend> -->
+          <table>
+            <thead>
+              <tr>
+                <th>Videos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                if(isset($videos)){
+                  for ($i=0; $i <count($videos) ; $i++) { 
+                    ?>
+                    <tr>
+                      <td class="txleft">
+                        <input type="checkbox" name="videos[]" value="<?php echo $videos[$i]['id'];?>">
+                        <?php echo $videos[$i]['titulo']; ?>
+                      </td>
+                    </tr>
+                    <?php
+                  }
+                }
+              ?>
+            </tbody>
+          </table>
+        </fieldset>
+
+        <fieldset>
+        <!-- <legend>Terminos de glosario:</legend> -->
+
+        <table>
+          <thead>
+            <tr>
+              <th>Terminos de glosario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              if(isset($glosario)){
+                for ($i=0; $i <count($glosario) ; $i++) { 
+                ?>
+                <tr>
+                  <td class="txleft">
+                    <input type="checkbox" name="glosario[]" value="<?php echo $glosario[$i]['id']; ?>">
+                    <?php echo $glosario[$i]['nombre']; ?>
+                  </td>
+                </tr>
+                <?php
+                }
+              } 
+            ?>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <input type="submit" class="submit" value="Guardar" /> 
+      </form>
+
     </div>
 
+    
 
-  </div>
-</div>
+  </div><!-- main -->
+</div><!-- wrapper -->
 
 <script>
 
