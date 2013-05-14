@@ -91,5 +91,16 @@ class video_model extends CI_Model {
 		$videos = $this->db->query("SELECT * FROM video WHERE titulo LIKE '%".$nombre."%'  and id_app = ".$id_app." ");
 		return $videos->result_array();
 	}
+
+	public function deleteToRecipe($id_receta, $id_video){
+
+		$delete = $this->db->query("DELETE FROM videos_x_receta WHERE id_receta = ".$id_receta." and id_video = ".$id_video."");
+		return $delete;
+	}
+
+	public function getComplemento($id_app, $id_receta){
+		$query = $this->db->query("select * from video where id_app = ".$id_app." and id !=  all (select distinct id_video from videos_x_receta where id_receta = ".$id_receta.")");
+		return $query->result_array();
+	}
 }
 ?>

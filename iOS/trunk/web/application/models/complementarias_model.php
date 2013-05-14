@@ -93,5 +93,17 @@ class complementarias_model extends CI_Model {
 		return $id_complementaria; 
 
 	}
+
+	public function deleteToRecipe($id_receta, $id_comp){
+
+		$detele = $this->db->query("DELETE FROM relaciones WHERE id_receta = ".$id_receta." and id_receta_complementaria = ".$id_comp."");
+		return $detele;
+	}
+
+	public function getComplemento($id_app, $id_receta){
+		$query = $this->db->query("select * from recetas_complementarias where id_app = ".$id_app." and id != all (select distinct id_receta_complementaria from relaciones where id_receta = ".$id_receta.")");
+		return $query->result_array();
+
+	}
 }
 ?>

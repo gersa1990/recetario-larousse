@@ -184,8 +184,34 @@ class Videos extends CI_Controller {
 
                   </tr>"; 
 		}
+	}
 
-		
+	public function deleteToRecipe(){
+		$id_receta 	= $_POST['id_receta'];
+		$id_video = $_POST['id_video'];
+		$id_app = $_POST['id_app'];
+
+		$delete = $this->video_model->deleteToRecipe($id_receta, $id_video);
+
+		if($delete){
+			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+		}
+
+	}
+
+	public function addCheckVideos(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['videosComplemento'])){
+	        $ids_videos = $_POST['videosComplemento'];
+
+			for ($i=0; $i <count($ids_videos) ; $i++) { 
+				$this->video_model->addToRecipe($id_receta, $ids_videos[$i]);
+			}
+	    }
+	    
+	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
 
 	}
 

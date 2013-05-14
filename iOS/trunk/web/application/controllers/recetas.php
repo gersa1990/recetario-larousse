@@ -173,7 +173,7 @@ class Recetas extends CI_Controller {
 
 		$id 		   	= $_POST['id'];
 
-		$data->titulo			= $_POST['titulo'];
+		@$data->titulo			= @$_POST['titulo'];
 		$data->id_app 			= $_POST['id_app'];
 		$data->id_categoria 	= $_POST['categoria'];
 		$data->dificultad  		= $_POST['dificultad'];
@@ -203,7 +203,11 @@ class Recetas extends CI_Controller {
 		$nombre = $data['name'] 				= $this->App_model->get_name($id_app);
 		$data['glosarioRelacionado']			= $this->glosario_model->getGlosarioRelacionado($id,$id_app);
 		$data['videosRelacionados']				= $this->video_model->getVideosRelacionados($id,$id_app);
-		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app); 
+		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app);
+
+		$data['glosarioComplemento'] = $this->glosario_model->getComplemento($id_app, $id);
+		$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
+		$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
 
 		$this->load->helper('url');
 

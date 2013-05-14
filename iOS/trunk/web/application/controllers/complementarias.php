@@ -100,6 +100,7 @@ class Complementarias extends CI_Controller
 
 	}
 
+
 	public function searchByName(){
 
 		$nombre = $_POST['palabra'];
@@ -164,6 +165,37 @@ class Complementarias extends CI_Controller
 		redirect(base_url()."apps/view/".$id_app,"refresh");
 
 	}
+
+
+	public function addCheckComplemento(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['recetasComplemento'])){
+	        $ids_recetas = $_POST['recetasComplemento'];
+
+			for ($i=0; $i <count($ids_recetas) ; $i++) { 
+				$this->complementarias_model->addToRecipe($id_receta, $ids_recetas[$i]);
+			}
+	    }
+
+	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+
+	}
+
+	public function deleteToRecipe(){
+		$id_receta 	= $_POST['id_receta'];
+		$id_comp = $_POST['id_comp'];
+		$id_app = $_POST['id_app'];
+
+		$delete = $this->complementarias_model->deleteToRecipe($id_receta, $id_comp);
+
+		if($delete){
+			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+		}
+
+	}
+
 
 	
 }

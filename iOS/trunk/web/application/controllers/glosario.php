@@ -62,8 +62,21 @@ class Glosario extends CI_Controller {
 		{
 			echo "No se encontro";
 		}
+	}
 
-		
+	public function addCheckGlosario(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['glosarioComplemento'])){
+	        $ids_glosario = $_POST['glosarioComplemento'];
+
+			for ($i=0; $i <count($ids_glosario) ; $i++) { 
+				$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
+			}
+	    }
+	    
+	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
 
 	}
 
@@ -142,9 +155,7 @@ class Glosario extends CI_Controller {
 		$id_receta 	= $_POST['id_receta'];
 		$id_glosario = $_POST['id_glosario'];
 		$id_app = $_POST['id_app'];
-
-		// echo "Receta: ".$id_receta." Glosario".$id_glosario." APP: ".$id_app;
-
+		
 		$delete = $this->Glosario_model->deleteToRecipe($id_receta, $id_glosario);
 
 		if($delete){
