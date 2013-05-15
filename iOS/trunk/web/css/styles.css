@@ -172,6 +172,20 @@ label{
     width: 90% !important;
 }
 
+
+.prev{
+    background: white;
+    padding: 10px; 
+    min-height: 300px;
+    border: 1px solid #ccc;
+}
+
+.prev p{
+    font-size: 12px !important;
+    font-weight: normal !important;
+    margin: 0 !important;
+}
+
 .title_app{
     margin: 0 0 33px;
     font-size: 30px;
@@ -799,8 +813,23 @@ a.close:hover{
     background-color: #3788c8;
 }
 
-.tablas table   tr td:first-child{
+
+.modalDialog table tr td:first-child{
     width: 50%;
+}
+
+ .submit.add{
+    width: auto;
+    padding: 5px 10px;
+ }
+
+ .modalDialog table input{
+    width: auto;
+    min-height: auto;
+    display: inline;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
 }
 
 /*************************************/

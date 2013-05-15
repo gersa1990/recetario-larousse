@@ -7,6 +7,28 @@ class complementarias_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo = '".$palabra."' and id_app = ".$id_app."  ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
+	public function updateCheckExistence($palabra, $id_complementaria, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo = '".$palabra."' and id != ".$id_complementaria." and id_app = ".$id_app." ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
 	public function searchByName($nombre , $id_app){
 
 		$complementarias =  $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo LIKE '%".$nombre."%'  and  id_app = ".$id_app."  ");
@@ -91,6 +113,18 @@ class complementarias_model extends CI_Model {
 		$insert = $this->db->insert('relaciones', $data);
 
 		return $id_complementaria; 
+
+	}
+
+	public function deleteToRecipe($id_receta, $id_comp){
+
+		$detele = $this->db->query("DELETE FROM relaciones WHERE id_receta = ".$id_receta." and id_receta_complementaria = ".$id_comp."");
+		return $detele;
+	}
+
+	public function getComplemento($id_app, $id_receta){
+		$query = $this->db->query("select * from recetas_complementarias where id_app = ".$id_app." and id != all (select distinct id_receta_complementaria from relaciones where id_receta = ".$id_receta.")");
+		return $query->result_array();
 
 	}
 }

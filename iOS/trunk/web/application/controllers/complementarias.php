@@ -13,6 +13,25 @@ class Complementarias extends CI_Controller
 		$this->load->model('video_model');
 	}
 
+	public function checkExistence(){
+
+		$palabra = $_POST['palabra'];
+		$id_app  = $_POST['id_app'];
+
+		$this->complementarias_model->checkExistence($palabra, $id_app);
+	}
+
+	public function updateCheckExistence(){
+
+		$palabra 			= $_POST['nombre'];
+		$id_complementaria 	= $_POST['complementaria'];
+		$id_app 			= $_POST['id_app'];
+
+		//echo "Palabra: ".$palabra." Complementaria: ".$id_complementaria." App: ".$id_app;
+
+		$this->complementarias_model->updateCheckExistence($palabra, $id_complementaria, $id_app);
+	}
+
 	public function view($id_app)
 	{
 		$nombre = $data['name'] = $this->App_model->get_name($id_app);
@@ -28,7 +47,7 @@ class Complementarias extends CI_Controller
 		$data['app'] = $id_app;
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/complementariasShow', $data);
+		$this->load->view('pages/complementarias', $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -100,6 +119,7 @@ class Complementarias extends CI_Controller
 
 	}
 
+
 	public function searchByName(){
 
 		$nombre = $_POST['palabra'];
@@ -164,6 +184,37 @@ class Complementarias extends CI_Controller
 		redirect(base_url()."apps/view/".$id_app,"refresh");
 
 	}
+
+
+	public function addCheckComplemento(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['recetasComplemento'])){
+	        $ids_recetas = $_POST['recetasComplemento'];
+
+			for ($i=0; $i <count($ids_recetas) ; $i++) { 
+				$this->complementarias_model->addToRecipe($id_receta, $ids_recetas[$i]);
+			}
+	    }
+
+	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+
+	}
+
+	public function deleteToRecipe(){
+		$id_receta 	= $_POST['id_receta'];
+		$id_comp = $_POST['id_comp'];
+		$id_app = $_POST['id_app'];
+
+		$delete = $this->complementarias_model->deleteToRecipe($id_receta, $id_comp);
+
+		if($delete){
+			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+		}
+
+	}
+
 
 	
 }

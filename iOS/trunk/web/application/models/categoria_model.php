@@ -6,6 +6,28 @@ class categoria_model extends CI_Model {
 		$this->load->database();
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM categoria WHERE nombre = '".$palabra."' and id_app = ".$id_app." ");
+		$array  = $existe->row_array(); 
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
+	public function updateCheckExistence($palabra, $id_app, $id_categoria){
+
+		$existe = $this->db->query("SELECT * FROM categoria WHERE nombre = '".$palabra."' and id_app = ".$id_app." and id != ".$id_categoria."   ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}		
+	}
+
 	public function searchByTitulo($nombre, $id_app){
 
 		$categorias = $this->db->query("SELECT * FROM categoria WHERE nombre LIKE '%".$nombre."%' and id_app = ".$id_app." ");

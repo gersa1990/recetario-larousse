@@ -234,9 +234,6 @@ class export_model extends CI_Model {
 				
 			}
 
-			//var_dump($categorias);
-
-
 			return $categorias;
 		}
 	}
@@ -287,14 +284,10 @@ class export_model extends CI_Model {
 		{
 			$recetasId = array_unique($arreglo);
 
-			//var_dump($recetasId);
-
 			$j=0;
 			foreach ($recetasId as $key => $value) 
 			{
-				//echo "VALUE: ".$value."<br/>";
 				$idGlosario = $value;
-
 				$query 	   = $this->db->query("SELECT id,nombre,descripcion,imagen FROM glosario WHERE id = ".$idGlosario."");
 				$glosario[]  = $query->row_array();
 
@@ -335,18 +328,15 @@ class export_model extends CI_Model {
 			$array[$i]['id'] 	       	= $value->id;
 			$array[$i]['titulo'] 	  	= $value->titulo;
 			$array[$i]['id_categoria'] 	= $value->id_categoria;
-			
 			$array[$i]['procedimiento'] = $value->procedimiento;
 			$array[$i]['ingredientes'] 	= $value->ingredientes;
 			$array[$i]['preparacion'] 	= $value->preparacion;
 			$array[$i]['coccion'] 	  	= $value->coccion;
 			$array[$i]['costo'] 		= $value->costo;
-			
 			$array[$i]['foto'] 			= $value->foto;
 			$array[$i]['user_fav'] 		= $value->user_fav;
 			$array[$i]['dificultad']	= $value->dificultad;
 			$array[$i]['preparada']		= $value->preparada;
-
 
 			$i++;
 		}
@@ -403,15 +393,9 @@ class export_model extends CI_Model {
 		}
 	}
 
-	public function getCategoriesFromAppId($id_app) 
-	{
-		$query = $this->db->get_where('categorias', array('id_app' => $id_app));
-	}
-
 	public function getRelationsRecipeToRecipesFromAppId($id_app)
 	{
 		$query = $this->db->query('categorias', array('id_app' => $id_app));
-
 		return $query->result();
 	}
 

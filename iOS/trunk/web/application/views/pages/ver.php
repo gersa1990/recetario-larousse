@@ -69,7 +69,10 @@
 			<div class="left">
 				<label for="" class="mg_e">Ingredientes: </label>
 				<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $receta[0]['ingredientes']?></textarea>
-				<div id="divingredientes" class="full" style="background: white; min-height: 300px; border: 1px solid orange;"><?php echo $receta[0]['ingredientes']?></div>
+
+
+				<div id="divingredientes" class="full prev"><?php echo $receta[0]['ingredientes']?></div>
+
 			</div>
 			
 			<div class="clear"></div>
@@ -77,13 +80,15 @@
 			<div class="left">
 				<label for="" class="mg_e">Procedimiento: </label>
 				<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $receta[0]['procedimiento']?></textarea>
-				<div id="divprocedimiento" class="full" style="background: white; min-height: 300px; border: 1px solid orange;"><?php echo $receta[0]['procedimiento']?></div>
+
+				<div id="divprocedimiento" class="full prev"><?php echo $receta[0]['procedimiento']?></div>
+
 			</div>
 			
 			<div class="clear"></div>
 			
 			<button id="editar" type="button" class="submit blue">Editar</button>
-			<button id="guardar" onclick="guardar()" type="submit" class="submit blue">Guardar</button>
+			<button id="guardar" type="submit" class="submit blue">Guardar</button>
 
 		</form>
 		</div>  <!-- Form -->
@@ -115,7 +120,6 @@
 
 								<div id="eliminarGlosario<?php echo $glosarioRelacionado[$i]['id']; ?>" class="modalDialog">
 			                        <div class="popup form_delete">
-`
 			                          <a href="#" title="Close" class="close">x</a>
 			                
 			                          <?php echo form_open("glosario/deleteToRecipe/"); ?>
@@ -170,7 +174,7 @@
 
 			                          <a href="#" title="Close" class="close">x</a>
 			                
-			                          <?php echo form_open("complementarias/delete/"); ?>
+			                          <?php echo form_open("complementarias/deleteToRecipe/"); ?>
 
 										<input type="hidden" name="id_app" value="<?php echo $app; ?>">
 			                          	<input type="hidden" name="id_comp" value="<?php echo $complementariasRelacionadas[$i]['id']; ?>">
@@ -223,7 +227,7 @@
 
 			                          <a href="#" title="Close" class="close">x</a>
 			                
-			                          <?php echo form_open("videos/delete/"); ?>
+			                          <?php echo form_open("videos/deleteToRecipe/"); ?>
 
 			                           	<input type="hidden" name="id_video" value="<?php echo $videosRelacionados[$i]['id']; ?>">
 			                           	<input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -251,31 +255,45 @@
 
             <a href="#" title="Close" class="close">x</a>
 
-            <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-            
-            <table id="recetas">
-	          <thead>
-	            <tr>
-	              <th colspan="3">Recetas</th>
-	            </tr>
-	          </thead>
+            <h2 class="mg_20 myriadFont">Terminos de glosario</h2>
+            <?php echo form_open('glosario/addCheckGlosario');?>
 
-	          <tbody>
-                  <tr>
-                      <td class="txleft">
-                        <a href="">
-                          Receta ejemplo
-                        </a>
-                      </td>
+            	<input type="hidden" name="id_app" value="<?php echo $app; ?>">
+			    <input type="hidden" name="id_receta" value="<?php echo $receta[0]['id'] ?>">
 
-                      <td>
-                        <a href="" class=''>
-                          Agregar
-                        </a>
-                      </td>
-                  </tr>
-	          </tbody>
-	        </table>
+
+		        <table>
+		            <thead>
+		              <tr>
+		                <th>Terminos de glosario</th>
+		              </tr>
+		            </thead>
+
+		            <tbody>
+		              <?php
+		                if(isset($glosarioComplemento)){
+		                  for ($i=0; $i <count($glosarioComplemento) ; $i++) { 
+		                    ?>
+		                    <tr>
+		                      <td class="txleft">
+		                        <input type="checkbox" name="glosarioComplemento[]" value="<?php echo $glosarioComplemento[$i]['id']?>">
+		                        <?php echo $glosarioComplemento[$i]['nombre']; ?>
+		                      </td>
+		                    </tr>
+		                    <?php
+		                  }
+		                }
+		                else
+		                {
+		                	echo "glosario";
+		                }
+		              ?>
+		            </tbody>
+	         	</table>
+
+	         	<input type="submit" class="submit add" value="Agregar"/> 
+      		</form>
+
           </div>
         </div> <!-- popup addglosario -->
 		
@@ -284,31 +302,53 @@
 
             <a href="#" title="Close" class="close">x</a>
 
-            <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-            
-            <table id="recetas">
-	          <thead>
-	            <tr>
-	              <th colspan="3">Recetas</th>
-	            </tr>
-	          </thead>
 
-	          <tbody>
-                  <tr>
-                      <td class="txleft">
-                        <a href="">
-                         	Receta ejemplo
-                        </a>
-                      </td>
+            <h2 class="mg_20 myriadFont">Relacionar receta complementaria</h2>
+            <?php echo form_open('complementarias/addCheckComplemento');?>
 
-                      <td>
-                        <a href="" class=''>
-                          Agregar
-                        </a>
-                      </td>
-                  </tr>
-	          </tbody>
-	        </table>
+            	<input type="hidden" name="id_app" value="<?php echo $app; ?>">
+			    <input type="hidden" name="id_receta" value="<?php echo $receta[0]['id'] ?>">
+
+
+		        <table>
+		            <thead>
+		              <tr>
+		                <th>Recetas complementarias</th>
+		              </tr>
+		            </thead>
+
+		            <tbody>
+		              <?php
+		                if(isset($recetasComplemento)){
+		                  for ($i=0; $i <count($recetasComplemento) ; $i++) { 
+		                    ?>
+		                    <tr>
+		                      <td class="txleft">
+		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
+		                        <?php echo $recetasComplemento[$i]['titulo']; ?>
+		                      </td>
+		                    </tr>
+		                    <?php
+		                  }
+		                }
+		                if(!isset($recetasComplemento))
+		                {
+		                	?>
+		                	<tr>
+		                      <td class="txleft">
+		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
+		                        No existen recetas para relacionar
+		                      </td>
+		                    </tr>
+		                	<?php
+		                }
+		              ?>
+		            </tbody>
+	         	</table>
+
+	         	<input type="submit" class="submit add" value="Agregar"/> 
+      		</form>
+
           </div>
         </div><!-- popup receta -->
 
@@ -317,31 +357,47 @@
 
             <a href="#" title="Close" class="close">x</a>
 
-            <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+            <h2 class="mg_20 myriadFont">Relacionar video</h2>
+            <?php echo form_open('videos/addCheckVideos');?>
+
+            	<input type="hidden" name="id_app" value="<?php echo $app; ?>">
+			    <input type="hidden" name="id_receta" value="<?php echo $receta[0]['id'] ?>">
+
+
+		        <table>
+		            <thead>
+		              <tr>
+		                <th>Videos</th>
+		              </tr>
+		            </thead>
+
+		            <tbody>
+		              <?php
+		                if(isset($videosComplemento)){
+		                  for ($i=0; $i <count($videosComplemento) ; $i++) { 
+		                    ?>
+		                    <tr>
+		                      <td class="txleft">
+		                        <input type="checkbox" name="videosComplemento[]" value="<?php echo $videosComplemento[$i]['id']?>">
+		                        <?php echo $videosComplemento[$i]['titulo']; ?>
+		                      </td>
+		                    </tr>
+		                    <?php
+		                  }
+		                }
+		              ?>
+		            </tbody>
+	         	</table>
+
+	         	<input type="submit" class="submit add" value="Agregar"/> 
+      		</form>
             
-            <table id="recetas">
-	          <thead>
-	            <tr>
-	              <th colspan="3">Recetas</th>
-	            </tr>
-	          </thead>
+            
+			
 
-	          <tbody>
-                  <tr>
-                      <td class="txleft">
-                        <a href="">
-                          Receta ejemplo
-                        </a>
-                      </td>
 
-                      <td>
-                        <a href="" class=''>
-                          Agregar
-                        </a>
-                      </td>
-                  </tr>
-	          </tbody>
-	        </table>
+
+
           </div>
         </div><!-- popup addvideo -->
 
@@ -354,6 +410,9 @@
 
 <script>
 
+var base_url = "<?php echo base_url(); ?>";
+var app   = "<?php echo $app; ?>";
+
 	  $(document).ready(function (){
 
 	  	$('#guardar').hide();
@@ -362,8 +421,7 @@
 	  	$('input').attr("disabled", "disabled");
 	  	$('select').attr('disabled', true); 
 	  	$("#ingredientes").css('display','none');
-	  	$("#procedimiento").css('display','none'); 
-
+	  	$("#procedimiento").css('display','none');
 	  });
 
 	  $('#editar').click(function (data)
@@ -383,11 +441,23 @@
 	    	var tiny = tinymce;
 
 			tiny.init({
-	        	
+
 	        	selector: "textarea",
 	        	menubar: false,
 	        	width: 950
-	        	
+
 	    	});
 	  	});
+
+$("#titulo").keyup(function (data)
+{
+	var tittle = $("#titulo").val();
+	
+	if (tittle!=""){
+		$.post(base_url+"recetas/updateCheckExistence/", {titulo:tittle, id_app: app }, function (data)
+		{
+			console.log(data);
+		});
+	}
+});
 </script>

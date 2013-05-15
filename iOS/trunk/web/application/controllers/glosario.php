@@ -7,6 +7,23 @@ class Glosario extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
+	public function checkExistence(){
+
+		$palabra = $_POST['palabra'];
+		$id_app  = $_POST['id_app'];
+
+		$this->Glosario_model->checkExistence($palabra, $id_app);
+	}
+
+	public function updateCheckExistence(){
+
+		$palabra 		= $_POST['nombre'];
+		$id_glosario 	= $_POST['glosario'];
+		$id_app 		= $_POST['id_app'];
+
+		$this->Glosario_model->updateCheckExistence($palabra, $id_glosario, $id_app);
+	}
+
 	public function create()
 	{
 		$this->load->helper('form');
@@ -62,8 +79,21 @@ class Glosario extends CI_Controller {
 		{
 			echo "No se encontro";
 		}
+	}
 
-		
+	public function addCheckGlosario(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['glosarioComplemento'])){
+	        $ids_glosario = $_POST['glosarioComplemento'];
+
+			for ($i=0; $i <count($ids_glosario) ; $i++) { 
+				$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
+			}
+	    }
+	    
+	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
 
 	}
 
@@ -82,7 +112,7 @@ class Glosario extends CI_Controller {
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> glosario';
 		
 		$this->load->view('templates/header',$data);
-		$this->load->view('pages/glosarioShow',$data);
+		$this->load->view('pages/glosario',$data);
 		$this->load->view('templates/footer');
 
 	}
@@ -142,9 +172,7 @@ class Glosario extends CI_Controller {
 		$id_receta 	= $_POST['id_receta'];
 		$id_glosario = $_POST['id_glosario'];
 		$id_app = $_POST['id_app'];
-
-		// echo "Receta: ".$id_receta." Glosario".$id_glosario." APP: ".$id_app;
-
+		
 		$delete = $this->Glosario_model->deleteToRecipe($id_receta, $id_glosario);
 
 		if($delete){

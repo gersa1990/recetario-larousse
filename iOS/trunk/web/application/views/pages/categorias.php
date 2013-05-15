@@ -85,17 +85,19 @@
               </div>
             </div>
 
-            <div id="editarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog">
+            <div id="editarCategoria<?php echo $categorias[$i]['id']; ?>" class="modalDialog editarCategoria">
               <div class="popup form_categoria">
                 <a href="#" title="Close" class="close">x</a>
                 
                 <?php echo form_open("categorias/edit/"); ?>
                   <h2 class="mg_20 myriadFont">Editar categoría</h2>
 
+                  <input type="hidden" name="id_categoria" id="id_categoria" value="<?php echo $categorias[$i]['id']; ?>">
+
                   <div class="centrar">
                     <label for="">Nombre: </label>
-                    <input type="text" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>" required>
-                  
+                    <input type="text" id="nombreEditar" name="nombre" value="<?php echo $categorias[$i]['nombre']; ?>" required>
+                    <div class="alert error" id="updateCategoria" style="display:none;">Este nombre de categoria ya existe</div>
                   
                     <div id="divColorEditar">
                       <label for="">Color:</label>
@@ -113,7 +115,7 @@
                   <input type="hidden" name="id" value="<?php echo $categorias[$i]['id']; ?>">
                   <input type="hidden" name="id_app" value="<?php echo $app; ?>">
                   
-                  <button type="submit" class="submit">Guardar</button>
+                  <button type="submit" class="submit" id="submitUpdateCategoria">Guardar</button>
                 </form>
               
               </div>
@@ -139,7 +141,11 @@
 
                   <div class="centrar">
                     <label for="">Nombre: </label>
-                    <input type="text" name="nombre" value="" placeholder="nombre" required>
+                    <input type="text" id="nombre" name="nombre" value="" placeholder="nombre" required>
+                    
+                    <div class="alert error" id="errorNuevaCategoria" style="display:none;">
+                      Este nombre de categoria ya existe.
+                    </div>
                   
                   
                     <div id="divColorEditar">
@@ -154,7 +160,7 @@
 
                   <input type="hidden" name="id_app" value="<?php echo $app; ?>">
                   
-                  <button type="submit" class="submit">Guardar</button>
+                  <button type="submit" id="submitNuevaCategoria" class="submit">Guardar</button>
                 </form>
               
               </div>
@@ -239,6 +245,55 @@ $("#color2").ColorPicker({
 $("#exportar").click(function ()
 {
   location.href=""+base_url+"export/create/"+app+"";
+});
+
+$("#nuevaCategoria #nombre").keyup(function ()
+{
+    var tittle = $("#nuevaCategoria #nombre").val();
+    //console.log(tittle);
+
+    $.post(base_url+"categorias/checkExistence/", {titulo:tittle, id_app: app }, function (datos)
+    {
+        if (datos=="Existe") 
+        {
+          $("#errorNuevaCategoria").slideDown("slow");
+          $("#submitNuevaCategoria").slideUp("slow");
+        }
+        else
+        {
+          $("#errorNuevaCategoria").slideUp("slow");
+          $("#submitNuevaCategoria").slideDown("slow"); 
+        }
+
+    });
+});
+
+$(".editarCategoria").each(function (data)
+{
+  var id            = $(this).attr('id');
+
+  $("#"+id+" #nombreEditar").keyup(function ()
+  {
+    var nombre = $("#"+id+" #nombreEditar").val();
+    var id_categoria  = $("#"+id+" #id_categoria").val();
+    //console.log(id_categoria);
+
+    $.post(base_url+"categorias/updateCheckExistence/", {titulo: nombre, id_app:app, id_cat:id_categoria }, function (data)
+    {
+        if(data=="Existe")
+        {
+          $("#"+id+" #updateCategoria").slideDown("slow");
+          $("#"+id+" #submitUpdateCategoria").slideUp("slow");
+        }
+        else
+        {
+          $("#"+id+" #updateCategoria").slideUp("slow");
+          $("#"+id+" #submitUpdateCategoria").slideDown("slow");
+        }
+    });
+
+  });
+
 });
 
 </script>

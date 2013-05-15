@@ -7,6 +7,24 @@ class Videos extends CI_Controller {
 		$this->load->model('App_model');
 	}	
 
+	public function checkExistence(){
+
+		$palabra = $_POST['palabra'];
+		$id_app  = $_POST['id_app'];
+
+		$this->video_model->checkExistence($palabra, $id_app);
+	}
+
+	public function updateCheckExistence(){
+
+		$palabra 		= $_POST['nombre'];
+		$id_video    	= $_POST['video'];
+		$id_app 		= $_POST['id_app'];
+
+		$this->video_model->updateCheckExistence($palabra, $id_video, $id_app);
+	}
+
+
 	public function view($id_app){
 
 		$data['apps'] 	= $this->App_model->get_apps($id_app);
@@ -18,7 +36,7 @@ class Videos extends CI_Controller {
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> videos';
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/videosAdd', $data);
+		$this->load->view('pages/videos', $data);
 		$this->load->view('templates/footer');
 	
 	}
@@ -184,8 +202,34 @@ class Videos extends CI_Controller {
 
                   </tr>"; 
 		}
+	}
 
-		
+	public function deleteToRecipe(){
+		$id_receta 	= $_POST['id_receta'];
+		$id_video = $_POST['id_video'];
+		$id_app = $_POST['id_app'];
+
+		$delete = $this->video_model->deleteToRecipe($id_receta, $id_video);
+
+		if($delete){
+			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
+		}
+
+	}
+
+	public function addCheckVideos(){
+		$id_receta = $_POST['id_receta'];
+		$id_app = $_POST['id_app'];
+
+		if(isset($_POST['videosComplemento'])){
+	        $ids_videos = $_POST['videosComplemento'];
+
+			for ($i=0; $i <count($ids_videos) ; $i++) { 
+				$this->video_model->addToRecipe($id_receta, $ids_videos[$i]);
+			}
+	    }
+	    
+	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
 
 	}
 

@@ -9,10 +9,11 @@
         <h2 class="mg_20">Nueva aplicación</h2>
         <div class="centrar">
           <label for="">Nombre: </label>
-          <input type="text" name="nombre" value="" required>
+          <input type="text" name="nombre" id="nombre" value="" required>
+          <div id="errorNuevaApp" class="alert error" style="display:none">Este nombre de app ya existe.</div>
         </div>
         <br>  
-        <button type="submit" class="submit">Agregar</button>
+        <button id="submitNuevaApp" type="submit" class="submit">Agregar</button>
       </form>
     </div>
   </div>
@@ -58,7 +59,7 @@
                         </div>
                       </div>
 
-                      <div id="editar<?php echo $apps[$i]['id']; ?>" class="modalDialog">
+                      <div id="editar<?php echo $apps[$i]['id']; ?>" class="modalDialog editar">
                         <div class="popup form_app">
                           <a href="#" title="Close" class="close">x</a>
                           
@@ -67,11 +68,12 @@
                             
                             <div class="centrar">
                               <label for="">Nombre: </label>
-                              <input type="text" name="nombre" value="<?php echo $apps[$i]['nombre']; ?>" required>
+                              <input type="text" id="nombre2" name="nombre" value="<?php echo $apps[$i]['nombre']; ?>" required>
+                              <div id="errorEditarApp" class="alert error" style="display:none">Este nombre de aplicación ya existe</div>
                             </div>
-                    
-                            <input type="hidden" name="id" value="<?php echo $apps[$i]['id']; ?>">
-                            <button type="submit" class="submit">Guardar</button>
+                  
+                            <input type="hidden" name="id_app" id="id_app" value="<?php echo $apps[$i]['id']; ?>">
+                            <button type="submit" id="submitEditarApp" class="submit">Guardar</button>
                           </form>
                         
                         </div>
@@ -88,11 +90,55 @@
 
 </div>
 <script>
-$(document).keyup(function (data)
+
+var base_url = "<?php echo base_url() ?>";
+
+
+$("#nombre").keyup(function ()
 {
-   if (data.keyCode == 72) 
-   {
-      
-   }
+    var token = $("#nombre").val();
+    //console.log(token);
+
+    $.post(base_url+"apps/checkExistence/", {palabra: token}, function (data)
+      {
+
+        if(data=="Existe")
+        {
+          $("#errorNuevaApp").slideDown("slow");
+          $("#submitNuevaApp").slideUp("slow");
+        }
+        else
+        {
+          $("#errorNuevaApp").slideUp("slow"); 
+          $("#submitNuevaApp").slideDown("slow");
+        }
+
+      });
 });
+
+$(".editar").each(function (data)
+  {
+    var id = $(this).attr('id');
+
+    $("#"+id+" #nombre2").keyup(function ()
+      {
+        var word  = $("#"+id+" #nombre2").val();
+        var id_ap = $("#"+id+" #id_app").val();
+
+        $.post(base_url+"apps/updateCheckExistence/", {palabra: word, id_app: id_ap}, function (data)
+          {
+            if(data=="Existe")
+            {
+              $("#"+id+" #errorEditarApp").slideDown("slow");
+              $("#"+id+" #submitEditarApp").slideUp("slow");
+            }
+            else
+            {
+              $("#"+id+" #errorEditarApp").slideUp("slow");
+              $("#"+id+" #submitEditarApp").slideDown("slow");
+            }
+
+          });
+      });
+  });
 </script>

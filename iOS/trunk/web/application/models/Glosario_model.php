@@ -7,6 +7,29 @@ class Glosario_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM glosario WHERE nombre = '".$palabra."' and id_app = ".$id_app."  ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
+	public function updateCheckExistence($palabra, $id_glosario, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM glosario WHERE nombre = '".$palabra."' and id != ".$id_glosario." and id_app = ".$id_app." ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}	
+
+
 	public function get_glosario($id_app){
 
 		$query = $this->db->query("SELECT * FROM glosario WHERE id_app = ".$id_app." ");
@@ -28,15 +51,12 @@ class Glosario_model extends CI_Model {
 	}
 
 	public function addToRecipe($id_receta, $id_glosario){
-
-
 		$data = array(
 			'id_receta' 		=> $id_receta,
 			'id_glosario'		=> $id_glosario
 		);
 
 		return $this->db->insert('receta_glosario', $data);
-
 	}
 
 	public function getGlosarioRelacionado($id_receta, $id_app){
@@ -128,6 +148,11 @@ class Glosario_model extends CI_Model {
 		$id_relacion = $array[0]['id'];
 		$delete = $this->db->delete('receta_glosario',array('id' => $id_relacion));
 		return $delete;
+	}
+
+	public function getComplemento($id_app, $id_receta){
+		$query = $this->db->query("select * from glosario where id_app = ".$id_app." and id != all ( select id_glosario from receta_glosario where id_receta = ".$id_receta." );");
+		return $query->result_array();
 	}
 
 }
