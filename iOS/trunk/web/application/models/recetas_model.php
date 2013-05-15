@@ -93,6 +93,11 @@ class Recetas_model extends CI_Model {
 
 	}
 
+	public function get_name($id){
+		$name = $this->db->query("SELECT titulo FROM recetas WHERE id = ".$id." ");
+		return $name->result_array();
+	}
+
 	public function update_recetas($id)
 	{
 		
