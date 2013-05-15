@@ -70,7 +70,7 @@ class Recetas extends CI_Controller {
 		
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/recetasComplementariasAdd', $data);
+		$this->load->view('pages/relaciones', $data);
 		$this->load->view('templates/footer');
 	}
 
