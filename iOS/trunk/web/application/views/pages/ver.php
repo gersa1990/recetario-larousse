@@ -70,7 +70,9 @@
 				<label for="" class="mg_e">Ingredientes: </label>
 				<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $receta[0]['ingredientes']?></textarea>
 
+
 				<div id="divingredientes" class="full prev"><?php echo $receta[0]['ingredientes']?></div>
+
 			</div>
 			
 			<div class="clear"></div>
@@ -80,6 +82,7 @@
 				<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $receta[0]['procedimiento']?></textarea>
 
 				<div id="divprocedimiento" class="full prev"><?php echo $receta[0]['procedimiento']?></div>
+
 			</div>
 			
 			<div class="clear"></div>
@@ -280,6 +283,10 @@
 		                    <?php
 		                  }
 		                }
+		                else
+		                {
+		                	echo "glosario";
+		                }
 		              ?>
 		            </tbody>
 	         	</table>
@@ -294,6 +301,7 @@
           <div class="popup form_receta">
 
             <a href="#" title="Close" class="close">x</a>
+
 
             <h2 class="mg_20 myriadFont">Relacionar receta complementaria</h2>
             <?php echo form_open('complementarias/addCheckComplemento');?>
@@ -323,13 +331,23 @@
 		                    <?php
 		                  }
 		                }
+		                if(!isset($recetasComplemento))
+		                {
+		                	?>
+		                	<tr>
+		                      <td class="txleft">
+		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
+		                        No existen recetas para relacionar
+		                      </td>
+		                    </tr>
+		                	<?php
+		                }
 		              ?>
 		            </tbody>
 	         	</table>
 
 	         	<input type="submit" class="submit add" value="Agregar"/> 
       		</form>
-
 
           </div>
         </div><!-- popup receta -->
@@ -392,14 +410,18 @@
 
 <script>
 
+var base_url = "<?php echo base_url(); ?>";
+var app   = "<?php echo $app; ?>";
+
 	  $(document).ready(function (){
+
 	  	$('#guardar').hide();
 	  	$('.mg_form').hide();
 	  	$('.delete').hide();
 	  	$('input').attr("disabled", "disabled");
 	  	$('select').attr('disabled', true); 
 	  	$("#ingredientes").css('display','none');
-	  	$("#procedimiento").css('display','none');  
+	  	$("#procedimiento").css('display','none');
 	  });
 
 	  $('#editar').click(function (data)
@@ -419,9 +441,23 @@
 	    	var tiny = tinymce;
 
 			tiny.init({
+
 	        	selector: "textarea",
 	        	menubar: false,
 	        	width: 950
+
 	    	});
 	  	});
+
+$("#titulo").keyup(function (data)
+{
+	var tittle = $("#titulo").val();
+	
+	if (tittle!=""){
+		$.post(base_url+"recetas/updateCheckExistence/", {titulo:tittle, id_app: app }, function (data)
+		{
+			console.log(data);
+		});
+	}
+});
 </script>

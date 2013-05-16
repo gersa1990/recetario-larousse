@@ -7,6 +7,24 @@ class Videos extends CI_Controller {
 		$this->load->model('App_model');
 	}	
 
+	public function checkExistence(){
+
+		$palabra = $_POST['palabra'];
+		$id_app  = $_POST['id_app'];
+
+		$this->video_model->checkExistence($palabra, $id_app);
+	}
+
+	public function updateCheckExistence(){
+
+		$palabra 		= $_POST['nombre'];
+		$id_video    	= $_POST['video'];
+		$id_app 		= $_POST['id_app'];
+
+		$this->video_model->updateCheckExistence($palabra, $id_video, $id_app);
+	}
+
+
 	public function view($id_app){
 
 		$data['apps'] 	= $this->App_model->get_apps($id_app);
@@ -18,7 +36,7 @@ class Videos extends CI_Controller {
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> videos';
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/videosAdd', $data);
+		$this->load->view('pages/videos', $data);
 		$this->load->view('templates/footer');
 	
 	}

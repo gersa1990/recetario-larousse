@@ -7,6 +7,28 @@ class complementarias_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo = '".$palabra."' and id_app = ".$id_app."  ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
+	public function updateCheckExistence($palabra, $id_complementaria, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo = '".$palabra."' and id != ".$id_complementaria." and id_app = ".$id_app." ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
 	public function searchByName($nombre , $id_app){
 
 		$complementarias =  $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo LIKE '%".$nombre."%'  and  id_app = ".$id_app."  ");

@@ -16,6 +16,28 @@ class App_model extends CI_Model {
 		return $this->db->insert('app', $data);
 	}
 
+	public function updateCheckExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM app WHERE id != ".$id_app." and nombre = '".$palabra."' ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+
+	}
+
+	public function checkExistence($palabra){
+		$existe = $this->db->query("SELECT * FROM app where nombre = '".$palabra."' ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
 	public function changeName($id_app, $nombre){
 
 		$data->nombre = $nombre;

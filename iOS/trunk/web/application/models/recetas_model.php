@@ -7,6 +7,18 @@ class Recetas_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." and titulo = '".$palabra."' ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+
+	}
+
 	public function get_recetas($id_app){
 
 		$recetas = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." ");

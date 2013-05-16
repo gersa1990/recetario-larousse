@@ -15,6 +15,18 @@ class Recetas extends CI_Controller {
 		$this->load->library('typography');
 	}
 
+	public function checkExistence(){
+		
+		$palabra = $_POST['titulo'];
+		$id_app  = $_POST['id_app'];
+
+		$this->recetas_model->checkExistence($palabra, $id_app);
+	}
+
+	public function updateCheckExistence(){
+		
+	}
+
 	public function getData($id_receta){
 
 		$data = $this->recetas_model->getData($id_receta);
@@ -33,7 +45,7 @@ class Recetas extends CI_Controller {
 			'coccion' 		=> $_POST['coccion'],
 			'costo' 		=> $_POST['costo'],
 			'dificultad'	=> $_POST['dificultad'],
-			'foto' 		=> $_POST['foto']
+			'foto' 			=> $_POST['foto']
 		);
 
 		$id_receta = $this->recetas_model->createAndReturnId($data);
@@ -58,7 +70,7 @@ class Recetas extends CI_Controller {
 		
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/recetasComplementariasAdd', $data);
+		$this->load->view('pages/relaciones', $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -70,7 +82,7 @@ class Recetas extends CI_Controller {
 		$data['categorias'] = $this->App_model->getCategoryFromAppId($id_app);
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/recetasShow', $data);
+		$this->load->view('pages/nuevaReceta', $data);
 		$this->load->view('templates/footer');
 	}
 

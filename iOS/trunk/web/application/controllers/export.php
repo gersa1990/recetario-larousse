@@ -111,9 +111,7 @@ class export extends CI_Controller {
 			//var_dump($codigo_sqlMain);
 			$consulta = $BD-> prepare($codigo_sqlMain);
 			//var_dump($consulta);
-
 			$consulta -> execute();
-
 			//$this->insert($aux, $table, $BD);
 		}    
 	}
@@ -142,6 +140,7 @@ class export extends CI_Controller {
 		$conf 				= $data['conf'] 				= $this->export_model->getConfByAppId($app);
 		$videoByRecipe		= $data['videoRecipes']			= $this->export_model->getVideosByRecipe($recetas);
 		$video 				= $data['video']    			= $this->export_model->getVideos($recetas);
+		
 
 		$this->deleteBDIfExists($app);
 

@@ -7,6 +7,23 @@ class Categorias extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
+	public function updateCheckExistence(){
+		
+		$titulo 	= $_POST['titulo'];
+		$id_app 	= $_POST['id_app'];
+		$categoria 	= $_POST['id_cat'];
+
+		$this->categoria_model->updateCheckExistence($titulo, $id_app, $categoria);
+	}
+
+	public function checkExistence(){
+
+		$palabra = $_POST['titulo'];
+		$id_app  = $_POST['id_app'];
+
+		$this->categoria_model->checkExistence($palabra, $id_app);	
+	}
+
 	public function edit(){
 
 		$id_app 		= $_POST['id_app'];

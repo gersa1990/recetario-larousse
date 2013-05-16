@@ -7,6 +7,29 @@ class Glosario_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM glosario WHERE nombre = '".$palabra."' and id_app = ".$id_app."  ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
+	public function updateCheckExistence($palabra, $id_glosario, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM glosario WHERE nombre = '".$palabra."' and id != ".$id_glosario." and id_app = ".$id_app." ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}	
+
+
 	public function get_glosario($id_app){
 
 		$query = $this->db->query("SELECT * FROM glosario WHERE id_app = ".$id_app." ");

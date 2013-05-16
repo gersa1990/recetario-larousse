@@ -6,6 +6,26 @@ class Apps extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
+	public function checkExistence(){
+
+		$palabra = $_POST['palabra'];
+		
+		$existe  = $this->App_model->checkExistence($palabra);
+		echo $existe;
+
+	}
+
+	public function updateCheckExistence(){
+
+		$palabra 	= $_POST['palabra'];
+		$id_app		= $_POST['id_app'];
+
+		$existe = $this->App_model->updateCheckExistence($palabra, $id_app);
+		echo $existe;
+
+
+	}
+
 	public function create(){
 		
 		$this->load->helper('form');
@@ -40,11 +60,12 @@ class Apps extends CI_Controller {
 		$insert = $this->App_model->nueva($nombre);
 
 		if ($insert) {
+
 			redirect(base_url(),"refresh");
 		}
 	}
 
-	public function updateNombre()
+	public function edit()
 	{
 		$nombre = $_POST['nombre'];
 		$idApp  = $_POST['id_app'];
@@ -53,7 +74,7 @@ class Apps extends CI_Controller {
 
 		if($update)
 		{
-			redirect(base_url()."apps/view/".$idApp,"refresh");
+			redirect(base_url(),"refresh");
 		}		
 	}
 
@@ -79,6 +100,7 @@ class Apps extends CI_Controller {
 
 	public function eliminar()
 	{
+
 		$id 		= $_POST['id'];
 		$eliminar 	= $this->App_model->eliminar_app($id);
 

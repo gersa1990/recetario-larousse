@@ -7,6 +7,28 @@ class video_model extends CI_Model {
 		$this->load->model('recetas_model');
 	}
 
+	public function checkExistence($palabra, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM video WHERE titulo = '".$palabra."' and id_app = ".$id_app."  ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
+	public function updateCheckExistence($palabra, $id_glosario, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM video WHERE titulo = '".$palabra."' and id != ".$id_glosario." and id_app = ".$id_app." ");
+		$array = $existe->row_array();
+
+		if(count($array)>0)
+		{
+			echo "Existe";
+		}
+	}
+
 	public function delete($id)
 	{
 
