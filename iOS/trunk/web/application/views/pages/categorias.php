@@ -34,38 +34,36 @@
               <td colspan="3">Categorías</td>
             </tr>
           </thead>
+        </table>
 
-          <tbody>
+          <ul id="sortable">
             <?php 
               if(isset($categorias)){
                 for ($i=0; $i <count($categorias) ; $i++) { ?>
-                  <tr>
-                      <td class="txleft">
+                  <li>
                         <!-- <a href="" class="bluetext">
                           
                         </a> -->
-                        <p><?php echo $categorias[$i]['nombre']; ?></p>
-                      </td>
+                        <span><?php echo $categorias[$i]['nombre']; ?></span>
 
-                      <td>
+                      <span>
                         <a href="#editarCategoria<?php echo $categorias[$i]['id']; ?>">
                           Editar
                         </a>
-                      </td>
+                      </span>
 
-                      <td>
+                      <span>
                         <a href="#eliminarCategoria<?php echo $categorias[$i]['id']; ?>" class='eliminarRecetas'>
                           Eliminar
                         </a>
-                      </td>
+                      </span>
 
-                  </tr>
+                  </li>
 
                 <?php     
                 }   
               } ?>
-          </tbody>
-        </table>
+        </ul>
 
         <?php if(isset($categorias)){
           for ($i=0; $i <count($categorias) ; $i++) { ?>
@@ -171,6 +169,11 @@
 </div>
 
 <script>
+
+$("#sortable").sortable({
+      revert: true,
+      placeholder: "ui-state-highlight"
+  });
 
  var base_url = "<?php echo base_url(); ?>";
  var app      =  "<?php echo $app; ?>";
@@ -295,5 +298,8 @@ $(".editarCategoria").each(function (data)
   });
 
 });
+
+
+
 
 </script>
