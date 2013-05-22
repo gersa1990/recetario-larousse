@@ -40,7 +40,7 @@
             <?php 
               if(isset($categorias)){
                 for ($i=0; $i <count($categorias) ; $i++) { ?>
-                  <li>
+                  <li class="ui-state-default">
                         <!-- <a href="" class="bluetext">
                           
                         </a> -->
