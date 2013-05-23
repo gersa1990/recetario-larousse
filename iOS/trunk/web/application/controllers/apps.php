@@ -4,6 +4,11 @@ class Apps extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('App_model');
+		$this->load->model('categoria_model');
+		$this->load->model('complementarias_model');
+		$this->load->model('Glosario_model');
+		$this->load->model('recetas_model');
+		$this->load->model('video_model');
 	}
 
 	public function checkExistence(){
@@ -13,6 +18,19 @@ class Apps extends CI_Controller {
 		$existe  = $this->App_model->checkExistence($palabra);
 		echo $existe;
 
+	}
+
+	public function index(){
+		
+		$data['apps'] = $this->App_model->get_apps();
+
+		$this->load->helper('url');
+
+		$data['title'] = 'Aplicaciones de editorial Larousse';
+		
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/index', $data);
+		$this->load->view('templates/footer');
 	}
 
 	public function updateCheckExistence(){
@@ -98,12 +116,27 @@ class Apps extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function extendsDelete($id_app){
+
+		$deleteGlosary = $this->Glosario_model->extendsDelete();
+	}
+
 	public function eliminar()
 	{
-
 		$id 		= $_POST['id'];
-		$eliminar 	= $this->App_model->eliminar_app($id);
 
+		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
+
+		$extendsDeleteGlosary 					= $this->Glosario_model->extendsDelete($recetas);
+		$extendsDeleteGlosaryByIdApp 			= $this->Glosario_model->extendsDeleteByIdApp($id);
+		$extendsDeleteCategoria					= $this->categoria_model->extendsDelete($id);
+		$extendsDeleteVideos 					= $this->video_model->extendsDelete($recetas);
+		$extendsDeleteVideosByIdApp 			= $this->video_model->extendsDeleteByIdApp($id);
+		$extendsDeleteComplementarias 			= $this->complementarias_model->extendsDelete($recetas);
+		$extendsDeleteComplementariasByIdApp	= $this->complementarias_model->extendsDeleteByIdApp($id);		
+
+		$eliminar 	= $this->App_model->eliminar_app($id);
+		
 		redirect(base_url(), 'refresh');
 		
 	}

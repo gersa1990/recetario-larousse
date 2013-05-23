@@ -18,6 +18,21 @@ class complementarias_model extends CI_Model {
 		}
 	}
 
+	public function extendsDeleteByIdApp($id_app){
+
+		$this->db->delete("recetas_complementarias", array('id_app' => $id_app ));
+	}
+
+	public function extendsDelete($recetas){
+
+		foreach ($recetas as $key => $value) 
+		{
+			$id_receta = $value['id'];
+			$this->db->delete("relaciones", array('id_receta' => $id_receta ));
+		}
+
+	}
+
 	public function updateCheckExistence($palabra, $id_complementaria, $id_app){
 
 		$existe = $this->db->query("SELECT * FROM recetas_complementarias WHERE titulo = '".$palabra."' and id != ".$id_complementaria." and id_app = ".$id_app." ");

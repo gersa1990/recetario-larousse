@@ -19,7 +19,6 @@ class Recetas extends CI_Controller {
 		
 		$palabra = $_POST['titulo'];
 		$id_app  = $_POST['id_app'];
-
 		$this->recetas_model->checkExistence($palabra, $id_app);
 	}
 
@@ -136,22 +135,6 @@ class Recetas extends CI_Controller {
 			redirect(base_url()."apps/view/".$app);
 		}
 	}
-	
-
-	public function index()
-	{
-		//$data['recetas'] = $this->recetas_model->get_recetas();
-		
-		$data['apps'] = $this->App_model->get_apps();
-
-		$this->load->helper('url');
-
-		$data['title'] = 'Aplicaciones de editorial Larousse';
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/index', $data);
-		$this->load->view('templates/footer');
-	}
-
 
 
 	public function create()
@@ -206,6 +189,7 @@ class Recetas extends CI_Controller {
 
 	public function ver($id, $id_app)
 	{
+
 		$receta = $data['receta'] = $this->recetas_model->get_receta($id);
 	
 		$data['app'] = $id_app;
@@ -217,13 +201,14 @@ class Recetas extends CI_Controller {
 		$data['videosRelacionados']				= $this->video_model->getVideosRelacionados($id,$id_app);
 		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app);
 
-		$data['glosarioComplemento'] = $this->glosario_model->getComplemento($id_app, $id);
-		$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
-		$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
+		//$data['glosarioComplemento'] = $this->glosario_model->getComplemento($id_app, $id);
+		//$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
+		//$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
 
 		$this->load->helper('url');
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> recetas > '.$receta[0]['titulo'];
+		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/ver', $data);
 		$this->load->view('templates/footer');

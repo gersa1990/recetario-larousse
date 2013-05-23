@@ -18,6 +18,22 @@ class video_model extends CI_Model {
 		}
 	}
 
+	public function extendsDeleteByIdApp($id_app){
+
+		$this->db->delete("video", array('id_app' => $id_app ));
+
+	}
+
+	public function extendsDelete($recetas){
+
+		foreach ($recetas as $key => $value) 
+		{
+			$id_receta = $value['id'];
+			$this->db->delete("videos_x_receta", array('id_receta' => $id_receta ));
+		}
+
+	}
+
 	public function updateCheckExistence($palabra, $id_glosario, $id_app){
 
 		$existe = $this->db->query("SELECT * FROM video WHERE titulo = '".$palabra."' and id != ".$id_glosario." and id_app = ".$id_app." ");
@@ -33,6 +49,7 @@ class video_model extends CI_Model {
 	{
 
 		$delete = $this->db->delete('video', array('id' => $id));
+		 		  $this->db->delete("videos_x_receta", array('id_video' => $id ));
 		return $delete;
 	}
 

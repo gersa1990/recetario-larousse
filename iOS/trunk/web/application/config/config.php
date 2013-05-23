@@ -19,8 +19,6 @@
 
 
 $config['base_url']	= 'http://localhost/recetario-larousse/iOS/trunk/web/';
-//$config['base_url']	= 'http://gersainaguilarpardo.comoj.com/recetario-larousse/';
-
 
 
 /*

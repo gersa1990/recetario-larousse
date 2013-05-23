@@ -24,6 +24,17 @@ class Categorias extends CI_Controller {
 		$this->categoria_model->checkExistence($palabra, $id_app);	
 	}
 
+	//Metodo que sirve para eliminar las relaciones correspondientes a esta categoria
+	public function extendsSimpleDelete($id_categoria){
+		$deleteCategoria = $this->categoria_model->extendsSimpleDelete($id_categoria);
+	}
+
+	//Metodo que sirve para eliminar todas las relaciones correspondientes al arreglo de recetas proporcionadas
+	public function extendsDelete($arrayRecetas){
+
+		$deleteArray = $this->categoria_model->extendsDelete($arrayRecetas);
+	}
+
 	public function edit(){
 
 		$id_app 		= $_POST['id_app'];

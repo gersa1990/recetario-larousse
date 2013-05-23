@@ -17,6 +17,12 @@ class categoria_model extends CI_Model {
 		}
 	}
 
+	public function extendsDelete($id_app){
+
+		$this->db->delete("categoria", array('id_app' => $id_app ));
+
+	}
+
 	public function updateCheckExistence($palabra, $id_app, $id_categoria){
 
 		$existe = $this->db->query("SELECT * FROM categoria WHERE nombre = '".$palabra."' and id_app = ".$id_app." and id != ".$id_categoria."   ");

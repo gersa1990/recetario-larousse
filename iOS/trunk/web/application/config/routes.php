@@ -59,8 +59,7 @@
 
 	$route['updateR'] = 'recetas/updateR';
 	 
-	$route['default_controller'] = 'recetas/index';
+	$route['default_controller'] = 'apps/index';
 	
-
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

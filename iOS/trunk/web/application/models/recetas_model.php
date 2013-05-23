@@ -19,6 +19,11 @@ class Recetas_model extends CI_Model {
 
 	}
 
+	public function getDataForExtendsDelete($id_app){
+		$recetas = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." ");
+		return $recetas->result_array();
+	}
+
 	public function get_recetas($id_app){
 
 		$recetas = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." ");
@@ -58,6 +63,9 @@ class Recetas_model extends CI_Model {
 	public function delete($id){
 
 		$delete = $this->db->delete('recetas', array('id' => $id));
+				  $this->db->delete("relaciones", array('id_receta' => $id ));
+				  $this->db->delete("videos_x_receta", array('id_receta' => $id ));
+				  $this->db->delete("receta_glosario", array('id_receta' => $id ));
 		return $delete;
 	}
 
