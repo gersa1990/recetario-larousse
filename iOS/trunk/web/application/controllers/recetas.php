@@ -201,10 +201,6 @@ class Recetas extends CI_Controller {
 		$data['videosRelacionados']				= $this->video_model->getVideosRelacionados($id,$id_app);
 		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app);
 
-		//$data['glosarioComplemento'] = $this->glosario_model->getComplemento($id_app, $id);
-		//$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
-		//$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
-
 		$this->load->helper('url');
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> recetas > '.$receta[0]['titulo'];
