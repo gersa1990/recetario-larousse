@@ -102,7 +102,6 @@
                       <div id="editar">
                         <input type="hidden" id="nameColor" class="<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['id']; ?>" >
                         <input type="text" name="color" id="color" class="editar_<?php echo $categorias[$i]['id']; ?>" value="<?php echo $categorias[$i]['color']; ?>" required>
-                        <span id="preview" class="left"></span>
                       </div>
                     </div>
                     <div class="clear"></div>
@@ -150,7 +149,7 @@
                       <label for="">Color:</label>
                       <div id="editar">
                         <input type="text" name="color" id="color2" value="" placeholder="rgb(0, 0, 0)" required>
-                        <span id="preview" class="left"></span>
+                        <!-- <span id="preview" class="left"></span> -->
                       </div>
                     </div>
                     <div class="clear"></div>

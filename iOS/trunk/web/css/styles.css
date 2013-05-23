@@ -872,6 +872,59 @@ a.close:hover{
     background-color: #ccc;
 }
 
+ul#sortable{
+    width: 100%;
+    position: relative;
+    
+}
+
+ul#sortable li{
+    display: block;
+    width: 100%;
+    position: relative;
+    font-size: 14px;
+    color: rgb(119, 119, 119);
+}
+
+ul#sortable li a{
+    line-height: 1px;
+    padding: 5px 6px 5px 0;
+    text-decoration: none;
+    color: rgb(119, 119, 119);
+}
+
+ul#sortable li span{
+    display: block;
+    float: left;
+    padding: 7px 10px;
+
+    border-right: 1px solid #613720;
+    border-bottom: 1px solid #613720;
+    
+    text-align:  center;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 70px;
+}
+
+ul#sortable li:before,  
+ul#sortable li:after {  
+    content: " ";  
+    display: table;  
+}  
+ul#sortable li:after {  
+    clear: both;  
+} 
+
+ul#sortable li span:first-child{
+    text-align: left;
+    border-left: 1px solid #613720;
+    width: 533px;
+}
+
 /*************************************/
 /*           Formu                   */
 /*************************************/
