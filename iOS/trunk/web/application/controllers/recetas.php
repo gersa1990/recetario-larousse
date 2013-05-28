@@ -156,6 +156,16 @@ class Recetas extends CI_Controller {
 
 		$delete = $this->recetas_model->delete($id);
 
+		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
+
+		$extendsDeleteGlosary 					= $this->Glosario_model->extendsDelete($recetas);
+		//$extendsDeleteGlosaryByIdApp 			= $this->Glosario_model->extendsDeleteByIdApp($id);
+		//$extendsDeleteCategoria					= $this->categoria_model->extendsDelete($id);
+		$extendsDeleteVideos 					= $this->video_model->extendsDelete($recetas);
+		//$extendsDeleteVideosByIdApp 			= $this->video_model->extendsDeleteByIdApp($id);
+		$extendsDeleteComplementarias 			= $this->complementarias_model->extendsDelete($recetas);
+		//$extendsDeleteComplementariasByIdApp	= $this->complementarias_model->extendsDeleteByIdApp($id);		
+
 		if($delete)
 		{
 			redirect(base_url()."apps/view/".$app);

@@ -80,8 +80,8 @@ class categoria_model extends CI_Model {
 	public function update_categoria($id, $nombre, $color){
 
 		$data = array(
-				'nombre' => $this->input->post('nombre'),
-				'color' => $this->input->post('color')
+				'nombre' => $nombre,
+				'color' => $color
 			);
 
 		$this->db->where('id', $id);

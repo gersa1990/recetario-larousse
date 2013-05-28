@@ -66,6 +66,7 @@ class Recetas_model extends CI_Model {
 				  $this->db->delete("relaciones", array('id_receta' => $id ));
 				  $this->db->delete("videos_x_receta", array('id_receta' => $id ));
 				  $this->db->delete("receta_glosario", array('id_receta' => $id ));
+		
 		return $delete;
 	}
 
@@ -85,7 +86,6 @@ class Recetas_model extends CI_Model {
 
 	public function create()
 	{					
-
 
 		$data = array(
 				'titulo' 			=> $this->input->post('titulo'),
