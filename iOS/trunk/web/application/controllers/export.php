@@ -106,25 +106,21 @@ class export extends CI_Controller {
 					}	 	
 				}				
 			}
-			//var_dump($BD);
+
 			$codigo_sqlMain = "INSERT INTO ".$table." VALUES(".$aux.")";
-			//var_dump($codigo_sqlMain);
 			$consulta = $BD-> prepare($codigo_sqlMain);
-			//var_dump($consulta);
 			$consulta -> execute();
-			//$this->insert($aux, $table, $BD);
 		}    
 	}
 
 	public function deleteBDIfExists($BD)
 	{
-		@unlink("resources/".$BD.".sqlite");
-		@unlink("resources/".$BD.".db");
+		@unlink("resources/DB/larousse.db");
 	}
 
 	public function createDBSqlite($app)
 	{
-		$db = new PDO('sqlite:./resources/'.$app.'.sqlite');
+		$db = new PDO('sqlite:./resources/DB/larousse.db');
 		return $db;
 	}
 

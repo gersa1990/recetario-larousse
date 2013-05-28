@@ -96,6 +96,7 @@ class Glosario_model extends CI_Model {
 	
 	public function edit()
 	{
+		
 		$data = array(
 				'nombre' 		=> $this->input->post('titulo'),
 				'descripcion' 	=> $this->input->post('descripcion'),
