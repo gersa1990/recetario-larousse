@@ -4,6 +4,8 @@
   <div class="main">
     <div id="status"></div>
 
+    <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+
     <div class="columl">
       <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
@@ -16,8 +18,6 @@
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
-
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
     </div>
     

@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-		<a href="<?php echo base_url().'apps/view/'.$app; ?>"><span>←</span> regresar</a>
+		<a class="home" href="<?php echo base_url().'apps/view/'.$app; ?>"><span>←</span> regresar</a>
 		<div class="popup bg_grey">
 	
 			<?php 
@@ -255,7 +255,7 @@
 
             <a href="#" title="Close" class="close">x</a>
 
-            <h2 class="mg_20 myriadFont">Terminos de glosario</h2>
+            <h2 class="mg_20 myriadFont">Relacionar termino de glosario</h2>
             <?php echo form_open('glosario/addCheckGlosario');?>
 
             	<input type="hidden" name="id_app" value="<?php echo $app; ?>">

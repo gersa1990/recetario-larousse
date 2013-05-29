@@ -17,16 +17,10 @@ body{
     min-width: 1087px;
      margin: 0 0 130px;
      background-color: #fff;
+     color: rgb(119, 119, 119); 
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-p{
-    color: #000;
-}
-
-a{
-    color: #000;
-}
 
 a:hover{
     color: #000;
@@ -35,23 +29,14 @@ a:hover{
 
 a.home{
     display: block;
-    text-decoration: none; 
+    padding: 20px 0;
+    text-decoration: none;
+    color: rgb(119, 119, 119); 
+    /*background-color: #ccc;*/
 }
 
 a.home:hover{
     text-decoration: underline;
-    color: #000;
-}
-
-a.back{
-    display: block;
-    margin-bottom:20px;
-    text-decoration: none; 
-}
-
-a.back:hover{
-     text-decoration: underline;
-     color: #000; 
 }
 
 h1{
@@ -111,7 +96,7 @@ label{
 .main{
     width: 100%;
     min-height: 560px;
-    padding-top: 30px;
+    /*padding-top: 30px;*/
     position: relative;
     background-color: #FFF;
 }
@@ -120,6 +105,7 @@ label{
     padding: 20px 10px;
     background-color: #fbfbfb;
     border: 1px solid #efefef;
+    position: relative;
 }
 
 .columna{
@@ -139,6 +125,10 @@ label{
 
 .myriadFont{
     font-family: MyriadPro-Cond;
+}
+
+.fix_top{
+    margin-top: 30px;
 }
 
 .columna:last-child{
@@ -221,7 +211,7 @@ label{
 }
 
 a.help:hover{
-    color: #000;
+    /*color: #000;*/
 }
 
 
@@ -248,6 +238,10 @@ a.help:hover{
 }
 
 .button:active {
+    -webkit-transform: translate(0, 1px);
+}
+
+button:active{
     -webkit-transform: translate(0, 1px);
 }
 
@@ -473,9 +467,10 @@ header a{
 
 #status{
     display: none;
-    width: 400px;
+    text-align: center;
+    width: auto;
     height: 30px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 /*************************************/
 /*           Menu                    */
@@ -701,7 +696,7 @@ table thead{
 
 .modalDialog p{
     font-size: 14px;
-    margin: 7px auto; 
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -778,10 +773,11 @@ a.close:hover{
 }
 
 .modalDialog .eliminarBoton {
+    width: 75px;
     position: relative;
     left: 50%;
     margin-top: 20px;
-    margin-left: -28px;
+    margin-left: -37px;
     padding: 5px 10px;
     background: #2c6da0;
     color: #8f5a0a;
@@ -998,7 +994,6 @@ fieldset legend{
 
 .popup p{
     font-size: 16px;
-    font-weight: bold;
     margin: 30px auto;
 }
 
@@ -1046,8 +1041,8 @@ fieldset legend{
 
 .submit.blue{
     position: absolute;
-    top:60px;
-    left: 960px;
+    top: 32px;
+    left: 987px;
     background-color: #2daebf;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#2daebf), to(#1e7681));
     background-image: -webkit-linear-gradient(top, #2daebf, #1e7681);
@@ -1057,3 +1052,7 @@ fieldset legend{
     background-image: linear-gradient(top, #2daebf, #1e7681);
     border-color: #238896 #1e7681 #238896 #1e7681;
  }
+
+ .submit:active {
+    -webkit-transform: translate(0, 1px);
+}

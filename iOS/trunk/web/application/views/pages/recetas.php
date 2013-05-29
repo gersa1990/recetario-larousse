@@ -4,6 +4,8 @@
   <div class="main">
     <div id="status"></div>
 
+    <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+
     <div class="columl">
       <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
@@ -16,8 +18,6 @@
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
-
-      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
 
     </div>
     
@@ -111,15 +111,15 @@
 
   if(cat<1)
   {
-    $("#status").html("<div class='alert alert-info'>Para agregar recetas, primero necesitas agregar una categoria.</div>").slideDown("slow");
-    $("#addblock").slideUp("slow"); 
-    
+    $("#status").html("<div class='alert error'>Es necesario agregar una categoria primero.</div>").slideDown("slow");
+    $("#addblock").slideUp("slow");
+
     setTimeout(function(){
       location.href=base_url+"categorias/view/"+app;
-    },3000)
+    },3000) 
+    
   }
 
-  
 
   $("#exportar").click(function ()
   {

@@ -18,7 +18,7 @@
     </div>
   </div>
   
-  <div class="main">
+  <div class="main fix_top">
     
       <a href="#nuevaApp" class="button large orange al_right">Nueva Aplicación</a>
       <h2 class="myriadFont mg_top">APLICACIONES DE EDITORIAL LAROUSSE</h2>
@@ -48,9 +48,10 @@
                           <a href="#" title="Close" class="close">x</a>
                             <?php echo validation_errors(); ?>
                             <?php echo form_open('apps/eliminar') ?>
-          
-                              <h2><?php echo $apps[$i]['nombre'] ?><br/></h2>
-                              <p>Toda la información relacionada se borrara</p>
+                              <div class="centrar">
+                                <h2><?php echo $apps[$i]['nombre'] ?><br/></h2>
+                                <p>Toda la información relacionada se borrara</p>
+                              </div>
           
                               <input type="hidden" name="id" id="id"  value="<?php echo $apps[$i]['id']; ?>"/>
             
