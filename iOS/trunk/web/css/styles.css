@@ -35,7 +35,6 @@ a:hover{
 
 a.home{
     display: block;
-    margin-bottom:47px;
     text-decoration: none; 
 }
 
@@ -187,7 +186,7 @@ label{
 }
 
 .title_app{
-    margin: 0 0 33px;
+    margin: 0 0 31px;
     font-size: 30px;
 }
 
@@ -275,7 +274,7 @@ a.help:hover{
 
 .blockscroll{
     display: block;
-    max-height: 600px;
+    max-height: 450px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -631,6 +630,11 @@ table tr td:first-child{
     width: 549px;
 }
 
+.fix_colum{
+    width: 869px !important;
+
+}
+
 table th, thead{
     text-align: center;
     position: relative;
@@ -936,20 +940,20 @@ fieldset{
     display: block;
     width: 1043px;
     min-height: 200px;
-    border: 1px solid #ccc;
+    /*border: 1px solid #613720;*/
     margin: 20px 0;
     padding: 10px;
     line-height: 100%;
 }
 
 fieldset table thead{
-    background-color: #ccc;
+    /*background-color: #ccc;*/
 
 }
 
 fieldset table {
-    border: 1px solid #000;
-    background-color: none ;
+    border: 1px solid #613720;
+    /*background-color: none ;*/
 
 }
 

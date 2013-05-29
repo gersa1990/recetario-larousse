@@ -6,7 +6,7 @@
 	<title><?php echo $title ?></title>
 	<link rel="shortcut icon" href="resources/img/icon.png">
 	
-	<link rel="stylesheet" href="<?php echo base_url()?>css/reset.css" type="text/css" media="screen"/> 
+	<!-- <link rel="stylesheet" href="<?php echo base_url()?>css/reset.css" type="text/css" media="screen"/>  -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/styles.css" type="text/css" media="screen"/> 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>css/jquery-ui.css" media="screen">
 

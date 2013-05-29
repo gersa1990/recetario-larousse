@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-
+		<a href="<?php echo base_url().'apps/view/'.$app; ?>"><span>←</span> regresar</a>
 		<div class="popup bg_grey">
 	
 			<?php 
@@ -269,13 +269,13 @@
 		              </tr>
 		            </thead>
 
-		            <tbody>
+		            <tbody class="blockscroll">
 		              <?php
 		                if(isset($glosarioComplemento)){
 		                  for ($i=0; $i <count($glosarioComplemento) ; $i++) { 
 		                    ?>
 		                    <tr>
-		                      <td class="txleft">
+		                      <td class="fix_colum txleft">
 		                        <input type="checkbox" name="glosarioComplemento[]" value="<?php echo $glosarioComplemento[$i]['id']?>">
 		                        <?php echo $glosarioComplemento[$i]['nombre']; ?>
 		                      </td>
@@ -317,13 +317,13 @@
 		              </tr>
 		            </thead>
 
-		            <tbody>
+		            <tbody class="blockscroll">
 		              <?php
 		                if(isset($recetasComplemento)){
 		                  for ($i=0; $i <count($recetasComplemento) ; $i++) { 
 		                    ?>
 		                    <tr>
-		                      <td class="txleft">
+		                      <td class="fix_colum txleft">
 		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
 		                        <?php echo $recetasComplemento[$i]['titulo']; ?>
 		                      </td>
@@ -371,13 +371,13 @@
 		              </tr>
 		            </thead>
 
-		            <tbody>
+		            <tbody class="blockscroll">
 		              <?php
 		                if(isset($videosComplemento)){
 		                  for ($i=0; $i <count($videosComplemento) ; $i++) { 
 		                    ?>
 		                    <tr>
-		                      <td class="txleft">
+		                      <td class="fix_colum txleft">
 		                        <input type="checkbox" name="videosComplemento[]" value="<?php echo $videosComplemento[$i]['id']?>">
 		                        <?php echo $videosComplemento[$i]['titulo']; ?>
 		                      </td>

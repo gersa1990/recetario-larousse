@@ -18,6 +18,9 @@
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
+
+      <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+      
     </div>
     
     <div class="columr">
