@@ -11,7 +11,7 @@ class Recetas extends CI_Controller {
 		$this->load->model('categoria_model');
 		$this->load->model('complementarias_model');
 		$this->load->model('video_model');
-		$this->load->model('glosario_model');
+		$this->load->model('Glosario_model');
 		$this->load->library('typography');
 	}
 
@@ -38,8 +38,8 @@ class Recetas extends CI_Controller {
 			'id_app' 		=> $_POST['id_app'],
 			'titulo' 		=> $_POST['titulo'],
 			'id_categoria'	=> $_POST['categoria'],
-			'procedimiento'	=> $this->typography->auto_typography($_POST['procedimiento']),
-			'ingredientes'	=> $this->typography->auto_typography($_POST['ingredientes']),
+			'procedimiento'	=> $_POST['procedimiento'],
+			'ingredientes'	=> $_POST['ingredientes'],
 			'preparacion'	=> $_POST['preparacion'],
 			'coccion' 		=> $_POST['coccion'],
 			'costo' 		=> $_POST['costo'],
