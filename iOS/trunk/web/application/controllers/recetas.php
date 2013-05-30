@@ -11,7 +11,7 @@ class Recetas extends CI_Controller {
 		$this->load->model('categoria_model');
 		$this->load->model('complementarias_model');
 		$this->load->model('video_model');
-		$this->load->model('Glosario_model');
+		$this->load->model('glosario_model');
 		$this->load->library('typography');
 	}
 
@@ -210,6 +210,10 @@ class Recetas extends CI_Controller {
 		$data['glosarioRelacionado']			= $this->glosario_model->getGlosarioRelacionado($id,$id_app);
 		$data['videosRelacionados']				= $this->video_model->getVideosRelacionados($id,$id_app);
 		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app);
+
+		$data['glosarioComplemento'] = $this->glosario_model->getComplemento($id_app, $id);
+  		$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
+  		$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
 
 		$this->load->helper('url');
 

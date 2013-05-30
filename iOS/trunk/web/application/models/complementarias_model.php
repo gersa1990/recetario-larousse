@@ -86,7 +86,7 @@ class complementarias_model extends CI_Model {
 
 	public function create(){
 
-		$data->titulo 	 = $_POST['titulo'];
+		@$data->titulo 	 = $_POST['titulo'];
 		$data->contenido = $_POST['contenido'];
 		$data->id_app	 = $_POST['id_app'];
 

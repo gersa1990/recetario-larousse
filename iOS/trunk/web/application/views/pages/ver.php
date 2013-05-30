@@ -138,6 +138,12 @@
 			                    </div>
 								<?php
 							}
+							if(count($glosarioRelacionado)<=0)
+		                	{
+		                		echo "<tr>";
+								print "<td>No existen glosarios relacionados</td>";
+								print "</tr>";
+		                	}
 						}
 					?>
 	          	</tbody>
@@ -190,6 +196,13 @@
 
 								<?php
 							}
+
+							if(count($complementariasRelacionadas)<=0)
+							{
+								print "<tr>";
+								print "<td>No existen recetas complementarias relacionadas</td>";
+								print "</tr>";
+							}	
 						} 
 					?>	
 	          	</tbody>
@@ -243,6 +256,13 @@
 
 								<?php
 							}
+
+							if(count($videosRelacionados)<=0)
+							{
+								print "<tr>";
+								print "<td>No existen videos relacionados</td>";
+								print "</tr>";
+							}
 						}
 					?>
 	          	</tbody>
@@ -283,9 +303,11 @@
 		                    <?php
 		                  }
 		                }
-		                else
+		                if(count($glosarioComplemento)<=0)
 		                {
-		                	echo "glosario";
+		                		echo "<tr>";
+								print "<td>No existen glosarios para relacionar</td>";
+								print "</tr>";
 		                }
 		              ?>
 		            </tbody>
@@ -330,17 +352,13 @@
 		                    </tr>
 		                    <?php
 		                  }
-		                }
-		                if(!isset($recetasComplemento))
-		                {
-		                	?>
-		                	<tr>
-		                      <td class="txleft">
-		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
-		                        No existen recetas para relacionar
-		                      </td>
-		                    </tr>
-		                	<?php
+
+		                  if(count($recetasComplemento)<=0)
+		                  {
+		                  		echo "<tr>";
+								print "<td>No existen recetas complementarias para relacionar</td>";
+								print "</tr>";
+		                  }
 		                }
 		              ?>
 		            </tbody>
@@ -384,6 +402,14 @@
 		                    </tr>
 		                    <?php
 		                  }
+
+		                  if(count($videosComplemento)<=0)
+		                  {
+		                  		echo "<tr>";
+								print "<td>No existen videos para relacionar</td>";
+								print "</tr>";
+		                  }
+
 		                }
 		              ?>
 		            </tbody>
