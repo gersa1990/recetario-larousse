@@ -8,7 +8,7 @@ class export extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('export_model');
-		$this->load->model('complementarias_model');
+		//$this->load->model('complementarias_model');
 	}
 
 	public function createTablesSQlite($BD)
@@ -62,13 +62,11 @@ class export extends CI_Controller {
 	{
 		$codigo_sqlMain = "INSERT INTO ".$table." VALUES(".$string.");";
 		$consulta = $BD->prepare($codigo_sqlMain);
-		//var_dump($BD);
 		$consulta -> execute();
 	}
 
 	public function insertIntoTableSQlite($data,$table,$BD)
 	{
-		//var_dump($data);
 
 		foreach ($data as $field=>$value) 
 		{
@@ -106,25 +104,21 @@ class export extends CI_Controller {
 					}	 	
 				}				
 			}
-			//var_dump($BD);
+
 			$codigo_sqlMain = "INSERT INTO ".$table." VALUES(".$aux.")";
-			//var_dump($codigo_sqlMain);
 			$consulta = $BD-> prepare($codigo_sqlMain);
-			//var_dump($consulta);
 			$consulta -> execute();
-			//$this->insert($aux, $table, $BD);
 		}    
 	}
 
 	public function deleteBDIfExists($BD)
 	{
-		@unlink("resources/".$BD.".sqlite");
-		@unlink("resources/".$BD.".db");
+		@unlink("resources/DB/larousse.db");
 	}
 
 	public function createDBSqlite($app)
 	{
-		$db = new PDO('sqlite:./resources/'.$app.'.sqlite');
+		$db = new PDO('sqlite:./resources/DB/larousse.db');
 		return $db;
 	}
 

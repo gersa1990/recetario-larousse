@@ -120,6 +120,7 @@ class Videos extends CI_Controller {
 
 	public function edit()
 	{
+		
 		$edit = $this->video_model->edit();
 
 		if($edit)

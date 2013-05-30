@@ -16,7 +16,7 @@
 		<tbody>
 			
 			<tr>
-				<td><a href="<?php echo base_url().'resources/'.$app.'.sqlite' ?>" class="subhome"> Descargar</a></td>
+				<td><a href="<?php echo base_url().'resources/DB/larousse.db' ?>" class="subhome"> Descargar</a></td>
 			</tr>
 		</tbody>
 	</table>

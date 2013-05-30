@@ -121,5 +121,34 @@
             }
         });
     });
+
+$(".newreceta").validate(
+  {
+    rules: {
+      preparacion: 
+      {
+         digits: true,
+         required: true
+      },
+      coccion: 
+      {
+         digits: true,
+         required: true
+      }
+    },
+    messages: 
+    {
+      preparacion: 
+      {
+        digits: "Solo minutos (0-9)",
+        required: "Tienes que completa este campo"
+      },
+      coccion: 
+      {
+        digits: "Solo minutos (0-9)",
+        required: "Tienes que completa este campo"
+      }
+    }
+  });
         
 </script>

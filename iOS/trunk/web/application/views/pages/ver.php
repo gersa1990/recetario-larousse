@@ -70,9 +70,6 @@
 				<label for="" class="mg_e">Ingredientes: </label>
 				<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $receta[0]['ingredientes']?></textarea>
 
-
-				<div id="divingredientes" class="full prev"><?php echo $receta[0]['ingredientes']?></div>
-
 			</div>
 			
 			<div class="clear"></div>
@@ -80,8 +77,6 @@
 			<div class="left">
 				<label for="" class="mg_e">Procedimiento: </label>
 				<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $receta[0]['procedimiento']?></textarea>
-
-				<div id="divprocedimiento" class="full prev"><?php echo $receta[0]['procedimiento']?></div>
 
 			</div>
 			
@@ -138,6 +133,12 @@
 			                    </div>
 								<?php
 							}
+							if(count($glosarioRelacionado)<=0)
+		                	{
+		                		echo "<tr>";
+								print "<td>No existen glosarios relacionados</td>";
+								print "</tr>";
+		                	}
 						}
 					?>
 	          	</tbody>
@@ -190,6 +191,13 @@
 
 								<?php
 							}
+
+							if(count($complementariasRelacionadas)<=0)
+							{
+								print "<tr>";
+								print "<td>No existen recetas complementarias relacionadas</td>";
+								print "</tr>";
+							}	
 						} 
 					?>	
 	          	</tbody>
@@ -243,6 +251,13 @@
 
 								<?php
 							}
+
+							if(count($videosRelacionados)<=0)
+							{
+								print "<tr>";
+								print "<td>No existen videos relacionados</td>";
+								print "</tr>";
+							}
 						}
 					?>
 	          	</tbody>
@@ -283,9 +298,11 @@
 		                    <?php
 		                  }
 		                }
-		                else
+		                if(count($glosarioComplemento)<=0)
 		                {
-		                	echo "glosario";
+		                		echo "<tr>";
+								print "<td>No existen glosarios para relacionar</td>";
+								print "</tr>";
 		                }
 		              ?>
 		            </tbody>
@@ -330,17 +347,13 @@
 		                    </tr>
 		                    <?php
 		                  }
-		                }
-		                if(!isset($recetasComplemento))
-		                {
-		                	?>
-		                	<tr>
-		                      <td class="txleft">
-		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
-		                        No existen recetas para relacionar
-		                      </td>
-		                    </tr>
-		                	<?php
+
+		                  if(count($recetasComplemento)<=0)
+		                  {
+		                  		echo "<tr>";
+								print "<td>No existen recetas complementarias para relacionar</td>";
+								print "</tr>";
+		                  }
 		                }
 		              ?>
 		            </tbody>
@@ -384,6 +397,14 @@
 		                    </tr>
 		                    <?php
 		                  }
+
+		                  if(count($videosComplemento)<=0)
+		                  {
+		                  		echo "<tr>";
+								print "<td>No existen videos para relacionar</td>";
+								print "</tr>";
+		                  }
+
 		                }
 		              ?>
 		            </tbody>
@@ -418,10 +439,19 @@ var app   = "<?php echo $app; ?>";
 	  	$('#guardar').hide();
 	  	$('.mg_form').hide();
 	  	$('.delete').hide();
-	  	$('input').attr("disabled", "disabled");
+	  	$('input[type=text], textarea').attr("disabled", "disabled");
 	  	$('select').attr('disabled', true); 
-	  	$("#ingredientes").css('display','none');
-	  	$("#procedimiento").css('display','none');
+
+	  	var tiny = tinymce;
+
+			tiny.init({
+
+	        	selector: "textarea",
+	        	menubar: false,
+	        	width: 950,
+	        	readonly: true
+	    	});
+	  	
 	  });
 
 	  $('#editar').click(function (data)
@@ -429,14 +459,8 @@ var app   = "<?php echo $app; ?>";
 			$('#guardar').show();
 			$('.mg_form').show();
 			$('.delete').show();
-			$('input').removeAttr('disabled');
+			$('input[type=text], textarea').removeAttr('disabled');
 			$('select').attr('disabled', false);
-
-			$("#divingredientes").css('display','none');
-	  		$("#divprocedimiento").css('display','none');
-
-	  		$("#ingredientes").css('display','block');
-	  		$("#procedimiento").css('display','block');
 
 	    	var tiny = tinymce;
 
@@ -460,4 +484,33 @@ $("#titulo").keyup(function (data)
 		});
 	}
 });
+
+$(".newreceta").validate(
+  {
+    rules: {
+      preparacion: 
+      {
+         digits: true,
+         required: true
+      },
+      coccion: 
+      {
+         digits: true,
+         required: true
+      }
+    },
+    messages: 
+    {
+      preparacion: 
+      {
+        digits: "Solo minutos (0-9)",
+        required: "Tienes que completa este campo"
+      },
+      coccion: 
+      {
+        digits: "Solo minutos (0-9)",
+        required: "Tienes que completa este campo"
+      }
+    }
+  });
 </script>

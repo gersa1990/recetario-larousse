@@ -19,7 +19,6 @@ class Recetas extends CI_Controller {
 		
 		$palabra = $_POST['titulo'];
 		$id_app  = $_POST['id_app'];
-
 		$this->recetas_model->checkExistence($palabra, $id_app);
 	}
 
@@ -39,8 +38,8 @@ class Recetas extends CI_Controller {
 			'id_app' 		=> $_POST['id_app'],
 			'titulo' 		=> $_POST['titulo'],
 			'id_categoria'	=> $_POST['categoria'],
-			'procedimiento'	=> $this->typography->auto_typography($_POST['procedimiento']),
-			'ingredientes'	=> $this->typography->auto_typography($_POST['ingredientes']),
+			'procedimiento'	=> $_POST['procedimiento'],
+			'ingredientes'	=> $_POST['ingredientes'],
 			'preparacion'	=> $_POST['preparacion'],
 			'coccion' 		=> $_POST['coccion'],
 			'costo' 		=> $_POST['costo'],
@@ -136,22 +135,6 @@ class Recetas extends CI_Controller {
 			redirect(base_url()."apps/view/".$app);
 		}
 	}
-	
-
-	public function index()
-	{
-		//$data['recetas'] = $this->recetas_model->get_recetas();
-		
-		$data['apps'] = $this->App_model->get_apps();
-
-		$this->load->helper('url');
-
-		$data['title'] = 'Aplicaciones de editorial Larousse';
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/index', $data);
-		$this->load->view('templates/footer');
-	}
-
 
 
 	public function create()
@@ -172,6 +155,16 @@ class Recetas extends CI_Controller {
 		$app 	= $_POST['id_app'];
 
 		$delete = $this->recetas_model->delete($id);
+
+		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
+
+		$extendsDeleteGlosary 					= $this->Glosario_model->extendsDelete($recetas);
+		//$extendsDeleteGlosaryByIdApp 			= $this->Glosario_model->extendsDeleteByIdApp($id);
+		//$extendsDeleteCategoria					= $this->categoria_model->extendsDelete($id);
+		$extendsDeleteVideos 					= $this->video_model->extendsDelete($recetas);
+		//$extendsDeleteVideosByIdApp 			= $this->video_model->extendsDeleteByIdApp($id);
+		$extendsDeleteComplementarias 			= $this->complementarias_model->extendsDelete($recetas);
+		//$extendsDeleteComplementariasByIdApp	= $this->complementarias_model->extendsDeleteByIdApp($id);		
 
 		if($delete)
 		{
@@ -206,6 +199,7 @@ class Recetas extends CI_Controller {
 
 	public function ver($id, $id_app)
 	{
+
 		$receta = $data['receta'] = $this->recetas_model->get_receta($id);
 	
 		$data['app'] = $id_app;
@@ -218,12 +212,13 @@ class Recetas extends CI_Controller {
 		$data['complementariasRelacionadas']	= $this->complementarias_model->getcomplementariasRelacionadas($id, $id_app);
 
 		$data['glosarioComplemento'] = $this->glosario_model->getComplemento($id_app, $id);
-		$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
-		$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
+  		$data['recetasComplemento'] = $this->complementarias_model->getComplemento($id_app, $id);
+  		$data['videosComplemento'] = $this->video_model->getComplemento($id_app, $id);
 
 		$this->load->helper('url');
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> recetas > '.$receta[0]['titulo'];
+		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/ver', $data);
 		$this->load->view('templates/footer');
