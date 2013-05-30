@@ -70,9 +70,6 @@
 				<label for="" class="mg_e">Ingredientes: </label>
 				<textarea name="ingredientes" id="ingredientes" class="full"><?php echo $receta[0]['ingredientes']?></textarea>
 
-
-				<div id="divingredientes" class="full prev"><?php echo $receta[0]['ingredientes']?></div>
-
 			</div>
 			
 			<div class="clear"></div>
@@ -80,8 +77,6 @@
 			<div class="left">
 				<label for="" class="mg_e">Procedimiento: </label>
 				<textarea name="procedimiento" id="procedimiento" class="full"><?php echo $receta[0]['procedimiento']?></textarea>
-
-				<div id="divprocedimiento" class="full prev"><?php echo $receta[0]['procedimiento']?></div>
 
 			</div>
 			
@@ -444,10 +439,19 @@ var app   = "<?php echo $app; ?>";
 	  	$('#guardar').hide();
 	  	$('.mg_form').hide();
 	  	$('.delete').hide();
-	  	$('input').attr("disabled", "disabled");
+	  	$('input[type=text], textarea').attr("disabled", "disabled");
 	  	$('select').attr('disabled', true); 
-	  	$("#ingredientes").css('display','none');
-	  	$("#procedimiento").css('display','none');
+
+	  	var tiny = tinymce;
+
+			tiny.init({
+
+	        	selector: "textarea",
+	        	menubar: false,
+	        	width: 950,
+	        	readonly: true
+	    	});
+	  	
 	  });
 
 	  $('#editar').click(function (data)
@@ -455,14 +459,8 @@ var app   = "<?php echo $app; ?>";
 			$('#guardar').show();
 			$('.mg_form').show();
 			$('.delete').show();
-			$('input').removeAttr('disabled');
+			$('input[type=text], textarea').removeAttr('disabled');
 			$('select').attr('disabled', false);
-
-			$("#divingredientes").css('display','none');
-	  		$("#divprocedimiento").css('display','none');
-
-	  		$("#ingredientes").css('display','block');
-	  		$("#procedimiento").css('display','block');
 
 	    	var tiny = tinymce;
 
@@ -486,4 +484,33 @@ $("#titulo").keyup(function (data)
 		});
 	}
 });
+
+$(".newreceta").validate(
+  {
+    rules: {
+      preparacion: 
+      {
+         digits: true,
+         required: true
+      },
+      coccion: 
+      {
+         digits: true,
+         required: true
+      }
+    },
+    messages: 
+    {
+      preparacion: 
+      {
+        digits: "Solo minutos (0-9)",
+        required: "Tienes que completa este campo"
+      },
+      coccion: 
+      {
+        digits: "Solo minutos (0-9)",
+        required: "Tienes que completa este campo"
+      }
+    }
+  });
 </script>

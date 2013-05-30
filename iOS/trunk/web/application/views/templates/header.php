@@ -19,6 +19,7 @@
 	<script src="<?php echo base_url(); ?>js/tinymce.min.js" type="text/javascript"></script>
 
 	<script src="<?php echo base_url(); ?>js/funcionesJS.js"></script>
+	<script src="<?php echo base_url(); ?>resources/js/validation/jquery.validate.js"></script>
 	
 </head>
 

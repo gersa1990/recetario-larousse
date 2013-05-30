@@ -24,7 +24,7 @@
       <div id="addblock">
   
         <div id="controles">
-          <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
+          <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." style="display:none" value="">
           <a href="#nuevaCategoria" class="button large orange">Nueva categoría</a>
         </div> 
   
