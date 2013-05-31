@@ -7,6 +7,7 @@ class Categorias extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
+	//Método que actualiza el orden por el cual se muestran las categorias
 	public function updateOrden(){
 		$id_categoria = $_POST['id_categoria'];
 		$orden 		  = $_POST['orden_categoria'];
@@ -14,6 +15,7 @@ class Categorias extends CI_Controller {
 		$update = $this->categoria_model->updateOrden($id_categoria, $orden);
 	}
 
+	//Método que verifica no exista el nombre de esta categoria al tratar de actualizarla
 	public function updateCheckExistence(){
 		
 		$titulo 	= $_POST['titulo'];
@@ -23,6 +25,7 @@ class Categorias extends CI_Controller {
 		$this->categoria_model->updateCheckExistence($titulo, $id_app, $categoria);
 	}
 
+	//Método que verifica que no exista el nombre de categoria al tratar de crearla
 	public function checkExistence(){
 
 		$palabra = $_POST['titulo'];
@@ -42,6 +45,7 @@ class Categorias extends CI_Controller {
 		$deleteArray = $this->categoria_model->extendsDelete($arrayRecetas);
 	}
 
+	//Método que sirve para editar la categoria en la BD
 	public function edit(){
 
 		$id_app 		= $_POST['id_app'];
@@ -57,10 +61,12 @@ class Categorias extends CI_Controller {
 		}
 	}
 
+	//Método que sirve para ver las categorias de una APP en especifico
 	public function view($id_app){
 
 		$this->load->helper('url');
 
+		//Obtiene las categorias de la APP ($id_app)
 		$data['categorias'] = $this->categoria_model->get_categorias($id_app);
 		
 		$data['app']  	 = $id_app;
@@ -74,6 +80,7 @@ class Categorias extends CI_Controller {
 
 	}
 
+	//Método que sirve para crear una categoria en la BD
 	public function create()
 	{
 		$id_app = $_POST['id_app'];
@@ -91,25 +98,26 @@ class Categorias extends CI_Controller {
 		}
 	}
 
+	//Método que sirve para eliminar una categoria
 	public function delete(){
 
 		$this->load->helper('url');
 
 		$id = $_POST['id'];
 
-		$this->categoria_model->delete_recipe($id);
+		$this->categoria_model->delete_categoria($id); //Eliminar las categorias seleccionadas
 
 		redirect(base_url().'categorias/view/'.$_POST['id_app'], 'refresh');
 	}
 
+	
+	//Método para buscar categorias actualmente es deprecated por que se ordenan mediante sortable
 	public function searchByTitulo(){
 
 		$titulo = $_POST['titulo'];
 		$id_app = $_POST['id_app'];
 
 		$categorias = $this->categoria_model->searchByTitulo($titulo, $id_app);
-
-
 
 		for ($i=0; $i <count($categorias) ; $i++) 
 		{ 
@@ -131,7 +139,6 @@ class Categorias extends CI_Controller {
                           Eliminar
                         </a>
                       </td>
-
                   </tr>";
 		}
 	}

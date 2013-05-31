@@ -15,6 +15,10 @@ class Recetas extends CI_Controller {
 		$this->load->library('typography');
 	}
 
+	/***************************************************************
+		Método para ver si el nombre de una receta no existe al tratar de 
+		crearla en el sistema
+	****************************************************************/
 	public function checkExistence(){
 		
 		$palabra = $_POST['titulo'];
@@ -22,16 +26,27 @@ class Recetas extends CI_Controller {
 		$this->recetas_model->checkExistence($palabra, $id_app);
 	}
 
+	/***************************************************************
+		Método para verificar si existe una receta con el nombre 
+		seleccionado al tratar de editarla
+	****************************************************************/
 	public function updateCheckExistence(){
 		
 	}
 
+	/***************************************************************
+		Método para obtener los datos de una receta
+	****************************************************************/
 	public function getData($id_receta){
 
 		$data = $this->recetas_model->getData($id_receta);
 		return $data;
 	}
 
+	/***************************************************************
+		Método para relaionar una receta y mostrar sus datos
+		en otra ventana
+	****************************************************************/
 	public function addComplementarias(){
 
 		$data = array(
@@ -48,11 +63,13 @@ class Recetas extends CI_Controller {
 		);
 
 		$id_receta = $this->recetas_model->createAndReturnId($data);
-
 		redirect(base_url()."recetas/relations/".$id_receta."/".$_POST['id_app']);
-
 	}
 
+	/***************************************************************
+		Método para obtener los datos de las recetas y las posibilidades
+		de relacionarlas con videos, complementarias y glosario
+	****************************************************************/
 	public function relations($id_receta,$id_app){
 
 		$data['app']   =  $id_app;
@@ -73,6 +90,9 @@ class Recetas extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	/***************************************************************
+		Método mostrar las opciones para dar de alta una nueva receta
+	****************************************************************/
 	public function nueva($id_app){
 
 		$data['title'] = "Nueva Receta";
@@ -85,6 +105,10 @@ class Recetas extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	/***************************************************************
+		Método para buscar los datos de una receta con respecto a una palabra
+		(Sistema de busqueda)
+	****************************************************************/
 	public function searchByName()
 	{
 		$nombre = $_POST['palabra'];
@@ -122,21 +146,9 @@ class Recetas extends CI_Controller {
 	}
 
 
-
-	public function eliminar(){
-
-		$id_receta = $_POST['id'];
-		$app 	   = $_POST['app'];
-
-		$delete    = $this->recetas_model->eliminar($id_receta); 
-
-		if($delete)
-		{
-			redirect(base_url()."apps/view/".$app);
-		}
-	}
-
-
+	/***************************************************************
+		Método para crear una receta DEPRECATED
+	****************************************************************/
 	public function create()
 	{
 		$app = $_POST['id_app'];
@@ -149,6 +161,9 @@ class Recetas extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para eliminar una receta y todas sus relaciones
+	****************************************************************/
 	public function delete(){
 
 		$id 	= $_POST['id'];
@@ -158,13 +173,12 @@ class Recetas extends CI_Controller {
 
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
 
-		$extendsDeleteGlosary 					= $this->Glosario_model->extendsDelete($recetas);
-		//$extendsDeleteGlosaryByIdApp 			= $this->Glosario_model->extendsDeleteByIdApp($id);
-		//$extendsDeleteCategoria					= $this->categoria_model->extendsDelete($id);
-		$extendsDeleteVideos 					= $this->video_model->extendsDelete($recetas);
-		//$extendsDeleteVideosByIdApp 			= $this->video_model->extendsDeleteByIdApp($id);
-		$extendsDeleteComplementarias 			= $this->complementarias_model->extendsDelete($recetas);
-		//$extendsDeleteComplementariasByIdApp	= $this->complementarias_model->extendsDeleteByIdApp($id);		
+		//Eliminar las relaciones de glosario con las recetas
+		$this->glosario_model->extendsDelete($recetas);
+		//Eliminar las relaciones de videos con las recetas
+		$this->video_model->extendsDelete($recetas);
+		//Eliminar las relaciones de recetas complementarias con las recetas
+		$this->complementarias_model->extendsDelete($recetas);
 
 		if($delete)
 		{
@@ -172,10 +186,11 @@ class Recetas extends CI_Controller {
 		}
 	}
 	
-
+	/***************************************************************
+		Método para editar una receta
+	****************************************************************/
 	public function edit()
 	{
-
 		$id 		   	= $_POST['id'];
 
 		@$data->titulo			= @$_POST['titulo'];
@@ -197,6 +212,9 @@ class Recetas extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para ver todo acerca de une receta
+	****************************************************************/
 	public function ver($id, $id_app)
 	{
 
@@ -223,32 +241,5 @@ class Recetas extends CI_Controller {
 		$this->load->view('pages/ver', $data);
 		$this->load->view('templates/footer');
 	}
-
-
-	public function updateR($app = FALSE, $id)
-	{
-
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-
-		$id = $this->input->post('id');
-
-		$this->form_validation->set_rules('titulo', 'Título', 'required');
-
-		if ($this->form_validation->run() === FALSE)
-		{
-			echo "No valido";
-		}
-		else
-		{			
-			$actualizar = $this->recetas_model->update_recetas($id);
-			
-			if($actualizar)
-		 	{
-                redirect(base_url()."recetas/modificar/".$id."/".$app, 'refresh');
-         	}
-		}      
-	}
 }
-
 ?>

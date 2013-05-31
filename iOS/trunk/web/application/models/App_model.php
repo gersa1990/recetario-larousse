@@ -7,6 +7,9 @@ class App_model extends CI_Model {
 		$this->load->model('recetas_model');
 	}
 
+	/***************************************************************
+		Modelo para crear una APP
+	****************************************************************/
 	public function nueva(){
 
 		$data = array(
@@ -16,6 +19,10 @@ class App_model extends CI_Model {
 		return $this->db->insert('app', $data);
 	}
 
+	/***************************************************************
+		Modelo para verificar si existe una app con ese nombre
+		cuando se trata de actualizar
+	****************************************************************/
 	public function updateCheckExistence($palabra, $id_app){
 
 		$existe = $this->db->query("SELECT * FROM app WHERE id != ".$id_app." and nombre = '".$palabra."' ");
@@ -28,6 +35,10 @@ class App_model extends CI_Model {
 
 	}
 
+	/***************************************************************
+		Modelo para verificar si existe una app con ese nombre
+		cuando se trata de crear
+	****************************************************************/
 	public function checkExistence($palabra){
 		$existe = $this->db->query("SELECT * FROM app where nombre = '".$palabra."' ");
 		$array = $existe->row_array();
@@ -38,18 +49,17 @@ class App_model extends CI_Model {
 		}
 	}
 
-	public function changeName($id_app, $nombre){
-
-		$data->nombre = $nombre;
-		
-		return $this->db->update('app', $data, array('id' => $id_app));
-	}
-
-	
+	/***************************************************************
+		Modelo para verificar si existe una app con ese nombre
+		cuando se trata de crear
+	****************************************************************/
 	public function delete_app($id){
 		$this->db->delete('recetas', array('id' => $id)); 
 	}
 
+	/***************************************************************
+		Modelo para actualizar el nombre de la aplicación
+	****************************************************************/
 	public function updateAppName($idApp, $nombreApp){
 
 		$this->id 	  = $idApp;
@@ -60,14 +70,16 @@ class App_model extends CI_Model {
 
 	}
 
+	/***************************************************************
+		Modelo para obtener las categorias pertenecientes al APP
+	****************************************************************/
 	public function getCategoryFromAppId($id)
 	{
-
 		$recetas = $this->db->query("SELECT * FROM categoria WHERE id_app = ".$id." ");
 		
 		$i=0;
-		foreach ($recetas->result() as $key => $value) 
-		{
+		foreach ($recetas->result() as $key => $value) {
+
 			$arreglo[$i]['id'] 			= $value->id;
 			$arreglo[$i]['id_app']		= $value->id_app;
 			$arreglo[$i]['nombre'] 		= $value->nombre;
@@ -76,18 +88,24 @@ class App_model extends CI_Model {
 			$i++;
 		}
 
-		if(isset($arreglo))
-		{
+		if(isset($arreglo)){
+
 			return $arreglo;
 		}
 	}
 
+	/***************************************************************
+		Modelo para eliminar una APP
+	****************************************************************/
 	public function eliminar_app($id)
 	{
 		$this->db->delete('app', array('id' => $id));	
 	}
 
 
+	/***************************************************************
+		Modelo para registrar un APP
+	****************************************************************/
 	public function set_app(){
 		$this->load->helper('url');
 			$data = array(
@@ -96,6 +114,9 @@ class App_model extends CI_Model {
 			return $this->db->insert('app', $data);
 	}
 
+	/***************************************************************
+		Modelo para obtener todas las APPS o solo una
+	****************************************************************/
 	public function get_apps($id = FALSE){
 		
 		if ($id === FALSE){
@@ -107,21 +128,12 @@ class App_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	/***************************************************************
+		Modelo para obtener el nombre de una APP
+	****************************************************************/
 	public function get_name($id){
 		$name = $this->db->query("SELECT nombre FROM app WHERE id = ".$id." ");
 		return $name->result_array();
-	}
-
-
-	public function update_categoria($id, $nombre){
-
-		$data = array(
-				'nombre' => $this->input->post('nombre')
-			);
-
-		$this->db->where('id', $id);
-        return $this->db->update('app', $data);
-
 	}
 }
 ?>

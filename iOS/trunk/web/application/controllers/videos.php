@@ -7,6 +7,10 @@ class Videos extends CI_Controller {
 		$this->load->model('App_model');
 	}	
 
+	/***************************************************************
+		Método para verificar que el nombre con el que estoy tratando 
+		de dar de alta un video no exista en la BD
+	****************************************************************/
 	public function checkExistence(){
 
 		$palabra = $_POST['palabra'];
@@ -15,6 +19,10 @@ class Videos extends CI_Controller {
 		$this->video_model->checkExistence($palabra, $id_app);
 	}
 
+	/***************************************************************
+		Método para verificar que el nombre con el que estoy tratando 
+		de actualizar un video no exista en la BD
+	****************************************************************/
 	public function updateCheckExistence(){
 
 		$palabra 		= $_POST['nombre'];
@@ -24,7 +32,9 @@ class Videos extends CI_Controller {
 		$this->video_model->updateCheckExistence($palabra, $id_video, $id_app);
 	}
 
-
+	/***************************************************************
+		Método para ver los videos que contiene una APP
+	****************************************************************/
 	public function view($id_app){
 
 		$data['apps'] 	= $this->App_model->get_apps($id_app);
@@ -40,32 +50,12 @@ class Videos extends CI_Controller {
 		$this->load->view('templates/footer');
 	
 	}
-
-	public function searchByName2(){
-
-		$id_receta 	= $_POST['id_receta'];
-		$id_app 	= $_POST['id_app'];
-		$palabra 	= $_POST['palabra'];
-
-		//echo "Receta: ".$id_receta." APP: ".$id_app." PALABRA: ".$palabra; 
-
-		$videos = $this->video_model->searchByName2($id_app, $id_receta, $palabra);
-
-		if(count($videos)>0)
-		{
-			for ($i=0; $i <count($videos) ; $i++) 
-			{ 
-				echo "<div id='div_".$videos[$i]['id']."'>".$videos[$i]['titulo']."<button class='videos' id='".$videos[$i]['id']."'>agregar</button></div>";
-			}
-		}
-		else
-		{
-			echo "No se encontro";
-		}
-	}
-
 	
 
+	/***************************************************************
+		Método para filtrar los nombres que el usuario podría 
+		introducir en el sistema
+	****************************************************************/
 	private function filtrar($video)
 	{
 		$tam = strlen($video);
@@ -103,12 +93,12 @@ class Videos extends CI_Controller {
 		$tam = strlen($texto);
 		$extension = substr($texto, $tam-4, $tam);
 
-		if($extension==".avi" 
-			|| $extension ==".flv" 
-			|| $extension==".mp4" 
-			|| $extension ==".ogg" 
-			|| $extension ==".mpg" 
-			|| $extension ==".mkv" 
+		if(	   $extension == ".avi" 
+			|| $extension == ".flv" 
+			|| $extension == ".mp4" 
+			|| $extension == ".ogg" 
+			|| $extension == ".mpg" 
+			|| $extension == ".mkv" 
 			|| $extension == ".mov")
 		{
 			$aux = substr($texto, 0, $tam-4);
@@ -118,6 +108,9 @@ class Videos extends CI_Controller {
 		return $texto;
 	}
 
+	/***************************************************************
+		Método para editar un video
+	****************************************************************/
 	public function edit()
 	{
 		
@@ -129,6 +122,9 @@ class Videos extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para eliminar un video
+	****************************************************************/
 	public function delete()
 	{
 		$id     = $_POST['id'];
@@ -140,7 +136,9 @@ class Videos extends CI_Controller {
 		}
 	}
 
-
+	/***************************************************************
+		Método para dar de alta un video
+	****************************************************************/
 	public function create()
 	{
 		$video  = $_POST['video'];
@@ -156,24 +154,24 @@ class Videos extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para agregar la relacion entre el video y la receta
+	****************************************************************/
 	public function addToRecipe(){
 
 		$id_app 		= $_POST['id_app'];
 		$id_receta		= $_POST['receta'];
 		$id_video 		= $_POST['id_video'];
-
-		//echo "APP: ".$id_app." RECETA: ".$id_receta." VIDEO: ".$id_video;
-
 		$videos = $this->video_model->addToRecipe($id_receta, $id_video);
-
 		$video = $this->video_model->getDataByVideo($id_video);
-
-		
-
 		echo "<tr><td>".$video[0]['titulo']."</td></tr>";
 
 	}
 
+	/***************************************************************
+		Método para buscar los videos que concuerdan
+		con una cadena de texto proporcionada (Sistema de búsqueda)
+	****************************************************************/
 	public function  searchByName(){
 
 		$nombre = $_POST['nombre'];
@@ -205,6 +203,10 @@ class Videos extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para eliminar las relaciones de una receta con respecto 
+		a un video
+	****************************************************************/
 	public function deleteToRecipe(){
 		$id_receta 	= $_POST['id_receta'];
 		$id_video = $_POST['id_video'];
@@ -218,6 +220,10 @@ class Videos extends CI_Controller {
 
 	}
 
+	/***************************************************************
+		Método para obtener las relaciones de los videos 
+		y sus relaciones
+	****************************************************************/
 	public function addCheckVideos(){
 		$id_receta = $_POST['id_receta'];
 		$id_app = $_POST['id_app'];
@@ -229,10 +235,7 @@ class Videos extends CI_Controller {
 				$this->video_model->addToRecipe($id_receta, $ids_videos[$i]);
 			}
 	    }
-	    
 	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
-
 	}
-
 }
 ?>
