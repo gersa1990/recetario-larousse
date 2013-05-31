@@ -157,32 +157,41 @@ class Complementarias extends CI_Controller
 		$id_receta = $_POST['id_receta'];
 		$id_app = $_POST['id_app'];
 
-		if(isset($_POST['complementarias'])){
-	        $ids_recetas = $_POST['complementarias'];
+		if(isset($_POST['complementarias']) || isset($_POST['videos']) || isset($_POST['glosario'])){
+			if(isset($_POST['complementarias'])){
+		        $ids_recetas = $_POST['complementarias'];
 
-			for ($i=0; $i <count($ids_recetas) ; $i++) { 
-				$this->complementarias_model->addToRecipe($id_receta, $ids_recetas[$i]);
-			}
-	    }
+				for ($i=0; $i <count($ids_recetas) ; $i++) { 
+					$this->complementarias_model->addToRecipe($id_receta, $ids_recetas[$i]);
+				}
+		    }
 
-	    if(isset($_POST['videos'])){
-	        $ids_videos = $_POST['videos'];
+		    if(isset($_POST['videos'])){
+		        $ids_videos = $_POST['videos'];
 
-			for ($i=0; $i <count($ids_videos) ; $i++) { 
-				$this->video_model->addToRecipe($id_receta, $ids_videos[$i]);
-			}
-	    }
+				for ($i=0; $i <count($ids_videos) ; $i++) { 
+					$this->video_model->addToRecipe($id_receta, $ids_videos[$i]);
+				}
+		    }
 
-	    if(isset($_POST['glosario'])){
-	        $ids_glosario = $_POST['glosario'];
+		    if(isset($_POST['glosario'])){
+		        $ids_glosario = $_POST['glosario'];
 
-			for ($i=0; $i <count($ids_glosario) ; $i++) { 
-				$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
-			}
-	    }
+				for ($i=0; $i <count($ids_glosario) ; $i++) { 
+					$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
+				}
+		    }
+			
+			redirect(base_url()."apps/view/".$id_app,"refresh");
+		}else{
+			$data['title'] = "Nueva Receta - Relaciones";
+			$data['app'] = $_POST['id_app'];
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/mensaje', $data);
+			$this->load->view('templates/footer');
+		}
 		
-		redirect(base_url()."apps/view/".$id_app,"refresh");
-
 	}
 
 

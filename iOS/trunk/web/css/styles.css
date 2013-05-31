@@ -17,16 +17,10 @@ body{
     min-width: 1087px;
      margin: 0 0 130px;
      background-color: #fff;
+     color: rgb(119, 119, 119); 
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-p{
-    color: #000;
-}
-
-a{
-    color: #000;
-}
 
 a:hover{
     color: #000;
@@ -35,24 +29,14 @@ a:hover{
 
 a.home{
     display: block;
-    margin-bottom:47px;
-    text-decoration: none; 
+    padding: 20px 0;
+    text-decoration: none;
+    color: rgb(119, 119, 119); 
+    /*background-color: #ccc;*/
 }
 
 a.home:hover{
     text-decoration: underline;
-    color: #000;
-}
-
-a.back{
-    display: block;
-    margin-bottom:20px;
-    text-decoration: none; 
-}
-
-a.back:hover{
-     text-decoration: underline;
-     color: #000; 
 }
 
 h1{
@@ -112,7 +96,7 @@ label{
 .main{
     width: 100%;
     min-height: 560px;
-    padding-top: 30px;
+    /*padding-top: 30px;*/
     position: relative;
     background-color: #FFF;
 }
@@ -121,6 +105,7 @@ label{
     padding: 20px 10px;
     background-color: #fbfbfb;
     border: 1px solid #efefef;
+    position: relative;
 }
 
 .columna{
@@ -140,6 +125,10 @@ label{
 
 .myriadFont{
     font-family: MyriadPro-Cond;
+}
+
+.fix_top{
+    margin-top: 30px;
 }
 
 .columna:last-child{
@@ -187,7 +176,7 @@ label{
 }
 
 .title_app{
-    margin: 0 0 33px;
+    margin: 0 0 31px;
     font-size: 30px;
 }
 
@@ -222,7 +211,7 @@ label{
 }
 
 a.help:hover{
-    color: #000;
+    /*color: #000;*/
 }
 
 
@@ -252,6 +241,10 @@ a.help:hover{
     -webkit-transform: translate(0, 1px);
 }
 
+button:active{
+    -webkit-transform: translate(0, 1px);
+}
+
 .large.button {
     font-size: 13px;
     padding: 8px 19px 9px;
@@ -275,7 +268,7 @@ a.help:hover{
 
 .blockscroll{
     display: block;
-    max-height: 600px;
+    max-height: 450px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -376,6 +369,27 @@ a.help:hover{
     color: #c09853;
 }
 
+.box_mensaje{
+    margin-top: 40px;
+    height: 200px;
+}
+
+.box_mensaje .box{
+    width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.box_mensaje .box .button{
+    margin-top: 40px; 
+    margin-left: 74px;
+}
+
+.alert h1{
+    color: #c09853;
+    text-align: center;
+}
+
 .alert .aclose {
     position: relative;
     top: -7px;
@@ -474,9 +488,10 @@ header a{
 
 #status{
     display: none;
-    width: 400px;
+    text-align: center;
+    width: auto;
     height: 30px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 /*************************************/
 /*           Menu                    */
@@ -631,6 +646,16 @@ table tr td:first-child{
     width: 549px;
 }
 
+.fix_colum{
+    width: 869px !important;
+
+}
+
+.fix_colum2{
+    width: 910px !important;
+    border: none;
+}
+
 table th, thead{
     text-align: center;
     position: relative;
@@ -697,7 +722,7 @@ table thead{
 
 .modalDialog p{
     font-size: 14px;
-    margin: 7px auto; 
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -774,10 +799,11 @@ a.close:hover{
 }
 
 .modalDialog .eliminarBoton {
+    width: 75px;
     position: relative;
     left: 50%;
     margin-top: 20px;
-    margin-left: -28px;
+    margin-left: -37px;
     padding: 5px 10px;
     background: #2c6da0;
     color: #8f5a0a;
@@ -936,20 +962,20 @@ fieldset{
     display: block;
     width: 1043px;
     min-height: 200px;
-    border: 1px solid #ccc;
+    /*border: 1px solid #613720;*/
     margin: 20px 0;
     padding: 10px;
     line-height: 100%;
 }
 
 fieldset table thead{
-    background-color: #ccc;
+    /*background-color: #ccc;*/
 
 }
 
 fieldset table {
-    border: 1px solid #000;
-    background-color: none ;
+    border: 1px solid #613720;
+    /*background-color: none ;*/
 
 }
 
@@ -994,7 +1020,6 @@ fieldset legend{
 
 .popup p{
     font-size: 16px;
-    font-weight: bold;
     margin: 30px auto;
 }
 
@@ -1037,13 +1062,13 @@ fieldset legend{
 
     border-width: 1px;
     border-style: solid;
-    border-color: #f1750b #f69038 #f1750b #f69038;
+    border-color: #f1750b #f69038 #f1750b #f69038 !important;
 }
 
 .submit.blue{
     position: absolute;
-    top:60px;
-    left: 960px;
+    top: 32px;
+    left: 987px;
     background-color: #2daebf;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#2daebf), to(#1e7681));
     background-image: -webkit-linear-gradient(top, #2daebf, #1e7681);
@@ -1051,5 +1076,9 @@ fieldset legend{
     background-image: -ms-linear-gradient(top, #2daebf, #1e7681);
     background-image: -o-linear-gradient(top, #2daebf, #1e7681);
     background-image: linear-gradient(top, #2daebf, #1e7681);
-    border-color: #238896 #1e7681 #238896 #1e7681;
+    border-color: #238896 #1e7681 #238896 #1e7681 !important;
  }
+
+ .submit:active {
+    -webkit-transform: translate(0, 1px);
+}

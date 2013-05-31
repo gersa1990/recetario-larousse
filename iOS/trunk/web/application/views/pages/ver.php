@@ -1,6 +1,6 @@
 <div class="wrapper">
 	<div class="main">
-
+		<a class="home" href="<?php echo base_url().'apps/view/'.$app; ?>"><span>←</span> regresar</a>
 		<div class="popup bg_grey">
 	
 			<?php 
@@ -270,7 +270,7 @@
 
             <a href="#" title="Close" class="close">x</a>
 
-            <h2 class="mg_20 myriadFont">Terminos de glosario</h2>
+            <h2 class="mg_20 myriadFont">Relacionar termino de glosario</h2>
             <?php echo form_open('glosario/addCheckGlosario');?>
 
             	<input type="hidden" name="id_app" value="<?php echo $app; ?>">
@@ -284,13 +284,13 @@
 		              </tr>
 		            </thead>
 
-		            <tbody>
+		            <tbody class="blockscroll">
 		              <?php
 		                if(isset($glosarioComplemento)){
 		                  for ($i=0; $i <count($glosarioComplemento) ; $i++) { 
 		                    ?>
 		                    <tr>
-		                      <td class="txleft">
+		                      <td class="fix_colum txleft">
 		                        <input type="checkbox" name="glosarioComplemento[]" value="<?php echo $glosarioComplemento[$i]['id']?>">
 		                        <?php echo $glosarioComplemento[$i]['nombre']; ?>
 		                      </td>
@@ -301,7 +301,7 @@
 		                if(count($glosarioComplemento)<=0)
 		                {
 		                		echo "<tr>";
-								print "<td>No existen glosarios para relacionar</td>";
+								print "<td class='fix_colum2'>Ya se han relacionado todos los terminos</td>";
 								print "</tr>";
 		                }
 		              ?>
@@ -334,13 +334,13 @@
 		              </tr>
 		            </thead>
 
-		            <tbody>
+		            <tbody class="blockscroll">
 		              <?php
 		                if(isset($recetasComplemento)){
 		                  for ($i=0; $i <count($recetasComplemento) ; $i++) { 
 		                    ?>
 		                    <tr>
-		                      <td class="txleft">
+		                      <td class="fix_colum txleft">
 		                        <input type="checkbox" name="recetasComplemento[]" value="<?php echo $recetasComplemento[$i]['id']?>">
 		                        <?php echo $recetasComplemento[$i]['titulo']; ?>
 		                      </td>
@@ -351,7 +351,7 @@
 		                  if(count($recetasComplemento)<=0)
 		                  {
 		                  		echo "<tr>";
-								print "<td>No existen recetas complementarias para relacionar</td>";
+								print "<td class='fix_colum2'>Ya se han relacionado todas las recetas</td>";
 								print "</tr>";
 		                  }
 		                }
@@ -384,13 +384,13 @@
 		              </tr>
 		            </thead>
 
-		            <tbody>
+		            <tbody class="blockscroll">
 		              <?php
 		                if(isset($videosComplemento)){
 		                  for ($i=0; $i <count($videosComplemento) ; $i++) { 
 		                    ?>
 		                    <tr>
-		                      <td class="txleft">
+		                      <td class="fix_colum txleft">
 		                        <input type="checkbox" name="videosComplemento[]" value="<?php echo $videosComplemento[$i]['id']?>">
 		                        <?php echo $videosComplemento[$i]['titulo']; ?>
 		                      </td>
@@ -401,7 +401,7 @@
 		                  if(count($videosComplemento)<=0)
 		                  {
 		                  		echo "<tr>";
-								print "<td>No existen videos para relacionar</td>";
+								print "<td class='fix_colum2'>Ya se han relacionado todos los videos</td>";
 								print "</tr>";
 		                  }
 

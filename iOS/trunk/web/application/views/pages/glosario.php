@@ -4,8 +4,10 @@
   <div class="main">
     <div id="status"></div>
 
+
+    <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+
     <div class="columl">
-       <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
        <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
@@ -17,6 +19,7 @@
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
+
     </div>
     
     <div class="columr">
@@ -113,7 +116,7 @@
 
                             <div class="left">
                               <label for="">Imagen: </label>
-                              <input type="text" name="imagen" id="imagen" value="<?php echo $glosario[$i]['imagen']; ?>" required>
+                              <input type="text" name="imagen" id="imagen" value="<?php echo $glosario[$i]['imagen']; ?>">
                             </div>
 
 
@@ -164,7 +167,7 @@
 
           <div class="left">
             <label for="">Imagen: </label>
-            <input type="text" name="imagen" id="imagen" placeholder="imagen" required>
+            <input type="text" name="imagen" id="imagen" placeholder="imagen">
           </div>
 
           <div class="clear"></div>
@@ -183,6 +186,9 @@
 </div> <!-- Wrapper -->
 
 <script>
+  $(document).ready(function (){
+     // tinymce.init({selector:'textarea'});
+  });
 
   var app = "<?php echo $app; ?>";
   var base_url = "<?php echo base_url(); ?>";

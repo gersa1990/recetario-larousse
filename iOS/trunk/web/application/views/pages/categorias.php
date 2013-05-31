@@ -4,8 +4,12 @@
   <div class="main">
     <div id="status"><div class="alert alert-succes">Nuevo orden de categorias guardado</div></div>
 
+    <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a>
+
     <div class="columl">
+
       <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+
 
       <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
