@@ -7,6 +7,10 @@ class Recetas_model extends CI_Model {
 		$this->load->library('typography');
 	}
 
+	/***************************************************************
+		Modelo para verificar si una receta no existe al tratar
+		de darlo de alta en el sistema
+	****************************************************************/
 	public function checkExistence($palabra, $id_app){
 
 		$existe = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." and titulo = '".$palabra."' ");
@@ -16,14 +20,35 @@ class Recetas_model extends CI_Model {
 		{
 			echo "Existe";
 		}
-
 	}
 
+	/***************************************************************
+		Modelo para verificar si una receta no existe al tratar
+		de actualizarlo en el sistema
+	****************************************************************/
+	public function updateCheckExistence($palabra, $id_receta, $id_app){
+
+		$existe = $this->db->query("SELECT * FROM recetas WHERE nombre = '".$palabra."' and id != ".$id_receta." and id_app = ".$id_app." ");
+		$array = $existe->row_array();
+
+		if(count($array)>0){
+
+			echo "Existe";
+		}
+	}
+
+	/***************************************************************
+		Modelo para obtener todas las recetas para iniciar una eliminación
+		en cascada
+	****************************************************************/
 	public function getDataForExtendsDelete($id_app){
 		$recetas = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." ");
 		return $recetas->result_array();
 	}
 
+	/***************************************************************
+		Modelo para obtener todas las recetas de una APP
+	****************************************************************/
 	public function get_recetas($id_app){
 
 		$recetas = $this->db->query("SELECT * FROM recetas where id_app = ".$id_app." ");
@@ -47,19 +72,20 @@ class Recetas_model extends CI_Model {
 			$i++;
 		}
 
-		if(isset($arreglo))
-		{
-			return $arreglo;
-		}
-
+		if(isset($arreglo)){ return $arreglo; }
 	}
 
+	/***************************************************************
+		Modelo para obtener los datos de una receta
+	****************************************************************/
 	public function get_receta($id){
 		$query = $this->db->get_where('recetas', array('id' => $id));
 		return $query->result_array();
 	}
 
-
+	/***************************************************************
+		Modelo para eliminar una receta y todas sus relaciones
+	****************************************************************/
 	public function delete($id){
 
 		$delete = $this->db->delete('recetas', array('id' => $id));
@@ -70,6 +96,9 @@ class Recetas_model extends CI_Model {
 		return $delete;
 	}
 
+	/***************************************************************
+		Modelo para crear una receta y obtener su id
+	****************************************************************/
 	public function createAndReturnId($data){
 			
 			$this->db->insert('recetas', $data);
@@ -78,19 +107,25 @@ class Recetas_model extends CI_Model {
 		return $ID;
 	}
 
+	/***************************************************************
+		Modelo para obtener los datos de una receta
+	****************************************************************/
 	public function getData($id_receta){
 
 		$data = $this->db->query("SELECT * FROM recetas where id = ".$id_receta." ");
 		return $data->result_array();
 	}
 
-	public function create()
-	{					
+	/***************************************************************
+		Modelo para crear una receta DEPRECATED por que ya existe 
+		una nueva versión
+	****************************************************************/
+	public function create(){					
 
 		$data = array(
 				'titulo' 			=> $this->input->post('titulo'),
 				'id_categoria' 		=> $this->input->post('categoria'),
-				'id_app' 				=> $this->input->post('id_app'),
+				'id_app' 			=> $this->input->post('id_app'),
 				'procedimiento' 	=> $this->typography->auto_typography($this->input->post('procedimiento')),
 				'ingredientes' 		=> $this->typography->auto_typography($this->input->post('ingredientes')),
 				'preparacion' 		=> $this->input->post('preparacion'),
@@ -107,41 +142,20 @@ class Recetas_model extends CI_Model {
 		return $ID;
 	}
 
+	/***************************************************************
+		Modelo para actualizar los datos de una receta
+	****************************************************************/
 	public function update($data, $id){
 
 		return $this->db->update('recetas', $data, array('id' => $id));
-
 	}
 
+	/***************************************************************
+		Modelo para obtener el nombre de una receta
+	****************************************************************/
 	public function get_name($id){
 		$name = $this->db->query("SELECT titulo FROM recetas WHERE id = ".$id." ");
 		return $name->result_array();
-	}
-
-	public function update_recetas($id)
-	{
-		
-		$ingre 	= $this->typography->auto_typography($_POST['ingre']);
-		$proced = $this->typography->auto_typography($_POST['proce']);
-
-		$data = array(
-				'titulo' => $this->input->post('titulo'),
-				'id_categoria' => $this->input->post('categoria'),
-				'id_app' => $this->input->post('app'),
-				'procedimiento' => $proced,
-				'ingredientes' => $ingre,
-				'preparacion' => $this->input->post('prepa'),
-				'coccion' => $this->input->post('coccion'),
-				'costo' => $this->input->post('costo'),
-				'foto' => $this->input->post('foto'),
-				'user_fav' => $this->input->post('user_fav'),
-				'dificultad' => $this->input->post('dificultad')
-
-			);
-
-		$this->db->where('id', $id);
-        return $this->db->update('recetas', $data);
-
 	}
 }
 ?>

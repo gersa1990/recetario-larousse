@@ -7,6 +7,10 @@ class Glosario extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
+	/***************************************************************
+		Método para verificar que no exista un glosario llamado igual
+		esta verificación se realiza al tratar de crear un nuevo glosario
+	****************************************************************/
 	public function checkExistence(){
 
 		$palabra = $_POST['palabra'];
@@ -15,6 +19,10 @@ class Glosario extends CI_Controller {
 		$this->Glosario_model->checkExistence($palabra, $id_app);
 	}
 
+	/***************************************************************
+		Método para verificar que no exista un glosario llamado igual 
+		esta verificacion se realiza al tratar de editar (actualizar) un glosario 
+	****************************************************************/
 	public function updateCheckExistence(){
 
 		$palabra 		= $_POST['nombre'];
@@ -24,6 +32,12 @@ class Glosario extends CI_Controller {
 		$this->Glosario_model->updateCheckExistence($palabra, $id_glosario, $id_app);
 	}
 
+	/***************************************************************
+		Algoritmo para convertir los <em> de italic en asteriscos necesarios
+		para el funcionamiento de la APP.
+		Además elimina los parrafos (<p>), las etiquetas (<br>) y los caracteres 
+		generados por la BD como Â y los convierte en espacios en blanco.
+	****************************************************************/
 	public function asterixAlgorithm($descripcionSinASteriscos){
 
 		$descripcionConAsteriscos = str_replace("<em>","*",$descripcionSinASteriscos);
@@ -32,11 +46,16 @@ class Glosario extends CI_Controller {
 		$descripcionConAsteriscos = str_replace("</p>"," ",$descripcionConAsteriscos);
 		$descripcionConAsteriscos = str_replace("<br />", " " ,$descripcionConAsteriscos);
 		$descripcionConAsteriscos = str_replace("<br/>"," ",$descripcionConAsteriscos);
-		$descripcionConAsteriscos = str_replace("[Â]"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("[Â]","",$descripcionConAsteriscos);
 
 		return $descripcionConAsteriscos;
 	}
 
+	/***************************************************************
+		Método para crear un glosario en la BD, en conjunto con el metodo
+		asterixAlgorithm se complementa y obtiene un glosario que puede ser
+		manejado en la aplicación
+	****************************************************************/
 	public function create()
 	{
 		$this->load->helper('form');
@@ -54,6 +73,11 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+
+	/***************************************************************
+		Método para buscar un glosario mediante la busqueda de jQuery 
+		en el FrontEND
+	****************************************************************/
 	public function searchByName2(){
 
 		$id_app 			= $_POST['id_app'];
@@ -73,11 +97,11 @@ class Glosario extends CI_Controller {
 		{
 			echo "No se encontro";
 		}
-
-		
-
 	}
 
+	/***************************************************************
+		Método para relacionar un glosario con una receta
+	****************************************************************/
 	public function addToRecipe(){
 
 		$id_app 		= $_POST['id_app'];
@@ -98,6 +122,10 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para mostrar los glosarios que pueden ser relacionados
+		con una receta
+	****************************************************************/
 	public function addCheckGlosario(){
 		$id_receta = $_POST['id_receta'];
 		$id_app = $_POST['id_app'];
@@ -109,23 +137,20 @@ class Glosario extends CI_Controller {
 				$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
 			}
 	    }
-	    
 	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
-
 	}
 
-
+	/***************************************************************
+		Método para ver los glosarios contenidos en una aplicación
+	****************************************************************/
 	public function view($id_app){
 
 		$this->load->helper('form');
 
 		$data['apps'] 	  = $this->App_model->get_apps($id_app);
 		$data['glosario'] = $this->Glosario_model->get_glosario($id_app);
-
 		$glosario = $this->Glosario_model->get_glosario($id_app);
-		
 		$data['app']  	 = $id_app;
-
 		$nombre = $data['name'] = $this->App_model->get_name($id_app);
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> glosario';
@@ -133,9 +158,12 @@ class Glosario extends CI_Controller {
 		$this->load->view('templates/header',$data);
 		$this->load->view('pages/glosario',$data);
 		$this->load->view('templates/footer');
-
 	}
 
+	/***************************************************************
+		Método para editar un glosario, tambien se complementa con el 
+		algoritmo de los asteriscos asterixAlgorithm
+	****************************************************************/
 	public function edit(){
 		
 		$descripcion2 = $_POST['descripcion'];
@@ -152,6 +180,9 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para eliminar un glosario
+	****************************************************************/
 	public function delete()
 	{
 		$delete = $this->Glosario_model->delete();
@@ -162,12 +193,14 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+	/***************************************************************
+		Método para buscar un glosario con una receta
+	****************************************************************/
 	public function searchByName(){
 
 		$nombre = $_POST['palabra'];
 		$id_app = $_POST['id_app'];
 
-		
 		$glosario = $this->Glosario_model->searchByName($nombre, $id_app);
 
 		for ($i=0; $i <count($glosario) ; $i++) 
@@ -188,11 +221,14 @@ class Glosario extends CI_Controller {
                           Eliminar
                         </a>
                       </td>
-
                   </tr>";
 		}
 	}
 
+	/***************************************************************
+		Método para eliminar una relacion de un glosario con una
+		receta
+	****************************************************************/
 	public function deleteToRecipe(){
 		$id_receta 	= $_POST['id_receta'];
 		$id_glosario = $_POST['id_glosario'];

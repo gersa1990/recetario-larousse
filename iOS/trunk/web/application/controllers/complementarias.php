@@ -2,8 +2,6 @@
 
 class Complementarias extends CI_Controller 
 {
-
-
 	public function __construct(){
 		parent::__construct();
 		
@@ -13,6 +11,11 @@ class Complementarias extends CI_Controller
 		$this->load->model('video_model');
 	}
 
+		/***************************************************************
+		Método para verificar que no exista una complementaria
+		llamada de la misma manera en la APP al tratar de darla de alta
+		en el sistema
+		****************************************************************/
 	public function checkExistence(){
 
 		$palabra = $_POST['palabra'];
@@ -21,6 +24,11 @@ class Complementarias extends CI_Controller
 		$this->complementarias_model->checkExistence($palabra, $id_app);
 	}
 
+		/***************************************************************
+		Método para verificar que no exista una complementaria
+		llamada de la misma manera en la APP al tratar de editarla (actualizarla)
+		en el sistema
+		****************************************************************/
 	public function updateCheckExistence(){
 
 		$palabra 			= $_POST['nombre'];
@@ -32,6 +40,10 @@ class Complementarias extends CI_Controller
 		$this->complementarias_model->updateCheckExistence($palabra, $id_complementaria, $id_app);
 	}
 
+	/***************************************************************
+		Método para ver las recetas complementarias correspondientes 
+		a la aplicación seleccionada
+		****************************************************************/
 	public function view($id_app)
 	{
 		$nombre = $data['name'] = $this->App_model->get_name($id_app);
@@ -51,6 +63,10 @@ class Complementarias extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
+	/***************************************************************
+		Método para editar las recetas complementarias correspondientes 
+		a la aplicación seleccionada
+		****************************************************************/
 	public function edit()
 	{
 		$update = $this->complementarias_model->update();
@@ -60,6 +76,10 @@ class Complementarias extends CI_Controller
 		}	
 	}
 
+	/*********************************************************************
+		Método para eliminar las recetas complementarias correspondientes 
+		a la aplicación seleccionada
+	********************************************************************/
 	public function delete()
 	{
 		$eliminar = $this->complementarias_model->delete();
@@ -71,6 +91,10 @@ class Complementarias extends CI_Controller
 		
 	}
 
+	/***************************************************************
+		Método para crear las recetas complementarias correspondientes 
+		a la aplicación seleccionada
+	****************************************************************/
 	public function create(){
 
 		$create = $this->complementarias_model->create();
@@ -82,6 +106,10 @@ class Complementarias extends CI_Controller
 
 	}
 
+	/***************************************************************
+		Método para ver las recetas complementarias correspondientes 
+		a la aplicación seleccionada
+	****************************************************************/
 	public function searchByName2(){
 
 		$nombre 		= $_POST['palabra'];
@@ -100,10 +128,13 @@ class Complementarias extends CI_Controller
 		else
 		{
 			echo "No se encontro";
-		}
-			
+		}		
 	}
 
+	/***************************************************************
+		Método para relacionar las recetas complementarias 
+		con una receta correspondiente
+	****************************************************************/
 	public function addToRecipe(){
 
 		$id_receta 			= $_POST['receta'];
@@ -153,6 +184,12 @@ class Complementarias extends CI_Controller
 
 	}
 
+	/***************************************************************
+		Método para agregar las relaciones de las recetas: 
+		-Con glosario
+		-Con recetas complementarias
+		-Con videos
+	****************************************************************/
 	public function addCheck(){
 		$id_receta = $_POST['id_receta'];
 		$id_app = $_POST['id_app'];
@@ -194,7 +231,10 @@ class Complementarias extends CI_Controller
 		
 	}
 
-
+	/***************************************************************
+		Método para buscar las recetas complementarias, glosario y video 
+		que pueden ser relacionadas.
+	****************************************************************/
 	public function addCheckComplemento(){
 		$id_receta = $_POST['id_receta'];
 		$id_app = $_POST['id_app'];
@@ -211,6 +251,10 @@ class Complementarias extends CI_Controller
 
 	}
 
+	/***************************************************************
+		Método para eliminar las relaciones de una receta complementaria 
+		con respecto a una receta.
+	****************************************************************/
 	public function deleteToRecipe(){
 		$id_receta 	= $_POST['id_receta'];
 		$id_comp = $_POST['id_comp'];
@@ -221,11 +265,6 @@ class Complementarias extends CI_Controller
 		if($delete){
 			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
 		}
-
 	}
-
-
-	
 }
-
 ?>

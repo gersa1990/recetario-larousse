@@ -7,6 +7,9 @@ class export_model extends CI_Model {
 		$this->load->database();
 	}
 
+	/***************************************************************
+		Modelo para obtener todos los videos pertenecientes a una APP
+	****************************************************************/
 	public function getVideos($recetas)
 	{
 		$j=0;
@@ -17,8 +20,8 @@ class export_model extends CI_Model {
 
 			$aux = $query->result();
 
-			foreach ($query->result() as $key => $value) 
-			{
+			foreach ($query->result() as $key => $value){
+
 				if(count($aux)>0)
 				{
 					$arreglo[$j]	= $value->id_video;
@@ -56,6 +59,9 @@ class export_model extends CI_Model {
 		}
 	}
 
+	/***************************************************************
+		Modelo para obtener los videos relacionados con las recetas
+	****************************************************************/
 	public function getVideosByRecipe($recetas)
 	{
 		$j=0;
@@ -66,8 +72,8 @@ class export_model extends CI_Model {
 
 			$aux = $query->result();
 
-			foreach ($query->result() as $key => $value) 
-			{
+			foreach ($query->result() as $key => $value) {
+
 				if(count($aux)>0)
 				{
 					$arreglo[$j]['id'] 			= $value->id;
@@ -76,19 +82,16 @@ class export_model extends CI_Model {
 					$j++;
 				}
 			}
-
 		}
 
-		if(isset($arreglo))
-		{
-			return $arreglo;
-		}
-
+		if(isset($arreglo)){ return $arreglo; }
 	}
 
-	public function getRelationsRecetasToComplementarias($recetas)
-	{
-		//var_dump($recetas);
+	/***************************************************************
+		Modelo para obtener las recetas complementarias relacionadas 
+		con las recetas
+	****************************************************************/
+	public function getRelationsRecetasToComplementarias($recetas){
 
 		$j=0;
 
@@ -96,39 +99,30 @@ class export_model extends CI_Model {
 		{ 
 			$id = $recetas[$i]['id'];
 
-			//echo "ID:".$id." <br/>";
-
 			$query = $this->db->query("SELECT * FROM relaciones WHERE id_receta = ".$id." ");
 
 			$relations = $query->result();
 
-			$total = count($relations);
-	
-			if($total>0)
-			{
-				//echo "ID:".$id." Total: ".$total."<br/>";
-				foreach ($relations as $key => $value) 
-				{
+			if(count($relations)>0){
+				
+				foreach ($relations as $key => $value) {
+
 					$arreglo[$j]['id_receta'] 						= $value->id_receta;
 					$arreglo[$j]['id_receta_complementaria'] 		= $value->id_receta_complementaria;
-					
 					$j++;
 				}
 			}			
-			
 		}
 		
-		if(isset($arreglo))
-		{
-			//var_dump($arreglo);
-			return $arreglo;
-		}
+		if(isset($arreglo)){ return $arreglo; }
 	}
 
-	public function getConfByAppId($id_app)
-	{
-		$query = $this->db->query("SELECT * FROM conf where id = ".$id_app."");
+	/***************************************************************
+		Modelo para obtener la configuracion de la APP
+	****************************************************************/
+	public function getConfByAppId($id_app){
 
+		$query = $this->db->query("SELECT * FROM conf where id = ".$id_app."");
 		$conf = $query->result();
 
 		$j=0;
@@ -140,12 +134,12 @@ class export_model extends CI_Model {
 			$j++;
 		}
 
-		if(isset($arreglo))
-		{
-			return $arreglo;
-		}
+		if(isset($arreglo)){ return $arreglo; }
 	}
 
+	/***************************************************************
+		Modelo para obtener la relacion entre el glosario y las recetas
+	****************************************************************/
 	public function getRelationRecipesAndGlosarioByAppId($id_app)
 	{
 		$recetas = $this->getIdToRecipesFromAppId($id_app);	
@@ -153,12 +147,9 @@ class export_model extends CI_Model {
 		$j=0;
 		for ($i=0; $i <count($recetas) ; $i++) 
 		{ 
-			//echo $recetas[$i]['id'];
 			$query = $this->db->query("SELECT * FROM receta_glosario where id_receta = ".$recetas[$i]['id']."");
 			
 			$relations = $query->result();
-
-			//var_dump($relations);
 
 			foreach ($relations as $key => $value) 
 			{
@@ -170,16 +161,15 @@ class export_model extends CI_Model {
 
 		}
 
-		//var_dump($arreglo);
-
-		if(isset($arreglo))
-		{
-			return $arreglo;
-		}
+		if(isset($arreglo)){ return $arreglo; }
 
 
 	}
 
+	/***************************************************************
+		Modelo para obtener las relaciones de la tabla relaciones
+		con respecto de la APP
+	****************************************************************/
 	public function getRelationsRecipesByAppId($id_app)
 	{
 		$recetas = $this->getIdToRecipesFromAppId($id_app);	
@@ -200,8 +190,6 @@ class export_model extends CI_Model {
 				}
 			}
 		
-		
-			//var_dump($relations);
 			if(count($relations[0])>0)
 			{
 				return $relations;
@@ -210,6 +198,9 @@ class export_model extends CI_Model {
 
 	}
 
+	/***************************************************************
+		Modelo para obtener la tabla de categorias
+	****************************************************************/
 	public function getCategoryByAppId($id_app)
 	{
 		$recetas = $this->getRecipesFromAppId($id_app);
@@ -223,61 +214,57 @@ class export_model extends CI_Model {
 		{
 			$categoria2 = array_unique($categoriaAux);
 
-			foreach ($categoria2 as $key => $value) 
-			{
+			foreach ($categoria2 as $key => $value) {
+
 				$query 		= $this->db->query("SELECT id,nombre,color,orden FROM categoria WHERE id = ".$value." ");
 
 				if(count($query->result())>0)
 				{
 					$categorias[] = $query->row_array();
-				}
-				
+				}	
 			}
-
 			return $categorias;
 		}
 	}
 
+	/***************************************************************
+		Modelo para obtener los datos de la APP
+	****************************************************************/
 	public function getDataAppByAppId($id_app)
 	{
 		$query = $this->db->query("SELECT * FROM app WHERE id= ".$id_app." ");
 
 		$aux = $query->row_array();
 
-		for ($i=0; $i <count($aux['id']) ; $i++) 
-		{ 
+		for ($i=0; $i <count($aux['id']) ; $i++) {
+
 			$arreglo[$i]['nombre'] = $aux['nombre'];
 		}
 
 		return $arreglo;
 	}
 
+	/***************************************************************
+		Modelo para obtener el glosario que se relaciona con una APP
+	****************************************************************/
 	public function getGlosaryFromAppId($id_app)
 	{
 		$recetas = $this->getRecipesFromAppId($id_app);
 
 		$j=0;
 		$total = count($recetas);
-		
 
-		//var_dump($recetas);
-
-		for ($i=0; $i < $total; $i++) 
-		{ 
+		for ($i=0; $i < $total; $i++) { 
 
 			$query = $this->db->query("SELECT  id_receta,id_glosario FROM receta_glosario WHERE id_receta = ".$recetas[$i]['id']." ");
 			
 			$receta_glosario = $query->result();
 
-			//var_dump($receta_glosario);
+			foreach ($receta_glosario as $key => $value) {
 
-			foreach ($receta_glosario as $key => $value) 
-			{
 				$arreglo[$j] = $value->id_glosario;
 				$j++;
-			}		
-
-			
+			}
 		}
 
 		if(isset($arreglo))
@@ -290,34 +277,16 @@ class export_model extends CI_Model {
 				$idGlosario = $value;
 				$query 	   = $this->db->query("SELECT id,nombre,descripcion,imagen FROM glosario WHERE id = ".$idGlosario."");
 				$glosario[]  = $query->row_array();
-
 			}	
-
 		return $glosario;
 		}
-
-		
-	}
-
-	public function getIdToRecipesFromAppId($id_app)
-	{
-		$query = $this->db->query('select * from recetas where id_app = '.$id_app.'');
-
-		$i=0;
-		foreach ($query->result()  as $value) 
-		{
-			$array[$i]['id'] 	       	= $value->id;
-			$i++;
-		}
-
-		if(isset($array))
-		{
-			return $array;
-		}
-
 	}
 
 
+	/***************************************************************
+		Modelo para obtener las recetas contenidas en una APP
+	
+	****************************************************************/
 	public function getRecipesFromAppId($id_app)
 	{
 		$query = $this->db->query('select * from recetas where id_app = '.$id_app.'');
@@ -348,6 +317,10 @@ class export_model extends CI_Model {
 
 	}
 
+	/***************************************************************
+		Modelo para obtener las recetas  complementarias contenidas en
+		una APP
+	****************************************************************/
 	public function getRecipesComplements($recetas)
 	{
 		for ($i=0; $i <count($recetas) ; $i++) 
@@ -386,25 +359,8 @@ class export_model extends CI_Model {
 
 			}
 
-			if(isset($correcto))
-			{
-				return $correcto;
-			}
+			if(isset($correcto)){ return $correcto; }
 		}
 	}
-
-	public function getRelationsRecipeToRecipesFromAppId($id_app)
-	{
-		$query = $this->db->query('categorias', array('id_app' => $id_app));
-		return $query->result();
-	}
-
-	public function getGlossaryFromAppId($id_app)
-	{
-		$query = $this->db->query('categorias', array('id_app' => $id_app));
-
-		return $query->result();
-	}
-
 }
 ?>

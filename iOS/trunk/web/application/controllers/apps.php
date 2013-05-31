@@ -11,6 +11,7 @@ class Apps extends CI_Controller {
 		$this->load->model('video_model');
 	}
 
+	//Metodo que verifica que no exista una aplicación con el mismo nombre que la que intentas crear
 	public function checkExistence(){
 
 		$palabra = $_POST['palabra'];
@@ -20,9 +21,10 @@ class Apps extends CI_Controller {
 
 	}
 
+	//Metodo principal para mostrar las aplicaciones actuales y las opciones de cada una de ellas
 	public function index(){
 		
-		$data['apps'] = $this->App_model->get_apps();
+		$data['apps'] = $this->App_model->get_apps(); //Método que obtiene todas las apps.
 
 		$this->load->helper('url');
 
@@ -33,17 +35,16 @@ class Apps extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	//Método que verifica que no exista una aplicación con el mismo nombre, que la que intentas editar
 	public function updateCheckExistence(){
 
 		$palabra 	= $_POST['palabra'];
 		$id_app		= $_POST['id_app'];
-
 		$existe = $this->App_model->updateCheckExistence($palabra, $id_app);
 		echo $existe;
-
-
 	}
 
+	//Método que crea la Aplicación en la base de datos.
 	public function create(){
 		
 		$this->load->helper('form');
@@ -57,7 +58,7 @@ class Apps extends CI_Controller {
 		
 		else{
 
-			$this->App_model->set_app();
+			$this->App_model->set_app(); //Dar de alta en la BD
 
 		 	$this->load->helper('url');
 
@@ -65,17 +66,11 @@ class Apps extends CI_Controller {
 		}
 	}
 
-	public function changeName(){
-
-		$id_app = $_POST['app'];
-		$nombre = $_POST['name'];
-		$update = $this->App_model->changeName($id_app, $nombre);
-	}
-
+	//Método que crea la aplicación en la BD
 	public function nueva(){
 
 		$nombre = $_POST['nombre'];
-		$insert = $this->App_model->nueva($nombre);
+		$insert = $this->App_model->nueva($nombre); //Dar de alta en la BD
 
 		if ($insert) {
 
@@ -83,12 +78,13 @@ class Apps extends CI_Controller {
 		}
 	}
 
+	//Método que edita la aplicación en la BD
 	public function edit()
 	{
 		$nombre = $_POST['nombre'];
 		$idApp  = $_POST['id_app'];
 
-		$update = $this->App_model->updateAppName($idApp, $nombre);
+		$update = $this->App_model->updateAppName($idApp, $nombre); //Editar el nombre de la APP
 
 		if($update)
 		{
@@ -96,17 +92,18 @@ class Apps extends CI_Controller {
 		}		
 	}
 
+	//Método para ver las carácteristicas de una APP en especifico
 	public function view($id)
 	{
-		$data['recetas'] = $this->recetas_model->get_recetas($id);
+		$data['recetas'] = $this->recetas_model->get_recetas($id); //Obtiene las recetas por id de APP
 
-		$data['apps'] = $this->App_model->get_apps($id);
+		$data['apps'] = $this->App_model->get_apps($id); //Obtiene los datos del APP seleccionada
 		
-		$data['app'] = $id;
+		$data['app'] = $id; // Crea una variable llamada app
 
-		$data['categorias'] = $this->App_model->getCategoryFromAppId($id);
+		$data['categorias'] = $this->App_model->getCategoryFromAppId($id); //Obtienes las categorias de la APP seleccionada
 
-		$nombre = $data['name'] = $this->App_model->get_name($id);
+		$nombre = $data['name'] = $this->App_model->get_name($id); //Obtienes el nombre de la APP
 
 		$this->load->helper('url');
 
@@ -116,27 +113,32 @@ class Apps extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	//Método para garantizar la eliminación en cascada
 	public function extendsDelete($id_app){
 
 		$deleteGlosary = $this->Glosario_model->extendsDelete();
 	}
 
-	public function eliminar(){
-		$id = $_POST['id'];
+
+	// Método para eliminar la APP seleccionada y todos los datos referentes a está
+	public function eliminar()
+	{
+		$id 		= $_POST['id'];
+
+
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
 
-		$extendsDeleteGlosary 					= $this->Glosario_model->extendsDelete($recetas);
-		$extendsDeleteGlosaryByIdApp 			= $this->Glosario_model->extendsDeleteByIdApp($id);
-		$extendsDeleteCategoria					= $this->categoria_model->extendsDelete($id);
-		$extendsDeleteVideos 					= $this->video_model->extendsDelete($recetas);
-		$extendsDeleteVideosByIdApp 			= $this->video_model->extendsDeleteByIdApp($id);
-		$extendsDeleteComplementarias 			= $this->complementarias_model->extendsDelete($recetas);
-		$extendsDeleteComplementariasByIdApp	= $this->complementarias_model->extendsDeleteByIdApp($id);		
+		$this->Glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
+		$this->Glosario_model->extendsDeleteByIdApp($id);  		//Eliminar los glosarios de la APP  
+		$this->categoria_model->extendsDelete($id);		   		//Eliminar las categorias de la APP
+		$this->video_model->extendsDelete($recetas);	   		//Eliminar los videos de la APP
+		$this->video_model->extendsDeleteByIdApp($id);			//Eliminar las relaciones de videos correspondientes a la APP
+		$this->complementarias_model->extendsDelete($recetas);  //Eliminar las recetas complementarias de la APP
+		$this->complementarias_model->extendsDeleteByIdApp($id);//Eliminar las relaciones de complementarias correspondientes a la APP		
 
-		$eliminar 	= $this->App_model->eliminar_app($id);
+		$eliminar 	= $this->App_model->eliminar_app($id);      //Eliminar la APP
 		
 		redirect(base_url(), 'refresh');
-		
 	}
 
 	public function nuevaApp(){

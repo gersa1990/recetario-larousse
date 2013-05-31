@@ -6,6 +6,10 @@ class categoria_model extends CI_Model {
 		$this->load->database();
 	}
 
+	/***************************************************************
+		Modelo para verificar si existe una categoria con ese nombre
+		cuando se trata de crear en la BD
+	****************************************************************/
 	public function checkExistence($palabra, $id_app){
 
 		$existe = $this->db->query("SELECT * FROM categoria WHERE nombre = '".$palabra."' and id_app = ".$id_app." ");
@@ -17,6 +21,10 @@ class categoria_model extends CI_Model {
 		}
 	}
 
+	/***************************************************************
+		Modelo para actualizar el orden en que se mestran
+		las categorias en el sistema
+	****************************************************************/
 	public function updateOrden($id_categoria, $orden){
 
 		$this->orden = $orden;
@@ -24,12 +32,18 @@ class categoria_model extends CI_Model {
 		$this->db->update('categoria', $this, array('id' => $id_categoria));
 	}
 
+	/***************************************************************
+		Modelo para eliminar todas las categorias contenidas en esa APP
+	****************************************************************/
 	public function extendsDelete($id_app){
 
 		$this->db->delete("categoria", array('id_app' => $id_app ));
-
 	}
 
+	/***************************************************************
+		Modelo para verificar si existe una categoria con ese nombre
+		cuando se trata de actualizar
+	****************************************************************/
 	public function updateCheckExistence($palabra, $id_app, $id_categoria){
 
 		$existe = $this->db->query("SELECT * FROM categoria WHERE nombre = '".$palabra."' and id_app = ".$id_app." and id != ".$id_categoria."   ");
@@ -41,21 +55,25 @@ class categoria_model extends CI_Model {
 		}		
 	}
 
+	/***************************************************************
+		Modelo para buscar una categoria con respecto a su título
+	****************************************************************/
 	public function searchByTitulo($nombre, $id_app){
 
 		$categorias = $this->db->query("SELECT * FROM categoria WHERE nombre LIKE '%".$nombre."%' and id_app = ".$id_app." ");
 		return $categorias->result_array();
-
 	}
 
-	
+	/******************************************************************
+		Modelo para obtener todas las categorias contenidas en una APP 
+	*******************************************************************/
 	public function get_categorias($id_app){
 		
 		$query = $this->db->query("SELECT * FROM categoria WHERE id_app = ".$id_app." ORDER BY orden asc ");
 		
 		$i=0;
-		foreach ($query->result() as $key => $value) 
-		{
+		foreach ($query->result() as $key => $value) {
+
 			$arreglo[$i]['id']			= $value->id;
 			$arreglo[$i]['id_app']		= $value->id_app;
 			$arreglo[$i]['nombre']		= $value->nombre;
@@ -64,12 +82,15 @@ class categoria_model extends CI_Model {
 			$i++;
 		}
 
-		if(isset($arreglo))
-		{
+		if(isset($arreglo)){
+
 			return $arreglo;
 		}
 	}
 
+	/***************************************************************
+		Modelo para agregar una categoría con sus datos
+	****************************************************************/
 	public function set_categoria(){
 			$data = array(
 				'id_app' 	=> $this->input->post('id_app'),
@@ -79,11 +100,17 @@ class categoria_model extends CI_Model {
 			return $this->db->insert('categoria', $data);
 	}
 
-	public function delete_recipe($id){
+	/***************************************************************
+		Modelo para eliminar una categoria
+	****************************************************************/
+	public function delete_categoria($id){
 		
 		$this->db->delete('categoria', array('id' => $id)); 
 	}
 
+	/***************************************************************
+		Modelo para actualizar una categoria
+	****************************************************************/
 	public function update_categoria($id, $nombre, $color){
 
 		$data = array(
@@ -93,8 +120,6 @@ class categoria_model extends CI_Model {
 
 		$this->db->where('id', $id);
         return $this->db->update('categoria', $data);
-
 	}
-
 }
 ?>
