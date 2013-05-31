@@ -119,11 +119,16 @@ class Apps extends CI_Controller {
 		$deleteGlosary = $this->Glosario_model->extendsDelete();
 	}
 
+<<<<<<< HEAD
 	// Método para eliminar la APP seleccionada y todos los datos referentes a está
 	public function eliminar()
 	{
 		$id 		= $_POST['id'];
 
+=======
+	public function eliminar(){
+		$id = $_POST['id'];
+>>>>>>> f11957ea88a05e593b88d465d116725310d0c437
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
 
 		$this->Glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
@@ -138,5 +143,85 @@ class Apps extends CI_Controller {
 		
 		redirect(base_url(), 'refresh');
 	}
+
+	public function nuevaApp(){
+		echo "
+			<div id='status'>
+				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
+			</div>
+
+			<div id='ventana-header'>
+				<h2>Nueva aplicación</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+
+			".validation_errors()."
+      		".form_open('apps/nueva/')."
+				<div class='txt-fld'>
+					<label for=''>Nombre: </label>
+					<input type='text' id='nombre' name='nombre' value='' required>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitNuevaApp'>Agregar</button>
+				</div>
+			</form>
+
+		";
+	}
+
+	public function getApp($id_app){
+		$resultado = $this->App_model->get_apps($id_app);
+		//echo var_dump($resultado);
+
+		echo "
+			<div id='status'>
+				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
+			</div>
+
+			<div id='ventana-header'>
+				<h2>Editar</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+			
+			".form_open('apps/edit/')."
+				
+				
+				<input type='hidden' name='id_app' id='id_app' value='".$resultado['id']."'>
+				<div class='txt-fld'>
+					<label for=''>Nombre: </label>
+					<input type='text' id='nombre2' name='nombre' value='".$resultado['nombre']."' required>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitEditarApp'>Guardar</button>
+				</div>
+			</form>
+		";
+	}
+
+	public function getAppDelete($id_app){
+		$resultado = $this->App_model->get_apps($id_app);
+
+		echo "
+			<div id='ventana-header'>
+				<h2>Eliminar</h2>
+				<p>Toda la información relacionada sera borrara</p>
+				<a class='modal_close' href='#'></a>
+			</div>
+			
+				".validation_errors()."
+				".form_open('apps/eliminar')."
+				
+				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
+				<div class='txt-fld'>
+					<h2>".$resultado['nombre']."</h2>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitEditarApp'>Eliminar</button>
+				</div>
+			</form>
+		";
+	}
 }
 ?>
+
+
