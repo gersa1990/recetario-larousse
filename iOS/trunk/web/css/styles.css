@@ -369,6 +369,27 @@ button:active{
     color: #c09853;
 }
 
+.box_mensaje{
+    margin-top: 40px;
+    height: 200px;
+}
+
+.box_mensaje .box{
+    width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.box_mensaje .box .button{
+    margin-top: 40px; 
+    margin-left: 74px;
+}
+
+.alert h1{
+    color: #c09853;
+    text-align: center;
+}
+
 .alert .aclose {
     position: relative;
     top: -7px;
@@ -628,6 +649,11 @@ table tr td:first-child{
 .fix_colum{
     width: 869px !important;
 
+}
+
+.fix_colum2{
+    width: 910px !important;
+    border: none;
 }
 
 table th, thead{
@@ -1036,7 +1062,7 @@ fieldset legend{
 
     border-width: 1px;
     border-style: solid;
-    border-color: #f1750b #f69038 #f1750b #f69038;
+    border-color: #f1750b #f69038 #f1750b #f69038 !important;
 }
 
 .submit.blue{
@@ -1050,7 +1076,7 @@ fieldset legend{
     background-image: -ms-linear-gradient(top, #2daebf, #1e7681);
     background-image: -o-linear-gradient(top, #2daebf, #1e7681);
     background-image: linear-gradient(top, #2daebf, #1e7681);
-    border-color: #238896 #1e7681 #238896 #1e7681;
+    border-color: #238896 #1e7681 #238896 #1e7681 !important;
  }
 
  .submit:active {

@@ -301,7 +301,7 @@
 		                if(count($glosarioComplemento)<=0)
 		                {
 		                		echo "<tr>";
-								print "<td>No existen glosarios para relacionar</td>";
+								print "<td class='fix_colum2'>Ya se han relacionado todos los terminos</td>";
 								print "</tr>";
 		                }
 		              ?>
@@ -351,7 +351,7 @@
 		                  if(count($recetasComplemento)<=0)
 		                  {
 		                  		echo "<tr>";
-								print "<td>No existen recetas complementarias para relacionar</td>";
+								print "<td class='fix_colum2'>Ya se han relacionado todas las recetas</td>";
 								print "</tr>";
 		                  }
 		                }
@@ -401,7 +401,7 @@
 		                  if(count($videosComplemento)<=0)
 		                  {
 		                  		echo "<tr>";
-								print "<td>No existen videos para relacionar</td>";
+								print "<td class='fix_colum2'>Ya se han relacionado todos los videos</td>";
 								print "</tr>";
 		                  }
 
