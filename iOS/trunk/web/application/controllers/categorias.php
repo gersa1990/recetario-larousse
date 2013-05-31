@@ -7,6 +7,13 @@ class Categorias extends CI_Controller {
 		$this->load->model('App_model');
 	}
 
+	public function updateOrden(){
+		$id_categoria = $_POST['id_categoria'];
+		$orden 		  = $_POST['orden_categoria'];
+
+		$update = $this->categoria_model->updateOrden($id_categoria, $orden);
+	}
+
 	public function updateCheckExistence(){
 		
 		$titulo 	= $_POST['titulo'];

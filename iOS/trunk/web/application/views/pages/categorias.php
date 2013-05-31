@@ -2,10 +2,11 @@
 <div class="wrapper">
 
   <div class="main">
-    <div id="status"></div>
+    <div id="status"><div class="alert alert-succes">Nuevo orden de categorias guardado</div></div>
 
     <div class="columl">
       <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
+
       <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
 
       <nav id="menu">
@@ -40,7 +41,7 @@
             <?php 
               if(isset($categorias)){
                 for ($i=0; $i <count($categorias) ; $i++) { ?>
-                  <li class="ui-state-default">
+                  <li id="<?php echo $categorias[$i]['id']; ?>">
                         <!-- <a href="" class="bluetext">
                           
                         </a> -->
@@ -171,7 +172,29 @@
 
 $("#sortable").sortable({
       revert: true,
-      placeholder: "ui-state-highlight"
+      placeholder: "ui-state-highlight",
+      
+      stop: function (){
+        $("#sortable li").each(function (data)
+        {
+          var id = $(this).attr('id');
+          var orden = data+1;
+          //console.log("Guardando indice: "+id+" en orden: "+orden);
+
+          $.post(base_url+"categorias/updateOrden/", {id_categoria : id, orden_categoria : orden}, function (data)
+          {
+              console.log(data);
+          });
+        });
+        
+        $("#status").slideDown("slow");
+
+        setTimeout(
+          function(){
+            $("#status").slideUp("slow");
+          },3000);
+      }
+
   });
 
  var base_url = "<?php echo base_url(); ?>";
@@ -295,10 +318,6 @@ $(".editarCategoria").each(function (data)
     });
 
   });
-
 });
-
-
-
 
 </script>

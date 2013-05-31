@@ -4,8 +4,6 @@
   <div class="main">
     <div id="status"></div>
 
-   
-
     <div class="columl">
        <!-- <a href="<?php echo base_url() ?>" class="home"><span>←</span> regresar</a> -->
        <h2 class="myriadFont title_app"><?php echo $name[0]['nombre']; ?></h2>
@@ -94,8 +92,9 @@
 
                         <a href="#" title="Close" class="close">x</a>
                 
-                        <?php echo form_open("glosario/edit/"); ?>
- 
+                        <?php
+                              $attributes = array('class' => 'email', 'id' => 'editarGlosario');
+                              echo form_open("glosario/edit/",$attributes); ?>
   
                             <h2 class="myriadFont">Editar término de glosario</h2>
 
@@ -110,7 +109,7 @@
                             <div class="clear"></div>
 
                             <label for="">Descripción: </label>
-                            <textarea class="full2" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
+                            <textarea class="full2 <?php print "editar".$i;  ?>" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
 
                             <div class="left">
                               <label for="">Imagen: </label>
@@ -160,7 +159,7 @@
           <div class="clear"></div>
 
           <label for="">Descripción: </label>
-          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del término de glosario" required></textarea>
+          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del término de glosario"></textarea>
           <input type="hidden" name="id_app" value="<?php echo $app; ?>">
 
           <div class="left">
@@ -182,11 +181,6 @@
   <div class="clear"></div>
 
 </div> <!-- Wrapper -->
-
-
-
-
-                
 
 <script>
 
@@ -253,10 +247,17 @@ $(".editarGlosario").each(function ()
           $("#"+id+" #submitUpdateGlosario").slideDown("slow");
       }
     });
-
   });
-
 });
+
+tinymce.init({
+  selector: "#nuevoGlosario textarea",
+  width: 950,
+  height: 200,
+  menubar: false,
+  convert_newlines_to_brs : false
+});
+
 
 </script>
 

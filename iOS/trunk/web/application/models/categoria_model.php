@@ -17,6 +17,13 @@ class categoria_model extends CI_Model {
 		}
 	}
 
+	public function updateOrden($id_categoria, $orden){
+
+		$this->orden = $orden;
+
+		$this->db->update('categoria', $this, array('id' => $id_categoria));
+	}
+
 	public function extendsDelete($id_app){
 
 		$this->db->delete("categoria", array('id_app' => $id_app ));
@@ -44,7 +51,7 @@ class categoria_model extends CI_Model {
 	
 	public function get_categorias($id_app){
 		
-		$query = $this->db->get_where('categoria', array('id_app' => $id_app));
+		$query = $this->db->query("SELECT * FROM categoria WHERE id_app = ".$id_app." ORDER BY orden asc ");
 		
 		$i=0;
 		foreach ($query->result() as $key => $value) 
