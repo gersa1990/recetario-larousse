@@ -45,6 +45,40 @@ class Glosario_model extends CI_Model {
 		}
 	}	
 
+	public function revertAsterixAlgoritm($descripcionConAsteriscos){
+
+		$descripcionSinAsteriscos = "";
+		$bandera = false;
+
+		for ($i=0; $i <strlen($descripcionConAsteriscos) ; $i++) 
+		{
+			
+			
+			if($descripcionConAsteriscos[$i] == "*" && $bandera == false){
+                $descripcionSinAsteriscos .= "<em>";	
+                $bandera = true;
+            	
+			}
+			else if($descripcionConAsteriscos[$i] == "*" && $bandera == true){
+                $descripcionSinAsteriscos .= "</em>";	
+                $bandera = false;	
+			}
+			else if($descripcionConAsteriscos[$i]=="Â"){
+				$descripcionSinAsteriscos .= " ";	
+                $i++;
+			}
+			else
+			{
+				$descripcionSinAsteriscos .= $descripcionConAsteriscos[$i];
+			}
+			//var_dump($descripcionConAsteriscos[$i]);
+			//$descripcionSinAsteriscos = str_replace("/^[[:*:]]+$/", "<em>", $descripcionConAsteriscos , $count);  
+		}
+
+		return $this->typography->auto_typography($descripcionSinAsteriscos);
+
+	}
+
 
 	public function get_glosario($id_app){
 
@@ -52,12 +86,17 @@ class Glosario_model extends CI_Model {
 
 		$i=0;
 		foreach ($query->result() as $key => $value) {
+
+			//print $value->descripcion;
+
 			$arreglo[$i]['id'] 			= $value->id;
 			$arreglo[$i]['id_app'] 		= $value->id_app;
 			$arreglo[$i]['nombre'] 		= $value->nombre;
-			$arreglo[$i]['descripcion'] = $value->descripcion;
-			$arreglo[$i]['imagen'] 	= $value->imagen;
+			$arreglo[$i]['descripcion'] = $this->revertAsterixAlgoritm($value->descripcion);
+			$arreglo[$i]['imagen'] 		= $value->imagen;
 			$i++;
+
+			//var_dump($arreglo);
 		}
 
 		if(isset($arreglo))
@@ -94,12 +133,11 @@ class Glosario_model extends CI_Model {
 	}
 
 	
-	public function edit()
+	public function edit($arreglado)
 	{
-		
 		$data = array(
 				'nombre' 		=> $this->input->post('titulo'),
-				'descripcion' 	=> $this->input->post('descripcion'),
+				'descripcion' 	=> $arreglado,
 				'imagen' 		=> $this->input->post('imagen')
 			);
 
@@ -135,20 +173,19 @@ class Glosario_model extends CI_Model {
 		
 	}
 
-	public function create(){
+	public function create($descripcion2){
 
 		$this->load->helper('url');
 			$data = array(
 				'id_app'        => $this->input->post('id_app'),
 				'nombre' 		=> $this->input->post('nombre'),
-				'descripcion' 	=> $this->input->post('descripcion'),
+				'descripcion' 	=> $descripcion2,
 				'imagen' 		=> $this->input->post('imagen')
 			);
-
-			$this->db->insert('glosario', $data);
-
-			$ID = $this->db->insert_id();
 			
+			$this->db->insert('glosario', $data);
+			$ID = $this->db->insert_id();
+	
 			return $ID;
 	}
 

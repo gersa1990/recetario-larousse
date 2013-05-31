@@ -24,10 +24,29 @@ class Glosario extends CI_Controller {
 		$this->Glosario_model->updateCheckExistence($palabra, $id_glosario, $id_app);
 	}
 
+	public function asterixAlgorithm($descripcionSinASteriscos){
+
+		$descripcionConAsteriscos = str_replace("<em>","*",$descripcionSinASteriscos);
+		$descripcionConAsteriscos = str_replace("</em>","*",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("<p>"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("</p>"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("<br />", " " ,$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("<br/>"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("[Â]"," ",$descripcionConAsteriscos);
+
+		return $descripcionConAsteriscos;
+	}
+
 	public function create()
 	{
 		$this->load->helper('form');
-		$idGlosario = $this->Glosario_model->create();
+
+		$descripcion = $_POST['descripcion'];
+
+		$descripcion2 =  $this->asterixAlgorithm($descripcion);
+		//var_dump($descripcion2);
+
+		$idGlosario = $this->Glosario_model->create($descripcion2);
 		
 		if($idGlosario)
 		{
@@ -40,8 +59,6 @@ class Glosario extends CI_Controller {
 		$id_app 			= $_POST['id_app'];
 		$id_receta			= $_POST['id_receta'];
 		$palabra 			= $_POST['palabra'];
-
-		//echo "APP: ".$id_app." RECETA: ".$id_receta." PALABRA: ".$palabra;
 
 		$glosario 			= $this->Glosario_model->searchByName2($id_app, $id_receta, $palabra); 
 
@@ -104,6 +121,8 @@ class Glosario extends CI_Controller {
 
 		$data['apps'] 	  = $this->App_model->get_apps($id_app);
 		$data['glosario'] = $this->Glosario_model->get_glosario($id_app);
+
+		$glosario = $this->Glosario_model->get_glosario($id_app);
 		
 		$data['app']  	 = $id_app;
 
@@ -117,9 +136,15 @@ class Glosario extends CI_Controller {
 
 	}
 
-	public function edit()
-	{
-		$edit = $this->Glosario_model->edit();
+	public function edit(){
+		
+		$descripcion2 = $_POST['descripcion'];
+
+		$arreglado = $this->asterixAlgorithm($descripcion2);
+
+		var_dump($arreglado);
+
+		$edit = $this->Glosario_model->edit($arreglado);
 
 		if($edit)
 		{
