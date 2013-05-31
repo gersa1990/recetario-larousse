@@ -126,7 +126,6 @@ class Apps extends CI_Controller {
 
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
 
-
 		$this->Glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
 		$this->Glosario_model->extendsDeleteByIdApp($id);  		//Eliminar los glosarios de la APP  
 		$this->categoria_model->extendsDelete($id);		   		//Eliminar las categorias de la APP
@@ -138,7 +137,6 @@ class Apps extends CI_Controller {
 		$eliminar 	= $this->App_model->eliminar_app($id);      //Eliminar la APP
 		
 		redirect(base_url(), 'refresh');
-		
 	}
 }
 ?>
