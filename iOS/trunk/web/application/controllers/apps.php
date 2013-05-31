@@ -119,16 +119,13 @@ class Apps extends CI_Controller {
 		$deleteGlosary = $this->Glosario_model->extendsDelete();
 	}
 
-<<<<<<< HEAD
+
 	// Método para eliminar la APP seleccionada y todos los datos referentes a está
 	public function eliminar()
 	{
 		$id 		= $_POST['id'];
 
-=======
-	public function eliminar(){
-		$id = $_POST['id'];
->>>>>>> f11957ea88a05e593b88d465d116725310d0c437
+
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
 
 		$this->Glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
