@@ -1029,11 +1029,11 @@ fieldset legend{
 }
 
 .submit {
+    display: block;
     position: relative;
     left: 50%;
     margin-left: -60px;
     height: 35px;
-    padding: 0;
     width: 120px;
     cursor: pointer;
     color: #fff;
@@ -1082,3 +1082,138 @@ fieldset legend{
  .submit:active {
     -webkit-transform: translate(0, 1px);
 }
+
+/**********************************/
+/*       Posible POPUP            */
+/**********************************/
+
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: rgba(0,0,0,0.3);
+    display: none;
+}
+
+.modal_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: url(../resources/img/modal_close.png);
+    z-index: 2;
+}
+
+#ventana{
+    width: 600px;
+    display: none;
+    background: #FFF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+}
+
+#ventana-header {
+    background-color: #fbfbfb;
+    padding: 18px 18px 14px 18px;
+    border-bottom: 1px solid #CCC;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+
+#ventana-header h2 {
+    color: #000;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+#ventana-header p {
+    color: #444;
+    margin: 0;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    text-shadow: none;
+}
+
+#ventana .txt-fld {
+    position: relative;
+    width: 364px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #EEE;
+}
+
+#ventana .txt-fld h2{
+    text-align: center;
+}
+
+#ventana .txt-fld label {
+    display: block;
+    float: left;
+    width: 90px;
+    padding-top: 8px;
+    color: #222;
+    text-align: left;
+}
+
+#ventana .txt-fld input {
+    width: 244px;
+    padding: 8px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #222;
+    background: #F7F7F7;
+    outline: none;
+    border-top: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #E7E6E6;
+    border-bottom: 1px solid #E7E6E6;
+}
+
+#ventana .btn-fld {
+    width: 254px;
+    overflow: hidden;
+    padding: 12px 20px 12px 130px;
+}
+
+#ventana button{
+    float: right;
+    background: #f58220;
+    border: none;
+    width: auto;
+    overflow: visible;
+    color: #FFF;
+    padding: 7px 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+.chica{
+    width: 404px !important;
+}
+
+.chica #status{
+    /*display: inline;*/
+}
+
+.chica .submit{
+    margin-top: 20px; 
+}
+
