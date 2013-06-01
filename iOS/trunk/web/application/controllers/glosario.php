@@ -241,5 +241,38 @@ class Glosario extends CI_Controller {
 		}
 	}
 
+	public function nuevoGlosario($id_app){
+		echo "
+			<div id='status'>
+				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
+			</div>
+
+			<div id='ventana-header'>
+				<h2>Nuevo término</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+
+      		".form_open('glosario/create/')."
+				<div class='txt-fld full'>
+					<input type='hidden' name='id_app' value='".$id_app."' placeholder='' required>
+					<label for=''>Nombre: </label>
+					<input type='text' id='nombre' name='nombre' value='' required>
+				</div>
+				<div class='txt-fld full'>
+					<label for=''>Descripción: </label><br><br>
+					<textarea class='full' type='text' name='descripcion' placeholder=''></textarea>
+				</div>
+				<div class='txt-fld full'>
+					<label for=''>Imagen: </label>
+					<input type='text' name='imagen' id='imagen' placeholder=''>
+				</div>
+				<div class='btn-fld full'>
+					<button type='submit' id='submitNuevaApp'>Agregar</button>
+				</div>
+			</form>
+		";
+	}
+
+
 }
 ?>

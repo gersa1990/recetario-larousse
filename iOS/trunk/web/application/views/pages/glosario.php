@@ -27,7 +27,7 @@
         
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoGlosario" class="button large orange">Nuevo término</a>
+          <a class="ventana button large orange" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevoGlosario(<?php echo $app;?>);">Nueva término</a>
         </div> 
   
         <table id="glosario">
@@ -45,8 +45,6 @@
 
                       <tr>
                           <td class="txleft">
-                            <!-- <a href="" class="bluetext">
-                            </a> -->
                             <p><?php echo $glosario[$i]['nombre']; ?></p>
                           </td>
 
@@ -139,59 +137,35 @@
 
   </div>
 
-
-  <div id="nuevoGlosario" class="modalDialog">
-    <div class="popup form_receta">
-      <a href="#" title="Close" class="close">x</a>
-
-      <!-- <div id="formulario"> -->
-
-        <?php echo form_open("glosario/create/"); ?>        
-        <!-- <form action=""> -->
-
-          <h2 class"myriadFont">Nuevo término de glosario</h2>
-
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
-
-          <div class="left">
-            <label for="">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" value="" placeholder="nombre" required>
-            <div class="alert error" style="display:none;" id="glosarioNuevo">Este nombre de glosario ya existe</div>
-          </div>
-
-          <div class="clear"></div>
-
-          <label for="">Descripción: </label>
-          <textarea class="full2" type="text" name="descripcion" placeholder="descripción del término de glosario"></textarea>
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-
-          <div class="left">
-            <label for="">Imagen: </label>
-            <input type="text" name="imagen" id="imagen" placeholder="imagen">
-          </div>
-
-          <div class="clear"></div>
-
-          <button type="submit" class="submit" id="submitGlosarioNuevo">Agregar</button>
-    
-        </form>
-
-      <!-- </div>  -->
-      <!-- formulario -->
-    </div> <!-- popup -->
-  </div> <!-- modadialog -->
-
   <div class="clear"></div>
+
+  <div id="lean_overlay"></div>
+
+  <div id="ventana" class="form_receta">
+      
+  </div>
 
 </div> <!-- Wrapper -->
 
 <script>
-  $(document).ready(function (){
-     // tinymce.init({selector:'textarea'});
-  });
 
   var app = "<?php echo $app; ?>";
   var base_url = "<?php echo base_url(); ?>";
+
+  $(".ventana").click(function(data){
+    return false;
+  });
+
+  $(function() {
+    $('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
+  });
+
+  function nuevoGlosario(id){
+    $.post( base_url+"glosario/nuevoGlosario/"+id, function(response) {  
+      console.log(response);
+      $('#ventana').html(response);
+    });
+  }
 
   $("#exportar").click(function ()
   {
