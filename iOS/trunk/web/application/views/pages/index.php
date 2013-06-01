@@ -1,7 +1,7 @@
 
 <div class="wrapper">
   <div class="main fix_top">
-    <a class="ventana button large orange al_right" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevaApp();">Nueva Aplicación</a>
+    <a class="ventana button large orange al_right" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevaApp();">Nueva aplicación</a>
     <h2 class="myriadFont mg_top">APLICACIONES DE EDITORIAL LAROUSSE</h2>
     <table class="tablew">
       <thead>
@@ -55,6 +55,9 @@ function nuevaApp(){
   $.post( base_url+"apps/nuevaApp/", function(response) {  
     console.log(response);
     $('#ventana').html(response);
+    tinymce.init({
+      selector: "textarea"
+    });
   });
 }
 
