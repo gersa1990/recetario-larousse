@@ -59,15 +59,41 @@ function nuevaApp(){
 }
 
 function buscarApp(id){
-  $.post( base_url+"apps/getApp/"+id, function(response) {  
-    console.log(response);
+
+  $.post( base_url+"apps/getApp/"+id, function(response) { 
+
     $('#ventana').html(response);
+    
+    console.log("Editar");
+    
+    $("#nombre2").keyup(function (){
+
+      var word  = $("#nombre2").val();
+      var id_ap = $("#id_app").val();
+
+      $.post(base_url+"apps/updateCheckExistence/", {palabra: word, id_app: id_ap}, function (data){
+
+        console.log(data);
+
+        if(data=="Existe"){
+
+          $("#status").slideDown("slow");
+          $("#errorEditarApp").slideDown("slow");
+          $("#submitEditarApp").slideUp("slow");
+        }
+        else{
+
+          $("#errorEditarApp").slideUp("slow");
+          $("#submitEditarApp").slideDown("slow");
+        }
+      });
+    });
   });
 }
 
 function eliminarApp(id){
   $.post( base_url+"apps/getAppDelete/"+id, function(response) {  
-    console.log(response);
+    //console.log(response);
     $('#ventana').html(response);
   });
 }
@@ -77,7 +103,6 @@ function eliminarApp(id){
 $("#nombre").keyup(function ()
 {
     var token = $("#nombre").val();
-    //console.log(token);
 
     $.post(base_url+"apps/checkExistence/", {palabra: token}, function (data)
       {
@@ -96,29 +121,4 @@ $("#nombre").keyup(function ()
       });
 });
 
-$(".editar").each(function (data)
-  {
-    var id = $(this).attr('id');
-
-    $("#"+id+" #nombre2").keyup(function ()
-      {
-        var word  = $("#"+id+" #nombre2").val();
-        var id_ap = $("#"+id+" #id_app").val();
-
-        $.post(base_url+"apps/updateCheckExistence/", {palabra: word, id_app: id_ap}, function (data)
-          {
-            if(data=="Existe")
-            {
-              $("#"+id+" #errorEditarApp").slideDown("slow");
-              $("#"+id+" #submitEditarApp").slideUp("slow");
-            }
-            else
-            {
-              $("#"+id+" #errorEditarApp").slideUp("slow");
-              $("#"+id+" #submitEditarApp").slideDown("slow");
-            }
-
-          });
-      });
-  });
 </script>

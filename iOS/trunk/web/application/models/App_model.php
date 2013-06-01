@@ -28,8 +28,8 @@ class App_model extends CI_Model {
 		$existe = $this->db->query("SELECT * FROM app WHERE id != ".$id_app." and nombre = '".$palabra."' ");
 		$array = $existe->row_array();
 
-		if(count($array)>0)
-		{
+		if(count($array)>0){
+			
 			echo "Existe";
 		}
 
