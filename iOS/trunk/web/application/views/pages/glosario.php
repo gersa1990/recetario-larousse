@@ -27,7 +27,7 @@
         
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a class="ventana button large orange" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevoGlosario(<?php echo $app;?>);">Nueva término</a>
+          <a class="ventana button large orange" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevoGlosario(<?php echo $app;?>);">Nuevo término</a>
         </div> 
   
         <table id="glosario">
@@ -49,13 +49,13 @@
                           </td>
 
                           <td>
-                            <a href="#editarGlosario<?php echo $glosario[$i]['id']; ?>">
+                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana" onclick="editarGlosario(<?php echo $glosario[$i]['id']; ?>);">
                               Editar
                             </a>
                           </td>
 
                           <td>
-                            <a href="#eliminarGlosario<?php echo $glosario[$i]['id']; ?>" class='eliminarRecetas'>
+                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana2" onclick="eliminarGlosario(<?php echo $glosario[$i]['id']; ?>);">
                               Eliminar
                             </a>
                           </td>
@@ -66,72 +66,7 @@
                       }   
                   } ?>
           </tbody>
-        </table>
-
-        <?php if(isset($glosario))
-                  {
-                    for ($i=0; $i <count($glosario) ; $i++) 
-                      { ?>
-
-                      <div id="eliminarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog">
-                        <div class="popup form_delete">
-
-                          <a href="#" title="Close" class="close">x</a>
-                
-                          <?php echo form_open("glosario/delete/"); ?>
-                            <h2>Término de glosario</h2>
-                            <p class="mg-auto"><?php echo $glosario[$i]['nombre']; ?></p>         
-                            <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
-                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                            <button type="submit" class="submit">Eliminar</button>
-                          </form>
-                        </div>
-                      </div>
-
-                      <div id="editarGlosario<?php echo $glosario[$i]['id']; ?>" class="modalDialog editarGlosario">
-                        <div class="popup form_receta">
-
-                        <a href="#" title="Close" class="close">x</a>
-                
-                        <?php
-                              $attributes = array('class' => 'email', 'id' => 'editarGlosario');
-                              echo form_open("glosario/edit/",$attributes); ?>
-  
-                            <h2 class="myriadFont">Editar término de glosario</h2>
-
-                            <div class="left">
-                              <label for="">Nombre: </label>
-                              <input type="text" name="titulo" id="titulo" value="<?php echo $glosario[$i]['nombre']; ?>" placeholder="Nombre" required>
-                              <div class="alert error" style="display:none" id="updateGlosario">Ya existe un glosario con este nombre</div>
-                            </div>
-
-                            <input type="hidden" id="id_glosario" value="<?php echo $glosario[$i]['id']; ?>">
-
-                            <div class="clear"></div>
-
-                            <label for="">Descripción: </label>
-                            <textarea class="full2 <?php print "editar".$i;  ?>" type="text" name="descripcion" id="descripcion" required><?php echo $glosario[$i]['descripcion']; ?></textarea>
-
-                            <div class="left">
-                              <label for="">Imagen: </label>
-                              <input type="text" name="imagen" id="imagen" value="<?php echo $glosario[$i]['imagen']; ?>">
-                            </div>
-
-
-
-                            <input type="hidden" name="id" value="<?php echo $glosario[$i]['id']; ?>">
-                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                            
-                            <div class="clear"></div>
-                            <button type="submit" class="submit" id="submitUpdateGlosario">Guardar</button>
-
-                            </form>
-                        </div>
-                      </div>
-
-                      <?php } 
-                    } ?>
-        
+        </table>        
       </div>
     </div>
 
@@ -142,6 +77,10 @@
   <div id="lean_overlay"></div>
 
   <div id="ventana" class="form_receta">
+      
+  </div>
+
+  <div id="ventana2" class="chica">
       
   </div>
 
@@ -160,10 +99,88 @@
     $('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
   });
 
+
+  //Nuevo glosario
   function nuevoGlosario(id){
     $.post( base_url+"glosario/nuevoGlosario/"+id, function(response) {  
-      console.log(response);
+
       $('#ventana').html(response);
+
+      tinymce.init({
+          selector: "#ventana textarea",
+          width: 950,
+          height: 200,
+          menubar: false
+        });
+
+      $("#ventana #nombre").keyup(function (){
+
+        var titulo = $("#nombre").val();
+        
+        console.log(titulo);
+
+        $.post(base_url+"glosario/checkExistence/", {palabra: titulo, id_app: app}, function (data){
+
+          console.log(data);
+
+          if(data.length==1){
+
+            $("#ventana #status").slideDown("slow");
+            $("#ventana #submitGlosarioNuevo").slideUp("slow");
+          }
+          else{
+
+            $("#ventana #status").slideUp("slow");
+            $("#ventana #submitGlosarioNuevo").slideDown("slow");
+          }
+        });
+      });
+    });
+  }
+
+  //Editar glosario
+  function editarGlosario(id){
+
+    $.post(base_url+"glosario/editarGlosario/", {id_glosario: id, id_app : app}, function (data)
+    {
+        $('#ventana').html(data);
+
+        tinymce.init({
+          selector: "#ventana textarea",
+          width: 950,
+          height: 200,
+          menubar: false
+        });
+
+        $("#ventana #nombre").keyup(function ()
+        {
+        
+          var titulo      = $("#nombre").val();
+          var id_glosario = $("#id").val();
+
+          $.post(base_url+"glosario/updateCheckExistence/", {nombre:titulo, glosario: id_glosario, id_app:app}, function (data)
+          {
+           
+            if(data.length==1){
+        
+              $("#ventana #submitEditarGlosario").slideUp("slow");
+              $("#ventana #status").slideDown("slow");
+            } 
+            else{
+
+              $("#ventana #submitEditarGlosario").slideDown("slow");
+              $("#ventana #status").slideUp("slow");
+            }
+          });
+        });
+    });
+  }
+
+  function eliminarGlosario(id){
+
+    $.post(base_url+"glosario/eliminarGlosario/", {id_glosario: id}, function (data)
+    {
+      $('#ventana2').html(data);
     });
   }
 
@@ -183,51 +200,6 @@
     }); 
   
   });
-
-  $("#nuevoGlosario #nombre").keyup(function ()
-  {
-      var titulo = $("#nuevoGlosario #nombre").val();
-      
-      $.post(base_url+"glosario/checkExistence/", {palabra: titulo, id_app: app}, function (data)
-      {
-          if(data=="Existe")
-          {
-            $("#nuevoGlosario #glosarioNuevo").slideDown("slow");
-            $("#nuevoGlosario #submitGlosarioNuevo").slideUp("slow");
-          }
-          else
-          {
-            $("#nuevoGlosario #glosarioNuevo").slideUp("slow");
-            $("#nuevoGlosario #submitGlosarioNuevo").slideDown("slow");
-          }
-      });
-
-});
-
-$(".editarGlosario").each(function ()
-{
-  var id = $(this).attr('id');
-
-  $("#"+id+" #titulo").keyup(function ()
-  {
-    var titulo      = $("#"+id+" #titulo").val();
-    var id_glosario = $("#"+id+" #id_glosario").val();
-
-    $.post(base_url+"glosario/updateCheckExistence/", {nombre:titulo, glosario:id_glosario, id_app:app}, function (data)
-    {
-      if(data=="Existe"){
-        
-          $("#"+id+" #updateGlosario").slideDown("slow");
-          $("#"+id+" #submitUpdateGlosario").slideUp("slow");
-      } 
-      else{
-
-          $("#"+id+" #updateGlosario").slideUp("slow");
-          $("#"+id+" #submitUpdateGlosario").slideDown("slow");
-      }
-    });
-  });
-});
 
 tinymce.init({
   selector: "#nuevoGlosario textarea",

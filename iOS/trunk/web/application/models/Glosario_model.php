@@ -1,10 +1,30 @@
 <?php
 
-class Glosario_model extends CI_Model {
+class glosario_model extends CI_Model {
 
 	public function __construct(){
 		$this->load->database();
 		$this->load->library('typography');
+	}
+
+	/***************************************************************
+		Modelo para buscar los datos del glosario y regresarselos al 
+		controlador para que los pegue en el popup mediante (AJAX)
+	****************************************************************/
+	public function dataGlosario($id){
+
+		$glosario = $this->db->get_where('glosario', array('id' => $id));
+		
+		$glosario2 = $glosario->row_array();
+
+		$arreglo['id'] 			= $glosario2['id'];
+		$arreglo['id_app'] 		= $glosario2['id_app'];
+		$arreglo['nombre']		= $glosario2['nombre'];
+		$arreglo['descripcion']	= $this->revertAsterixAlgoritm($glosario2['descripcion']);
+		$arreglo['imagen']		= $glosario2['imagen'];
+
+		return $arreglo;
+
 	}
 
 	/***************************************************************
@@ -18,7 +38,7 @@ class Glosario_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
 	}
 
@@ -55,7 +75,7 @@ class Glosario_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
 	}	
 
@@ -71,11 +91,9 @@ class Glosario_model extends CI_Model {
 		for ($i=0; $i <strlen($descripcionConAsteriscos) ; $i++) 
 		{
 			
-			
 			if($descripcionConAsteriscos[$i] == "*" && $bandera == false){
                 $descripcionSinAsteriscos .= "<em>";	
                 $bandera = true;
-            	
 			}
 			else if($descripcionConAsteriscos[$i] == "*" && $bandera == true){
                 $descripcionSinAsteriscos .= "</em>";	
@@ -164,7 +182,7 @@ class Glosario_model extends CI_Model {
 	public function edit($arreglado)
 	{
 		$data = array(
-				'nombre' 		=> $this->input->post('titulo'),
+				'nombre' 		=> $this->input->post('nombre'),
 				'descripcion' 	=> $arreglado,
 				'imagen' 		=> $this->input->post('imagen')
 			);

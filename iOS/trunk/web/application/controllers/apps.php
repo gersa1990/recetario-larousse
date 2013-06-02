@@ -7,7 +7,7 @@ class Apps extends CI_Controller {
 		$this->load->model('app_model');
 		$this->load->model('categoria_model');
 		$this->load->model('complementarias_model');
-		$this->load->model('Glosario_model');
+		$this->load->model('glosario_model');
 		$this->load->model('recetas_model');
 		$this->load->model('video_model');
 	}
@@ -102,7 +102,7 @@ class Apps extends CI_Controller {
 	//Método para garantizar la eliminación en cascada
 	public function extendsDelete($id_app){
 
-		$deleteGlosary = $this->Glosario_model->extendsDelete();
+		$deleteGlosary = $this->glosario_model->extendsDelete();
 	}
 
 
@@ -112,8 +112,8 @@ class Apps extends CI_Controller {
 		$id = $_POST['id'];
 
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
-		$this->Glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
-		$this->Glosario_model->extendsDeleteByIdApp($id);  		//Eliminar los glosarios de la APP  
+		$this->glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
+		$this->glosario_model->extendsDeleteByIdApp($id);  		//Eliminar los glosarios de la APP  
 		$this->categoria_model->extendsDelete($id);		   		//Eliminar las categorias de la APP
 		$this->video_model->extendsDelete($recetas);	   		//Eliminar los videos de la APP
 		$this->video_model->extendsDeleteByIdApp($id);			//Eliminar las relaciones de videos correspondientes a la APP

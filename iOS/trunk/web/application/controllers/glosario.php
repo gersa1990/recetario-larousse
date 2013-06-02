@@ -3,8 +3,8 @@ class Glosario extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('Glosario_model');
-		$this->load->model('App_model');
+		$this->load->model('glosario_model');
+		$this->load->model('app_model');
 	}
 
 	/***************************************************************
@@ -16,7 +16,7 @@ class Glosario extends CI_Controller {
 		$palabra = $_POST['palabra'];
 		$id_app  = $_POST['id_app'];
 
-		$this->Glosario_model->checkExistence($palabra, $id_app);
+		$this->glosario_model->checkExistence($palabra, $id_app);
 	}
 
 	/***************************************************************
@@ -29,7 +29,7 @@ class Glosario extends CI_Controller {
 		$id_glosario 	= $_POST['glosario'];
 		$id_app 		= $_POST['id_app'];
 
-		$this->Glosario_model->updateCheckExistence($palabra, $id_glosario, $id_app);
+		$this->glosario_model->updateCheckExistence($palabra, $id_glosario, $id_app);
 	}
 
 	/***************************************************************
@@ -65,7 +65,7 @@ class Glosario extends CI_Controller {
 		$descripcion2 =  $this->asterixAlgorithm($descripcion);
 		//var_dump($descripcion2);
 
-		$idGlosario = $this->Glosario_model->create($descripcion2);
+		$idGlosario = $this->glosario_model->create($descripcion2);
 		
 		if($idGlosario)
 		{
@@ -84,7 +84,7 @@ class Glosario extends CI_Controller {
 		$id_receta			= $_POST['id_receta'];
 		$palabra 			= $_POST['palabra'];
 
-		$glosario 			= $this->Glosario_model->searchByName2($id_app, $id_receta, $palabra); 
+		$glosario 			= $this->glosario_model->searchByName2($id_app, $id_receta, $palabra); 
 
 		if(count($glosario)>0)
 		{
@@ -108,9 +108,9 @@ class Glosario extends CI_Controller {
 		$id_receta 		= $_POST['id_receta'];
 		$id_glosario 	= $_POST['id_glosario'];
 
-		$insertar = $this->Glosario_model->addToRecipe($id_receta, $id_glosario);
+		$insertar = $this->glosario_model->addToRecipe($id_receta, $id_glosario);
 
-		$dataGlosario = $this->Glosario_model->getDataGlosary($id_glosario);
+		$dataGlosario = $this->glosario_model->getDataGlosary($id_glosario);
 
 		if(count($dataGlosario)>0)
 		{
@@ -134,7 +134,7 @@ class Glosario extends CI_Controller {
 	        $ids_glosario = $_POST['glosarioComplemento'];
 
 			for ($i=0; $i <count($ids_glosario) ; $i++) { 
-				$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
+				$this->glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
 			}
 	    }
 	    redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
@@ -147,11 +147,11 @@ class Glosario extends CI_Controller {
 
 		$this->load->helper('form');
 
-		$data['apps'] 	  = $this->App_model->get_apps($id_app);
-		$data['glosario'] = $this->Glosario_model->get_glosario($id_app);
-		$glosario = $this->Glosario_model->get_glosario($id_app);
+		$data['apps'] 	  = $this->app_model->get_apps($id_app);
+		$data['glosario'] = $this->glosario_model->get_glosario($id_app);
+		$glosario = $this->glosario_model->get_glosario($id_app);
 		$data['app']  	 = $id_app;
-		$nombre = $data['name'] = $this->App_model->get_name($id_app);
+		$nombre = $data['name'] = $this->app_model->get_name($id_app);
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> glosario';
 		
@@ -170,9 +170,7 @@ class Glosario extends CI_Controller {
 
 		$arreglado = $this->asterixAlgorithm($descripcion2);
 
-		var_dump($arreglado);
-
-		$edit = $this->Glosario_model->edit($arreglado);
+		$edit = $this->glosario_model->edit($arreglado);
 
 		if($edit)
 		{
@@ -181,16 +179,80 @@ class Glosario extends CI_Controller {
 	}
 
 	/***************************************************************
+		Método para buscar los datos de un glosario el cual va a ser 
+		eliminado pero todo esto se realiza de manera dinamica (AJAX)
+	****************************************************************/
+	public function eliminarGlosario(){
+		$id_glosario = $_POST['id_glosario'];
+
+		$glosario = $this->glosario_model->dataGlosario($id_glosario);
+
+		echo "<div id='ventana-header'>
+				<h2>Eliminar</h2>
+				<p>Toda la información relacionada se borrara</p>
+				<a class='modal_close' href='#'></a>
+			</div>".validation_errors()."".form_open('glosario/delete')."
+				<input type='hidden' name='id' id='id' value='".$glosario['id']."'>
+				<div class='txt-fld'>
+					<h2>".$glosario['nombre']."</h2>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitEliminarGlosario'>Eliminar</button>
+				</div>
+			</form>";
+
+	}
+
+	/***************************************************************
 		Método para eliminar un glosario
 	****************************************************************/
 	public function delete()
 	{
-		$delete = $this->Glosario_model->delete();
+		$delete = $this->glosario_model->delete();
 		
 		if($delete)
 		{
 			redirect(base_url()."glosario/view/".$_POST['id_app']);
 		}
+	}
+
+	/***************************************************************
+		Método para agregar dinamismo a los glosarios este método
+		busca el glosario a editar y lo pega en el popup
+		(AJAX)
+	****************************************************************/
+	public function editarGlosario(){
+
+		$id_glosario = $_POST['id_glosario'];
+
+		$glosario = $this->glosario_model->dataGlosario($id_glosario);
+
+		echo "<div id='status'>
+				<div class='alert error'>Este nombre de glosario ya existe</div>
+			</div>
+			<div id='ventana-header'>
+				<h2>Editar glosario</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+			".form_open('glosario/edit/')."
+				<div class='txt-fld full'>
+					<input type='hidden' name='id_app' value='".$glosario['id_app']."' placeholder='' required>
+					<input type='hidden' name='id' id='id' value='".$glosario['id']."' placeholder='' required>
+					<label for=''>Nombre: </label>
+					<input type='text' id='nombre' name='nombre' value='".$glosario['nombre']."' required>
+				</div>
+				<div class='txt-fld full'>
+					<label for=''>Descripción: </label><br><br>
+					<textarea class='full' type='text' name='descripcion' placeholder=''>".$glosario['descripcion']."</textarea>
+				</div>
+				<div class='txt-fld full'>
+					<label for=''>Imagen: </label>
+					<input type='text' name='imagen' id='imagen' value='".$glosario['imagen']."' placeholder=''>
+				</div>
+				<div class='btn-fld full'>
+					<button type='submit' id='submitEditarGlosario'>Editar</button>
+				</div>
+			</form>";
 	}
 
 	/***************************************************************
@@ -201,7 +263,7 @@ class Glosario extends CI_Controller {
 		$nombre = $_POST['palabra'];
 		$id_app = $_POST['id_app'];
 
-		$glosario = $this->Glosario_model->searchByName($nombre, $id_app);
+		$glosario = $this->glosario_model->searchByName($nombre, $id_app);
 
 		for ($i=0; $i <count($glosario) ; $i++) 
 		{ 
@@ -234,7 +296,7 @@ class Glosario extends CI_Controller {
 		$id_glosario = $_POST['id_glosario'];
 		$id_app = $_POST['id_app'];
 		
-		$delete = $this->Glosario_model->deleteToRecipe($id_receta, $id_glosario);
+		$delete = $this->glosario_model->deleteToRecipe($id_receta, $id_glosario);
 
 		if($delete){
 			redirect(base_url()."recetas/ver/".$_POST['id_receta']."/".$_POST['id_app']);
@@ -244,7 +306,7 @@ class Glosario extends CI_Controller {
 	public function nuevoGlosario($id_app){
 		echo "
 			<div id='status'>
-				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
+				<div id='errorEditarApp' class='alert error'>Este nombre de glosario ya existe</div>
 			</div>
 
 			<div id='ventana-header'>
@@ -267,12 +329,10 @@ class Glosario extends CI_Controller {
 					<input type='text' name='imagen' id='imagen' placeholder=''>
 				</div>
 				<div class='btn-fld full'>
-					<button type='submit' id='submitNuevaApp'>Agregar</button>
+					<button type='submit' id='submitGlosarioNuevo'>Agregar</button>
 				</div>
 			</form>
 		";
 	}
-
-
 }
 ?>

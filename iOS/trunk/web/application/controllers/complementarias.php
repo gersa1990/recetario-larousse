@@ -7,7 +7,7 @@ class Complementarias extends CI_Controller
 		
 		$this->load->model('complementarias_model');
 		$this->load->model('App_model');
-		$this->load->model('Glosario_model');
+		$this->load->model('glosario_model');
 		$this->load->model('video_model');
 	}
 
@@ -160,26 +160,20 @@ class Complementarias extends CI_Controller
 		
 		for ($i=0; $i <count($complementarias) ; $i++) 
 		{ 
-			echo "<tr>
-                      <td class='txleft'>";
-                       
-                          echo "".$complementarias[$i]['titulo'].""; 
-                        echo "
+			echo "  <tr>
+                    <td class='txleft'>".$complementarias[$i]['titulo']."
                       </td>
-
-                      <td>";
-                        echo "<a href='#editarComplementaria".$complementarias[$i]['id']."'>
+                      <td>
+                      	<a href='#editarComplementaria".$complementarias[$i]['id']."'>
                           Editar
                         </a>
                       </td>
-
-                      <td>";
-                        echo "<a href='#eliminarComplementaria".$complementarias[$i]['id']."' class='eliminarRecetas'>
+                      <td>
+                      	<a href='#eliminarComplementaria".$complementarias[$i]['id']."' class='eliminarRecetas'>
                           Eliminar
                         </a>
                       </td>
-
-                  </tr>";
+                    </tr>";
 		}
 
 	}
