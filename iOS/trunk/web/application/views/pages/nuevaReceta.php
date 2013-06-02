@@ -107,8 +107,12 @@
     {
       var tittle = $("#titulo").val();
 
+      console.log(tittle);
+
       $.post(base_url+"recetas/checkExistence/", {titulo: tittle, id_app: app }, function(data)
         {
+          console.log(data);
+          
             if(data=="Existe")
             {
               $("#errorNuevaReceta").slideDown("slow");

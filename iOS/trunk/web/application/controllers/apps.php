@@ -2,8 +2,9 @@
 class Apps extends CI_Controller {
 
 	public function __construct(){
+
 		parent::__construct();
-		$this->load->model('App_model');
+		$this->load->model('app_model');
 		$this->load->model('categoria_model');
 		$this->load->model('complementarias_model');
 		$this->load->model('Glosario_model');
@@ -15,21 +16,15 @@ class Apps extends CI_Controller {
 	public function checkExistence(){
 
 		$palabra = $_POST['palabra'];
-		
-		$existe  = $this->App_model->checkExistence($palabra);
-		echo $existe;
-
+		$this->app_model->checkExistence($palabra);
 	}
 
 	//Metodo principal para mostrar las aplicaciones actuales y las opciones de cada una de ellas
 	public function index(){
 		
-		$data['apps'] = $this->App_model->get_apps(); //Método que obtiene todas las apps.
-
+		$data['apps'] = $this->app_model->get_apps(); //Método que obtiene todas las apps.
 		$this->load->helper('url');
-
 		$data['title'] = 'Aplicaciones de editorial Larousse';
-		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/index', $data);
 		$this->load->view('templates/footer');
@@ -40,8 +35,7 @@ class Apps extends CI_Controller {
 
 		$palabra 	= $_POST['palabra'];
 		$id_app		= $_POST['id_app'];
-		$existe = $this->App_model->updateCheckExistence($palabra, $id_app);
-		echo $existe;
+		$this->app_model->updateCheckExistence($palabra, $id_app);
 	}
 
 	//Método que crea la Aplicación en la base de datos.
@@ -49,7 +43,6 @@ class Apps extends CI_Controller {
 		
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules('nombre', 'Nombre', 'required');
 
 		if ($this->form_validation->run() === FALSE){
@@ -57,11 +50,8 @@ class Apps extends CI_Controller {
 		}
 		
 		else{
-
-			$this->App_model->set_app(); //Dar de alta en la BD
-
+			$this->app_model->set_app(); //Dar de alta en la BD
 		 	$this->load->helper('url');
-
 			redirect(base_url());
 		}
 	}
@@ -70,7 +60,7 @@ class Apps extends CI_Controller {
 	public function nueva(){
 
 		$nombre = $_POST['nombre'];
-		$insert = $this->App_model->nueva($nombre); //Dar de alta en la BD
+		$insert = $this->app_model->nueva($nombre); //Dar de alta en la BD
 
 		if ($insert) {
 
@@ -84,10 +74,10 @@ class Apps extends CI_Controller {
 		$nombre = $_POST['nombre'];
 		$idApp  = $_POST['id_app'];
 
-		$update = $this->App_model->updateAppName($idApp, $nombre); //Editar el nombre de la APP
+		$update = $this->app_model->updateAppName($idApp, $nombre); //Editar el nombre de la APP
 
-		if($update)
-		{
+		if($update){
+
 			redirect(base_url(),"refresh");
 		}		
 	}
@@ -96,14 +86,10 @@ class Apps extends CI_Controller {
 	public function view($id)
 	{
 		$data['recetas'] = $this->recetas_model->get_recetas($id); //Obtiene las recetas por id de APP
-
-		$data['apps'] = $this->App_model->get_apps($id); //Obtiene los datos del APP seleccionada
-		
+		$data['apps'] = $this->app_model->get_apps($id); //Obtiene los datos del APP seleccionada
 		$data['app'] = $id; // Crea una variable llamada app
-
-		$data['categorias'] = $this->App_model->getCategoryFromAppId($id); //Obtienes las categorias de la APP seleccionada
-
-		$nombre = $data['name'] = $this->App_model->get_name($id); //Obtienes el nombre de la APP
+		$data['categorias'] = $this->app_model->getCategoryFromAppId($id); //Obtienes las categorias de la APP seleccionada
+		$nombre = $data['name'] = $this->app_model->get_name($id); //Obtienes el nombre de la APP
 
 		$this->load->helper('url');
 
@@ -121,13 +107,11 @@ class Apps extends CI_Controller {
 
 
 	// Método para eliminar la APP seleccionada y todos los datos referentes a está
-	public function eliminar()
-	{
-		$id 		= $_POST['id'];
+	public function eliminar(){
 
+		$id = $_POST['id'];
 
 		$recetas = $this->recetas_model->getDataForExtendsDelete($id);
-
 		$this->Glosario_model->extendsDelete($recetas);    		//Eliminar las relaciones de glosario correspondientes a la APP
 		$this->Glosario_model->extendsDeleteByIdApp($id);  		//Eliminar los glosarios de la APP  
 		$this->categoria_model->extendsDelete($id);		   		//Eliminar las categorias de la APP
@@ -135,8 +119,7 @@ class Apps extends CI_Controller {
 		$this->video_model->extendsDeleteByIdApp($id);			//Eliminar las relaciones de videos correspondientes a la APP
 		$this->complementarias_model->extendsDelete($recetas);  //Eliminar las recetas complementarias de la APP
 		$this->complementarias_model->extendsDeleteByIdApp($id);//Eliminar las relaciones de complementarias correspondientes a la APP		
-
-		$eliminar 	= $this->App_model->eliminar_app($id);      //Eliminar la APP
+		$eliminar 	= $this->app_model->eliminar_app($id);      //Eliminar la APP
 		
 		redirect(base_url(), 'refresh');
 	}
@@ -146,12 +129,10 @@ class Apps extends CI_Controller {
 			<div id='status'>
 				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
 			</div>
-
 			<div id='ventana-header'>
 				<h2>Nueva aplicación</h2>
 				<a class='modal_close' href='#'></a>
 			</div>
-
 			".validation_errors()."
       		".form_open('apps/nueva/')."
 				<div class='txt-fld'>
@@ -161,28 +142,21 @@ class Apps extends CI_Controller {
 				<div class='btn-fld'>
 					<button type='submit' id='submitNuevaApp'>Agregar</button>
 				</div>
-			</form>
-
-		";
+			</form>";
 	}
 
 	public function getApp($id_app){
-		$resultado = $this->App_model->get_apps($id_app);
-		//echo var_dump($resultado);
 
-		echo "
-			<div id='status'>
+		$resultado = $this->app_model->get_apps($id_app);
+
+	echo "<div id='status'>
 				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
 			</div>
 
 			<div id='ventana-header'>
 				<h2>Editar</h2>
 				<a class='modal_close' href='#'></a>
-			</div>
-			
-			".form_open('apps/edit/')."
-				
-				
+			</div>".form_open('apps/edit/')."
 				<input type='hidden' name='id_app' id='id_app' value='".$resultado['id']."'>
 				<div class='txt-fld'>
 					<label for=''>Nombre: </label>
@@ -191,23 +165,17 @@ class Apps extends CI_Controller {
 				<div class='btn-fld'>
 					<button type='submit' id='submitEditarApp'>Guardar</button>
 				</div>
-			</form>
-		";
+			</form>";
 	}
 
 	public function getAppDelete($id_app){
-		$resultado = $this->App_model->get_apps($id_app);
+		$resultado = $this->app_model->get_apps($id_app);
 
-		echo "
-			<div id='ventana-header'>
+		echo "<div id='ventana-header'>
 				<h2>Eliminar</h2>
 				<p>Toda la información relacionada sera borrara</p>
 				<a class='modal_close' href='#'></a>
-			</div>
-			
-				".validation_errors()."
-				".form_open('apps/eliminar')."
-				
+			</div>".validation_errors()."".form_open('apps/eliminar')."
 				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
 				<div class='txt-fld'>
 					<h2>".$resultado['nombre']."</h2>
@@ -215,10 +183,7 @@ class Apps extends CI_Controller {
 				<div class='btn-fld'>
 					<button type='submit' id='submitEditarApp'>Eliminar</button>
 				</div>
-			</form>
-		";
+			</form>";
 	}
 }
 ?>
-
-

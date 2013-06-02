@@ -21,6 +21,14 @@
 
 	<script src="<?php echo base_url(); ?>js/funcionesJS.js"></script>
 	<script src="<?php echo base_url(); ?>resources/js/validation/jquery.validate.js"></script>
+
+	<script>
+	
+	$(function() {
+  		$('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
+	});
+	
+	</script>
 	
 </head>
 

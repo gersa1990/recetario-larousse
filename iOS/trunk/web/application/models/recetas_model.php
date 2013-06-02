@@ -28,12 +28,13 @@ class Recetas_model extends CI_Model {
 	****************************************************************/
 	public function updateCheckExistence($palabra, $id_receta, $id_app){
 
-		$existe = $this->db->query("SELECT * FROM recetas WHERE nombre = '".$palabra."' and id != ".$id_receta." and id_app = ".$id_app." ");
+		$existe = $this->db->query("SELECT * FROM recetas WHERE titulo = '".$palabra."' and id != ".$id_receta." and id_app = ".$id_app." ");
+		
 		$array = $existe->row_array();
 
 		if(count($array)>0){
 
-			echo "Existe";
+			echo 1;
 		}
 	}
 

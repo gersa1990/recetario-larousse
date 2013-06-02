@@ -207,7 +207,6 @@
 $(".editarGlosario").each(function ()
 {
   var id = $(this).attr('id');
-  //console.log(id);
 
   $("#"+id+" #titulo").keyup(function ()
   {
@@ -216,13 +215,13 @@ $(".editarGlosario").each(function ()
 
     $.post(base_url+"glosario/updateCheckExistence/", {nombre:titulo, glosario:id_glosario, id_app:app}, function (data)
     {
-      if(data=="Existe")
-      {
+      if(data=="Existe"){
+        
           $("#"+id+" #updateGlosario").slideDown("slow");
           $("#"+id+" #submitUpdateGlosario").slideUp("slow");
       } 
-      else
-      {
+      else{
+
           $("#"+id+" #updateGlosario").slideUp("slow");
           $("#"+id+" #submitUpdateGlosario").slideDown("slow");
       }

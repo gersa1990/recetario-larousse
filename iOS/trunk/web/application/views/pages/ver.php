@@ -11,11 +11,12 @@
 			<h2 class="mgt_50"><?php echo $receta[0]['titulo'] ?></h2>
 
 			<input type="hidden" name="id_app" id="id_app" value="<?php echo $app; ?>">
-			<input type="hidden" name="id" value="<?php echo $receta[0]['id'] ?>">
+			<input type="hidden" name="id" id="id" value="<?php echo $receta[0]['id'] ?>">
 			
 			<div class="left">
 				<label for="">Nombre: </label>
 				<input type="text" name="titulo" id="titulo" value="<?php echo $receta[0]['titulo'] ?>" required>
+				<div id="statusRecipe"></div>
 			</div>
 			
 			<div class="left mg_input">
@@ -476,11 +477,25 @@ var app   = "<?php echo $app; ?>";
 $("#titulo").keyup(function (data)
 {
 	var tittle = $("#titulo").val();
+	var id = $("#id").val();
+
+	console.log(tittle);
 	
 	if (tittle!=""){
-		$.post(base_url+"recetas/updateCheckExistence/", {titulo:tittle, id_app: app }, function (data)
-		{
-			console.log(data);
+
+		$.post(base_url+"recetas/updateCheckExistence/", {titulo: tittle, id_receta: id,  id_app: app }, function (data){
+
+			if(data.length==1){
+
+				$("#editar").css("display","none");
+				$("#statusRecipe").html("<div class='alert alert-error'>Este nombre de receta ya existe</div>");
+				$("#guardar").slideUp("slow");
+			}
+			else{
+
+				$("#guardar").slideDown("slow");	
+				$("#statusRecipe").html("");
+			}
 		});
 	}
 });

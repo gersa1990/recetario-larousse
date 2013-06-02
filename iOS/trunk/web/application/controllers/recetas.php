@@ -32,6 +32,12 @@ class Recetas extends CI_Controller {
 	****************************************************************/
 	public function updateCheckExistence(){
 		
+		$palabra 	= $_POST['titulo'];
+		$id_app  	= $_POST['id_app'];
+		$id_receta  = $_POST['id_receta'];
+
+		$this->recetas_model->updateCheckExistence($palabra, $id_receta, $id_app);
+
 	}
 
 	/***************************************************************

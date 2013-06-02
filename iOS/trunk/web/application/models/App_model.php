@@ -1,6 +1,6 @@
 <?php
 
-class App_model extends CI_Model {
+class app_model extends CI_Model {
 
 	public function __construct(){
 		$this->load->database();
@@ -30,7 +30,7 @@ class App_model extends CI_Model {
 
 		if(count($array)>0){
 			
-			echo "Existe";
+			echo 1;
 		}
 
 	}
@@ -45,7 +45,7 @@ class App_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
 	}
 

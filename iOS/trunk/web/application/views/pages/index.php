@@ -46,17 +46,32 @@ $(".ventana").click(function(data){
   return false;
 });
 
-$(function() {
-  $('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
-});
-
-
 function nuevaApp(){
   $.post( base_url+"apps/nuevaApp/", function(response) {  
-    console.log(response);
+    //console.log(response);
     $('#ventana').html(response);
-    tinymce.init({
-      selector: "textarea"
+
+    $("#nombre").keyup(function (){
+
+      var token = $("#nombre").val();
+
+      //console.log(token);
+
+      $.post(base_url+"apps/checkExistence/", {palabra: token}, function (data){
+        
+        console.log(data.length);
+
+        if(data.length==1){
+
+          $("#status").slideDown("slow");
+          $("#submitNuevaApp").slideUp("slow");
+        }
+        else{
+
+          $("#status").slideUp("slow"); 
+          $("#submitNuevaApp").slideDown("slow");
+        }
+      });
     });
   });
 }
@@ -67,18 +82,15 @@ function buscarApp(id){
 
     $('#ventana').html(response);
     
-    console.log("Editar");
-    
+    var id_ap = $("#id_app").val();
+
     $("#nombre2").keyup(function (){
 
       var word  = $("#nombre2").val();
-      var id_ap = $("#id_app").val();
 
       $.post(base_url+"apps/updateCheckExistence/", {palabra: word, id_app: id_ap}, function (data){
 
-        console.log(data);
-
-        if(data=="Existe"){
+        if(data.length==1){
 
           $("#status").slideDown("slow");
           $("#errorEditarApp").slideDown("slow");
@@ -95,33 +107,9 @@ function buscarApp(id){
 }
 
 function eliminarApp(id){
-  $.post( base_url+"apps/getAppDelete/"+id, function(response) {  
-    //console.log(response);
+  $.post( base_url+"apps/getAppDelete/"+id, function(response){
     $('#ventana').html(response);
   });
 }
-
-
-
-$("#nombre").keyup(function ()
-{
-    var token = $("#nombre").val();
-
-    $.post(base_url+"apps/checkExistence/", {palabra: token}, function (data)
-      {
-
-        if(data=="Existe")
-        {
-          $("#errorNuevaApp").slideDown("slow");
-          $("#submitNuevaApp").slideUp("slow");
-        }
-        else
-        {
-          $("#errorNuevaApp").slideUp("slow"); 
-          $("#submitNuevaApp").slideDown("slow");
-        }
-
-      });
-});
 
 </script>
