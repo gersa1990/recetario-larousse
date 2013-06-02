@@ -27,7 +27,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevaRecetaComplementaria" class="button large orange">Nueva receta</a>
+          <a class="ventana button large orange" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevaReceta(<?php echo $app;?>);">Nueva receta</a>
         </div> 
   
         <table id="recetas_complementarias">
@@ -36,7 +36,6 @@
               <td colspan="3">Recetas complementarias</td>
             </tr>
           </thead>
-
           <tbody>
             <?php if(isset($recetas_complementarias))
                   {
@@ -52,13 +51,13 @@
                           </td>
 
                           <td>
-                            <a href="#editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>">
+                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana" onclick="editarRecetas(<?php echo $recetas_complementarias[$i]['id']; ?>);">
                               Editar
                             </a>
                           </td>
 
                           <td>
-                            <a href="#eliminarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class='eliminarRecetas'>
+                            <a class="ventana2" rel="leanModal" name="#ventana2" href="#ventana2" onclick="eliminarRecetas(<?php echo $recetas_complementarias[$i]['id']; ?>);">
                               Eliminar
                             </a>
                           </td>
@@ -69,103 +68,22 @@
                       }   
                   } ?>
           </tbody>
-        </table>
-
-        <?php if(isset($recetas_complementarias))
-                  {
-                    for ($i=0; $i <count($recetas_complementarias) ; $i++) 
-                      { ?>
-
-                      <div id="eliminarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog">
-                        <div class="popup form_delete">
-
-                          <a href="#" title="Close" class="close">x</a>
-                
-                          <?php echo form_open("complementarias/delete/"); ?>
-                            <h2>Receta complementaria</h2>
-                            <p class="mg-auto"><?php echo $recetas_complementarias[$i]['titulo']; ?></p>         
-                            <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
-                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                            <button type="submit" class="submit">Eliminar</button>
-                          </form>
-                        </div>
-                      </div>
-
-                      
-
-                      <div id="editarComplementaria<?php echo $recetas_complementarias[$i]['id']; ?>" class="modalDialog editarComplementaria">
-                        <div class="popup form_rc">
-                        <a href="#" title="Close" class="close">x</a>
-                
-                        <?php echo form_open("complementarias/edit/"); ?>
-                          <h2 class="mg_20 myriadFont">Edita categoria complementaria</h2>
-
-                          <input type="hidden" id="id_complementaria" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
-
-                          <div class="left">
-                            <label for="">Nombre: </label>
-                            <input type="text" name="titulo" id="titulo" value="<?php echo $recetas_complementarias[$i]['titulo']; ?>">
-                            <div class="alert error" id="updateComplementaria" style="display:none;">Este titulo ya existe.</div>
-                          </div>
-
-                          <div class="left">
-                            <label for="">Contenido: </label>
-                            <textarea class="full2" name="contenido"><?php echo $recetas_complementarias[$i]['contenido']; ?></textarea>
-                          </div>
-
-                          <div class="clear"></div>
-
-                          <input type="hidden" name="id" value="<?php echo $recetas_complementarias[$i]['id']; ?>">
-                          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                  
-                          <button type="submit" class="submit" id="submitUpdateComplementaria">Guardar</button>
-                        </form>
-
-                        </div>
-                      </div>
-
-                      <?php 
-                      } 
-                    } 
-                    ?>
-        
+        </table>        
       </div>
     </div>
 
   </div>
 
 
-  <div id="nuevaRecetaComplementaria" class="modalDialog">
-    <div class="popup form_rc">
-      <a href="#" title="Close" class="close">x</a>
-
-
-        <?php echo form_open("complementarias/create/"); ?>        
-        <!-- <form action=""> -->
-
-          <h2 class="mg_20 myriadFont">Nueva receta complementaria</h2>
-
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>" placeholder="" required>
-
-          <div class="left">
-            <label for="">Nombre: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="" required>
-            <div class="alert error" id="complementariaNueva" style="display:none;">Esta receta complementaria ya existe.</div>
-          </div>
-
-          <div class="clear"></div>
-
-          <label for="">Contenido: </label>
-          <textarea type="text" name="contenido" class="full2" required></textarea>
-
-          <button type="submit" class="submit" id="submitNuevaComplementaria">Agregar</button>
-    
-        </form>
-
-    </div> <!-- popup -->
-  </div> <!-- modadialog -->
+  
 
   <div class="clear"></div>
+
+  <div id="lean_overlay"></div>
+
+   <div id="ventana" class="form_receta"></div>
+
+  <div id="ventana2" class="chica"></div>
 
 </div> <!-- Wrapper -->
 
@@ -173,11 +91,6 @@
 
   var app = "<?php echo $app; ?>";
   var base_url = "<?php echo base_url(); ?>";
-
-  $("#exportar").click(function ()
-  {
-      location.href=base_url+"export/create/"+app;
-  });
 
 
   $("#buscar").keyup(function (data)
@@ -187,28 +100,102 @@
     $.post(base_url+"complementarias/searchByName/" ,{palabra: texto, id_app: app}, function (data)
     {
       $("#recetas_complementarias tbody").html(data);
+      
+      $(function() {
+        $('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
+      });
     }); 
   });
 
-$("#nuevaRecetaComplementaria #titulo").keyup(function ()
-  {
-      var titulo = $("#nuevaRecetaComplementaria #titulo").val();
-      
-      $.post(base_url+"complementarias/checkExistence/", {palabra: titulo, id_app: app}, function (data)
-      {
-          if(data=="Existe")
-          {
-            $("#nuevaRecetaComplementaria #complementariaNueva").slideDown("slow");
-            $("#nuevaRecetaComplementaria #submitNuevaComplementaria").slideUp("slow");
-          }
-          else
-          {
-            $("#nuevaRecetaComplementaria #complementariaNueva").slideUp("slow");
-            $("#nuevaRecetaComplementaria #submitNuevaComplementaria").slideDown("slow");
-          }
-      });
+  /* Nueva receta */
 
-});
+  function nuevaReceta(){
+
+    $.post(base_url+"complementarias/nuevaReceta/", {id_app : app}, function (data)
+    {
+        $("#ventana").html(data);
+
+        tinymce.init({
+          selector: "#ventana textarea",
+          width: 950,
+          height: 200,
+          menubar: false
+        });
+
+        $("#ventana #nombre").keyup(function (){
+
+          var titulo = $("#ventana #nombre").val();
+
+          console.log(titulo);
+      
+          $.post(base_url+"complementarias/checkExistence/", {palabra: titulo, id_app: app}, function (data)
+          {
+            if(data.length==1){
+
+              $("#ventana #status").slideDown("slow");
+              $("#ventana #submitComplementariaNueva").slideUp("slow");
+            }
+            else{
+
+              $("#ventana #status").slideUp("slow");
+              $("#ventana #submitComplementariaNueva").slideDown("slow");
+            }
+          });
+        });
+    });
+  }
+  /* termina nueva receta */
+
+  /* Editar recetas */
+  function editarRecetas(id){
+
+    $.post(base_url+"complementarias/editarRecetas/", {id_receta: id, id_app : app}, function (data)
+    {
+        $("#ventana").html(data);
+
+        tinymce.init({
+          selector: "#ventana textarea",
+          width: 950,
+          height: 200,
+          menubar: false
+        });
+
+        $("#ventana #nombre").keyup(function (){
+
+          var titulo = $("#ventana #nombre").val();
+
+          console.log(titulo);
+      
+          $.post(base_url+"complementarias/updateCheckExistence/", {complementaria: id, nombre: titulo, id_app: app}, function (data){
+
+            if(data.length==1){
+
+              $("#ventana #status").slideDown("slow");
+              $("#ventana #submitEditarComplementaria").slideUp("slow");
+            }
+            else{
+
+              $("#ventana #status").slideUp("slow");
+              $("#ventana #submitEditarComplementaria").slideDown("slow");
+            }
+          });
+        });
+    });
+
+  }
+  /* Termina editar recetas */
+
+  /* Eliminar recetas */
+  function eliminarRecetas(id){
+
+    $.post(base_url+"complementarias/eliminarRecetas/", {id_receta: id, id_app : app}, function (data){
+
+        $("#ventana2").html(data);
+    });
+
+  }
+  /* Termina eliminar recetas */
+
 
 
 $(".editarComplementaria").each(function ()

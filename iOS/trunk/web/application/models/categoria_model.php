@@ -17,8 +17,14 @@ class categoria_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
+	}
+
+	public function getDataCategorias($id){
+		$glosario = $this->db->get_where("categoria", array("id" => $id));
+
+		return $glosario->row_array();
 	}
 
 	/***************************************************************
@@ -51,7 +57,7 @@ class categoria_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}		
 	}
 

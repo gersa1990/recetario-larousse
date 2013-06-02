@@ -11,17 +11,126 @@ class Complementarias extends CI_Controller
 		$this->load->model('video_model');
 	}
 
-		/***************************************************************
+	/***************************************************************
 		Método para verificar que no exista una complementaria
 		llamada de la misma manera en la APP al tratar de darla de alta
 		en el sistema
-		****************************************************************/
+	****************************************************************/
 	public function checkExistence(){
 
 		$palabra = $_POST['palabra'];
 		$id_app  = $_POST['id_app'];
 
 		$this->complementarias_model->checkExistence($palabra, $id_app);
+	}
+
+	/***************************************************************
+		Método para crear la estructura para dar de alta una nueva 
+		receta complementaria, este método se llama mediante AJAX
+	****************************************************************/
+	public function nuevaReceta(){
+
+		$id_app = $_POST['id_app'];
+
+		echo "
+			<div id='status'>
+				<div class='alert error'>Este nombre de receta ya existe</div>
+			</div>
+			<div id='ventana-header'>
+				<h2>Nueva receta</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+      		".form_open('complementarias/create/')."
+				<div class='txt-fld full'>
+					<input type='hidden' name='id_app' value='".$id_app."' placeholder='' required>
+					<label for=''>Nombre: </label>
+					<input type='text' id='nombre' name='titulo' value='' required>
+				</div>
+				<div class='txt-fld full'>
+					<label for=''>Descripción: </label><br><br>
+					<textarea class='full' type='text' id='contenido' name='contenido' placeholder=''></textarea>
+				</div>
+				<div class='btn-fld full'>
+					<button type='submit' id='submitComplementariaNueva'>Agregar</button>
+				</div>
+			</form>";
+	}
+
+	public function editarRecetas(){
+		
+		$id_receta = $_POST['id_receta'];
+	
+		$receta = $this->complementarias_model->getDataComplementarias($id_receta);
+
+		echo "
+			<div id='status'>
+				<div class='alert error'>Este nombre de receta ya existe</div>
+			</div>
+			<div id='ventana-header'>
+				<h2>Editar receta</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+      		".form_open('complementarias/edit/')."
+				<div class='txt-fld full'>
+					<input type='hidden' name='id_app' value='".$receta['id_app']."' placeholder='' required>
+					<input type='hidden' name='id' value='".$receta['id']."' placeholder='' required>
+					<label for=''>Nombre: </label>
+					<input type='text' id='nombre' name='titulo' value='".$receta['titulo']."' required>
+				</div>
+				<div class='txt-fld full'>
+					<label for=''>Descripción: </label><br><br>
+					<textarea class='full' type='text' id='contenido' name='contenido' placeholder=''>".$receta['contenido']."</textarea>
+				</div>
+				<div class='btn-fld full'>
+					<button type='submit' id='submitEditarComplementaria'>Editar</button>
+				</div>
+			</form>";
+	}
+
+	public function eliminarRecetas(){
+
+		$id_receta = $_POST['id_receta'];
+
+		$complementaria = $this->complementarias_model->getDataComplementarias($id_receta);
+
+		echo "
+			<div id='status'>
+				<div class='alert error'>Este nombre de receta ya existe</div>
+			</div>
+			<div id='ventana-header'>
+				<h2>Editar receta</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+      		".form_open('complementarias/delete/')."
+				<div class='txt-fld'>
+					<input type='hidden' name='id_app' value='".$complementaria['id_app']."' placeholder='' required>
+					<input type='hidden' name='id' value='".$complementaria['id']."' placeholder='' required>
+					<label for=''>Nombre: </label>
+					<h2>".$complementaria['titulo']."</h2>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitEliminarComplementaria'>Eliminar</button>
+				</div>
+			</form>";
+	}
+
+	/***************************************************************
+		Algoritmo para convertir los <em> de italic en asteriscos necesarios
+		para el funcionamiento de la APP.
+		Además elimina los parrafos (<p>), las etiquetas (<br>) y los caracteres 
+		generados por la BD como Â y los convierte en espacios en blanco.
+	****************************************************************/
+	public function asterixAlgorithm($descripcionSinASteriscos){
+
+		$descripcionConAsteriscos = str_replace("<em>","*",$descripcionSinASteriscos);
+		$descripcionConAsteriscos = str_replace("</em>","*",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("<p>"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("</p>"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("<br />", " " ,$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("<br/>"," ",$descripcionConAsteriscos);
+		$descripcionConAsteriscos = str_replace("[Â]","",$descripcionConAsteriscos);
+
+		return $descripcionConAsteriscos;
 	}
 
 		/***************************************************************
@@ -97,7 +206,9 @@ class Complementarias extends CI_Controller
 	****************************************************************/
 	public function create(){
 
-		$create = $this->complementarias_model->create();
+		$descripcion2 = $this->asterixAlgorithm($_POST['contenido']);
+
+		$create = $this->complementarias_model->create($descripcion2);
 
 		if($create)
 		{
@@ -106,30 +217,7 @@ class Complementarias extends CI_Controller
 
 	}
 
-	/***************************************************************
-		Método para ver las recetas complementarias correspondientes 
-		a la aplicación seleccionada
-	****************************************************************/
-	public function searchByName2(){
-
-		$nombre 		= $_POST['palabra'];
-		$id_app 		= $_POST['id_app'];
-		$id_receta		= $_POST['receta'];
-
-		$complementarias = $this->complementarias_model->searchByName2($nombre, $id_app, $id_receta);
-
-		if(count($complementarias)>0)
-		{
-			for ($i=0; $i <count($complementarias) ; $i++) 
-			{ 
-				echo "<div id='div_".$complementarias[$i]['id']."'>".$complementarias[$i]['titulo']."<button class='complementarias' id='".$complementarias[$i]['id']."'>Agregar</button></div>";
-			}
-		}
-		else
-		{
-			echo "No se encontro";
-		}		
-	}
+	
 
 	/***************************************************************
 		Método para relacionar las recetas complementarias 
@@ -160,22 +248,22 @@ class Complementarias extends CI_Controller
 		
 		for ($i=0; $i <count($complementarias) ; $i++) 
 		{ 
-			echo "  <tr>
+			echo "  
+				<tr>
                     <td class='txleft'>".$complementarias[$i]['titulo']."
                       </td>
                       <td>
-                      	<a href='#editarComplementaria".$complementarias[$i]['id']."'>
+                      	<a class='ventana' rel='leanModal' name='#ventana' href='#ventana' onclick='editarRecetas(".$complementarias[$i]['id'].");'>
                           Editar
                         </a>
                       </td>
                       <td>
-                      	<a href='#eliminarComplementaria".$complementarias[$i]['id']."' class='eliminarRecetas'>
+                      	<a class='ventana2' rel='leanModal' name='#ventana2' href='#ventana2' onclick='eliminarRecetas(".$complementarias[$i]['id'].");'>
                           Eliminar
                         </a>
                       </td>
-                    </tr>";
+                </tr>";
 		}
-
 	}
 
 	/***************************************************************

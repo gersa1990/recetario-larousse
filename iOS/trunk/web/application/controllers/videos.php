@@ -7,6 +7,95 @@ class Videos extends CI_Controller {
 		$this->load->model('App_model');
 	}	
 
+	public function nuevoVideo(){
+
+		$id_app = $_POST['id_app'];
+
+		echo "
+			<div id='status'>
+				<div class='alert error'>Este título de video ya existe</div>
+			</div>
+
+			<div id='ventana-header'>
+				<h2>Nuevo video</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+
+      		".form_open('videos/create/')."
+				<div class='txt-fld'>
+					<input type='hidden' name='id_app' value='".$id_app."' placeholder='' required>
+					<label for=''>Titulo: </label>
+					<input type='text' id='nombre' name='titulo' value='' required>
+				</div>
+				<div class='txt-fld'>
+					<label for=''>Nombre de archivo: </label><br><br>
+					<input type='text' name='video' placeholder=''>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitVideoNuevo'>Agregar</button>
+				</div>
+			</form>";
+	}
+
+	public function editarVideo(){
+
+		$id_video = $_POST['id_video'];
+		$id_app   = $_POST['id_app'];
+
+		$video = $this->video_model->getDataVideo($id_video);
+
+		echo "<div id='status'>
+				<div class='alert error'>Este nombre de video ya existe</div>
+			</div>
+			<div id='ventana-header'>
+				<h2>Editar video</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+			".form_open('videos/edit/')."
+				<div class='txt-fld'>
+					<input type='hidden' name='id_app' value='".$video['id_app']."' placeholder='' required>
+					<input type='hidden' name='id' id='id' value='".$video['id']."' placeholder='' required>
+					<label for=''>Titulo: </label>
+					<input type='text' id='nombre' name='titulo' value='".$video['titulo']."' required>
+				</div>
+				<div class='txt-fld'>
+					<label for=''>Archivo de video: </label>
+					<input type='text' name='video' value='".$video['video']."'>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' id='submitEditarVideo'>Editar</button>
+				</div>
+			</form>";
+
+	}
+
+	public function eliminarVideo(){
+
+		$id_video = $_POST['id_video'];
+
+		$video = $this->video_model->getDataVideo($id_video);
+
+		echo "
+			<div id='ventana-header'>
+				<h2>Eliminar video</h2>
+				<a class='modal_close' href='#'></a>
+			</div>
+			".form_open('videos/delete/')."
+				<div class='txt-fld'>
+					<input type='hidden' name='id_app' value='".$video['id_app']."' placeholder='' required>
+					<input type='hidden' name='id' id='id' value='".$video['id']."' placeholder='' required>
+					<label for=''>Titulo: </label>
+					<h2>".$video['titulo']."</h2>
+				</div>
+
+				<div class='btn-fld'>
+					<button type='submit' id='submitEliminarVideo'>Eliminar</button>
+				</div>
+			</form>";
+
+
+	}
+
 	/***************************************************************
 		Método para verificar que el nombre con el que estoy tratando 
 		de dar de alta un video no exista en la BD
@@ -188,13 +277,13 @@ class Videos extends CI_Controller {
                       </td>
 
                       <td>";
-                        echo "<a href='#editarVideo".$videos[$i]['id']."'>
+                        echo "<a class='ventana' rel='leanModal' name='#ventana' href='#ventana' onclick='editarVideo(".$videos[$i]['id'].");'>
                           Editar
                         </a>
                       </td>
 
                       <td>";
-                        echo "<a href='#eliminarVideo".$videos[$i]['id']."' class='eliminarRecetas'>
+                        echo "<a class='ventana' rel='leanModal' name='#ventana' href='#ventana' onclick='eliminarVideo(".$videos[$i]['id'].");'>
                           Eliminar
                         </a>
                       </td>

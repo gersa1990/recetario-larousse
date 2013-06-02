@@ -73,32 +73,6 @@ class Glosario extends CI_Controller {
 		}
 	}
 
-
-	/***************************************************************
-		Método para buscar un glosario mediante la busqueda de jQuery 
-		en el FrontEND
-	****************************************************************/
-	public function searchByName2(){
-
-		$id_app 			= $_POST['id_app'];
-		$id_receta			= $_POST['id_receta'];
-		$palabra 			= $_POST['palabra'];
-
-		$glosario 			= $this->glosario_model->searchByName2($id_app, $id_receta, $palabra); 
-
-		if(count($glosario)>0)
-		{
-			for ($i=0; $i <count($glosario) ; $i++) 
-			{ 
-				echo "<div id='div_".$glosario[$i]['id']."'>".$glosario[$i]['nombre']."<button class='glosario' id='".$glosario[$i]['id']."'>Agregar</button></div>";
-			}
-		}
-		else
-		{
-			echo "No se encontro";
-		}
-	}
-
 	/***************************************************************
 		Método para relacionar un glosario con una receta
 	****************************************************************/
@@ -187,12 +161,13 @@ class Glosario extends CI_Controller {
 
 		$glosario = $this->glosario_model->dataGlosario($id_glosario);
 
-		echo "<div id='ventana-header'>
+		echo "<div id='ventana2-header'>
 				<h2>Eliminar</h2>
 				<p>Toda la información relacionada se borrara</p>
 				<a class='modal_close' href='#'></a>
 			</div>".validation_errors()."".form_open('glosario/delete')."
 				<input type='hidden' name='id' id='id' value='".$glosario['id']."'>
+				<input type='hidden' name='id_app' id='id' value='".$glosario['id_app']."'>
 				<div class='txt-fld'>
 					<h2>".$glosario['nombre']."</h2>
 				</div>
@@ -200,7 +175,6 @@ class Glosario extends CI_Controller {
 					<button type='submit' id='submitEliminarGlosario'>Eliminar</button>
 				</div>
 			</form>";
-
 	}
 
 	/***************************************************************
@@ -273,13 +247,13 @@ class Glosario extends CI_Controller {
                         echo "</td>
 
                       <td>";
-                        echo "<a href='#editarGlosario".$glosario[$i]['id']."'>
+                        echo "<a class='ventana' rel='leanModal' name='#ventana' href='#ventana' onclick='editarGlosario(".$glosario[$i]['id'].");'>
                           Editar
                         </a>
                       </td>
 
                       <td>";
-                        echo "<a href='#eliminarGlosario".$glosario[$i]['id']."' class='eliminarRecetas'>
+                        echo "<a class='ventana2' rel='leanModal' name='#ventana2' href='#ventana2' onclick='eliminarGlosario(".$glosario[$i]['id'].");'>
                           Eliminar
                         </a>
                       </td>
@@ -304,6 +278,7 @@ class Glosario extends CI_Controller {
 	}
 
 	public function nuevoGlosario($id_app){
+		
 		echo "
 			<div id='status'>
 				<div id='errorEditarApp' class='alert error'>Este nombre de glosario ya existe</div>

@@ -19,7 +19,6 @@
           <li><a href="<?php echo base_url().'complementarias/view/'.$app; ?>" id="getComplementsRecipes" class="">Recetas complementarias</a></li>
         </ul>
       </nav>
-
     </div>
     
     <div class="columr">
@@ -55,7 +54,7 @@
                           </td>
 
                           <td>
-                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana2" onclick="eliminarGlosario(<?php echo $glosario[$i]['id']; ?>);">
+                            <a class="ventana2" rel="leanModal" name="#ventana2" href="#ventana2" onclick="eliminarGlosario(<?php echo $glosario[$i]['id']; ?>);">
                               Eliminar
                             </a>
                           </td>
@@ -197,6 +196,14 @@
     $.post(base_url+"glosario/searchByName/" ,{palabra: texto, id_app: app}, function (data)
     {
         $("#glosario tbody").html(data);
+
+          $("#glosario tbody tr td a").click(function(data){
+            return false;
+          });
+
+          $(function() {
+            $('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
+          });
     }); 
   
   });

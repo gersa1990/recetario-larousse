@@ -127,7 +127,7 @@ class Apps extends CI_Controller {
 	public function nuevaApp(){
 		echo "
 			<div id='status'>
-				<div id='errorEditarApp' class='alert error'>Este nombre de aplicación ya existe</div>
+				<div id='' class='alert error'>Este nombre de aplicación ya existe</div>
 			</div>
 			<div id='ventana-header'>
 				<h2>Nueva aplicación</h2>

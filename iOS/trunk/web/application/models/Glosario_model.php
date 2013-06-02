@@ -168,15 +168,6 @@ class glosario_model extends CI_Model {
 	}
 
 	/***************************************************************
-		Modelo para buscar un glosario DEPRECATED por version 1
-	****************************************************************/
-	public function searchByName2($id_app, $id_receta, $palabra){
-
-		$query = $this->db->query("select * from glosario where nombre like '%".$palabra."%' and id_app = ".$id_app." and id != all ( select id_glosario from receta_glosario where id_receta = ".$id_receta." );");
-		return $query->result_array();
-	}
-
-	/***************************************************************
 		Modelo para editar un glosario
 	****************************************************************/
 	public function edit($arreglado)

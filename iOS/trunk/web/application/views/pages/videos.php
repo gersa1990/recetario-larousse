@@ -26,7 +26,7 @@
   
         <div id="controles">
           <input type="text" name="" id="buscar" class="input" placeholder="Buscar.." value="">
-          <a href="#nuevoVideo" class="button large orange">Nuevo video</a>
+          <a class="ventana button large orange" rel="leanModal" name="#ventana" href="#ventana" onclick="nuevoVideo();">Nuevo video</a>
         </div> 
   
         <table id="videos">
@@ -51,13 +51,13 @@
                           </td>
 
                           <td>
-                            <a href="#editarVideo<?php echo $videos[$i]['id']; ?>">
+                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana" onclick="editarVideo(<?php print($videos[$i]['id']) ?>);">
                               Editar
                             </a>
                           </td>
 
                           <td>
-                            <a href="#eliminarVideo<?php echo $videos[$i]['id']; ?>" class='eliminarRecetas'>
+                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana" onclick="eliminarVideo(<?php print($videos[$i]['id']) ?>);">
                               Eliminar
                             </a>
                           </td>
@@ -89,84 +89,105 @@
                           </form>
                         </div>
                       </div>
-
-                      <div id="editarVideo<?php echo $videos[$i]['id']; ?>" class="modalDialog editarVideo">
-                        <div class="popup form_edit">
-
-                        <a href="#" title="Close" class="close">x</a>
-                
-                        <?php echo form_open("videos/edit/"); ?>
- 
-  
-                            <h2 class="mg_20 myriadFont">Editar video</h2>
-
-                            <input type="hidden" name="id_video" id="id_video" value="<?php  echo $videos[$i]['id']; ?>">
-
-                            <div class="centrar">
-                              <label for="">Nombre: </label>
-                              <input type="text" name="titulo" id="titulo" value="<?php echo $videos[$i]['titulo']; ?>" required>
-                              <div class="alert error" id="updateVideo" style="display:none;">Este nombre de video ya existe.</div>
-                              <label for="">Archivo de video: </label>
-                              <input type="text" name="video" id="video" value="<?php echo $videos[$i]['video']; ?>" required>
-                              
-                            </div>
-
-                            <input type="hidden" name="id" value="<?php echo $videos[$i]['id']; ?>">
-                            <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                            <button type="submit" class="submit"id="submitUpdateVideo">Guardar</button>
-                          </form>
-                        </div>
-                      </div>
-
                       <?php } 
                     } ?>
         
       </div>
     </div>
-
   </div>
 
-
-  <div id="nuevoVideo" class="modalDialog">
-    <div class="popup">
-      <a href="#" title="Close" class="close">x</a>
-
-        <?php echo form_open("videos/create/"); ?>    
-
-          <h2 class="mg_20 myriadFont">Nuevo video</h2>
-
-          <div class="centrar">
-            <label for="">Nombre: </label>
-            <input type="text" name="titulo" id="titulo" value="" placeholder="título" required>
-            <div class="alert error" id="videoNuevoAlert" style="display:none;">Este titulo de video ya existe.</div>
-
-            <label for="">Archivo de video: </label>
-            <input type="text" name="video" value="" placeholder="video" required>
-           </div>
-          
-          <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-
-          <button type="submit" class="submit" id="submitNuevoVideo">Agregar</button>
-    
-        </form>
-
-    </div> <!-- popup -->
-  </div> <!-- modadialog -->
-
   <div class="clear"></div>
+
+  <div id="lean_overlay"></div>
+
+  <div id="ventana" class="chica">
+      
+  </div>
 
 </div> <!-- Wrapper -->
 
 <script>
 
-  var app = "<?php echo $app; ?>";
+  var app = "<?php echo $app; ?>"; //Numero de aplicación en la que te encuentras
   var base_url = "<?php echo base_url(); ?>";
 
-  $("#exportar").click(function ()
-  {
-      location.href=base_url+"export/create/"+app;
-  });
 
+  /* Agregar nuevo video */
+  function nuevoVideo(){
+
+    $.post( base_url+"videos/nuevoVideo/", {id_app: app} ,function(response) {  
+
+      $('#ventana').html(response);
+
+      $("#ventana #nombre").keyup(function (){
+
+        var titulo = $("#nombre").val();
+        
+        console.log(titulo);
+
+        $.post(base_url+"videos/checkExistence/", {palabra: titulo, id_app: app}, function (data){
+
+          console.log(data);
+
+          if(data.length==1){
+
+            $("#ventana #status").slideDown("slow");
+            $("#ventana #submitVideoNuevo").slideUp("slow");
+          }
+          else{
+
+            $("#ventana #status").slideUp("slow");
+            $("#ventana #submitVideoNuevo").slideDown("slow");
+          }
+        });
+      });
+    });
+  }
+  /* Termina agregar nuevo video */
+
+  /* Editar video*/
+
+ function editarVideo(id){
+
+     $.post( base_url+"videos/editarVideo/", {id_video : id, id_app: app} ,function(response) {  
+
+      $('#ventana').html(response);
+
+      $("#ventana #nombre").keyup(function (){
+
+        var titulo = $("#nombre").val();
+        
+        console.log(titulo);
+
+        $.post(base_url+"videos/updateCheckExistence/", {video : id, nombre: titulo, id_app: app}, function (data){
+
+          console.log(data);
+
+          if(data.length==1){
+
+            $("#ventana #status").slideDown("slow");
+            $("#ventana #submitEditarVideo").slideUp("slow");
+          }
+          else{
+
+            $("#ventana #status").slideUp("slow");
+            $("#ventana #submitEditarVideo").slideDown("slow");
+          }
+        });
+      });
+    });
+  }
+  /* Termina editar video */
+
+  /* Eliminar video */
+  function eliminarVideo(id){
+
+    $.post( base_url+"videos/eliminarVideo/", {id_video : id} ,function(response) {  
+
+      $('#ventana').html(response);
+    });
+  }
+  /*Termina eliminar video */
 
   $("#buscar").keyup(function (data)
   {
@@ -175,54 +196,12 @@
     $.post(base_url+"videos/searchByName/" ,{nombre: texto, id_app: app}, function (data)
     {
       $("#videos tbody").html(data);
-    }); 
-  });
 
-  $("#nuevoVideo #titulo").keyup(function ()
-  {
-      var titulo = $("#nuevoVideo #titulo").val();
-
-      $.post(base_url+"videos/checkExistence/", {palabra: titulo, id_app:app}, function (data)
-      {
-          if(data=="Existe")
-          {
-            $("#nuevoVideo #videoNuevoAlert").slideDown("slow");
-            $("#nuevoVideo #submitNuevoVideo").slideUp("slow");
-          }
-          else
-          {
-            $("#nuevoVideo #videoNuevoAlert").slideUp("slow");
-            $("#nuevoVideo #submitNuevoVideo").slideDown("slow"); 
-          }
-
+      $(function() {
+        $('a[rel*=leanModal]').leanModal({ top : 200, overlay : 0.4, closeButton: '.modal_close' }); 
       });
-  });
 
-  $(".editarVideo").each(function ()
-  {
-    var id = $(this).attr('id');
-    //console.log(id);
-    $("#"+id+" #titulo").keyup(function ()
-    {
-      var titulo      = $("#"+id+" #titulo").val();
-      var id_video = $("#"+id+" #id_video").val();
-
-      $.post(base_url+"videos/updateCheckExistence/", {nombre:titulo, video:id_video, id_app:app}, function (data)
-      {
-        if(data=="Existe")
-        {
-            $("#"+id+" #updateVideo").slideDown("slow");
-            $("#"+id+" #submitUpdateVideo").slideUp("slow");
-        } 
-        else
-        {
-            $("#"+id+" #updateVideo").slideUp("slow");
-            $("#"+id+" #submitUpdateVideo").slideDown("slow");
-        }
-    });
-
-    });
-
+    }); 
   });
 
 </script>

@@ -18,8 +18,39 @@ class complementarias_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
+	}
+
+	/***************************************************************
+		Modelo para eliminar los asteriscos de un campo obtenido de la 
+		base de datos y convertirlo en código HTML
+	****************************************************************/
+	public function revertAsterixAlgoritm($descripcionConAsteriscos){
+
+		$descripcionSinAsteriscos = "";
+		$bandera = false;
+
+		for ($i=0; $i <strlen($descripcionConAsteriscos) ; $i++) {
+			
+			if($descripcionConAsteriscos[$i] == "*" && $bandera == false){
+                $descripcionSinAsteriscos .= "<em>";	
+                $bandera = true;
+			}
+			else if($descripcionConAsteriscos[$i] == "*" && $bandera == true){
+                $descripcionSinAsteriscos .= "</em>";	
+                $bandera = false;	
+			}
+			else if($descripcionConAsteriscos[$i]=="Â"){
+				$descripcionSinAsteriscos .= " ";	
+                $i++;
+			}
+			else{
+
+				$descripcionSinAsteriscos .= $descripcionConAsteriscos[$i];
+			}  
+		}
+		return $this->typography->auto_typography($descripcionSinAsteriscos);
 	}
 
 	/***************************************************************
@@ -44,6 +75,22 @@ class complementarias_model extends CI_Model {
 		}
 	}
 
+	public function getDataComplementarias($id_receta){
+
+		$complementarias = $this->db->get_where('recetas_complementarias', array('id' => $id_receta));
+
+
+		$complementarias2 = $complementarias->row_array();
+
+		$arreglo['id'] 			= $complementarias2['id'];
+		$arreglo['id_app'] 		= $complementarias2['id_app'];
+		$arreglo['titulo']		= $complementarias2['titulo'];
+		$arreglo['contenido']	= $this->revertAsterixAlgoritm($complementarias2['contenido']);
+
+		return $arreglo;
+
+	}
+
 	/***************************************************************
 		Modelo para verificar que no exista el nombre de la receta 
 		complementaria al tratar de actualizarla
@@ -55,7 +102,7 @@ class complementarias_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
 	}
 
@@ -112,13 +159,28 @@ class complementarias_model extends CI_Model {
 		}
 	}
 
+	public function dataGlosario($id){
+
+		$data = $this->db->get_where('recetas_complementarias', array('id' => $id));
+		
+		$recetas_complementarias = $data->row_array();
+
+		$arreglo['id'] 			= $recetas_complementarias['id'];
+		$arreglo['id_app'] 		= $recetas_complementarias['id_app'];
+		$arreglo['titulo']		= $recetas_complementarias['titulo'];
+		$arreglo['contenido']	= $this->revertAsterixAlgoritm($recetas_complementarias['contenido']);
+		
+		return $arreglo;
+
+	}
+
 	/***************************************************************
 		Modelo para crear las recetas complementarias
 	****************************************************************/
-	public function create(){
+	public function create($contenido){
 
-		@$data->titulo 	 = $_POST['titulo'];
-		$data->contenido = $_POST['contenido'];
+		$data->titulo 	 = $_POST['titulo'];
+		$data->contenido = $contenido;
 		$data->id_app	 = $_POST['id_app'];
 
 		$insert = $this->db->insert('recetas_complementarias', $data);

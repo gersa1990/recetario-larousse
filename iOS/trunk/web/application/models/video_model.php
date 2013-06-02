@@ -18,7 +18,7 @@ class video_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
 	}
 
@@ -55,8 +55,15 @@ class video_model extends CI_Model {
 
 		if(count($array)>0)
 		{
-			echo "Existe";
+			echo 1;
 		}
+	}
+
+	public function getDataVideo($id){
+
+		$videos = $this->db->get_where("video", array("id" => $id));
+		return $videos->row_array();
+
 	}
 
 	/***************************************************************
