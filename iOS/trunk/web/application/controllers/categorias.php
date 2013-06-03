@@ -21,7 +21,7 @@ class Categorias extends CI_Controller {
       		</div>
       		<div id='ventana-header'>
         		<h2>Nueva categoria</h2>
-        		<a class='modal_close' href=''></a>
+        		<a class='modal_close' href='#'></a>
       		</div>
          	".form_open("categorias/create/")."
         		<div class='txt-fld'>
@@ -90,7 +90,7 @@ class Categorias extends CI_Controller {
         		 
         		<a class='modal_close' href=''></a>
       		</div>
-         	".form_open("categorias/edit/")."
+         	".form_open("categorias/delete/")."
         		<div class='txt-fld'>
           			<input type='hidden' name='id_app' value='".$categorias['id_app']."' required>
           			<input type='hidden' name='id' value='".$categorias['id']."' required>
