@@ -137,6 +137,13 @@ class export_model extends CI_Model {
 		if(isset($arreglo)){ return $arreglo; }
 	}
 
+	public function getIdToRecipesFromAppId($id_app){
+
+		$recetas = $this->db->query("SELECT id FROM recetas WHERE id_app = ".$id_app." ");
+		return $recetas->result_array();
+
+	}
+
 	/***************************************************************
 		Modelo para obtener la relacion entre el glosario y las recetas
 	****************************************************************/
