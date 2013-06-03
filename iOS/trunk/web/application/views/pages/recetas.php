@@ -51,9 +51,7 @@
                           </td>
 
                           <td>
-                            <a href="#eliminarReceta<?php echo $recetas[$i]['id']; ?>" class='eliminarRecetas'>
-                              Eliminar
-                            </a>
+                            <a class="ventana" rel="leanModal" name="#ventana" href="#ventana" onclick="eliminarReceta(<?php echo $recetas[$i]['id']; ?>);">Eliminar</a>
                           </td>
 
                       </tr>
@@ -64,33 +62,8 @@
           </tbody>
         </table>
 
-        <?php if(isset($recetas)){
-          for ($i=0; $i <count($recetas) ; $i++){ ?>
-          
-            <div id="eliminarReceta<?php echo $recetas[$i]['id']; ?>" class="modalDialog">
-              <div class="popup form_delete">
-
-                <a href="#" title="Close" class="close">x</a>
-                
-                <?php echo form_open("recetas/delete/"); ?>
-                  <h2>Receta</h2>
-                    
-                  <p class="mg-auto"><?php echo $recetas[$i]['titulo']; ?></p>
-         
-                  <input type="hidden" name="id" value="<?php echo $recetas[$i]['id']; ?>">
-                  <input type="hidden" name="id_app" value="<?php echo $app; ?>">
-                  
-                  <button type="submit" class="submit">Eliminar</button>
-                </form>
-              </div>
-            </div>
-
-
-          <?php
-          
-          } 
-        } 
-        $cat = count($categorias);
+        <?php
+          $cat = count($categorias);
         ?>
       </div>
     </div>
@@ -98,12 +71,30 @@
 
   
   <div class="clear"></div>
+
+  <div id="lean_overlay"></div>
+
+  <div id="ventana" class="chica">
+      
+  </div>
+
 </div>
 
 <script>
 
   var app       = "<?php echo $app; ?>";
   var base_url  = "<?php echo base_url(); ?>";
+
+  $(".ventana").click(function(data){
+    return false;
+  });
+
+  function eliminarReceta(id){
+    $.post( base_url+"recetas/getRecetaDelete/"+id, function(response){
+      $('#ventana').html(response);
+    });
+  }
+
 
   var categorias = "<?php echo $cat; ?>";
   console.log(categorias);
@@ -136,5 +127,6 @@
       $("#recetas tbody").html(data);
     }); 
   });
+
 
 </script>

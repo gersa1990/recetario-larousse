@@ -247,5 +247,25 @@ class Recetas extends CI_Controller {
 		$this->load->view('pages/ver', $data);
 		$this->load->view('templates/footer');
 	}
+
+	public function getRecetaDelete($id){
+		$resultado = $this->recetas_model->get_receta($id);
+		// echo var_dump($resultado);
+
+		echo "<div id='ventana-header'>
+				<h2>Eliminar</h2>
+				<a class='modal_close' href='#'></a>
+			  </div>"
+				.validation_errors()."
+				".form_open('recetas/delete')."
+				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
+				<div class='txt-fld'>
+					<h2>".$resultado['titulo']."</h2>
+				</div>
+				<div class='btn-fld'>
+					<button type='submit' class='boton' id='submitEditarApp'>Eliminar</button>
+				</div>
+			</form>";
+	}
 }
 ?>

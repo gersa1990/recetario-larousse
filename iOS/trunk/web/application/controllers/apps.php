@@ -140,7 +140,7 @@ class Apps extends CI_Controller {
 					<input type='text' id='nombre' name='nombre' value='' required>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitNuevaApp'>Agregar</button>
+					<button type='submit' class='boton' id='submitNuevaApp'>Agregar</button>
 				</div>
 			</form>";
 	}
@@ -163,7 +163,7 @@ class Apps extends CI_Controller {
 					<input type='text' id='nombre2' name='nombre' value='".$resultado['nombre']."' required>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitEditarApp'>Guardar</button>
+					<button type='submit' class='boton' id='submitEditarApp'>Guardar</button>
 				</div>
 			</form>";
 	}
@@ -175,13 +175,13 @@ class Apps extends CI_Controller {
 				<h2>Eliminar</h2>
 				<p>Toda la información relacionada sera borrara</p>
 				<a class='modal_close' href='#'></a>
-			</div>".validation_errors()."".form_open('apps/eliminar')."
+			</div>".validation_errors()."".form_open('recetas/delete')."
 				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
 				<div class='txt-fld'>
 					<h2>".$resultado['nombre']."</h2>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitEditarApp'>Eliminar</button>
+					<button type='submit' class='boton' id=''>Eliminar</button>
 				</div>
 			</form>";
 	}

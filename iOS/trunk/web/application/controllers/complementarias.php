@@ -51,7 +51,7 @@ class Complementarias extends CI_Controller
 					<textarea class='full' type='text' id='contenido' name='contenido' placeholder=''></textarea>
 				</div>
 				<div class='btn-fld full'>
-					<button type='submit' id='submitComplementariaNueva'>Agregar</button>
+					<button type='submit' class='boton' id='submitComplementariaNueva'>Agregar</button>
 				</div>
 			</form>";
 	}
@@ -82,7 +82,7 @@ class Complementarias extends CI_Controller
 					<textarea class='full' type='text' id='contenido' name='contenido' placeholder=''>".$receta['contenido']."</textarea>
 				</div>
 				<div class='btn-fld full'>
-					<button type='submit' id='submitEditarComplementaria'>Editar</button>
+					<button type='submit' class='boton' id='submitEditarComplementaria'>Guardar</button>
 				</div>
 			</form>";
 	}
@@ -105,11 +105,10 @@ class Complementarias extends CI_Controller
 				<div class='txt-fld'>
 					<input type='hidden' name='id_app' value='".$complementaria['id_app']."' placeholder='' required>
 					<input type='hidden' name='id' value='".$complementaria['id']."' placeholder='' required>
-					<label for=''>Nombre: </label>
 					<h2>".$complementaria['titulo']."</h2>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitEliminarComplementaria'>Eliminar</button>
+					<button type='submit' class='boton' id='submitEliminarComplementaria'>Eliminar</button>
 				</div>
 			</form>";
 	}

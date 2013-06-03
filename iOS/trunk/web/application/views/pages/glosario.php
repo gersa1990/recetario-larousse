@@ -146,7 +146,7 @@
 
         tinymce.init({
           selector: "#ventana textarea",
-          width: 950,
+          width: 900,
           height: 200,
           menubar: false
         });
@@ -210,7 +210,7 @@
 
 tinymce.init({
   selector: "#nuevoGlosario textarea",
-  width: 950,
+  width: 900,
   height: 200,
   menubar: false,
   convert_newlines_to_brs : false

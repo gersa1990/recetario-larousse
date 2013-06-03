@@ -28,11 +28,11 @@ class Videos extends CI_Controller {
 					<input type='text' id='nombre' name='titulo' value='' required>
 				</div>
 				<div class='txt-fld'>
-					<label for=''>Nombre de archivo: </label><br><br>
+					<label for=''>Archivo: </label>
 					<input type='text' name='video' placeholder=''>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitVideoNuevo'>Agregar</button>
+					<button type='submit' class='boton' id='submitVideoNuevo'>Agregar</button>
 				</div>
 			</form>";
 	}
@@ -59,11 +59,11 @@ class Videos extends CI_Controller {
 					<input type='text' id='nombre' name='titulo' value='".$video['titulo']."' required>
 				</div>
 				<div class='txt-fld'>
-					<label for=''>Archivo de video: </label>
+					<label for=''>Archivo: </label>
 					<input type='text' name='video' value='".$video['video']."'>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitEditarVideo'>Editar</button>
+					<button type='submit' class='boton' id='submitEditarVideo'>Guardar</button>
 				</div>
 			</form>";
 
@@ -84,12 +84,11 @@ class Videos extends CI_Controller {
 				<div class='txt-fld'>
 					<input type='hidden' name='id_app' value='".$video['id_app']."' placeholder='' required>
 					<input type='hidden' name='id' id='id' value='".$video['id']."' placeholder='' required>
-					<label for=''>Titulo: </label>
 					<h2>".$video['titulo']."</h2>
 				</div>
 
 				<div class='btn-fld'>
-					<button type='submit' id='submitEliminarVideo'>Eliminar</button>
+					<button type='submit' class='boton' id='submitEliminarVideo'>Eliminar</button>
 				</div>
 			</form>";
 

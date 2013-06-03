@@ -29,6 +29,7 @@ a:hover{
 
 a.home{
     display: block;
+    width: 100px;
     padding: 20px 0;
     text-decoration: none;
     color: rgb(119, 119, 119); 
@@ -1198,7 +1199,7 @@ fieldset legend{
     padding: 12px 20px 12px 130px;
 }
 
-#ventana button{
+#ventana .boton{
     float: right;
     background: #f58220;
     border: none;

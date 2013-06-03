@@ -163,7 +163,7 @@ class Glosario extends CI_Controller {
 
 		echo "<div id='ventana2-header'>
 				<h2>Eliminar</h2>
-				<p>Toda la información relacionada se borrara</p>
+				 
 				<a class='modal_close' href='#'></a>
 			</div>".validation_errors()."".form_open('glosario/delete')."
 				<input type='hidden' name='id' id='id' value='".$glosario['id']."'>
@@ -172,7 +172,7 @@ class Glosario extends CI_Controller {
 					<h2>".$glosario['nombre']."</h2>
 				</div>
 				<div class='btn-fld'>
-					<button type='submit' id='submitEliminarGlosario'>Eliminar</button>
+					<button type='submit' class='boton' id='submitEliminarGlosario'>Eliminar</button>
 				</div>
 			</form>";
 	}
@@ -224,7 +224,7 @@ class Glosario extends CI_Controller {
 					<input type='text' name='imagen' id='imagen' value='".$glosario['imagen']."' placeholder=''>
 				</div>
 				<div class='btn-fld full'>
-					<button type='submit' id='submitEditarGlosario'>Editar</button>
+					<button type='submit' class='boton' id='submitEditarGlosario'>Guardar</button>
 				</div>
 			</form>";
 	}
@@ -304,7 +304,7 @@ class Glosario extends CI_Controller {
 					<input type='text' name='imagen' id='imagen' placeholder=''>
 				</div>
 				<div class='btn-fld full'>
-					<button type='submit' id='submitGlosarioNuevo'>Agregar</button>
+					<button type='submit' class='boton' id='submitGlosarioNuevo'>Agregar</button>
 				</div>
 			</form>
 		";

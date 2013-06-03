@@ -34,7 +34,7 @@ class Categorias extends CI_Controller {
         			<input type='text' id='color' name='color' value='' placeholder='rgb(r,g,b)' required>
         		</div>
         		<div class='btn-fld'>
-          			<button type='submit' id='submitNuevaCategoria'>Agregar</button>
+          			<button type='submit' class='boton' id='submitNuevaCategoria'>Agregar</button>
         		</div>
       		</form>";
 	}
@@ -70,7 +70,7 @@ class Categorias extends CI_Controller {
         			<input type='text' id='color' name='color' value='".$categorias['color']."' placeholder='rgb(r,g,b)' required>
         		</div>
         		<div class='btn-fld'>
-          			<button type='submit' id='submitEditarCategoria'>Agregar</button>
+          			<button type='submit' class='boton' id='submitEditarCategoria'>Guardar</button>
         		</div>
       		</form>";
 	}
@@ -87,7 +87,7 @@ class Categorias extends CI_Controller {
 		echo "	
       		<div id='ventana-header'>
         		<h2>Eliminar categoria</h2>
-        		<p>Toda la información referente se borrará</p>
+        		 
         		<a class='modal_close' href=''></a>
       		</div>
          	".form_open("categorias/edit/")."
@@ -98,7 +98,7 @@ class Categorias extends CI_Controller {
           			<h2>".$categorias['nombre']."</h2>
         		</div>
         		<div class='btn-fld'>
-          			<button type='submit' id='submitEliminarCategoria'>Eliminar</button>
+          			<button type='submit' class='boton' id='submitEliminarCategoria'>Eliminar</button>
         		</div>
       		</form>";
 	}
