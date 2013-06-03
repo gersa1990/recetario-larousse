@@ -258,9 +258,10 @@ class Recetas extends CI_Controller {
 			  </div>"
 				.validation_errors()."
 				".form_open('recetas/delete')."
-				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
+				<input type='hidden' name='id' id='id' value='".$resultado[0]['id']."'>
+				<input type='hidden' name='id_app' id='id' value='".$resultado[0]['id_app']."'>
 				<div class='txt-fld'>
-					<h2>".$resultado['titulo']."</h2>
+					<h2>".$resultado[0]['titulo']."</h2>
 				</div>
 				<div class='btn-fld'>
 					<button type='submit' class='boton' id='submitEditarApp'>Eliminar</button>

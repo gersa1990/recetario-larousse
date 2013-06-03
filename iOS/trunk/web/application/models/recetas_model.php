@@ -81,7 +81,7 @@ class Recetas_model extends CI_Model {
 	****************************************************************/
 	public function get_receta($id){
 		$query = $this->db->get_where('recetas', array('id' => $id));
-		return $query->row_array();
+		return $query->result_array();
 	}
 
 	/***************************************************************

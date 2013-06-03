@@ -179,11 +179,11 @@ class complementarias_model extends CI_Model {
 	****************************************************************/
 	public function create($contenido){
 
-		$data = array(3);
-
-		$data->titulo 	 = @$_POST['titulo'];
-		$data->contenido = $contenido;
-		$data->id_app	 = $_POST['id_app'];
+		$data = array(
+			'titulo' 		=> $_POST['titulo'],
+			'contenido'		=> $contenido,
+			'id_app'		=> $_POST['id_app']
+		);
 
 		$insert = $this->db->insert('recetas_complementarias', $data);
 

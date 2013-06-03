@@ -17,7 +17,7 @@ class Categorias extends CI_Controller {
 
 	echo "	
 			<div id='status'>
-        		<div id='' class='alert error'>Este nombre de categoria ya existe</div>
+        		<div id='' class='alert error'>Este nombre de categoría ya existe</div>
       		</div>
       		<div id='ventana-header'>
         		<h2>Nueva categoria</h2>
@@ -52,7 +52,7 @@ class Categorias extends CI_Controller {
 
 		echo "	
 			<div id='status'>
-        		<div id='' class='alert error'>Este nombre de categoria ya existe</div>
+        		<div id='' class='alert error'>Este nombre de categoría ya existe</div>
       		</div>
       		<div id='ventana-header'>
         		<h2>Editar categoria</h2>
@@ -86,7 +86,7 @@ class Categorias extends CI_Controller {
 
 		echo "	
       		<div id='ventana-header'>
-        		<h2>Eliminar categoria</h2>
+        		<h2>Eliminar categoría</h2>
         		 
         		<a class='modal_close' href=''></a>
       		</div>
