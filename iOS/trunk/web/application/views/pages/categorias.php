@@ -78,8 +78,9 @@
 
 <div id="lean_overlay"></div>
 
-<div id="ventana" class="chica"></div>
-
+<div id="ventana" class="chica">
+  <a class='modal_close' href='#'></a>
+</div>
 
 </div>
 <script>
