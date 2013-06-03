@@ -78,7 +78,7 @@
 
 <div id="lean_overlay"></div>
 
-<div id="ventana" class="chica">Hola</div>
+<div id="ventana" class="chica"></div>
 
 
 </div>

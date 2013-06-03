@@ -413,13 +413,6 @@
 
 	         	<input type="submit" class="submit add" value="Agregar"/> 
       		</form>
-            
-            
-			
-
-
-
-
           </div>
         </div><!-- popup addvideo -->
 
