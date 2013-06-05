@@ -38,7 +38,7 @@ class Complementarias extends CI_Controller
 			</div>
 			<div id='ventana-header'>
 				<h2>Nueva receta</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
       		".form_open('complementarias/create/')."
 				<div class='txt-fld full'>
@@ -68,7 +68,7 @@ class Complementarias extends CI_Controller
 			</div>
 			<div id='ventana-header'>
 				<h2>Editar receta</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
       		".form_open('complementarias/edit/')."
 				<div class='txt-fld full'>
@@ -99,7 +99,7 @@ class Complementarias extends CI_Controller
 			</div>
 			<div id='ventana-header'>
 				<h2>Editar receta</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
       		".form_open('complementarias/delete/')."
 				<div class='txt-fld'>

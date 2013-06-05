@@ -254,7 +254,7 @@ class Recetas extends CI_Controller {
 
 		echo "<div id='ventana-header'>
 				<h2>Eliminar</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			  </div>"
 				.validation_errors()."
 				".form_open('recetas/delete')."

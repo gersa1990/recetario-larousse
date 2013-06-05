@@ -18,7 +18,7 @@ class Videos extends CI_Controller {
 
 			<div id='ventana-header'>
 				<h2>Nuevo video</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
 
       		".form_open('videos/create/')."
@@ -49,7 +49,7 @@ class Videos extends CI_Controller {
 			</div>
 			<div id='ventana-header'>
 				<h2>Editar video</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
 			".form_open('videos/edit/')."
 				<div class='txt-fld'>
@@ -78,7 +78,7 @@ class Videos extends CI_Controller {
 		echo "
 			<div id='ventana-header'>
 				<h2>Eliminar video</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
 			".form_open('videos/delete/')."
 				<div class='txt-fld'>
