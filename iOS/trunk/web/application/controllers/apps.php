@@ -175,7 +175,7 @@ class Apps extends CI_Controller {
 				<h2>Eliminar</h2>
 				<p>Toda la información relacionada sera borrara</p>
 				<a class='modal_close' href='#'></a>
-			</div>".validation_errors()."".form_open('recetas/delete')."
+			</div>".validation_errors()."".form_open('apps/eliminar')."
 				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
 				<div class='txt-fld'>
 					<h2>".$resultado['nombre']."</h2>
