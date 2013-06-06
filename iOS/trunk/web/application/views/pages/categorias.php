@@ -99,6 +99,8 @@ function nuevaCategoria(){
         
         $.post(base_url+"categorias/checkExistence/", {titulo:tittle, id_app: app }, function (datos){
 
+          console.log(datos);
+
           if (datos.length==1) {
 
             $("#ventana #submitNuevaCategoria").slideUp("slow");

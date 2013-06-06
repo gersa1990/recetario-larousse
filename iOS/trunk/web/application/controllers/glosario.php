@@ -164,7 +164,7 @@ class Glosario extends CI_Controller {
 		echo "<div id='ventana2-header'>
 				<h2>Eliminar</h2>
 				 
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>".validation_errors()."".form_open('glosario/delete')."
 				<input type='hidden' name='id' id='id' value='".$glosario['id']."'>
 				<input type='hidden' name='id_app' id='id' value='".$glosario['id_app']."'>
@@ -206,7 +206,7 @@ class Glosario extends CI_Controller {
 			</div>
 			<div id='ventana-header'>
 				<h2>Editar glosario</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
 			".form_open('glosario/edit/')."
 				<div class='txt-fld full'>
@@ -286,7 +286,7 @@ class Glosario extends CI_Controller {
 
 			<div id='ventana-header'>
 				<h2>Nuevo término</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
 
       		".form_open('glosario/create/')."

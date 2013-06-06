@@ -6,7 +6,7 @@ class Complementarias extends CI_Controller
 		parent::__construct();
 		
 		$this->load->model('complementarias_model');
-		$this->load->model('App_model');
+		$this->load->model('app_model');
 		$this->load->model('glosario_model');
 		$this->load->model('video_model');
 	}
@@ -38,7 +38,7 @@ class Complementarias extends CI_Controller
 			</div>
 			<div id='ventana-header'>
 				<h2>Nueva receta</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
       		".form_open('complementarias/create/')."
 				<div class='txt-fld full'>
@@ -68,7 +68,7 @@ class Complementarias extends CI_Controller
 			</div>
 			<div id='ventana-header'>
 				<h2>Editar receta</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
       		".form_open('complementarias/edit/')."
 				<div class='txt-fld full'>
@@ -99,7 +99,7 @@ class Complementarias extends CI_Controller
 			</div>
 			<div id='ventana-header'>
 				<h2>Editar receta</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			</div>
       		".form_open('complementarias/delete/')."
 				<div class='txt-fld'>
@@ -154,7 +154,7 @@ class Complementarias extends CI_Controller
 		****************************************************************/
 	public function view($id_app)
 	{
-		$nombre = $data['name'] = $this->App_model->get_name($id_app);
+		$nombre = $data['name'] = $this->app_model->get_name($id_app);
 
 		$data['title'] = 'Larousse > '.$nombre[0]['nombre'].'> complementarias';
 
@@ -162,7 +162,7 @@ class Complementarias extends CI_Controller
 
 		$this->load->helper('url');
 
-		$data['apps'] = $this->App_model->get_apps($id_app);
+		$data['apps'] = $this->app_model->get_apps($id_app);
 		
 		$data['app'] = $id_app;
 
@@ -296,7 +296,7 @@ class Complementarias extends CI_Controller
 		        $ids_glosario = $_POST['glosario'];
 
 				for ($i=0; $i <count($ids_glosario) ; $i++) { 
-					$this->Glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
+					$this->glosario_model->addToRecipe($id_receta, $ids_glosario[$i]);
 				}
 		    }
 			

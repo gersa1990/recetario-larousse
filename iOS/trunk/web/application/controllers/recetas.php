@@ -254,13 +254,14 @@ class Recetas extends CI_Controller {
 
 		echo "<div id='ventana-header'>
 				<h2>Eliminar</h2>
-				<a class='modal_close' href='#'></a>
+				<a class='modal_close' onclick='myClose();' href='#'></a>
 			  </div>"
 				.validation_errors()."
 				".form_open('recetas/delete')."
-				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
+				<input type='hidden' name='id' id='id' value='".$resultado[0]['id']."'>
+				<input type='hidden' name='id_app' id='id' value='".$resultado[0]['id_app']."'>
 				<div class='txt-fld'>
-					<h2>".$resultado['titulo']."</h2>
+					<h2>".$resultado[0]['titulo']."</h2>
 				</div>
 				<div class='btn-fld'>
 					<button type='submit' class='boton' id='submitEditarApp'>Eliminar</button>

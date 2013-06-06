@@ -33,8 +33,9 @@
 
   <div id="lean_overlay"></div>
 
-  <div id="ventana" class="chica">
-      
+    <div id="ventana" class="chica">
+        
+    </div>
   </div>
 
 </div>
@@ -111,5 +112,11 @@ function eliminarApp(id){
     $('#ventana').html(response);
   });
 }
+
+function myClose(){
+  $('#lean_overlay').click();
+}
+
+
 
 </script>
