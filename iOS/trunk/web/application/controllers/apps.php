@@ -174,7 +174,9 @@ class Apps extends CI_Controller {
 		echo "<div id='ventana-header'>
 				<h2>Eliminar</h2>
 				<p>Toda la información relacionada sera borrara</p>
+				
 				<a class='modal_close' onclick='myClose();' href='#'></a>
+
 			</div>".validation_errors()."".form_open('apps/eliminar')."
 				<input type='hidden' name='id' id='id' value='".$resultado['id']."'>
 				<div class='txt-fld'>

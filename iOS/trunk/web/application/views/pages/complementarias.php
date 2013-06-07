@@ -151,6 +151,7 @@
 
     $.post(base_url+"complementarias/editarRecetas/", {id_receta: id, id_app : app}, function (data)
     {
+        $("#ventana").html("");
         $("#ventana").html(data);
 
         tinymce.init({
@@ -190,42 +191,10 @@
 
     $.post(base_url+"complementarias/eliminarRecetas/", {id_receta: id, id_app : app}, function (data){
 
+        $("#ventana").html("");
         $("#ventana2").html(data);
     });
 
   }
   /* Termina eliminar recetas */
-
-
-
-$(".editarComplementaria").each(function ()
-{
-  var id = $(this).attr('id');
-  //console.log(id);
-
-  $("#"+id+" #titulo").keyup(function ()
-  {
-    var titulo            = $("#"+id+" #titulo").val();
-    var id_complementaria = $("#"+id+" #id_complementaria").val();
-
-    $.post(base_url+"complementarias/updateCheckExistence/", {nombre:titulo, complementaria:id_complementaria, id_app:app}, function (data)
-    {
-      console.log(data);
-
-      if(data=="Existe")
-      {
-          $("#"+id+" #updateComplementaria").slideDown("slow");
-          $("#"+id+" #submitUpdateComplementaria").slideUp("slow");
-      } 
-      else
-      {
-          $("#"+id+" #updateComplementaria").slideUp("slow");
-          $("#"+id+" #submitUpdateComplementaria").slideDown("slow");
-      }
-    });
-
-  });
-
-});
-
 </script>
